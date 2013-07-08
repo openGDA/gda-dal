@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.csstudio.platform.libs.dal.plugs">
+      <plug
+            id="GDA"
+            name="GDA plug"
+            propertyFactoryClass="gda.dal.GdaPropertyFactory">
+      </plug>
+   </extension>
+  
+  <extension 
+   	     point="org.csstudio.sds.ui.widgetEditParts">
+      <widgetEditPart
+            class="gda.dal.csswidgets.editparts.SVGEditPart"
+            typeId="org.csstudio.sds.components.SVG"/>
+      <widgetEditPart
+            class="gda.dal.csswidgets.editparts.AttenuatorEditPart"
+            typeId="org.csstudio.sds.components.Attenuator"/>
+      <widgetEditPart
+            class="gda.dal.csswidgets.editparts.ArrowEditPart"
+            typeId="org.csstudio.sds.components.Arrow"/>
+      <widgetEditPart
+            class="gda.dal.csswidgets.editparts.SlitsEditPart"
+            typeId="org.csstudio.sds.components.Slits"/>   
+      <widgetEditPart
+            class="gda.dal.csswidgets.editparts.ImageButtonEditPart"
+            typeId="org.csstudio.sds.components.ImageButton"/>
+      <widgetEditPart
+            class="gda.dal.csswidgets.editparts.MoveableWindowEditPart"
+            typeId="org.csstudio.sds.components.MoveableWindow"/>
+      <widgetEditPart
+            class="gda.dal.csswidgets.editparts.MoveableTitleBarEditPart"
+            typeId="org.csstudio.sds.components.MoveableTitleBarModel"/>      
+      <widgetEditPart
+            class="gda.dal.csswidgets.editparts.ScannableControlEditPart"
+            typeId="org.csstudio.sds.components.ScannableControl"/> 
+      <widgetEditPart
+            class="gda.dal.csswidgets.editparts.TempCircleEditPart"
+            typeId="org.csstudio.sds.components.TempCircle"/>
+      <widgetEditPart
+            class="gda.dal.csswidgets.editparts.DeviceNameEditPart"
+            typeId="org.csstudio.sds.components.DeviceName"/>
+      <widgetEditPart
+            class="gda.dal.csswidgets.editparts.ComboEditPart"
+            typeId="uk.ac.gda.dal.combo">
+      </widgetEditPart>
+      
+      </extension>
+   	  <extension
+         point="org.csstudio.sds.widgetModelFactories">
+      <widgetModelFactory
+            class="gda.dal.csswidgets.modelfactory.SVGModelFactory"
+            description="Creates an SVG image."
+            icon="icons/image.png"
+            name="SVG Image"
+            typeId="org.csstudio.sds.components.SVG"/>
+      <widgetModelFactory
+            class="gda.dal.csswidgets.modelfactory.AttenuatorModelFactory"
+            description="Creates an attenuator device."
+            icon="icons/attenuator.png"
+            name="Attenuator Device"
+            typeId="org.csstudio.sds.components.Attenuator"/>
+      <widgetModelFactory
+            class="gda.dal.csswidgets.modelfactory.ArrowModelFactory"
+            description="Creates an arrow."
+            icon="icons/arrow.png"
+            name="Arrow"
+            typeId="org.csstudio.sds.components.Arrow"/>
+       <widgetModelFactory
+            class="gda.dal.csswidgets.modelfactory.SlitsModelFactory"
+            description="Creates slits."
+            icon="icons/vslits.png"
+            name="Slits"
+            typeId="org.csstudio.sds.components.Slits"/>
+      <widgetModelFactory
+            class="gda.dal.csswidgets.modelfactory.ImageButtonModelFactory"
+            description="Image button"
+            icon="icons/image_button.png"
+            name="Image Button"
+            typeId="org.csstudio.sds.components.ImageButton"/>
+      <widgetModelFactory
+            class="gda.dal.csswidgets.modelfactory.MoveableWindowModelFactory"
+            description="Moveable window"
+            icon="icons/images.png"
+            name="Moveable Window"
+            typeId="org.csstudio.sds.components.MoveableWindow"/>
+      <widgetModelFactory
+            category="Controls"
+            class="gda.dal.csswidgets.modelfactory.ScannableControlModelFactory"
+            description="Scannable Control"
+            icon="icons/scannable.png"
+            name="Scannable Control"
+            typeId="org.csstudio.sds.components.ScannableControl"/>
+      <widgetModelFactory
+            class="gda.dal.csswidgets.modelfactory.TempCircleModelFactory"
+            description="Temperature"
+            icon="icons/temp.png"
+            name="Temperature"
+            typeId="org.csstudio.sds.components.TempCircle"/>
+      <widgetModelFactory
+            class="gda.dal.csswidgets.modelfactory.DeviceNameModelFactory"
+            description="Device Name"
+            icon="icons/deviceicon.png"
+            name="Device Name"
+            typeId="org.csstudio.sds.components.DeviceName"/>
+      <widgetModelFactory
+            class="gda.dal.csswidgets.modelfactory.ComboModelFactory"
+            description="Combo Box"
+            icon="icons/combo.png"
+            name="Combo Box"
+            typeId="uk.ac.gda.dal.combo">
+      </widgetModelFactory>
+    </extension>
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+   <!--
+   <extension
+         point="org.eclipse.ui.actionSets">   
+      <actionSet
+            label="Syn<widgetModelFactory
+            class="gda.dal.csswidgets.modelfactory.DeviceNameModelFactory"
+            description="device name"
+            icon="icons/images.png"
+            name="device name"
+            typeId="org.csstudio.sds.components.DeviceName">
+      </widgetModelFactory>lass class="gda.dal.OpenSDSView">
+                    <parameter name="url" value="SDS/synoptic.css-sds" />
+               </class>   
+         </action>
+      </actionSet>   
+   </extension>
+   -->
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            category="uk.ac.gda.client.general.category"
+            class="gda.dal.SDSView"
+            icon="icons/cog_go.png"
+            id="gda.dal.sdsview"
+            name="Synoptic"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="gda.dal.SDSPerspective"
+            icon="icons/cog_go.png"
+            id="gda.dal.sdsperspective"
+            name="Synoptic">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.startup">
+      <startup
+            class="gda.dal.DALStartup">
+      </startup>
+   </extension>
+   <extension
+         point="org.eclipse.ui.ide.resourceFilters">
+      <filter
+            pattern="*.css-sds"
+            selected="false">
+      </filter>
+      <filter
+            pattern="*.css-sdss"
+            selected="false">
+      </filter>
+      <filter
+            pattern="*.xml"
+            selected="false">
+      </filter>
+      <filter
+            pattern="*.scan"
+            selected="false">
+      </filter>
+   
+   </extension>
+   <extension point="org.eclipse.ui.navigator.navigatorContent">
+    	<commonFilter
+	        description="Hides DAL projects"
+	        id="uk.ac.gda.dal.hideProjects"
+	        name="DAL projects"
+	        activeByDefault="true">
+	        <filterExpression>
+				<or>
+	                <adapt type="org.eclipse.core.resources.IResource">
+	                    <test property="org.eclipse.core.resources.name" value="screens"/>
+	                </adapt>
+	                
+	                <adapt type="org.eclipse.core.resources.IResource">
+	                    <test property="org.eclipse.core.resources.name" value="scripts"/>
+	                </adapt>
+
+	                <adapt type="org.eclipse.core.resources.IResource">
+	                    <test property="org.eclipse.core.resources.name" value="SDS"/>
+	                </adapt>
+
+	                <adapt type="org.eclipse.core.resources.IResource">
+	                    <test property="org.eclipse.core.resources.name" value="SDS Cursors"/>
+	                </adapt>
+
+	                <adapt type="org.eclipse.core.resources.IResource">
+	                    <test property="org.eclipse.core.resources.name" value="SDS Script Rules"/>
+	                </adapt>
+		    	</or>
+	        </filterExpression>
+	    </commonFilter>
+	</extension>
+	<extension point="org.eclipse.ui.navigator.viewer">
+	    <viewerContentBinding
+	          viewerId="org.eclipse.ui.navigator.ProjectExplorer">
+	          <includes>
+	            <contentExtension pattern="uk.ac.gda.dal.hideProjects"/> 
+	          </includes>
+	    </viewerContentBinding>
+	</extension>   
+</plugin>

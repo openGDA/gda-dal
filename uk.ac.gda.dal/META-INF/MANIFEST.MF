@@ -1,0 +1,43 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Dal Plug-in
+Bundle-SymbolicName: uk.ac.gda.dal;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: gda.dal.Activator
+Require-Bundle: 
+ org.eclipse.ui;bundle-version="3.5.1",
+ org.csstudio.apputil;bundle-version="1.0.9",
+ org.csstudio.apputil.ui;bundle-version="1.1.1",
+ org.csstudio.logbook;bundle-version="1.0.2",
+ org.csstudio.platform;bundle-version="1.2.0",
+ org.csstudio.platform.libs.dal;bundle-version="1.2.0";visibility:=reexport,
+ org.csstudio.platform.libs.dal.epics;bundle-version="1.2.0",
+ org.csstudio.platform.libs.epics;bundle-version="1.2.0",
+ org.csstudio.platform.libs.epics.ui;bundle-version="1.2.0",
+ org.csstudio.platform.libs.jms;bundle-version="1.2.0",
+ org.csstudio.platform.libs.jms.ui;bundle-version="1.2.0",
+ org.csstudio.platform.ui;bundle-version="1.2.0",
+ org.csstudio.platform.utility.jms;bundle-version="1.2.0",
+ org.csstudio.platform.workspace;bundle-version="1.2.0",
+ org.csstudio.sds;bundle-version="1.0.8",
+ org.csstudio.sds.components;bundle-version="1.0.8",
+ org.csstudio.sds.components.ui;bundle-version="1.0.8",
+ org.csstudio.sds.importer;bundle-version="1.0.8",
+ org.csstudio.sds.importer.ui;bundle-version="1.0.8",
+ org.csstudio.sds.ui;bundle-version="1.0.8",
+ org.csstudio.swt.chart;bundle-version="1.0.18",
+ org.csstudio.swt.xygraph;bundle-version="1.0.0",
+ uk.ac.gda.common.rcp;bundle-version="1.0.0",
+ uk.ac.gda.core,
+ uk.ac.gda.common;bundle-version="1.0.0",
+ uk.ac.gda.client;bundle-version="1.0.0",
+ uk.ac.gda.video.mjpeg;bundle-version="1.0.0",
+ uk.ac.gda.libs;bundle-version="1.0.0",
+ uk.ac.gda.video;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy
+Eclipse-LazyStart: true
+Eclipse-RegisterBuddy: org.csstudio.platform.libs.dal
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: gda.dal
+Bundle-Vendor: Diamond Light Source
+Import-Package: org.slf4j;version="[1.5.0,2.0.0)"
