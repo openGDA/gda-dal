@@ -31,5 +31,4 @@ public class StringProvideUnitsRunnable  extends ProvideUnitsRunnable<String> {
 		throw new RuntimeException("Unknown type: " + o.getClass().getName());
 	}
 
-
 }

@@ -22,13 +22,10 @@ public class BooleanProvideStatusRunnable extends ProvideStatusRunnable<String> 
 
 	public BooleanProvideStatusRunnable(String scannableName) {
 		super(scannableName);
-		// TODO Auto-generated constructor stub
 	}
 	@Override
 	String createValue(int val) {
 		return String.valueOf(val);
 	}
 
-	
-	
 }

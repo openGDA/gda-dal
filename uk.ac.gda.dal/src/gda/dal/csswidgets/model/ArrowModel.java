@@ -23,7 +23,6 @@ import org.csstudio.sds.model.WidgetPropertyCategory;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 
-
 /**
  *
  */

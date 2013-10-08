@@ -27,7 +27,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.draw2d.IFigure;
 
 public final class SlitsEditPart extends AbstractWidgetEditPart {
-	RefreshableSlitsFigure figure = new RefreshableSlitsFigure();
+	RefreshableSlitsFigure figure;
 	private SlitsModel model;
 	
 	private int _yTranslate;
@@ -51,6 +51,7 @@ public final class SlitsEditPart extends AbstractWidgetEditPart {
 	@Override
 	protected IFigure doCreateFigure() {
 		model = getCastedModel();
+		figure = new RefreshableSlitsFigure();
 		figure.setSlitType(model.getSlitType());
 		
 		_yTranslate = figure.getYTranslate();

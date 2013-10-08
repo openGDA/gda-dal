@@ -28,7 +28,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.draw2d.IFigure;
 
 public final class SVGEditPart extends AbstractWidgetEditPart {
-	RefreshableSVGFigure figure = new RefreshableSVGFigure();
+	RefreshableSVGFigure figure;
 	/**
 	 * Returns the casted model. This is just for convenience.
 	 * 
@@ -45,6 +45,7 @@ public final class SVGEditPart extends AbstractWidgetEditPart {
 	@Override
 	protected IFigure doCreateFigure() {
 		SVGModel model = getCastedModel();
+		figure = new RefreshableSVGFigure();
 		figure.setFilePath(model.getFilename());
 		return figure;
 	}

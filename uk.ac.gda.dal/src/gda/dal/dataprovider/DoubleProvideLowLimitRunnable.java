@@ -22,7 +22,6 @@ public class DoubleProvideLowLimitRunnable extends ProvideLowLimitRunnable<Doubl
 
 	public DoubleProvideLowLimitRunnable(String scannableName) {
 		super(scannableName);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

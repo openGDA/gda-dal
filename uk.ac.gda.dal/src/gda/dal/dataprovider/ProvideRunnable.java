@@ -18,19 +18,12 @@
 
 package gda.dal.dataprovider;
 
-
 public interface ProvideRunnable<T> {
 	public abstract T getCurrentValue();
-
-	
 	public abstract void setTargetValue(T targetValue);
-	
 	public abstract void stop() ;
 	public abstract boolean isRunning () ;
-	
 	public abstract void refresh();
-	
 	public void addListener(ProvideDataEventListener<T> newListener) ;
-	
 	public void removeListener(ProvideDataEventListener<T> listenerToRemove);
 }

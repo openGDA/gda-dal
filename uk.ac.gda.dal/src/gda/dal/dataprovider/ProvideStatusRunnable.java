@@ -60,16 +60,13 @@ public abstract class ProvideStatusRunnable<T> implements ProvideRunnable<T> {
 				Runnable x = new Runnable() {
 					@Override
 					public void run() {
-
 						try {
 							scannable.stop();
 						} catch (DeviceException e) {
 							logger.error(e.getMessage(), e);
 						}
-
 					}
 				};
-
 				Thread t = new Thread(x, "stop");
 				t.start();
 			}
@@ -89,9 +86,8 @@ public abstract class ProvideStatusRunnable<T> implements ProvideRunnable<T> {
 
 				@Override
 				public void update(Object source, Object arg) {
-					if (source instanceof Scannable && arg instanceof ScannableStatus) {
+					if (source instanceof Scannable && arg instanceof ScannableStatus)
 						sendStatusUpdate(((ScannableStatus) arg).getStatus());
-					}
 				}
 
 			});
@@ -112,9 +108,8 @@ public abstract class ProvideStatusRunnable<T> implements ProvideRunnable<T> {
 		event.value = createValue(isBusy);
 		event.timestamp = new Timestamp();
 
-		for (ProvideDataEventListener<T> listener : listeners) {
+		for (ProvideDataEventListener<T> listener : listeners)
 			listener.newData(event);
-		}
 	}
 
 	abstract T createValue(int val);
@@ -143,11 +138,9 @@ public abstract class ProvideStatusRunnable<T> implements ProvideRunnable<T> {
 	@Override
 	public void removeListener(ProvideDataEventListener<T> listenerToRemove) {
 		listeners.remove(listenerToRemove);
-
 	}
 
 	@Override
 	public void refresh() {
-		
 	}
 }

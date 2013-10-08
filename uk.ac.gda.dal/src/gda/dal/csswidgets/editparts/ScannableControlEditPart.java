@@ -430,8 +430,7 @@ public final class ScannableControlEditPart extends AbstractWidgetEditPart {
 		handler = new IWidgetPropertyChangeHandler() {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure refreshableFigure) {
-				tooltipText = "Limits:Low=" + newValue + ",High=" + model.getHighLimit() + "\rUnits="
-						+ model.getPropUnits() + "\rIncrement=" + incrementVal;
+				tooltipText = "Limits:Low=" + newValue + ",High=" + model.getHighLimit() + "\rUnits=" + model.getPropUnits() + "\rIncrement=" + incrementVal;
 				model.setPropertyValue(AbstractWidgetModel.PROP_TOOLTIP, tooltipText);
 				return true;
 			}
@@ -441,8 +440,7 @@ public final class ScannableControlEditPart extends AbstractWidgetEditPart {
 		handler = new IWidgetPropertyChangeHandler() {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure refreshableFigure) {
-				tooltipText = "Limits:Low=" + model.getLowLimit() + ",High=" + model.getHighLimit() + "\rUnits="
-						+ newValue + "\rIncrement=" + incrementVal;
+				tooltipText = "Limits:Low=" + model.getLowLimit() + ",High=" + model.getHighLimit() + "\rUnits="+ newValue + "\rIncrement=" + incrementVal;
 				model.setPropertyValue(AbstractWidgetModel.PROP_TOOLTIP, tooltipText);
 				return true;
 			}
@@ -483,7 +481,6 @@ public final class ScannableControlEditPart extends AbstractWidgetEditPart {
 		handler = new IWidgetPropertyChangeHandler() {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure refreshableFigure) {
-				ScannableControlFigure figure = (ScannableControlFigure) refreshableFigure;
 				incrementVal=(Double) newValue;
 				return true;
 			}

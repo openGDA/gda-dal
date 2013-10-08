@@ -36,5 +36,4 @@ public class DoubleProvideHighLimitRunnable extends ProvideHighLimitRunnable<Dou
 			throw new RuntimeException("Unknown type: " + o.getClass().getName());
 	}
 
-
 }

@@ -41,50 +41,29 @@ import org.eclipse.swt.widgets.Display;
  */
 public final class RefreshableSlitsFigure extends Shape implements IAdaptable {
 
-	/**
-	 * A border adapter, which covers all border handling.
-	 */
 	private IBorderEquippedWidget _borderAdapter;
     private CrossedOutAdapter _crossedOutAdapter;
     private RhombusAdapter _rhombusAdapter;
-	/**
-	 * The {@link IPath} to the image.
-	 */
 	private IPath _slit_path = new Path("/oe images/blade.png");
 	private IPath _upArrowPath = new Path("/arrow images/up.png");
 	private IPath _downArrowPath = new Path("/arrow images/down.png");
 	private IPath _xPlusArrowPath = new Path("/arrow images/x_plus.png");
 	private IPath _xMinusArrowPath = new Path("/arrow images/x_minus.png");
-	/**
-	 * The image itself.
-	 */
 	private Image _slitImage = null;
 	private Image _upArrowImage = null;
 	private Image _downArrowImage = null;
 	private Image _xPlusArrowImage = null;
 	private Image _xMinusArrowImage = null;
-	/**
-	 * The width of the image.
-	 */
 	private int _imgWidth = 0;
-	/**
-	 * The height of the image.
-	 */
 	private int _imgHeight = 0;
-
 	private int _xTranslateX = 0;
 	private int _xTranslateY = 0;
-
 	private int _yTranslate = 0;
-
 	private int _Vgap = 0;
 	private int _Hgap = 0;
-
 	private int _slitType = 0;
-
 	public Rectangle bound = getBounds().getCopy();
 
-	
 	/**
 	 * We want to have local coordinates here.
 	 * 

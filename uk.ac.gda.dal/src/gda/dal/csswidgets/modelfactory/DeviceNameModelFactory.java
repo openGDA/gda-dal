@@ -33,7 +33,6 @@ public final class DeviceNameModelFactory implements IWidgetModelFactory {
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Class getWidgetModelType() {
-		// TODO Auto-generated method stub
 		return DeviceNameModel.class;
 	}
 

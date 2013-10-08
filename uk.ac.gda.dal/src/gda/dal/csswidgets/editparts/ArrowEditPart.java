@@ -51,8 +51,6 @@ public final class ArrowEditPart extends AbstractWidgetEditPart {
 		return arrowFigure;
 	}
 
-	
-
 	/**
 	 * {@inheritDoc}
 	 */
@@ -142,11 +140,9 @@ public final class ArrowEditPart extends AbstractWidgetEditPart {
 				else if(Integer.parseInt(newValue.toString())==12)
 					path = new Path("/arrow images/x2.png");
 				
-				
 				imageFigure.setFilePath(path);
 				
 				return true;
-
 			}
 		};
 		setPropertyChangeHandler(ArrowModel.PROP_ARROW, handle);

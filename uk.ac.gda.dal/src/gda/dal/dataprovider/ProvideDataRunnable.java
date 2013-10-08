@@ -235,6 +235,5 @@ public abstract class ProvideDataRunnable<T> implements ProvideRunnable {
 	@Override
 	public void refresh() {
 		// TODO Auto-generated method stub
-
 	}
 }

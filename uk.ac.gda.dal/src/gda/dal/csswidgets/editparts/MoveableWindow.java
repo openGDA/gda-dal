@@ -109,6 +109,4 @@ public class MoveableWindow {
 		this.closeButtonHoverListener = closeButtonHoverListener;
 	}
 	
-	
-
 }

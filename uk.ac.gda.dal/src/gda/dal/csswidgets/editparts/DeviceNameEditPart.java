@@ -25,11 +25,10 @@ import org.csstudio.sds.ui.editparts.AbstractWidgetEditPart;
 import org.eclipse.draw2d.IFigure;
 
 public class DeviceNameEditPart extends AbstractWidgetEditPart {
-	DeviceNameFigure figure;
 	@Override
 	protected IFigure doCreateFigure() {
 		DeviceNameModel model = (DeviceNameModel) getWidgetModel();
-		figure = new DeviceNameFigure();
+		DeviceNameFigure figure = new DeviceNameFigure();
 		String alias = model.getAllInheritedAliases().toString();
 		String deviceName = alias.substring(alias.indexOf("/")+2,alias.indexOf("}"));
 		if(deviceName.contains(","))

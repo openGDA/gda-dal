@@ -29,12 +29,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+import org.csstudio.sds.internal.persistence.PersistenceUtil;
 import org.csstudio.sds.model.AbstractWidgetModel;
 import org.csstudio.sds.model.ContainerModel;
 import org.csstudio.sds.model.DisplayModel;
 import org.csstudio.sds.model.LabelModel;
-import org.csstudio.sds.internal.persistence.PersistenceUtil;
-import org.csstudio.sds.ui.CheckedUiRunnable;
 import org.csstudio.sds.ui.editparts.AbstractContainerEditPart;
 import org.csstudio.sds.ui.editparts.IWidgetPropertyChangeHandler;
 import org.eclipse.core.resources.IFile;
@@ -59,7 +58,6 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.RGB;
 import org.eclipse.ui.progress.IJobRunnable;
 
 /**
@@ -71,8 +69,6 @@ public final class MoveableWindowEditPart extends AbstractContainerEditPart {
 
 	int delta_x = 0;
 	int delta_y = 0;
-//	int boxWidth = 0;
-//	int boxHeight = 0;
 	String title;
 	ContainerLoadJob job;
 	Point clickedAt;
@@ -285,8 +281,7 @@ public final class MoveableWindowEditPart extends AbstractContainerEditPart {
 
 						@Override
 						public void mousePressed(MouseEvent arg0) {
-							arg0.consume();// required for mouseDragged
-							// to work
+							arg0.consume();// required for mouseDragged to work
 							clickedAt = new Point(arg0.x, arg0.y);
 							delta_x = clickedAt.x - moveableWindows.get(newValue.toString()).getRectangle().getLocation().x;
 							delta_y = clickedAt.y - moveableWindows.get(newValue.toString()).getRectangle().getLocation().y;
@@ -355,21 +350,15 @@ public final class MoveableWindowEditPart extends AbstractContainerEditPart {
 	@Override
 	protected void refreshChildren() {
 		super.refreshChildren();
-
-		// we need to ensure the correct zoom level, when figures are added or
-		// removed
+		// we need to ensure the correct zoom level, when figures are added or removed
 		((MoveableWindowFigure) getFigure()).updateZoom();
 	}
 
 	private void loadResource(final IPath resource, MoveableWindowFigure figure) {
-		if (_runningMonitor != null) {
+		if (_runningMonitor != null)
 			_runningMonitor.setCanceled(true);
-		}
-
 		_runningMonitor = new NullProgressMonitor();
-
 		job = new ContainerLoadJob((MoveableWindowModel) getContainerModel(), resource, figure);
-
 		job.run(_runningMonitor);
 	}
 
@@ -422,23 +411,14 @@ public final class MoveableWindowEditPart extends AbstractContainerEditPart {
 		@Override
 		public IStatus run(IProgressMonitor progressMonitor) {
 			IStatus status = Status.OK_STATUS;
-
 			if (_path != null && !_path.isEmpty()) {
-				// display a temporary message + cancel button while the display
-				// is loading
-
 				if (!progressMonitor.isCanceled()) {
-					// showMessage(progressMonitor, "Loading " +
-					// _path.toString());
-
-					if (!progressMonitor.isCanceled()) {
-						load(progressMonitor);
-					} else {
+					if (!progressMonitor.isCanceled())
+						load();
+					else
 						status = Status.CANCEL_STATUS;
-					}
-				} else {
+				} else 
 					status = Status.CANCEL_STATUS;
-				}
 			}
 			return status;
 		}
@@ -446,23 +426,12 @@ public final class MoveableWindowEditPart extends AbstractContainerEditPart {
 		protected IStatus clearContainer() {
 			// remove old widgets
 			Iterator<AbstractWidgetModel> it = _container.getWidgets().iterator();
-			while (it.hasNext()) {
+			while (it.hasNext())
 				_container.removeWidget(it.next());
-			}
-
-			updateZoom();
-
 			return Status.OK_STATUS;
 		}
 
-		protected void updateZoom() {
-			new CheckedUiRunnable() {
-				@Override
-				protected void doRunInUi() {
-					_figure.updateZoom();
-				}
-			};
-		}
+
 
 		protected void showMessage(String message) {
 			// clear the container
@@ -470,7 +439,6 @@ public final class MoveableWindowEditPart extends AbstractContainerEditPart {
 
 			// add a temporary widget
 			final LabelModel loadingMessage = new LabelModel();
-			// loadingMessage.setForegroundColor(new RGB(0, 0, 200));
 			loadingMessage.setTextValue(message);
 			loadingMessage.setLocation(0, 0);
 			int w = _container.getWidth();
@@ -483,12 +451,12 @@ public final class MoveableWindowEditPart extends AbstractContainerEditPart {
 		/**
 		 * Initialises the {@link ContainerModel} from the specified path.
 		 */
-		protected void load(final IProgressMonitor progressMonitor) {
+		protected void load() {
 			InputStream input = getInputStream(_path);
 
-			if (input == null) {
+			if (input == null)
 				showMessage("Could not load display: " + _path.toPortableString());
-			} else {
+			else { 
 				tempModel = new DisplayModel();
 
 				PersistenceUtil.syncFillModel(tempModel, input);
@@ -496,17 +464,7 @@ public final class MoveableWindowEditPart extends AbstractContainerEditPart {
 				// add new widgets
 				widgets = tempModel.getWidgets();
 				tempModel.removeWidgets(widgets);
-
-				// update zoom
-				if (!progressMonitor.isCanceled()) {
-					updateZoom();
-				}
-
-				// use background-color of the loaded display
-				// _container.setBackgroundColor(tempModel.getBackgroundColor());
-				// _container.setForegroundColor(tempModel.getForegroundColor());
-
-				// _container.setAliases(tempModel.getAliases());
+				
 				_container.setPrimarPv(tempModel.getPrimaryPV());
 			}
 		}
@@ -536,9 +494,7 @@ public final class MoveableWindowEditPart extends AbstractContainerEditPart {
 					result = new FileInputStream(path.toFile());
 				} catch (FileNotFoundException e) {
 				}
-
 			}
-
 			return result;
 		}
 	}

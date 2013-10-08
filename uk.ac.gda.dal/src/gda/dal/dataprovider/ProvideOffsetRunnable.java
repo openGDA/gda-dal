@@ -18,9 +18,7 @@
 
 package gda.dal.dataprovider;
 
-import gda.device.DeviceException;
 import gda.device.Scannable;
-import gda.device.scannable.ScannableMotionBase;
 import gda.factory.Findable;
 import gda.factory.Finder;
 import gda.jython.JythonServerFacade;

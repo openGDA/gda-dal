@@ -40,47 +40,19 @@ import org.eclipse.swt.widgets.Display;
  */
 public final class RefreshableAttenuatorFigure extends Shape implements IAdaptable {
 
-	/**
-	 * A border adapter, which covers all border handling.
-	 */
 	private IBorderEquippedWidget _borderAdapter;
 	private CrossedOutAdapter _crossedOutAdapter;
 	private RhombusAdapter _rhombusAdapter;
-	
-	/**
-	 * The {@link IPath} to the image.
-	 */
 	private IPath _path = new Path("/oe images/attenuator_single_block.png");
 	private IPath empty_block_path = new Path("/oe images/attenuator_single_block_empty.png");
-	
 	private IPath arrowPath = new Path("/arrow images/y.png");
-	/**
-	 * The image itself.
-	 */
 	private Image _image = null;
 	private Image emptyBlockImage = null;
-	
-	
-	
 	private Image _arrowImage = null;
-	/**
-	 * The width of the image.
-	 */
-	private int _imgWidth = 0;
-	/**
-	 * The height of the image.
-	 */
-	private int _imgHeight = 0;
-	
-
 	private int _yTranslate = 0;
-
 	private int _noBlocks = 6;
-
 	private int _emptyBlockPos = 5;
-	
 	private int _yOffset = 0;
-	
 	public Rectangle bound = getBounds().getCopy();
 
 	/**
@@ -137,9 +109,6 @@ public final class RefreshableAttenuatorFigure extends Shape implements IAdaptab
 				
 				final InputStream emptyBlockStream = getClass().getResourceAsStream(empty_block_path.toString());
 				emptyBlockImage = new Image(Display.getDefault(), emptyBlockStream);
-				
-				_imgWidth = _image.getBounds().width;
-				_imgHeight = _image.getBounds().height;
 			}
 		} catch (Exception e) {
 			if (_image != null) {

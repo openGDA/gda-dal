@@ -51,7 +51,6 @@ public  abstract class ProvideLowLimitRunnable<T> implements ProvideRunnable<T>{
 
 	public void setTargetValue(@SuppressWarnings("unused") double targetValue) {
 		//deliberately does nothing
-
 	}
 	
 	@Override

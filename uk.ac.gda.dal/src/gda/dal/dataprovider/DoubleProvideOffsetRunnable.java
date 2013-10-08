@@ -36,5 +36,4 @@ public class DoubleProvideOffsetRunnable extends ProvideOffsetRunnable<Double> {
 			throw new RuntimeException("Unknown type: " + o.getClass().getName());
 	}
 
-	
 }

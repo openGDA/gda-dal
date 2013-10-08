@@ -47,12 +47,10 @@ private static final Logger logger = LoggerFactory.getLogger(ProvideHighLimitRun
 	}
 
 	public void setTargetValue(@SuppressWarnings("unused") double targetValue) {
-		///does nothing
-		}
+	}
 	
 	@Override
 	public void setTargetValue(Object targetValue) {
-		 //does nothing
 	}
 
 	public ProvideUnitsRunnable(String scannableName) {
@@ -60,12 +58,10 @@ private static final Logger logger = LoggerFactory.getLogger(ProvideHighLimitRun
 		if(index != -1)
 			scannableName = scannableName.substring(0, index);
 		Findable findable = Finder.getInstance().find(scannableName);
-		if (findable instanceof Scannable) {
+		if (findable instanceof Scannable)
 			this.scannable = (Scannable) findable;
-					} else {
-			
+		else
 			throw new RuntimeException("ProvideDataRunnable. " + scannableName + " is not a Scannable");
-		}
 		updateListeners(readValue());
 		running = true;
 	}
@@ -82,6 +78,7 @@ private static final Logger logger = LoggerFactory.getLogger(ProvideHighLimitRun
 		}
 		return position;
 	}
+	
 	private void updateListeners(Object position)
 	{
 		ProvideDataEvent<T> event = new ProvideDataEvent<T>();		
@@ -93,10 +90,8 @@ private static final Logger logger = LoggerFactory.getLogger(ProvideHighLimitRun
 			return;
 		}
 		event.timestamp = new Timestamp();
-		for (ProvideDataEventListener<T> listener : listeners) {
+		for (ProvideDataEventListener<T> listener : listeners)
 			listener.newData(event);
-		}		
-		
 	}
 	
 	
@@ -116,20 +111,18 @@ private static final Logger logger = LoggerFactory.getLogger(ProvideHighLimitRun
 	@Override
 	public void addListener(ProvideDataEventListener newListener) {
 		listeners.add(newListener);
-		
 	}
 
 	@SuppressWarnings("rawtypes")
 	@Override
 	public void removeListener(ProvideDataEventListener listenerToRemove) {
 		listeners.remove(listenerToRemove);
-		
 	}
+	
 	@Override
 	public void refresh() {
 		updateListeners(readValue());
 		
 	}
-
 
 }

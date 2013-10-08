@@ -40,30 +40,21 @@ import org.eclipse.swt.graphics.Color;
  */
 public final class ScannableControlFigure extends Shape implements IAdaptable {
 
-	Rectangle demandBox;
-	Rectangle readbackBox;
-
+	private Rectangle demandBox;
+	private Rectangle readbackBox;
 	private double demand;
-	double readback;
-
+	private double readback;
     private CrossedOutAdapter _crossedOutAdapter;
     private RhombusAdapter _rhombusAdapter;
-	
-	boolean amIHolder;
-	boolean demandSet = false;
-	
-	public CellEditor demandCellEditor;
-	public CellEditor incrementCellEditor;
-	public CellEditor offsetCellEditor;
-	
+    private boolean amIHolder;
+    private boolean demandSet = false;
+    public CellEditor demandCellEditor;
+    public CellEditor incrementCellEditor;
+    public CellEditor offsetCellEditor;
 	private int boxWidth = 60;
 	private int dp=5;
-	/**
-	 * A border adapter, which covers all border handling.
-	 */
 	private IBorderEquippedWidget _borderAdapter;
-
-	public Rectangle bound = getBounds().getCopy();
+	private Rectangle bound = getBounds().getCopy();
 
 	public ScannableControlFigure(boolean baton) {
 		amIHolder = baton;

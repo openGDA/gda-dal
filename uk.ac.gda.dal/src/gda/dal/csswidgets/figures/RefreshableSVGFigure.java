@@ -42,13 +42,9 @@ import org.eclipse.swt.widgets.Display;
  */
 public final class RefreshableSVGFigure extends Shape implements IAdaptable {
 
-	/**
-	 * A border adapter, which covers all border handling.
-	 */
 	private IBorderEquippedWidget _borderAdapter;
     private CrossedOutAdapter _crossedOutAdapter;
     private RhombusAdapter _rhombusAdapter;
-
 	private IPath _path = new Path("");
 	private Image _image = null;
 	private int _imgWidth = 0;
@@ -56,8 +52,7 @@ public final class RefreshableSVGFigure extends Shape implements IAdaptable {
 	private int _yTranslate = 0;
 	private int _xTranslateX = 0;
 	private int _xTranslateY = 0;
-	
-	public Rectangle bound = getBounds().getCopy();
+	private Rectangle bound = getBounds().getCopy();
 	/**
 	 * We want to have local coordinates here.
 	 * 

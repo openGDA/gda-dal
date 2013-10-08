@@ -38,7 +38,6 @@ public final class TempCircleFigure extends Shape implements IAdaptable {
 	private Color historyColorA;
 	private Color historyColorB;
 	private Color historyColorC;
-	
 	private IBorderEquippedWidget _borderAdapter;
     private CrossedOutAdapter _crossedOutAdapter;
     private RhombusAdapter _rhombusAdapter;
@@ -85,32 +84,24 @@ public final class TempCircleFigure extends Shape implements IAdaptable {
 	 */
 	@Override
 	public void paintFigure(final Graphics gfx) {
-		
 		bound = getBounds().getCopy();
-
 		gfx.setForegroundColor(new Color(null, 0,0,0));
-		
 		gfx.drawArc(bound.x, bound.y, 26, 26, 90, 180);
-		
 		gfx.drawLine(bound.x+13, bound.y, bound.x+53, bound.y);
 		gfx.drawLine(bound.x+13, bound.y + 26, bound.x+53, bound.y+26);
 		gfx.drawLine(bound.x+53, bound.y, bound.x+53, bound.y+26);
-		
 		gfx.setBackgroundColor(historyColorA);
 		gfx.fillRectangle(bound.x + 44-3-6-3-6, bound.y + 3, 6, 20);
 		gfx.setBackgroundColor(historyColorB);
 		gfx.fillRectangle(bound.x + 44-3-6, bound.y + 3, 6, 20);
 		gfx.setBackgroundColor(historyColorC);
 		gfx.fillRectangle(bound.x + 44, bound.y + 3, 6, 20);
-		
 		gfx.setBackgroundColor(liveColor);
 		gfx.fillOval(bound.x+3, bound.y+3, 20, 20);
-		
 		_crossedOutAdapter.paint(gfx);
 	    _rhombusAdapter.paint(gfx);
 	}
 
-	
 	/**
 	 * {@inheritDoc}
 	 */

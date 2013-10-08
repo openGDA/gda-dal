@@ -34,8 +34,6 @@ public class DoubleProvideDataRunnable extends ProvideDataRunnable<Double> {
 			return Double.parseDouble((String) o);
 		else
 			return null;
-		//else
-			//throw new RuntimeException("Unknown type: " + o.getClass().getName());
 	}
 
 	public boolean isDouble(String string) {
