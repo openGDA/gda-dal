@@ -28,12 +28,13 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
 
+import org.csstudio.sds.components.model.RectangleModel;
 import org.csstudio.sds.internal.persistence.PersistenceUtil;
 import org.csstudio.sds.model.AbstractWidgetModel;
 import org.csstudio.sds.model.ContainerModel;
 import org.csstudio.sds.model.DisplayModel;
-import org.csstudio.sds.model.LabelModel;
 import org.csstudio.sds.ui.editparts.AbstractContainerEditPart;
 import org.csstudio.sds.ui.editparts.IWidgetPropertyChangeHandler;
 import org.eclipse.core.resources.IFile;
@@ -67,20 +68,21 @@ public final class MoveableWindowEditPart extends AbstractContainerEditPart {
 
 	private IProgressMonitor _runningMonitor;
 
-	int delta_x = 0;
-	int delta_y = 0;
-	String title;
-	ContainerLoadJob job;
-	Point clickedAt;
-	MoveableTitleBarModel rect;
-	MoveableTitleBarModel overRect;
-	MoveableWindowFigure moveableWindowFigure = new MoveableWindowFigure();
-	MoveableWindow win;
+	private int delta_x = 0;
+	private int delta_y = 0;
+	private String title;
+	private ContainerLoadJob job;
+	private Point clickedAt;
+	private MoveableTitleBarModel rect;
+	private MoveableTitleBarModel overRect;
+	private MoveableWindow win;
+	private Point lastLocation;
 	
 	/**
 	 * Constructor.
 	 */
 	public MoveableWindowEditPart() {
+		lastLocation = new Point();
 		setChildrenSelectable(true);
 	}
 
@@ -97,11 +99,9 @@ public final class MoveableWindowEditPart extends AbstractContainerEditPart {
 	 */
 	@Override
 	protected IFigure doCreateFigure() {
-
 		MoveableWindowModel widget = (MoveableWindowModel) getContainerModel();
 		MoveableWindowFigure moveableWindowFigure = new MoveableWindowFigure();
 		moveableWindowFigure.setAutoFit(widget.isAutoZoom());
-
 		if (widget.isLive()) {
 			moveableWindowFigure.addMouseListener(new MouseListener.Stub() {
 				@Override
@@ -110,7 +110,6 @@ public final class MoveableWindowEditPart extends AbstractContainerEditPart {
 				}
 			});
 		}
-
 		return moveableWindowFigure;
 	}
 
@@ -119,18 +118,21 @@ public final class MoveableWindowEditPart extends AbstractContainerEditPart {
 	 */
 	@Override
 	protected void registerPropertyChangeHandlers() {
-
 		final HashMap<String, MoveableWindow> moveableWindows = new HashMap<String, MoveableWindow>();
-
 		IWidgetPropertyChangeHandler handler = new IWidgetPropertyChangeHandler() {
-
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
 
 				if (!moveableWindows.containsKey(newValue.toString())) {
-
-					loadResource((IPath) newValue, (MoveableWindowFigure) figure);
-
+					InputStream icon = getClass().getResourceAsStream("/icons/close.png");
+					InputStream	overIcon = getClass().getResourceAsStream("/icons/close_over.png");
+					
+					if (_runningMonitor != null)
+						_runningMonitor.setCanceled(true);
+					_runningMonitor = new NullProgressMonitor();
+					job = new ContainerLoadJob((MoveableWindowModel) getContainerModel(), (IPath) newValue, (MoveableWindowFigure) figure);
+					job.run(_runningMonitor);
+					
 					title = newValue.toString();
 					System.out.println(title);
 					int beginIndex = title.lastIndexOf('/') + 1;
@@ -154,14 +156,13 @@ public final class MoveableWindowEditPart extends AbstractContainerEditPart {
 					invisibleButton.setSize(19, 19);
 					invisibleButton.setFill(false);
 					invisibleButton.setOutline(false);
-					final InputStream icon = getClass().getResourceAsStream("/icons/close.png");
+
 					rect = new MoveableTitleBarModel(title, icon);
 					rect.setLocation(0, 0);
 					rect.setSize(0, 24);
 					rect.setVisible(true);
 					win.setTitleBarModel(rect);
 
-					final InputStream overIcon = getClass().getResourceAsStream("/icons/close_over.png");
 					overRect = new MoveableTitleBarModel(title, overIcon);
 					overRect.setLocation(0, 0);
 					overRect.setSize(0, 24);
@@ -181,14 +182,11 @@ public final class MoveableWindowEditPart extends AbstractContainerEditPart {
 					int boxHeight = 0;
 
 					for (int i = 0; i < widgets.size(); i++) {
-
 						if (widgets.get(i).getWidth() > boxWidth)
 							boxWidth = (widgets.get(i).getWidth());
 						if (widgets.get(i).getHeight() > boxHeight)
 							boxHeight = (widgets.get(i).getHeight());
-
 						xPositions[i] = widgets.get(i).getX();
-
 						if (!widgets.get(i).getClass().isInstance(rect))
 							yPositions[i] = widgets.get(i).getY() + 23;
 						else
@@ -219,58 +217,67 @@ public final class MoveableWindowEditPart extends AbstractContainerEditPart {
 
 						@Override
 						public void mouseDragged(MouseEvent arg0) {
-
-							AbstractWidgetModel widget;
-							int newX = arg0.x - delta_x;
-							int newY = arg0.y - delta_y;
-
-							for (int i = 0; i < widgets.size(); i++) {
-								widget = widgets.get(i);
-
-								if (newX >= 0)
-									widget.setX(newX + xPositions[i]);
-								else
-									widget.setX(xPositions[i]);
-
-								if (newY >= 0)
-									widget.setY(newY + yPositions[i]);
-								else
-									widget.setY(yPositions[i]);
+							if(Math.abs(arg0.getLocation().x-lastLocation.x)>5 || Math.abs(arg0.getLocation().y-lastLocation.y)>5){
+								lastLocation = arg0.getLocation();
+								AbstractWidgetModel widget;
+								int newX = arg0.x - delta_x;
+								int newY = arg0.y - delta_y;
+								for (int i = 0; i < widgets.size(); i++) {
+									widget = widgets.get(i);
+									Iterator<Entry<String, MoveableWindow>> it = moveableWindows.entrySet().iterator();
+								    while (it.hasNext()) {
+								    	Entry<String, MoveableWindow> pairs = it.next();
+								    	MoveableWindow mw = (pairs.getValue());
+										final List<AbstractWidgetModel> widgets = mw.getBox();
+										for (int j = 0; j < widgets.size(); j++){
+											if(!(widgets.get(j) instanceof MoveableTitleBarModel))
+												if(widgets.get(j) instanceof RectangleModel){
+													if(widgets.get(j).getWidth()<200)
+														widgets.get(j).setVisible(false);
+												}
+												else
+													widgets.get(j).setVisible(false);
+										}
+								    }
+									if (newX >= 0)
+										widget.setX(newX + xPositions[i]);
+									else
+										widget.setX(xPositions[i]);
+									if (newY >= 0)
+										widget.setY(newY + yPositions[i]);
+									else
+										widget.setY(yPositions[i]);
+								}
+								int titleBarX = invisibleRectangle.getLocation().x;
+								int titleBarY = invisibleRectangle.getLocation().y - rect.getHeight();
+								int buttonX = invisibleButton.getLocation().x;
+								int buttonY = invisibleButton.getLocation().y;
+								int boxWidth = 0;
+								int boxHeight = 0;
+								for (int i = 0; i < widgets.size(); i++) {
+									if (widgets.get(i).getWidth() > boxWidth)
+										boxWidth = (widgets.get(i).getWidth());
+									if (widgets.get(i).getHeight() > boxHeight)
+										boxHeight = (widgets.get(i).getHeight());
+								}
+								if (newX >= 0) {
+									titleBarX = newX;
+									buttonX = titleBarX + boxWidth - 21;
+								} 
+								else {
+									titleBarX = 0;
+									buttonX = titleBarX + boxWidth - 21;
+								}
+								if (newY >= 0) {
+									titleBarY = newY;
+									buttonY = titleBarY + 3;
+								} else {
+									titleBarY = 0;
+									buttonY = titleBarY + 3;
+								}
+								invisibleRectangle.setLocation(new Point(titleBarX, titleBarY));
+								invisibleButton.setLocation(new Point(buttonX, buttonY));
 							}
-
-							int titleBarX = invisibleRectangle.getLocation().x;
-							int titleBarY = invisibleRectangle.getLocation().y - rect.getHeight();
-							int buttonX = invisibleButton.getLocation().x;
-							int buttonY = invisibleButton.getLocation().y;
-
-							int boxWidth = 0;
-							int boxHeight = 0;
-
-							for (int i = 0; i < widgets.size(); i++) {
-								if (widgets.get(i).getWidth() > boxWidth)
-									boxWidth = (widgets.get(i).getWidth());
-								if (widgets.get(i).getHeight() > boxHeight)
-									boxHeight = (widgets.get(i).getHeight());
-							}
-							
-							if (newX >= 0) {
-								titleBarX = newX;
-								buttonX = titleBarX + boxWidth - 21;
-							} else {
-								titleBarX = 0;
-								buttonX = titleBarX + boxWidth - 21;
-							}
-
-							if (newY >= 0) {
-								titleBarY = newY;
-								buttonY = titleBarY + 3;
-							} else {
-								titleBarY = 0;
-								buttonY = titleBarY + 3;
-							}
-
-							invisibleRectangle.setLocation(new Point(titleBarX, titleBarY));
-							invisibleButton.setLocation(new Point(buttonX, buttonY));
 						}
 					};
 
@@ -289,16 +296,26 @@ public final class MoveableWindowEditPart extends AbstractContainerEditPart {
 							job._container.removeWidgets(moveableWindows.get(newValue.toString()).getBox());
 							job._container.addWidgets(newWidgets);
 						}
+						
+						@Override
+						public void mouseReleased(MouseEvent me) {
+							Iterator<Entry<String, MoveableWindow>> it = moveableWindows.entrySet().iterator();
+						    while (it.hasNext()) {
+						        Entry<String, MoveableWindow> pairs = it.next();
+						        MoveableWindow mw = (pairs.getValue());
+								final List<AbstractWidgetModel> widgets = mw.getBox();
+								for (int j = 0; j < widgets.size(); j++)
+									widgets.get(j).setVisible(true);
+						    }
+						}
 					};
 
 					MouseMotionListener cbhl = new MouseMotionListener.Stub() {
-
 						@Override
 						public void mouseEntered(MouseEvent arg0) {
 							moveableWindows.get(newValue.toString()).getTitleBarModel().setVisible(false);
 							moveableWindows.get(newValue.toString()).getOverTitleBarModel().setVisible(true);
 						}
-
 						@Override
 						public void mouseExited(MouseEvent arg0) {
 							moveableWindows.get(newValue.toString()).getOverTitleBarModel().setVisible(false);
@@ -307,13 +324,9 @@ public final class MoveableWindowEditPart extends AbstractContainerEditPart {
 					};
 					invisibleButton.addMouseMotionListener(cbhl);
 					win.setCloseButtonHoverListener(cbhl);
-
 					invisibleRectangle.addMouseListener(ml);
-
 					win.setMouseListener(ml);
-
 					MouseListener cl = new MouseListener.Stub() {
-
 						@Override
 						public void mousePressed(MouseEvent arg0) {
 							job._container.removeWidgets(moveableWindows.get(newValue.toString()).getBox());
@@ -323,25 +336,16 @@ public final class MoveableWindowEditPart extends AbstractContainerEditPart {
 						}
 					};
 					invisibleButton.addMouseListener(cl);
-
 					win.setCloseListener(cl);
-
 					job._figure.getContentsPane().add(invisibleRectangle);
 					job._figure.getContentsPane().add(invisibleButton);
 					job._container.addWidgets(widgets);
-
 					moveableWindows.put(newValue.toString(), win);
 				}
-
 				return true;
 			}
-
 		};
-
 		setPropertyChangeHandler(MoveableWindowModel.PROP_RESOURCE, handler);
-
-		MoveableWindowModel m = (MoveableWindowModel) getContainerModel();
-		loadResource(m.getResource(), moveableWindowFigure);
 	}
 
 	/**
@@ -350,16 +354,7 @@ public final class MoveableWindowEditPart extends AbstractContainerEditPart {
 	@Override
 	protected void refreshChildren() {
 		super.refreshChildren();
-		// we need to ensure the correct zoom level, when figures are added or removed
 		((MoveableWindowFigure) getFigure()).updateZoom();
-	}
-
-	private void loadResource(final IPath resource, MoveableWindowFigure figure) {
-		if (_runningMonitor != null)
-			_runningMonitor.setCanceled(true);
-		_runningMonitor = new NullProgressMonitor();
-		job = new ContainerLoadJob((MoveableWindowModel) getContainerModel(), resource, figure);
-		job.run(_runningMonitor);
 	}
 
 	/**
@@ -370,26 +365,16 @@ public final class MoveableWindowEditPart extends AbstractContainerEditPart {
 		super.createEditPolicies();
 		installEditPolicy(EditPolicy.CONTAINER_ROLE, null);
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new XYLayoutEditPolicy() {
-
 			@Override
 			protected Command createChangeConstraintCommand(final EditPart child, final Object constraint) {
 				return null;
 			}
-
 			@Override
 			protected Command getCreateCommand(final CreateRequest request) {
 				return null;
 			}
-
-			@Override
-			protected void showSizeOnDropFeedback(final CreateRequest request) {
-
-			}
-
 		});
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, null);
-
 	}
 
 	private static class ContainerLoadJob implements IJobRunnable {
@@ -415,37 +400,12 @@ public final class MoveableWindowEditPart extends AbstractContainerEditPart {
 				if (!progressMonitor.isCanceled()) {
 					if (!progressMonitor.isCanceled())
 						load();
-					else
+					 else
 						status = Status.CANCEL_STATUS;
-				} else 
+				} else
 					status = Status.CANCEL_STATUS;
 			}
 			return status;
-		}
-
-		protected IStatus clearContainer() {
-			// remove old widgets
-			Iterator<AbstractWidgetModel> it = _container.getWidgets().iterator();
-			while (it.hasNext())
-				_container.removeWidget(it.next());
-			return Status.OK_STATUS;
-		}
-
-
-
-		protected void showMessage(String message) {
-			// clear the container
-			clearContainer();
-
-			// add a temporary widget
-			final LabelModel loadingMessage = new LabelModel();
-			loadingMessage.setTextValue(message);
-			loadingMessage.setLocation(0, 0);
-			int w = _container.getWidth();
-			loadingMessage.setWidth(w);
-			int h = _container.getHeight();
-			loadingMessage.setHeight(h);
-			_container.addWidget(loadingMessage);
 		}
 
 		/**
@@ -453,18 +413,12 @@ public final class MoveableWindowEditPart extends AbstractContainerEditPart {
 		 */
 		protected void load() {
 			InputStream input = getInputStream(_path);
-
-			if (input == null)
-				showMessage("Could not load display: " + _path.toPortableString());
-			else { 
+			if (input != null) {
 				tempModel = new DisplayModel();
-
 				PersistenceUtil.syncFillModel(tempModel, input);
-
 				// add new widgets
 				widgets = tempModel.getWidgets();
-				tempModel.removeWidgets(widgets);
-				
+				tempModel.removeWidgets(widgets);	
 				_container.setPrimarPv(tempModel.getPrimaryPV());
 			}
 		}
@@ -478,7 +432,6 @@ public final class MoveableWindowEditPart extends AbstractContainerEditPart {
 		 */
 		private static InputStream getInputStream(final IPath path) {
 			InputStream result = null;
-
 			// try workspace
 			IResource r = ResourcesPlugin.getWorkspace().getRoot().findMember(path, false);
 			if (r instanceof IFile) {
@@ -487,7 +440,6 @@ public final class MoveableWindowEditPart extends AbstractContainerEditPart {
 				} catch (CoreException e) {
 				}
 			}
-
 			if (result == null) {
 				// try from local file system
 				try {

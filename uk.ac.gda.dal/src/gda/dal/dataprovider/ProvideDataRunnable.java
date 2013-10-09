@@ -40,7 +40,10 @@ public abstract class ProvideDataRunnable<T> implements ProvideRunnable {
 	private static final Logger logger = LoggerFactory.getLogger(ProvideDataRunnable.class);
 	private Scannable scannable;
 	private boolean running = false;
-
+	private IObserver observer = null;
+	private static Timer timer = new Timer();
+	private TimerTask timerTask;
+	private ProvideDataEvent<T> event = null;
 	// TODO: listeners list isn't used thread safely
 	protected List<ProvideDataEventListener<T>> listeners = new ArrayList<ProvideDataEventListener<T>>(1);
 
@@ -65,19 +68,13 @@ public abstract class ProvideDataRunnable<T> implements ProvideRunnable {
 				};
 				Thread t = new Thread(x, "moveTo");
 				t.start();
-			} else {
+			} 
+			else
 				logger.error("Unable to set " + scannable.getName() + " to " + targetValue + ":" + reason);
-			}
 		} catch (DeviceException e) {
 			logger.error(e.getMessage(), e);
 		}
 	}
-
-	private IObserver observer = null;
-	private static Timer timer = new Timer();
-	TimerTask timerTask;
-	TimerTask t;
-	private ProvideDataEvent<T> event = null;
 
 	public ProvideDataRunnable(String scannableName) {
 		int index = scannableName.indexOf(".");
@@ -97,73 +94,58 @@ public abstract class ProvideDataRunnable<T> implements ProvideRunnable {
 				 */
 				@Override
 				public void update(Object source, Object arg) {
-
 					try {
-						if (source == null) {
-							/*
-							 * if called by this class then call readValAndUpdateListeners, if still busy schedule
-							 * another call, but cancel all previous schedules
-							 */
-
-							ProvideDataRunnable.this.readValAndUpdateListeners();
-
-							//if (ProvideDataRunnable.this.scannable.isBusy()) {
-								try {
-									if (timerTask != null) {
-										timerTask.cancel();
-									}
-									timerTask = new TimerTask() {
-										@Override
-										public void run() {
-											if (ProvideDataRunnable.this.observer != null)
-												ProvideDataRunnable.this.observer.update(null, null);
-										}
-									};
-									timer.schedule(timerTask, 100);
-								} catch (IllegalStateException e) {
-									// do nothing
-								}
-							//}
-						}
-
-						
-//						&& ((source instanceof Scannable) && ((Scannable) source).getName().equals(
-//								scannable.getName()))
-						
-						else if (arg instanceof ScannableStatus) {
-							/* if ScannableStatus schedule a task to call readValAndUpdateListeners */
-							TimerTask timerTaskScannableStatus = new TimerTask() {
-								@Override
-								public void run() {
-									ProvideDataRunnable.this.observer.update(null, null);
-								}
-							};
-							timer.schedule(timerTaskScannableStatus, 100);
-						}
-
-						else if (arg instanceof ScannablePositionChangeEvent) {
-							updateListeners(((ScannablePositionChangeEvent) arg).newPosition);
-						}
-
-						else if (arg instanceof Double) {
-							// updateListeners(arg);
-							TimerTask timerTaskDouble = new TimerTask() {
-								@Override
-								public void run() {
-									if (ProvideDataRunnable.this.observer != null)
-										ProvideDataRunnable.this.observer.update(null, null);
-								}
-							};
-							timer.schedule(timerTaskDouble, 100);
-						}
-						
-						
-
-					} catch (OutOfMemoryError e) {
-						// logger.error(e.getMessage(), e);
+						boolean scannableBusy = scannable.isBusy();
+					} catch (DeviceException e) {
+						logger.error("Error checking if scannable is busy", e);
 					}
-				}
 
+					if (source == null) {
+						/*
+						 * if called by this class then call readValAndUpdateListeners, if still busy schedule
+						 * another call, but cancel all previous schedules
+						 */
+						ProvideDataRunnable.this.readValAndUpdateListeners();
+							try {
+								if (timerTask != null)
+									timerTask.cancel();
+								timerTask = new TimerTask() {
+									@Override
+									public void run() {
+										if (ProvideDataRunnable.this.observer != null)
+											ProvideDataRunnable.this.observer.update(null, null);
+									}
+								};
+								timer.schedule(timerTask, 100);
+							} catch (IllegalStateException e) {
+							}
+					}
+					
+					else if (arg instanceof ScannableStatus) {
+						/* if ScannableStatus schedule a task to call readValAndUpdateListeners */
+						TimerTask timerTaskScannableStatus = new TimerTask() {
+							@Override
+							public void run() {
+								ProvideDataRunnable.this.observer.update(null, null);
+							}
+						};
+						timer.schedule(timerTaskScannableStatus, 100);
+					}
+
+					else if (arg instanceof ScannablePositionChangeEvent)
+						updateListeners(((ScannablePositionChangeEvent) arg).newPosition);
+
+					else if (arg instanceof Double) {
+						TimerTask timerTaskDouble = new TimerTask() {
+							@Override
+							public void run() {
+								if (ProvideDataRunnable.this.observer != null)
+									ProvideDataRunnable.this.observer.update(null, null);
+							}
+						};
+						timer.schedule(timerTaskDouble, 100);
+					}	
+				}
 			});
 			observer.update(null, null);
 			running = true;
@@ -177,8 +159,8 @@ public abstract class ProvideDataRunnable<T> implements ProvideRunnable {
 	private void readValAndUpdateListeners() {
 		try {
 			updateListeners(scannable.getPosition());
-		} catch (DeviceException e1) {
-			//logger.error(e1.getMessage(), e1);
+		} catch (DeviceException e) {
+			logger.error(e.getMessage(), e);
 		}
 	}
 

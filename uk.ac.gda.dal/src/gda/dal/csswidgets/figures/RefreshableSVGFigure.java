@@ -42,9 +42,13 @@ import org.eclipse.swt.widgets.Display;
  */
 public final class RefreshableSVGFigure extends Shape implements IAdaptable {
 
+	/**
+	 * A border adapter, which covers all border handling.
+	 */
 	private IBorderEquippedWidget _borderAdapter;
     private CrossedOutAdapter _crossedOutAdapter;
     private RhombusAdapter _rhombusAdapter;
+
 	private IPath _path = new Path("");
 	private Image _image = null;
 	private int _imgWidth = 0;
@@ -52,7 +56,8 @@ public final class RefreshableSVGFigure extends Shape implements IAdaptable {
 	private int _yTranslate = 0;
 	private int _xTranslateX = 0;
 	private int _xTranslateY = 0;
-	private Rectangle bound = getBounds().getCopy();
+	
+	public Rectangle bound = getBounds().getCopy();
 	/**
 	 * We want to have local coordinates here.
 	 * 
@@ -74,6 +79,26 @@ public final class RefreshableSVGFigure extends Shape implements IAdaptable {
 	}
 
 	/**
+	 * dispose the resources used by this figure
+	 */
+	public void dispose(){
+		if ((_image != null) && !_image.isDisposed()) {
+			_image.dispose();
+			_image = null;
+		}
+
+		if ((_image != null) && !_image.isDisposed()) {
+			_image.dispose();
+			_image = null;
+		}
+
+		if ((_image != null) && !_image.isDisposed()) {
+			_image.dispose();
+			_image = null;
+		}
+	}
+	
+	/**
 	 * Draws the outline of the image. Nothing to do here.
 	 * 
 	 * @param gfx
@@ -91,30 +116,23 @@ public final class RefreshableSVGFigure extends Shape implements IAdaptable {
 	 */
 	@Override
 	public void paintFigure(final Graphics gfx) {
-
 		bound = getBounds().getCopy();
-		
 		bound.crop(this.getInsets());
 
-		try {
-			if (_image == null && !_path.isEmpty()) {
-
-				final InputStream imageStream = getClass().getResourceAsStream(_path.toString());
-				_image = new Image(Display.getDefault(), imageStream);
-
-				_imgWidth = _image.getBounds().width;
-				_imgHeight = _image.getBounds().height;
-			}
-		} catch (Exception e) {
-			if (_image != null) {
-				_image.dispose();
-			}
+		if (_image == null && !_path.isEmpty()) {
+			final InputStream imageStream = getClass().getResourceAsStream(_path.toString());
+			_image = new Image(Display.getDefault(), imageStream);
+			_imgWidth = _image.getBounds().width;
+			_imgHeight = _image.getBounds().height;
 		}
-		if (_image != null) {
-			
-			gfx.drawImage(_image, 0, 0, _imgWidth, _imgHeight, bound.x+_xTranslateX,
-					bound.y+_yTranslate+_xTranslateY, _imgWidth, _imgHeight);
-		}
+		
+		if (_image != null)
+			gfx.drawImage(_image, 0, 0, _imgWidth, _imgHeight, bound.x+_xTranslateX,bound.y+_yTranslate+_xTranslateY, _imgWidth, _imgHeight);
+	}
+	
+	@Override
+	public void paint(Graphics graphics) {
+		paintFigure(graphics);
 	}
 
 	/**
@@ -125,9 +143,8 @@ public final class RefreshableSVGFigure extends Shape implements IAdaptable {
 	 */
 	public void setFilePath(final IPath newval) {
 		_path = newval;
-		if (_image != null) {
+		if (_image != null)
 			_image.dispose();
-		}
 		_image = null;
 	}
 
@@ -157,7 +174,6 @@ public final class RefreshableSVGFigure extends Shape implements IAdaptable {
 		return new Point(_xTranslateX, _xTranslateY);
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 */
@@ -180,7 +196,6 @@ public final class RefreshableSVGFigure extends Shape implements IAdaptable {
             }
             return _rhombusAdapter;
         }
-
 		return null;
 	}
 }

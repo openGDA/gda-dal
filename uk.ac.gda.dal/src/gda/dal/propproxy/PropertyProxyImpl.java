@@ -67,8 +67,7 @@ implements PropertyProxy<T>, DirectoryProxy {
 	protected void connect()
 	{
 		condition = new DynamicValueCondition(EnumSet.of(DynamicValueState.NORMAL), new Timestamp(),"NORMAL");
-		// *** Race condition, the state can't go to Connected until all the listeners have
-		// been setup. 
+		// *** Race condition, the state can't go to Connected until all the listeners have been setup. 
 		Timer t = new Timer();
 		t.schedule(new TimerTask() {
 				@Override
@@ -78,7 +77,6 @@ implements PropertyProxy<T>, DirectoryProxy {
 					dataProvider.refresh();
 				}
 			}, 1000);
-		
 	}
 
 
@@ -100,18 +98,15 @@ implements PropertyProxy<T>, DirectoryProxy {
 		synchronized (monitors) { 
 			array = monitors.toArray(array);
 		}
-		
 		// destroy all
 		for (int i = 0; i < array.length; i++)
 			array[i].destroy();
 	}
 	
 	@Override
-	public MonitorProxy createMonitor(ResponseListener<T> callback, Map<String,Object> parameters)
-			throws RemoteException {
+	public MonitorProxy createMonitor(ResponseListener<T> callback, Map<String,Object> parameters) throws RemoteException {
 		if (getConnectionState() == ConnectionState.DESTROYED)
 			throw new RemoteException(this, "Proxy destroyed.");
-
 		MonitorProxyImpl<T> m = new MonitorProxyImpl<T>(this, callback, dataProvider);
 		monitors.add(m);
 		return m;
@@ -125,15 +120,12 @@ implements PropertyProxy<T>, DirectoryProxy {
 	@Override
 	public Request<T> getValueAsync(ResponseListener<T> callback)
 			throws DataExchangeException {
-		// TODO Auto-generated method stub
 		if (getConnectionState() != ConnectionState.CONNECTED) {
 			throw new DataExchangeException(this, "Proxy not connected");
 		}
-
 		RequestImpl<T> r = new RequestImpl<T>(this, callback);
 		r.addResponse(new ResponseImpl<T>(this, r, dataProvider.getCurrentValue(), "value",
 		        true, null, getCondition(), null, true));
-
 		return r;
 	}
 
@@ -146,9 +138,8 @@ implements PropertyProxy<T>, DirectoryProxy {
 	@Override
 	public Request<T> setValueAsync(T value,
 			ResponseListener<T> callback) throws DataExchangeException {
-		if (getConnectionState() != ConnectionState.CONNECTED) {
+		if (getConnectionState() != ConnectionState.CONNECTED)
 			throw new DataExchangeException(this, "Proxy not connected");
-		}
 		
 		dataProvider.setTargetValue(value);
 
@@ -158,38 +149,6 @@ implements PropertyProxy<T>, DirectoryProxy {
 
 		return r;
 	}
-
-	/*@Override
-	public Object getCharacteristic(String characteristicName)
-			throws DataExchangeException {
-		if ("Custom Characteristic".equals(characteristicName)) {
-			return "Hello!";
-		} else if (NumericPropertyCharacteristics.C_GRAPH_MIN.equals(characteristicName)) {
-			return new Double(0);
-		} else if (NumericPropertyCharacteristics.C_GRAPH_MAX.equals(characteristicName)) {
-			return new Double(100);
-		}
-		return null;
-	}
-
-	@Override
-	public String[] getCharacteristicNames() throws DataExchangeException {
-		return new String[] {"Custom Characteristic",
-				NumericPropertyCharacteristics.C_GRAPH_MIN,
-				NumericPropertyCharacteristics.C_GRAPH_MAX};
-	}
-
-	@Override
-	public Request<? extends Object> getCharacteristics(
-			String[] characteristics,
-			ResponseListener<? extends Object> callback)
-			throws DataExchangeException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	
-*/
 	
 	@Override
 	public Object getCharacteristic(String characteristicName)
@@ -253,7 +212,6 @@ implements PropertyProxy<T>, DirectoryProxy {
 				} else if (attr != null) {
 					characteristic = attr.put(characteristicName, value);
 				}
-
 
 				return characteristic;
 			} catch (NamingException e) {
@@ -334,15 +292,6 @@ implements PropertyProxy<T>, DirectoryProxy {
 	@Override
 	public void refresh() {
 		// TODO Auto-generated method stub
-		
 	}
-
-//	@Override
-//	public MonitorProxy createMonitor(ResponseListener<T> callback, Map<String, Object> parameters)
-//			throws RemoteException {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-
 
 }

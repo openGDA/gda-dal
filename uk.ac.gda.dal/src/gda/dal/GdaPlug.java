@@ -93,15 +93,6 @@ public class GdaPlug extends AbstractPlug {
 	protected <T extends DeviceProxy> T createNewDeviceProxy(String uniqueName, Class<T> type)
 			throws ConnectionException {
 		throw new UnsupportedOperationException("Devices not supported");
-		/*
-		 * try { if (type == DeviceProxy.class) { DeviceProxyImpl p = new DeviceProxyImpl(uniqueName);
-		 * putDirectoryProxyToCache(p); return type.cast(p); } // if (!DeviceProxyImpl.class.isAssignableFrom(type)) {
-		 * // throw new IllegalArgumentException("Simulator plug can not instantiate class "+type.getName()); // }
-		 * DeviceProxy p = type.getConstructor(String.class) .newInstance(uniqueName); // adding to directory cache as
-		 * well if (p instanceof DirectoryProxy) { putDirectoryProxyToCache((DirectoryProxy)p); } return type.cast(p); }
-		 * catch (Exception e) { throw new ConnectionException(this, "Failed to instantiate simulation proxy '" +
-		 * uniqueName + "' for type '" + type.getName() + "'.", e); }
-		 */
 	}
 
 	@Override
@@ -127,8 +118,6 @@ public class GdaPlug extends AbstractPlug {
 	@Override
 	protected Class<? extends AbstractDevice> getDeviceImplementationClass(String uniqueDeviceName) {
 		throw new UnsupportedOperationException("Devices not supported");
-		// return ScannableImpl.class;
-		// return AbstractDeviceImpl.class;
 	}
 
 	@Override
@@ -235,7 +224,6 @@ public class GdaPlug extends AbstractPlug {
 			URIName ppi = new URIName(null, DEFAULT_AUTHORITY, "PropertyProxyImpl", null);
 			Attributes characteristics = new org.epics.css.dal.directory.Attributes();
 			characteristics.put(PropertyCharacteristics.C_DESCRIPTION, "Simulated Property");
-			// characteristics.put(NumericPropertyCharacteristics.C_DISPLAY_NAME, name);
 			characteristics.put(PropertyCharacteristics.C_POSITION, new Double(0));
 			characteristics.put(PropertyCharacteristics.C_PROPERTY_TYPE, "property");
 			characteristics.put(NumericPropertyCharacteristics.C_RESOLUTION, 0xFFFF);
@@ -247,7 +235,6 @@ public class GdaPlug extends AbstractPlug {
 
 			Attributes characteristicsD = new org.epics.css.dal.directory.Attributes();
 			characteristicsD.put(PropertyCharacteristics.C_DESCRIPTION, "Simulated Property");
-			// characteristicsD.put(NumericPropertyCharacteristics.C_DISPLAY_NAME, name);
 			characteristicsD.put(PropertyCharacteristics.C_POSITION, new Double(0));
 			characteristicsD.put(PropertyCharacteristics.C_PROPERTY_TYPE, "property");
 			characteristicsD.put(NumericPropertyCharacteristics.C_RESOLUTION, 0xFFFF);
@@ -260,60 +247,6 @@ public class GdaPlug extends AbstractPlug {
 			characteristicsD.put(NumericPropertyCharacteristics.C_MINIMUM, new Double(-10));
 			gdaContext.bind(ppi, new DoublePropertyProxyImpl(ppi.toString()), characteristicsD);
 
-			ppi = new URIName(null, DEFAULT_AUTHORITY, "DoubleSeqPropertyProxyImpl", null);
-
-			/*
-			 * Attributes characteristicsDS = new org.epics.css.dal.directory.Attributes();
-			 * characteristicsDS.put(NumericPropertyCharacteristics.C_DESCRIPTION, "Simulated Property");
-			 * //characteristicsDS.put(NumericPropertyCharacteristics.C_DISPLAY_NAME, name);
-			 * characteristicsDS.put(NumericPropertyCharacteristics.C_POSITION, new Double(0));
-			 * characteristicsDS.put(NumericPropertyCharacteristics.C_PROPERTY_TYPE, "property");
-			 * characteristicsDS.put(NumericPropertyCharacteristics.C_RESOLUTION, 0xFFFF);
-			 * characteristicsDS.put(NumericPropertyCharacteristics.C_SCALE_TYPE, "linear");
-			 * characteristicsDS.put(NumericPropertyCharacteristics.C_UNITS, "amper");
-			 * characteristicsDS.put(NumericPropertyCharacteristics.C_FORMAT, "%.4f");
-			 * characteristicsDS.put(NumericPropertyCharacteristics.C_GRAPH_MAX, new Double(10));
-			 * characteristicsDS.put(NumericPropertyCharacteristics.C_GRAPH_MIN, new Double(-10));
-			 * characteristicsDS.put(NumericPropertyCharacteristics.C_MAXIMUM, new Double(10));
-			 * characteristicsDS.put(NumericPropertyCharacteristics.C_MINIMUM, new Double(-10));
-			 * characteristicsDS.put(SequencePropertyCharacteristics.C_SEQUENCE_LENGTH, new Integer(5));
-			 * gdaContext.bind(ppi, new DoubleSeqPropertyProxyImpl(ppi.toString()), characteristicsDS);
-			 */
-
-			/*
-			 * ppi = new URIName(null, DEFAULT_AUTHORITY, "LongPropertyProxyImpl", null); Attributes characteristicsL =
-			 * new org.epics.css.dal.directory.Attributes();
-			 * characteristicsL.put(NumericPropertyCharacteristics.C_DESCRIPTION, "Simulated Property");
-			 * //characteristicsL.put(NumericPropertyCharacteristics.C_DISPLAY_NAME, name);
-			 * characteristicsL.put(NumericPropertyCharacteristics.C_POSITION, new Double(0));
-			 * characteristicsL.put(NumericPropertyCharacteristics.C_PROPERTY_TYPE, "property");
-			 * characteristicsL.put(NumericPropertyCharacteristics.C_RESOLUTION, 0xFFFF);
-			 * characteristicsL.put(NumericPropertyCharacteristics.C_SCALE_TYPE, "linear");
-			 * characteristicsL.put(NumericPropertyCharacteristics.C_UNITS, "amper");
-			 * characteristicsL.put(NumericPropertyCharacteristics.C_FORMAT, "%d");
-			 * characteristicsL.put(NumericPropertyCharacteristics.C_GRAPH_MAX, new Long(10));
-			 * characteristicsL.put(NumericPropertyCharacteristics.C_GRAPH_MIN, new Long(-10));
-			 * characteristicsL.put(NumericPropertyCharacteristics.C_MAXIMUM, new Long(10));
-			 * characteristicsL.put(NumericPropertyCharacteristics.C_MINIMUM, new Long(-10)); gdaContext.bind(ppi, new
-			 * LongPropertyProxyImpl(ppi.toString()), characteristicsL); ppi = new URIName(null, DEFAULT_AUTHORITY,
-			 * "EnumPropertyProxyImpl", null); Attributes characteristicsEN = new
-			 * org.epics.css.dal.directory.Attributes();
-			 * characteristicsEN.put(NumericPropertyCharacteristics.C_DESCRIPTION, "Simulated Property");
-			 * //characteristicsEN.put(NumericPropertyCharacteristics.C_DISPLAY_NAME, name);
-			 * characteristicsEN.put(NumericPropertyCharacteristics.C_POSITION, new Double(0));
-			 * characteristicsEN.put(NumericPropertyCharacteristics.C_PROPERTY_TYPE, "property");
-			 * characteristicsEN.put(NumericPropertyCharacteristics.C_RESOLUTION, 0xFFFF);
-			 * characteristicsEN.put(NumericPropertyCharacteristics.C_SCALE_TYPE, "linear");
-			 * characteristicsEN.put(NumericPropertyCharacteristics.C_UNITS, "amper");
-			 * characteristicsEN.put(NumericPropertyCharacteristics.C_FORMAT, "%d");
-			 * characteristicsEN.put(NumericPropertyCharacteristics.C_GRAPH_MAX, new Long(3));
-			 * characteristicsEN.put(NumericPropertyCharacteristics.C_GRAPH_MIN, new Long(0));
-			 * characteristicsEN.put(NumericPropertyCharacteristics.C_MAXIMUM, new Long(3));
-			 * characteristicsEN.put(NumericPropertyCharacteristics.C_MINIMUM, new Long(0));
-			 * characteristicsEN.put(EnumPropertyCharacteristics.C_ENUM_DESCRIPTIONS, new String[]{ "On", "Off",
-			 * "not connected" }); characteristicsEN.put(EnumPropertyCharacteristics.C_ENUM_VALUES, new Double[]{ 1.1,
-			 * 1.2, 1.3 }); gdaContext.bind(ppi, new EnumPropertyProxyImpl(ppi.toString()), characteristicsEN);
-			 */
 			ppi = new URIName(null, DEFAULT_AUTHORITY, "StringPropertyProxyImpl", null);
 
 			Attributes characteristicsS = new org.epics.css.dal.directory.Attributes();

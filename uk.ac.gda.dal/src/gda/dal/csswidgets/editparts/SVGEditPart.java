@@ -28,52 +28,43 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.draw2d.IFigure;
 
 public final class SVGEditPart extends AbstractWidgetEditPart {
-	RefreshableSVGFigure figure;
-	/**
-	 * Returns the casted model. This is just for convenience.
-	 * 
-	 * @return the casted {@link SVGModel}
-	 */
-	@Override
-	protected SVGModel getCastedModel() {
-		return (SVGModel) getModel();
-	}
-
+	RefreshableSVGFigure svgFigure;
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected IFigure doCreateFigure() {
-		SVGModel model = getCastedModel();
-		figure = new RefreshableSVGFigure();
-		figure.setFilePath(model.getFilename());
-		return figure;
+		SVGModel model = (SVGModel) getModel();
+		svgFigure = new RefreshableSVGFigure();
+		svgFigure.setFilePath(model.getFilename());
+		return svgFigure;
 	}
 
+	@Override
+	public void deactivate() {
+		super.deactivate();
+		svgFigure.dispose();
+	}
+	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected void registerPropertyChangeHandlers() {
-		// changes to the filename property
 		IWidgetPropertyChangeHandler handle = new IWidgetPropertyChangeHandler() {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
-				RefreshableSVGFigure imageFigure = (RefreshableSVGFigure) figure;
-				imageFigure.setFilePath((IPath) newValue);
+				((RefreshableSVGFigure) figure).setFilePath((IPath) newValue);
 				return true;
 			}
 		};
 		setPropertyChangeHandler(SVGModel.PROP_FILENAME, handle);
 
-
-		
 		handle = new IWidgetPropertyChangeHandler() {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
-				RefreshableSVGFigure imageFigure = (RefreshableSVGFigure) figure;
 				
-				String path = imageFigure.getFilePath().toString();
+				String path = ((RefreshableSVGFigure) figure).getFilePath().toString();
 				
 				if(((String)newValue).equals("Busy")){
 					
@@ -84,8 +75,8 @@ public final class SVGEditPart extends AbstractWidgetEditPart {
 						path = path + "_red.png";
 					}
 					
-					imageFigure.setFilePath(new Path(path));
-					imageFigure.repaint();
+					((RefreshableSVGFigure) figure).setFilePath(new Path(path));
+					figure.repaint();
 				}
 				
 				else{
@@ -96,11 +87,10 @@ public final class SVGEditPart extends AbstractWidgetEditPart {
 						path = path + ".png";
 					}
 					
-					imageFigure.setFilePath(new Path(path));
-					imageFigure.repaint();
+					((RefreshableSVGFigure) figure).setFilePath(new Path(path));
+					figure.repaint();
 				}
 				
-				imageFigure.setFilePath((IPath) newValue);
 				return true;
 			}
 		};
@@ -109,9 +99,8 @@ public final class SVGEditPart extends AbstractWidgetEditPart {
 		handle = new IWidgetPropertyChangeHandler() {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
-				RefreshableSVGFigure imageFigure = (RefreshableSVGFigure) figure;
-
-				imageFigure.setYTranslate(Integer.parseInt(newValue.toString()));
+				
+				((RefreshableSVGFigure) figure).setYTranslate((Integer)newValue);
 				return true;
 			}
 		};
@@ -120,9 +109,7 @@ public final class SVGEditPart extends AbstractWidgetEditPart {
 		handle = new IWidgetPropertyChangeHandler() {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
-				RefreshableSVGFigure imageFigure = (RefreshableSVGFigure) figure;
-
-				imageFigure.setXTranslate(Integer.parseInt(newValue.toString()));
+				((RefreshableSVGFigure) figure).setXTranslate((Integer)newValue);
 				return true;
 			}
 		};

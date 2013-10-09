@@ -19,13 +19,13 @@
 package gda.dal.csswidgets.editparts;
 
 
-import java.util.List;
-
 import gda.dal.csswidgets.figures.ScannableControlFigure;
 import gda.dal.csswidgets.model.ScannableControlModel;
 import gda.jython.InterfaceProvider;
 import gda.jython.batoncontrol.BatonChanged;
 import gda.observable.IObserver;
+
+import java.util.List;
 
 import org.csstudio.sds.model.AbstractWidgetModel;
 import org.csstudio.sds.model.WidgetProperty;
@@ -52,6 +52,7 @@ import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 
@@ -313,15 +314,18 @@ public final class ScannableControlEditPart extends AbstractWidgetEditPart {
 			public void update(Object source, Object arg) {
 				if (arg instanceof BatonChanged) {
 					amIHolder = InterfaceProvider.getBatonStateProvider().amIBatonHolder();
-					PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
-						@Override
-						public void run() {
-							figure.setBatton(amIHolder);
-							increment.setEnabled(amIHolder);
-							decrement.setEnabled(amIHolder);
-							figure.repaint();
-						}
-					});
+					Display display = PlatformUI.getWorkbench().getDisplay();
+					if(!display.isDisposed()){
+						display.asyncExec(new Runnable() {
+							@Override
+							public void run() {
+								figure.setBatton(amIHolder);
+								increment.setEnabled(amIHolder);
+								decrement.setEnabled(amIHolder);
+								figure.repaint();
+							}
+						});
+					}
 				}
 			}
 		});
