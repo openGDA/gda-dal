@@ -19,7 +19,7 @@
 package gda.dal.dataprovider;
 
 public class DoubleProvideOffsetRunnable extends ProvideOffsetRunnable<Double> {
-
+	
 	public DoubleProvideOffsetRunnable(String scannableName) {
 		super(scannableName);
 	}

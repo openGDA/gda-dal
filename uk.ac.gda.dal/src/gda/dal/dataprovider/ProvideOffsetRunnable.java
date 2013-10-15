@@ -47,34 +47,35 @@ public abstract class ProvideOffsetRunnable<T> implements ProvideRunnable {
 	private static Timer timer = new Timer();
 	
 	public ProvideOffsetRunnable(String scannableName) {
+		createTimers(scannableName);
+	}
+
+	private void createTimers(String scannableName){
 		int index = scannableName.lastIndexOf(".");
 		if (index != -1)
 			this.scannableName = scannableName.substring(0, index);
 		updateListeners(readValue());
-		
 		Findable findable = Finder.getInstance().find(scannableName.substring(0, scannableName.indexOf('.')));
 		if (findable instanceof Scannable) {
 			this.scannable = (Scannable) findable;
 			
 			this.scannable.addIObserver(observer = new IObserver() {
-
 				@Override
 				public void update(Object source, Object arg) {
 					if (source == null) {
-						
-							try {
-								if (timerTask != null) {
-									timerTask.cancel();
-								}
-								timerTask = new TimerTask() {
-									@Override
-									public void run() {
-										refresh();
-									}
-								};
-								timer.schedule(timerTask, 100, 300);
-							} catch (IllegalStateException e) {
+						try {
+							if (timerTask != null) {
+								timerTask.cancel();
 							}
+							timerTask = new TimerTask() {
+								@Override
+								public void run() {
+									refresh();
+								}
+							};
+							timer.schedule(timerTask, 100, 300);
+						} catch (IllegalStateException e) {
+						}
 					}
 				}
 			});
@@ -82,7 +83,7 @@ public abstract class ProvideOffsetRunnable<T> implements ProvideRunnable {
 		observer.update(null, null);
 		running = true;
 	}
-
+	
 	private Object readValue() {
 		Double offset=0.0;
 		String evaluated = JythonServerFacade.getInstance().evaluateCommand(this.scannableName+".getOffset()[0]");

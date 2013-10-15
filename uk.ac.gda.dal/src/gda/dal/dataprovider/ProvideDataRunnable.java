@@ -46,7 +46,9 @@ public abstract class ProvideDataRunnable<T> implements ProvideRunnable {
 	private ProvideDataEvent<T> event = null;
 	// TODO: listeners list isn't used thread safely
 	protected List<ProvideDataEventListener<T>> listeners = new ArrayList<ProvideDataEventListener<T>>(1);
-
+	private long timeSinceLastBusy = 0;
+	private boolean firstUpdate = true;
+	
 	@Override
 	public T getCurrentValue() {
 		return event != null ? event.value : null;
@@ -68,8 +70,7 @@ public abstract class ProvideDataRunnable<T> implements ProvideRunnable {
 				};
 				Thread t = new Thread(x, "moveTo");
 				t.start();
-			} 
-			else
+			} else
 				logger.error("Unable to set " + scannable.getName() + " to " + targetValue + ":" + reason);
 		} catch (DeviceException e) {
 			logger.error(e.getMessage(), e);
@@ -85,7 +86,6 @@ public abstract class ProvideDataRunnable<T> implements ProvideRunnable {
 			this.scannable = (Scannable) findable;
 
 			this.scannable.addIObserver(observer = new IObserver() {
-
 				/*
 				 * if event is of type ScannablePositionChangeEvent simply update listeners with new position if event
 				 * is ScannableStatus then schedule a callback of this method so that position can be read if source is
@@ -94,18 +94,22 @@ public abstract class ProvideDataRunnable<T> implements ProvideRunnable {
 				 */
 				@Override
 				public void update(Object source, Object arg) {
+					boolean scannableBusy = false;
 					try {
-						boolean scannableBusy = scannable.isBusy();
+						scannableBusy = scannable.isBusy();
+						long currentTime = System.currentTimeMillis();
+						timeSinceLastBusy = currentTime-timeSinceLastBusy;
 					} catch (DeviceException e) {
 						logger.error("Error checking if scannable is busy", e);
 					}
-
-					if (source == null) {
-						/*
-						 * if called by this class then call readValAndUpdateListeners, if still busy schedule
-						 * another call, but cancel all previous schedules
-						 */
-						ProvideDataRunnable.this.readValAndUpdateListeners();
+					if (scannableBusy || timeSinceLastBusy<10000000 || firstUpdate) {
+						firstUpdate=false;
+						if (source == null) {
+							/*
+							 * if called by this class then call readValAndUpdateListeners, if still busy schedule
+							 * another call, but cancel all previous schedules
+							 */
+							ProvideDataRunnable.this.readValAndUpdateListeners();
 							try {
 								if (timerTask != null)
 									timerTask.cancel();
@@ -119,37 +123,34 @@ public abstract class ProvideDataRunnable<T> implements ProvideRunnable {
 								timer.schedule(timerTask, 100);
 							} catch (IllegalStateException e) {
 							}
-					}
-					
-					else if (arg instanceof ScannableStatus) {
-						/* if ScannableStatus schedule a task to call readValAndUpdateListeners */
-						TimerTask timerTaskScannableStatus = new TimerTask() {
-							@Override
-							public void run() {
-								ProvideDataRunnable.this.observer.update(null, null);
-							}
-						};
-						timer.schedule(timerTaskScannableStatus, 100);
-					}
-
-					else if (arg instanceof ScannablePositionChangeEvent)
-						updateListeners(((ScannablePositionChangeEvent) arg).newPosition);
-
-					else if (arg instanceof Double) {
-						TimerTask timerTaskDouble = new TimerTask() {
-							@Override
-							public void run() {
-								if (ProvideDataRunnable.this.observer != null)
+						}
+						else if (arg instanceof ScannableStatus) {
+							/* if ScannableStatus schedule a task to call readValAndUpdateListeners */
+							TimerTask timerTaskScannableStatus = new TimerTask() {
+								@Override
+								public void run() {
 									ProvideDataRunnable.this.observer.update(null, null);
-							}
-						};
-						timer.schedule(timerTaskDouble, 100);
-					}	
+								}
+							};
+							timer.schedule(timerTaskScannableStatus, 100);
+						}
+						else if (arg instanceof ScannablePositionChangeEvent)
+							updateListeners(((ScannablePositionChangeEvent) arg).newPosition);
+						else if (arg instanceof Double) {
+							TimerTask timerTaskDouble = new TimerTask() {
+								@Override
+								public void run() {
+									if (ProvideDataRunnable.this.observer != null)
+										ProvideDataRunnable.this.observer.update(null, null);
+								}
+							};
+							timer.schedule(timerTaskDouble, 100);
+						}
+					}
 				}
 			});
 			observer.update(null, null);
 			running = true;
-
 		} else {
 			stop();
 			throw new RuntimeException("ProvideDataRunnable. " + scannableName + " is not a Scannable");
@@ -206,7 +207,6 @@ public abstract class ProvideDataRunnable<T> implements ProvideRunnable {
 		listeners.add(newListener);
 		if (event != null)
 			newListener.newData(event);
-
 	}
 
 	@Override
