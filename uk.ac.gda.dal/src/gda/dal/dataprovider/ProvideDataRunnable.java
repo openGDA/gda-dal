@@ -31,6 +31,8 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
+
 import org.epics.css.dal.Timestamp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -102,13 +104,29 @@ public abstract class ProvideDataRunnable<T> implements ProvideRunnable {
 					} catch (DeviceException e) {
 						logger.error("Error checking if scannable is busy", e);
 					}
+					
+					if(arg instanceof String){
+						ProvideDataRunnable.this.readValAndUpdateListeners();
+						try {
+							if (timerTask != null)
+								timerTask.cancel();
+							timerTask = new TimerTask() {
+								@Override
+								public void run() {
+									if (ProvideDataRunnable.this.observer != null)
+										ProvideDataRunnable.this.observer.update(null, null);
+								}
+							};
+							timer.schedule(timerTask, 100);
+						} catch (IllegalStateException e) {
+						}
+					}
+					
 					if (scannableBusy || timeSinceLastBusy<10000000 || firstUpdate) {
+						
 						firstUpdate=false;
+						
 						if (source == null) {
-							/*
-							 * if called by this class then call readValAndUpdateListeners, if still busy schedule
-							 * another call, but cancel all previous schedules
-							 */
 							ProvideDataRunnable.this.readValAndUpdateListeners();
 							try {
 								if (timerTask != null)
@@ -124,6 +142,7 @@ public abstract class ProvideDataRunnable<T> implements ProvideRunnable {
 							} catch (IllegalStateException e) {
 							}
 						}
+						
 						else if (arg instanceof ScannableStatus) {
 							/* if ScannableStatus schedule a task to call readValAndUpdateListeners */
 							TimerTask timerTaskScannableStatus = new TimerTask() {
@@ -134,8 +153,10 @@ public abstract class ProvideDataRunnable<T> implements ProvideRunnable {
 							};
 							timer.schedule(timerTaskScannableStatus, 100);
 						}
+						
 						else if (arg instanceof ScannablePositionChangeEvent)
 							updateListeners(((ScannablePositionChangeEvent) arg).newPosition);
+						
 						else if (arg instanceof Double) {
 							TimerTask timerTaskDouble = new TimerTask() {
 								@Override
@@ -146,6 +167,7 @@ public abstract class ProvideDataRunnable<T> implements ProvideRunnable {
 							};
 							timer.schedule(timerTaskDouble, 100);
 						}
+						
 					}
 				}
 			});
