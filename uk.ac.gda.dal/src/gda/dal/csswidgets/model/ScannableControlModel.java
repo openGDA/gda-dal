@@ -20,16 +20,9 @@ package gda.dal.csswidgets.model;
 
 import org.csstudio.sds.model.AbstractWidgetModel;
 import org.csstudio.sds.model.WidgetPropertyCategory;
-import org.eclipse.core.runtime.Path;
 
-/**
- *
- */
 public final class ScannableControlModel extends AbstractWidgetModel {
 
-	/**
-	 * Unique identifier.
-	 */
 	public static final String ID = "org.csstudio.sds.components.ScannableControl";
 	public static final String PROP_READBACK_VALUE = "readback";
 	public static final String PROP_HIGH_LIMIT = "high";
@@ -41,18 +34,11 @@ public final class ScannableControlModel extends AbstractWidgetModel {
 	public static final String PROP_SIM_READBACK_VALUE = "simulation readback";
 	public static final String PROP_DEF_INCREMENT = "default increment";
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public String getTypeID() {
 		return ID;
-		
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected void configureProperties() {
 		this.addDoubleProperty(PROP_READBACK_VALUE, "Value", WidgetPropertyCategory.BEHAVIOR, 0, false, "");
@@ -66,9 +52,6 @@ public final class ScannableControlModel extends AbstractWidgetModel {
 		this.addDoubleProperty(PROP_DEF_INCREMENT, "default increment", WidgetPropertyCategory.BEHAVIOR, 1, false, "");
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected String getDefaultToolTip() {
 		StringBuffer buffer = new StringBuffer();

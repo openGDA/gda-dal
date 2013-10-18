@@ -55,9 +55,9 @@ public final class ImageButtonEditPart extends AbstractWidgetEditPart {
 	}
 
 	private void handleLeftButtonClick(MouseEvent me){
-		final ImageButtonModel widget = (ImageButtonModel) getWidgetModel();
-		String serverCommand = widget.getServerCommand();
-		String serverCommandVariable = widget.getServerCommandVariable();
+		final ImageButtonModel model = (ImageButtonModel) getWidgetModel();
+		String serverCommand = model.getServerCommand();
+		String serverCommandVariable = model.getServerCommandVariable();
 		String placeHolder = "var";
 		
 		if(!serverCommandVariable.equals("") && serverCommand.contains(placeHolder))
@@ -70,20 +70,20 @@ public final class ImageButtonEditPart extends AbstractWidgetEditPart {
 		
 		System.out.println("result "+result);
 		
-		String id = widget.getViewID();
+		String id = model.getViewID();
 		
 		if (id.length() < 2) {
 			me.consume();
-			List<AbstractWidgetActionModel> actions = widget.getActionData().getWidgetActions();
+			List<AbstractWidgetActionModel> actions = model.getActionData().getWidgetActions();
 			if(actions.size()>0){
-				WidgetProperty property = widget.getPropertyInternal(AbstractWidgetModel.PROP_ACTIONDATA);
+				WidgetProperty property = model.getPropertyInternal(AbstractWidgetModel.PROP_ACTIONDATA);
 				property.setManualValue("dummy");
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				WidgetActionHandlerService.getInstance().performAction(widget, actions.get(0));
+				WidgetActionHandlerService.getInstance().performAction(model, actions.get(0));
 			}
 		}
 		
@@ -91,13 +91,13 @@ public final class ImageButtonEditPart extends AbstractWidgetEditPart {
 			String id1;
 			String id2;
 			CameraAction anv;
-			if(widget.getViewID().contains(":")){
-				id1 = widget.getViewID().substring(0,widget.getViewID().indexOf(":"));
-				id2 = widget.getViewID().substring(widget.getViewID().indexOf(":")+1);
+			if(model.getViewID().contains(":")){
+				id1 = model.getViewID().substring(0,model.getViewID().indexOf(":"));
+				id2 = model.getViewID().substring(model.getViewID().indexOf(":")+1);
 				anv = new CameraAction(id1, id2); 
 			}
 			else
-				anv = new CameraAction(widget.getViewID(), "hello world"); 
+				anv = new CameraAction(model.getViewID(), "hello world"); 
 			anv.run();  
 		}
 	}

@@ -30,33 +30,20 @@ import org.eclipse.draw2d.IFigure;
 public final class ArrowEditPart extends AbstractWidgetEditPart {
 	RefreshableArrowFigure arrowFigure = new RefreshableArrowFigure();
 
-	/**
-	 * Returns the casted model. This is just for convenience.
-	 * 
-	 * @return the casted {@link ArrowModel}
-	 */
 	@Override
 	protected ArrowModel getCastedModel() {
 		return (ArrowModel) getModel();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected IFigure doCreateFigure() {
 		ArrowModel model = getCastedModel();
 		arrowFigure.setFilePath(model.getFilename());
-		
 		return arrowFigure;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected void registerPropertyChangeHandlers() {
-		// changes to the filename property
 		IWidgetPropertyChangeHandler handle = new IWidgetPropertyChangeHandler() {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
@@ -71,18 +58,14 @@ public final class ArrowEditPart extends AbstractWidgetEditPart {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
 				RefreshableArrowFigure imageFigure = (RefreshableArrowFigure) figure;
-
 				String path = imageFigure.getFilePath().toString();
-
 				if (((String) newValue).equals("Busy")) {
-
 					if (!path.contains("red")) {
 						int beginIndex = 0;
 						int endIndex = path.indexOf('.');
 						path = path.substring(beginIndex, endIndex);
 						path = path + "_red.png";
 					}
-
 					imageFigure.setFilePath(new Path(path));
 					imageFigure.repaint();
 				}
@@ -94,11 +77,9 @@ public final class ArrowEditPart extends AbstractWidgetEditPart {
 						path = path.substring(beginIndex, endIndex);
 						path = path + ".png";
 					}
-
 					imageFigure.setFilePath(new Path(path));
 					imageFigure.repaint();
 				}
-
 				imageFigure.setFilePath((IPath) newValue);
 				return true;
 			}
@@ -141,7 +122,6 @@ public final class ArrowEditPart extends AbstractWidgetEditPart {
 					path = new Path("/arrow images/x2.png");
 				
 				imageFigure.setFilePath(path);
-				
 				return true;
 			}
 		};

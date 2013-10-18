@@ -46,6 +46,10 @@
             class="gda.dal.csswidgets.editparts.ComboEditPart"
             typeId="uk.ac.gda.dal.combo">
       </widgetEditPart>
+      <widgetEditPart
+            class="gda.dal.csswidgets.editparts.ServerCommandEditPart"
+            typeId="org.csstudio.sds.components.ServerCommand">
+      </widgetEditPart>
       
       </extension>
    	  <extension
@@ -111,6 +115,13 @@
             icon="icons/combo.png"
             name="Combo Box"
             typeId="uk.ac.gda.dal.combo">
+      </widgetModelFactory>
+      <widgetModelFactory
+            class="gda.dal.csswidgets.modelfactory.ServerCommandModelFactory"
+            description="Server Command"
+            icon="icons/terminal.png"
+            name="Server Command"
+            typeId="org.csstudio.sds.components.ServerCommand">
       </widgetModelFactory>
     </extension>
     
