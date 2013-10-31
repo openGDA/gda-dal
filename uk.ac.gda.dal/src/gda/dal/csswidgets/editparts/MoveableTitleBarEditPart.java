@@ -37,7 +37,7 @@ public class MoveableTitleBarEditPart extends AbstractWidgetEditPart {
 		Panel panel = new Panel();
 		MoveableTitleBarModel model = (MoveableTitleBarModel) getWidgetModel();
 		Color color = new Color(null, 143,186,210);
-		Label label = new Label(model.theTitle);
+		Label label = new Label(model.getTitle());
 		label.setSize(model.getWidth(), 24);
 		label.setLocation(new Point(1,1));
 		label.setForegroundColor(new Color(null, 0,0,0));
@@ -45,7 +45,7 @@ public class MoveableTitleBarEditPart extends AbstractWidgetEditPart {
 		label.setOpaque(true);
 		panel.setBackgroundColor(color);		
 		panel.add(label);
-		Image image = new Image(null,model.icon);
+		Image image = new Image(null,model.getIcon());
 		ImageFigure img = new ImageFigure(image);
 		img.setLocation(new Point(model.getWidth()-20, 3));
 		img.setSize(19, 19);
@@ -64,4 +64,5 @@ public class MoveableTitleBarEditPart extends AbstractWidgetEditPart {
 	@Override
 	protected void registerPropertyChangeHandlers() {
 	}
+	
 }

@@ -48,4 +48,5 @@ public class CameraAction extends Action {
 		catch (Exception err) {
 		}
 	}
+	
 }

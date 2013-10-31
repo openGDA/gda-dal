@@ -43,62 +43,45 @@ public class SlitsEditPart extends AbstractWidgetEditPart {
 	protected SlitsModel getCastedModel() {
 		return (SlitsModel) getModel();
 	}
-
-	/**
-	 * {@inheritDoc}
-	 */
+	
 	@Override
 	protected IFigure doCreateFigure() {
 		model = getCastedModel();
 		refreshableSlitsFigure = new SlitsFigure();
 		refreshableSlitsFigure.setSlitType(model.getSlitType());
-		
 		_yTranslate = refreshableSlitsFigure.getYTranslate();
 		_xTranslateX = refreshableSlitsFigure.getXTranslate().x;
 		_Vgap = refreshableSlitsFigure.getVGap();
 		_Hgap = refreshableSlitsFigure.getHGap();
-		
 		setBeamOut(refreshableSlitsFigure);
-		
 		return refreshableSlitsFigure;
 	}
 
-
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected void registerPropertyChangeHandlers() {
 		IWidgetPropertyChangeHandler handle = new IWidgetPropertyChangeHandler() {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
-				
 				SlitsFigure imageFigure = (SlitsFigure) figure;
-			
 				String upPath = imageFigure.getVGapUpPath().toString();
 				String downPath = imageFigure.getVGapDownPath().toString();
-
 				if (((String) newValue).equals("Busy")) {
-
 					if (!upPath.contains("red")) {
 						int beginIndex = 0;
 						int endIndex = upPath.indexOf('.');
 						upPath = upPath.substring(beginIndex, endIndex);
 						upPath = upPath + "_red.png";
 					}
-					
 					if (!downPath.contains("red")) {
 						int beginIndex = 0;
 						int endIndex = downPath.indexOf('.');
 						downPath = downPath.substring(beginIndex, endIndex);
 						downPath = downPath + "_red.png";
 					}
-
 					imageFigure.setVGapUpPath(new Path(upPath));
 					imageFigure.setVGapDownPath(new Path(downPath));
 					imageFigure.repaint();
 				}
-
 				else {
 					if (upPath.contains("red")) {
 						int beginIndex = 0;
@@ -106,56 +89,44 @@ public class SlitsEditPart extends AbstractWidgetEditPart {
 						upPath = upPath.substring(beginIndex, endIndex);
 						upPath = upPath + ".png";
 					}
-					
 					if (downPath.contains("red")) {
 						int beginIndex = 0;
 						int endIndex = downPath.indexOf("_red");
 						downPath = downPath.substring(beginIndex, endIndex);
 						downPath = downPath + ".png";
 					}
-
 					imageFigure.setVGapUpPath(new Path(upPath));
 					imageFigure.setVGapDownPath(new Path(downPath));
 					imageFigure.repaint();
 				}
-
-				
 				return true;
 			}
 		};
 		setPropertyChangeHandler(SlitsModel.PROP_VGAP_BUSY, handle);
 		
-		
 		handle = new IWidgetPropertyChangeHandler() {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
-				
 				SlitsFigure slitsFigure = (SlitsFigure) figure;
-			
 				String plusPath = slitsFigure.getHGapPlusPath().toString();
 				String minusPath = slitsFigure.getHGapMinusPath().toString();
-
 				if (((String) newValue).equals("Busy")) {
-
 					if (!plusPath.contains("red")) {
 						int beginIndex = 0;
 						int endIndex = plusPath.indexOf('.');
 						plusPath = plusPath.substring(beginIndex, endIndex);
 						plusPath = plusPath + "_red.png";
 					}
-					
 					if (!minusPath.contains("red")) {
 						int beginIndex = 0;
 						int endIndex = minusPath.indexOf('.');
 						minusPath = minusPath.substring(beginIndex, endIndex);
 						minusPath = minusPath + "_red.png";
 					}
-
 					slitsFigure.setHGapPlusPath(new Path(plusPath));
 					slitsFigure.setHGapMinusPath(new Path(minusPath));
 					slitsFigure.repaint();
 				}
-
 				else {
 					if (plusPath.contains("red")) {
 						int beginIndex = 0;
@@ -163,20 +134,16 @@ public class SlitsEditPart extends AbstractWidgetEditPart {
 						plusPath = plusPath.substring(beginIndex, endIndex);
 						plusPath = plusPath + ".png";
 					}
-					
 					if (minusPath.contains("red")) {
 						int beginIndex = 0;
 						int endIndex = minusPath.indexOf("_red");
 						minusPath = minusPath.substring(beginIndex, endIndex);
 						minusPath = minusPath + ".png";
 					}
-
 					slitsFigure.setHGapPlusPath(new Path(plusPath));
 					slitsFigure.setHGapMinusPath(new Path(minusPath));
 					slitsFigure.repaint();
 				}
-
-				
 				return true;
 			}
 		};
@@ -187,13 +154,9 @@ public class SlitsEditPart extends AbstractWidgetEditPart {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
 				SlitsFigure slitsFigure = (SlitsFigure) figure;
-
 				_xTranslateX = Integer.parseInt(newValue.toString());
-				
 				slitsFigure.setXTranslate(_xTranslateX);
-				
 				setBeamOut(slitsFigure);
-				
 				return true;
 			}
 		};
@@ -203,13 +166,9 @@ public class SlitsEditPart extends AbstractWidgetEditPart {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
 				SlitsFigure slitsFigure = (SlitsFigure) figure;
-				
 				_yTranslate = Integer.parseInt(newValue.toString());
-				
 				slitsFigure.setYTranslate(_yTranslate);
-				
 				setBeamOut(slitsFigure);
-				
 				return true;
 			}
 		};
@@ -219,13 +178,9 @@ public class SlitsEditPart extends AbstractWidgetEditPart {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
 				SlitsFigure slitsFigure = (SlitsFigure) figure;
-				
 				_Vgap = Integer.parseInt(newValue.toString());
-				
 				slitsFigure.setVGap(_Vgap);
-				
 				setBeamOut(slitsFigure);
-				
 				return true;
 			}
 		};
@@ -235,13 +190,9 @@ public class SlitsEditPart extends AbstractWidgetEditPart {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
 				SlitsFigure slitsFigure = (SlitsFigure) figure;
-				
 				_Hgap = Integer.parseInt(newValue.toString());
-				
 				slitsFigure.setHGap(_Hgap);
-				
 				setBeamOut(slitsFigure);
-				
 				return true;
 			}
 		};
@@ -262,21 +213,16 @@ public class SlitsEditPart extends AbstractWidgetEditPart {
 		if (slitsFigure.getSlitType() == 0
 				&& (Math.abs(_yTranslate / 1.3571428571428572) > 60 + Math.abs(_Vgap) / 2 + 6 || Math
 						.abs(_yTranslate / 1.3571428571428572) < Math.abs(_Vgap) / 2)) {
-			
 			getCastedModel().getPropertyInternal(SlitsModel.PROP_BEAM_OUT).setManualValue("yes");
 		}
 		
 		else if (slitsFigure.getSlitType() == 1
-
 				&& (Math.abs(_xTranslateX) > 60 + Math.abs(_Hgap) / 2 + 3 || Math.abs(_xTranslateX) < Math.abs(_Hgap) / 2)
-
 				&& (Math.abs(_yTranslate / 1.3571428571428572) > 60 + Math.abs(_Vgap) / 2 + 6 || Math
 						.abs(_yTranslate / 1.3571428571428572) < Math.abs(_Vgap) / 2)) {
-
 			getCastedModel().getPropertyInternal(SlitsModel.PROP_BEAM_OUT).setManualValue("yes");
 		}
 		else
 			getCastedModel().getPropertyInternal(SlitsModel.PROP_BEAM_OUT).setManualValue("no");
-		
 	}
 }

@@ -28,20 +28,14 @@ import org.csstudio.sds.model.IWidgetModelFactory;
  */
 public final class SlitsModelFactory implements IWidgetModelFactory {
 
-	/**
-	 * {@inheritDoc}.
-	 */
 	@Override
 	public AbstractWidgetModel createWidgetModel() {
 		return new SlitsModel();
 	}
 
-	/**
-	 * {@inheritDoc}.
-	 */
-	@SuppressWarnings("rawtypes")
 	@Override
 	public Class getWidgetModelType() {
 		return SlitsModel.class;
 	}
+	
 }

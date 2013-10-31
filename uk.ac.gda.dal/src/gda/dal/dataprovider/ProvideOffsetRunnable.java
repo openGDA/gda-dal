@@ -33,9 +33,8 @@ import org.epics.css.dal.Timestamp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@SuppressWarnings("rawtypes")
-public abstract class ProvideOffsetRunnable<T> implements ProvideRunnable {
-	private static final Logger logger = LoggerFactory.getLogger(ProvideHighLimitRunnable.class);
+public abstract class ProvideOffsetRunnable<T> implements ProvideRunnable<T> {
+	public static final Logger logger = LoggerFactory.getLogger(ProvideHighLimitRunnable.class);
 	private double currentValue = 0.0;
 	private boolean running;
 	private List<ProvideDataEventListener<T>> listeners = new ArrayList<ProvideDataEventListener<T>>(1);
@@ -104,18 +103,18 @@ public abstract class ProvideOffsetRunnable<T> implements ProvideRunnable {
 			listener.newData(event);
 	}
 
-	abstract T createValue(Object val);
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public void addListener(ProvideDataEventListener newListener) {
+	public void addListener(ProvideDataEventListener<T> newListener) {
 		listeners.add(newListener);
 		if (event != null)
 			newListener.newData(event);
 	}
 
+	abstract T createValue(Object val);
+	
 	@Override
-	public Object getCurrentValue() {
+	public T getCurrentValue() {
 		return createValue(currentValue);
 	}
 
@@ -130,7 +129,7 @@ public abstract class ProvideOffsetRunnable<T> implements ProvideRunnable {
 	}
 
 	@Override
-	public void removeListener(ProvideDataEventListener listenerToRemove) {
+	public void removeListener(ProvideDataEventListener<T> listenerToRemove) {
 		listeners.remove(listenerToRemove);
 	}
 
@@ -144,4 +143,5 @@ public abstract class ProvideOffsetRunnable<T> implements ProvideRunnable {
 	public void stop() {
 		running = true;
 	}
+	
 }

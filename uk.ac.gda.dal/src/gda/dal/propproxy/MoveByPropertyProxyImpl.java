@@ -22,10 +22,10 @@ import gda.dal.dataprovider.DoubleIncrementProvideDataRunnable;
 
 public class MoveByPropertyProxyImpl extends PropertyProxyImpl<Double> {
 
-	@SuppressWarnings("unchecked")
 	public MoveByPropertyProxyImpl(String name) {
 		super(name);
 		dataProvider = new DoubleIncrementProvideDataRunnable(name);
 		connect();
 	}
+	
 }

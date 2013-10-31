@@ -29,9 +29,9 @@ public class ComboModelFactory implements IWidgetModelFactory {
 		return new ComboModel();
 	}
 
-	@SuppressWarnings("rawtypes")
 	@Override
 	public Class getWidgetModelType() {
 		return ComboModel.class;
 	}
+	
 }

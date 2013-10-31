@@ -87,10 +87,8 @@ public class MonitorProxyImpl<T> extends RequestImpl<T> implements MonitorProxy,
 	}
 
 	@Override
-	public void setHeartbeat(boolean heartbeat) throws DataExchangeException,
-			UnsupportedOperationException {
+	public void setHeartbeat(boolean heartbeat) throws DataExchangeException, UnsupportedOperationException {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -106,4 +104,5 @@ public class MonitorProxyImpl<T> extends RequestImpl<T> implements MonitorProxy,
 				addResponse(r);
 		}	
 	}
+	
 }

@@ -22,10 +22,10 @@ import gda.dal.dataprovider.DoubleProvideOffsetRunnable;
 
 public class OffsetPropertyProxyImpl extends PropertyProxyImpl<Double>{
 
-	@SuppressWarnings("unchecked")
 	public OffsetPropertyProxyImpl(String name){
 		super(name);
 		dataProvider = new DoubleProvideOffsetRunnable(name);
 		connect();
 	}
+	
 }

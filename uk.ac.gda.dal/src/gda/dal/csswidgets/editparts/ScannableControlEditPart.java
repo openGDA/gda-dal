@@ -80,9 +80,6 @@ public class ScannableControlEditPart extends AbstractWidgetEditPart {
 		return (ScannableControlModel) getModel();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected IFigure doCreateFigure() {
 		model = getCastedModel();
@@ -131,7 +128,7 @@ public class ScannableControlEditPart extends AbstractWidgetEditPart {
 			}
 		});
 
-		scannableControlFigure.incrementCellEditor = new TextCellEditor((Composite) getViewer().getControl());
+		scannableControlFigure.setIncrementCellEditor(new TextCellEditor((Composite) getViewer().getControl()));
 
 		if (model.isLive()) {
 
@@ -223,14 +220,14 @@ public class ScannableControlEditPart extends AbstractWidgetEditPart {
 			});
 		}
 
-		scannableControlFigure.incrementCellEditor.addListener(new ICellEditorListener() {
+		scannableControlFigure.getIncrementCellEditor().addListener(new ICellEditorListener() {
 
 			@Override
 			public void applyEditorValue() {
 				scannableControlFigure.remove(label);
 				scannableControlFigure.remove(border);
 				try {
-					incrementVal = Double.parseDouble(scannableControlFigure.incrementCellEditor.getValue().toString());
+					incrementVal = Double.parseDouble(scannableControlFigure.getIncrementCellEditor().getValue().toString());
 					tooltipText = "Limits:Low=" + model.getLowLimit() + ",High=" + model.getHighLimit() + "\rUnits="
 							+ model.getPropUnits() + "\rIncrement=" + incrementVal;
 					model.setPropertyValue(AbstractWidgetModel.PROP_TOOLTIP, tooltipText);
@@ -248,14 +245,14 @@ public class ScannableControlEditPart extends AbstractWidgetEditPart {
 			}
 		});
 
-		scannableControlFigure.offsetCellEditor = new TextCellEditor((Composite) getViewer().getControl());
-		scannableControlFigure.offsetCellEditor.addListener(new ICellEditorListener() {
+		scannableControlFigure.setOffsetCellEditor(new TextCellEditor((Composite) getViewer().getControl()));
+		scannableControlFigure.getOffsetCellEditor().addListener(new ICellEditorListener() {
 			@Override
 			public void applyEditorValue() {
 				scannableControlFigure.remove(label);
 				scannableControlFigure.remove(border);
 				try {
-					offset = Double.parseDouble(scannableControlFigure.offsetCellEditor.getValue().toString());
+					offset = Double.parseDouble(scannableControlFigure.getOffsetCellEditor().getValue().toString());
 					model.setOffset(offset);
 
 				} catch (Exception e) {
@@ -314,19 +311,19 @@ public class ScannableControlEditPart extends AbstractWidgetEditPart {
 				}
 			}
 		});
-		scannableControlFigure.demandCellEditor = new TextCellEditor((Composite) getViewer().getControl());	
+		scannableControlFigure.setDemandCellEditor(new TextCellEditor((Composite) getViewer().getControl()));	
 		
-		final Text text = (Text) scannableControlFigure.demandCellEditor.getControl();
+		final Text text = (Text) scannableControlFigure.getDemandCellEditor().getControl();
 		text.addKeyListener(new KeyAdapter(){
 			@Override
 			public void keyPressed(KeyEvent e) {
 				showButtons=model.isShowButtons();
 				if (((e.keyCode == SWT.CR) || (e.keyCode == SWT.KEYPAD_CR)) && !showButtons) {
-					String demandVal = scannableControlFigure.demandCellEditor.getValue().toString();
+					String demandVal = scannableControlFigure.getDemandCellEditor().getValue().toString();
 					double demand = Double.parseDouble(demandVal);
 					if((demand>=model.getLowLimit())&&(demand<=model.getHighLimit())){
 						scannableControlFigure.setDemand(demand);
-						model.setReadbackValue(Double.parseDouble(scannableControlFigure.demandCellEditor.getValue().toString()));
+						model.setReadbackValue(Double.parseDouble(scannableControlFigure.getDemandCellEditor().getValue().toString()));
 					}
 				}
 			}
@@ -340,11 +337,11 @@ public class ScannableControlEditPart extends AbstractWidgetEditPart {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String demandVal = scannableControlFigure.demandCellEditor.getValue().toString();
+				String demandVal = scannableControlFigure.getDemandCellEditor().getValue().toString();
 				double demand = Double.parseDouble(demandVal);
 				if((demand>=model.getLowLimit())&&(demand<=model.getHighLimit()) && amIHolder){
 					scannableControlFigure.setDemand(demand);
-					model.setReadbackValue(Double.parseDouble(scannableControlFigure.demandCellEditor.getValue().toString()));
+					model.setReadbackValue(Double.parseDouble(scannableControlFigure.getDemandCellEditor().getValue().toString()));
 				}
 			}
 		});
@@ -359,11 +356,11 @@ public class ScannableControlEditPart extends AbstractWidgetEditPart {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String demandVal = scannableControlFigure.demandCellEditor.getValue().toString();
+				String demandVal = scannableControlFigure.getDemandCellEditor().getValue().toString();
 				double demand = Double.parseDouble(demandVal);
 				if((demand>=model.getLowLimit())&&(demand<=model.getHighLimit()) && amIHolder){
 					scannableControlFigure.setDemand(demand);
-					model.setSimReadbackValue(Double.parseDouble(scannableControlFigure.demandCellEditor.getValue().toString()));
+					model.setSimReadbackValue(Double.parseDouble(scannableControlFigure.getDemandCellEditor().getValue().toString()));
 					List<AbstractWidgetActionModel> actions = model.getActionData().getWidgetActions();
 					WidgetProperty property = model.getPropertyInternal(AbstractWidgetModel.PROP_ACTIONDATA);
 					property.setManualValue("dummy");
@@ -473,4 +470,5 @@ public class ScannableControlEditPart extends AbstractWidgetEditPart {
 		};
 		setPropertyChangeHandler(ScannableControlModel.PROP_DEF_INCREMENT, handler);
 	}
+	
 }

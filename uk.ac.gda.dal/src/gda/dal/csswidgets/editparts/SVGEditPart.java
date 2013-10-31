@@ -58,22 +58,17 @@ public class SVGEditPart extends AbstractWidgetEditPart {
 		handle = new IWidgetPropertyChangeHandler() {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
-				
 				String path = ((SVGFigure) figure).getFilePath().toString();
-				
 				if(((String)newValue).equals("Busy")){
-					
 					if(!path.contains("red")){
 						int beginIndex = 0;
 						int endIndex = path.indexOf('.');
 						path = path.substring(beginIndex, endIndex);
 						path = path + "_red.png";
 					}
-					
 					((SVGFigure) figure).setFilePath(new Path(path));
 					figure.repaint();
 				}
-				
 				else{
 					if(path.contains("red")){
 						int beginIndex = 0;
@@ -81,11 +76,9 @@ public class SVGEditPart extends AbstractWidgetEditPart {
 						path = path.substring(beginIndex, endIndex);
 						path = path + ".png";
 					}
-					
 					((SVGFigure) figure).setFilePath(new Path(path));
 					figure.repaint();
 				}
-				
 				return true;
 			}
 		};
@@ -94,7 +87,6 @@ public class SVGEditPart extends AbstractWidgetEditPart {
 		handle = new IWidgetPropertyChangeHandler() {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
-				
 				((SVGFigure) figure).setYTranslate((Integer)newValue);
 				return true;
 			}
@@ -110,4 +102,5 @@ public class SVGEditPart extends AbstractWidgetEditPart {
 		};
 		setPropertyChangeHandler(SVGModel.PROP_X_Translate, handle);
 	}
+	
 }

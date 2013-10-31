@@ -55,7 +55,6 @@ public class OpenSDSView implements IWorkbenchWindowActionDelegate, IExecutableE
 		// TODO Auto-generated method stub
 	}
 
-	@SuppressWarnings("rawtypes")
 	@Override
 	public void setInitializationData(IConfigurationElement config, String propertyName, Object data) throws CoreException {
 		if (data != null && data instanceof Hashtable)

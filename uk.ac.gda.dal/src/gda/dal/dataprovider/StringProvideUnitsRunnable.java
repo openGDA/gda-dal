@@ -19,6 +19,7 @@
 package gda.dal.dataprovider;
 
 public class StringProvideUnitsRunnable  extends ProvideUnitsRunnable<String> {
+	
 	public StringProvideUnitsRunnable(String scannableName) {
 		super(scannableName);
 		

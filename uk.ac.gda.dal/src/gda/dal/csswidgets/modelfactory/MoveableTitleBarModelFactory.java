@@ -23,19 +23,12 @@ import org.csstudio.sds.model.AbstractWidgetModel;
 import org.csstudio.sds.model.IWidgetModelFactory;
 
 public final class MoveableTitleBarModelFactory implements IWidgetModelFactory {
-	/**
-	 * {@inheritDoc}
-	 */
+
 	@Override
 	public AbstractWidgetModel createWidgetModel() {
 		return new MoveableTitleBarModel("",null);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-
-	@SuppressWarnings("rawtypes")
 	@Override
 	public Class getWidgetModelType() {
 		return MoveableTitleBarModel.class;

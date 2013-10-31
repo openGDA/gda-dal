@@ -20,9 +20,8 @@ package gda.dal.propproxy;
 
 import gda.dal.dataprovider.LongProvideDataRunnable;
 
-public class LongPropertyProxyImpl extends PropertyProxyImpl<Double> {
+public class LongPropertyProxyImpl extends PropertyProxyImpl<Object> {
 
-	@SuppressWarnings("unchecked")
 	public LongPropertyProxyImpl(String name) {
 		super(name);
 		dataProvider = new LongProvideDataRunnable(name);

@@ -85,7 +85,6 @@ public class PropertyProxyImpl<T> extends AbstractProxyImpl implements PropertyP
 	/**
 	 * Destroy all monitors.
 	 */
-	@SuppressWarnings("unchecked")
 	private void destroyMonitors(){
 		MonitorProxyImpl<T>[] array = new MonitorProxyImpl[monitors.size()];
 		synchronized (monitors) { 
@@ -164,7 +163,6 @@ public class PropertyProxyImpl<T> extends AbstractProxyImpl implements PropertyP
 		}
 	}
 
-	@SuppressWarnings("null")
 	public static Object putCharacteristic(String characteristicName, String propertyUniqueName, Object value){
 		DirContext ctx = GdaPlug.getInstance().getDefaultDirectory();
 		try {
@@ -179,8 +177,7 @@ public class PropertyProxyImpl<T> extends AbstractProxyImpl implements PropertyP
 				org.epics.css.dal.directory.Attributes at = (org.epics.css.dal.directory.Attributes)attr;
 				characteristic = at.putAttributeValue(characteristicName, value);
 			} 
-			else if (attr != null)
-				characteristic = attr.put(characteristicName, value);
+			characteristic = attr.put(characteristicName, value);
 			return characteristic;
 		} catch (NamingException e) {
 			throw new RuntimeException("Cannot instanitate URIName.", e);

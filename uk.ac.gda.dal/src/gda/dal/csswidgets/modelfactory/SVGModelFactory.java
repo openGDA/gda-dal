@@ -28,20 +28,14 @@ import org.csstudio.sds.model.IWidgetModelFactory;
  */
 public final class SVGModelFactory implements IWidgetModelFactory {
 
-	/**
-	 * {@inheritDoc}.
-	 */
 	@Override
 	public AbstractWidgetModel createWidgetModel() {
 		return new SVGModel();
 	}
 
-	/**
-	 * {@inheritDoc}.
-	 */
-	@SuppressWarnings("rawtypes")
 	@Override
 	public Class getWidgetModelType() {
 		return SVGModel.class;
 	}
+	
 }

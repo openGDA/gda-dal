@@ -47,15 +47,15 @@ public final class ImageButtonModel extends AbstractWidgetModel {
 
 	@Override
 	protected void configureProperties() {
-		this.addResourceProperty(PROP_FILENAME, "File", WidgetPropertyCategory.IMAGE, new Path(""), FILE_EXTENSIONS, false, "");
-		this.addIntegerProperty(PROP_STYLE, "Style", WidgetPropertyCategory.DISPLAY, 0, false, "");
-		this.addStringProperty(PROP_LABEL, "Label Value", WidgetPropertyCategory.DISPLAY, "label", false, "");
-		this.addColorProperty(PROP_OVER_COLOUR, "Mouse Over Color", WidgetPropertyCategory.FORMAT, "#ADD8E6", false);
-		this.addColorProperty(PROP_BUTTON_COLOUR, "Button Color", WidgetPropertyCategory.FORMAT, "#8FBAD2", false);
-		this.addColorProperty(PROP_FOREGROUND_COLOUR, "Foreground Color", WidgetPropertyCategory.FORMAT, "#000000", false);
-		this.addStringProperty(PROP_VIEW_ID, "View id", WidgetPropertyCategory.BEHAVIOR, "", false, "");
-		this.addStringProperty(PROP_SERVER_COMMAND, "Server Command", WidgetPropertyCategory.BEHAVIOR, "", false, "");
-		this.addStringProperty(PROP_SERVER_COMMAND_VARIABLE, "Server Command Variable", WidgetPropertyCategory.BEHAVIOR, "", false, "");
+		addResourceProperty(PROP_FILENAME, "File", WidgetPropertyCategory.IMAGE, new Path(""), FILE_EXTENSIONS, false, "");
+		addIntegerProperty(PROP_STYLE, "Style", WidgetPropertyCategory.DISPLAY, 0, false, "");
+		addStringProperty(PROP_LABEL, "Label Value", WidgetPropertyCategory.DISPLAY, "label", false, "");
+		addColorProperty(PROP_OVER_COLOUR, "Mouse Over Color", WidgetPropertyCategory.FORMAT, "#ADD8E6", false);
+		addColorProperty(PROP_BUTTON_COLOUR, "Button Color", WidgetPropertyCategory.FORMAT, "#8FBAD2", false);
+		addColorProperty(PROP_FOREGROUND_COLOUR, "Foreground Color", WidgetPropertyCategory.FORMAT, "#000000", false);
+		addStringProperty(PROP_VIEW_ID, "View id", WidgetPropertyCategory.BEHAVIOR, "", false, "");
+		addStringProperty(PROP_SERVER_COMMAND, "Server Command", WidgetPropertyCategory.BEHAVIOR, "", false, "");
+		addStringProperty(PROP_SERVER_COMMAND_VARIABLE, "Server Command Variable", WidgetPropertyCategory.BEHAVIOR, "", false, "");
 	}
 	
 	@Override
@@ -63,17 +63,10 @@ public final class ImageButtonModel extends AbstractWidgetModel {
 		return "";
 	}
 
-	/**
-	 * Returns the path to the specified file.
-	 * @return The path to the specified file
-	 */
 	public IPath getFilename() {
 		return getResourceProperty(PROP_FILENAME);
 	}
 	
-	/**
-	 * @return getProperty(PROP_LABEL).getPropertyValue()
-	 */
 	public String getLabel() {
 		return getStringProperty(PROP_LABEL);
 	}

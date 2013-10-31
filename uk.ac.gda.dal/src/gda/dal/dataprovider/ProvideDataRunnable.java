@@ -35,8 +35,7 @@ import org.epics.css.dal.Timestamp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@SuppressWarnings({ "unchecked", "rawtypes" })
-public abstract class ProvideDataRunnable<T> implements ProvideRunnable {
+public abstract class ProvideDataRunnable<T> implements ProvideRunnable<T> {
 	private static final Logger logger = LoggerFactory.getLogger(ProvideDataRunnable.class);
 	private Scannable scannable;
 	private boolean running = false;
@@ -44,7 +43,6 @@ public abstract class ProvideDataRunnable<T> implements ProvideRunnable {
 	private static Timer timer = new Timer();
 	private TimerTask timerTask;
 	private ProvideDataEvent<T> event = null;
-	// TODO: listeners list isn't used thread safely
 	protected List<ProvideDataEventListener<T>> listeners = new ArrayList<ProvideDataEventListener<T>>(1);
 	private long timeSinceLastBusy = 0;
 	private boolean firstUpdate = true;
@@ -83,9 +81,8 @@ public abstract class ProvideDataRunnable<T> implements ProvideRunnable {
 			scannableName = scannableName.substring(0, index);
 		Findable findable = Finder.getInstance().find(scannableName);
 		if (findable instanceof Scannable) {
-			this.scannable = (Scannable) findable;
-
-			this.scannable.addIObserver(observer = new IObserver() {
+			scannable = (Scannable) findable;
+			scannable.addIObserver(observer = new IObserver() {
 				/*
 				 * if event is of type ScannablePositionChangeEvent simply update listeners with new position if event
 				 * is ScannableStatus then schedule a callback of this method so that position can be read if source is
@@ -121,9 +118,7 @@ public abstract class ProvideDataRunnable<T> implements ProvideRunnable {
 					}
 					
 					if (scannableBusy || timeSinceLastBusy<10000000 || firstUpdate) {
-						
 						firstUpdate=false;
-						
 						if (source == null) {
 							ProvideDataRunnable.this.readValAndUpdateListeners();
 							try {
@@ -165,7 +160,6 @@ public abstract class ProvideDataRunnable<T> implements ProvideRunnable {
 							};
 							timer.schedule(timerTaskDouble, 100);
 						}
-						
 					}
 				}
 			});
@@ -223,14 +217,14 @@ public abstract class ProvideDataRunnable<T> implements ProvideRunnable {
 	}
 
 	@Override
-	public void addListener(ProvideDataEventListener newListener) {
+	public void addListener(ProvideDataEventListener<T> newListener) {
 		listeners.add(newListener);
 		if (event != null)
 			newListener.newData(event);
 	}
 
 	@Override
-	public void removeListener(ProvideDataEventListener listenerToRemove) {
+	public void removeListener(ProvideDataEventListener<T> listenerToRemove) {
 		listeners.remove(listenerToRemove);
 	}
 
@@ -238,4 +232,5 @@ public abstract class ProvideDataRunnable<T> implements ProvideRunnable {
 	public void refresh() {
 		// TODO Auto-generated method stub
 	}
+	
 }

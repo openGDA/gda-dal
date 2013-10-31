@@ -22,10 +22,10 @@ import gda.dal.dataprovider.DoubleProvideDataRunnable;
 
 public class DoublePropertyProxyImpl extends PropertyProxyImpl<Double> {
 
-	@SuppressWarnings("unchecked")
 	public DoublePropertyProxyImpl(String name) {
 		super(name);
 		dataProvider = new DoubleProvideDataRunnable(name);
 		connect();
 	}
+	
 }

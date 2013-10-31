@@ -23,6 +23,7 @@ public class BooleanProvideStatusRunnable extends ProvideStatusRunnable<String> 
 	public BooleanProvideStatusRunnable(String scannableName) {
 		super(scannableName);
 	}
+	
 	@Override
 	String createValue(int val) {
 		return String.valueOf(val);

@@ -30,9 +30,9 @@ public final class AttenuatorModelFactory implements IWidgetModelFactory {
 		return new AttenuatorModel();
 	}
 
-	@SuppressWarnings("rawtypes")
 	@Override
 	public Class getWidgetModelType() {
 		return AttenuatorModel.class;
 	}
+	
 }

@@ -33,9 +33,9 @@ public final class ArrowModelFactory implements IWidgetModelFactory {
 		return new ArrowModel();
 	}
 
-	@SuppressWarnings("rawtypes")
 	@Override
 	public Class getWidgetModelType() {
 		return ArrowModel.class;
 	}
+	
 }

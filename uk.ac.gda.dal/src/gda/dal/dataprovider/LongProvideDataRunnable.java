@@ -18,7 +18,7 @@
 
 package gda.dal.dataprovider;
 
-public class LongProvideDataRunnable extends ProvideDataRunnable<Long> {
+public class LongProvideDataRunnable extends ProvideDataRunnable<Object> {
 
 	public LongProvideDataRunnable(String scannableName) {
 		super(scannableName);
@@ -35,10 +35,10 @@ public class LongProvideDataRunnable extends ProvideDataRunnable<Long> {
 		else 
 			throw new RuntimeException("Unknown type: " + o.getClass().getName());
 	}
-	
+
 	@Override
 	public void setTargetValue(Object targetValue) {
-		setTargetValueT( valueToType(targetValue));
+		setTargetValueT(valueToType(targetValue));
 	}
 
 }

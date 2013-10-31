@@ -32,7 +32,8 @@ public class StringProvideDataRunnable extends ProvideDataRunnable<String> {
 	}
 	
 	@Override
-	public void setTargetValue(Object targetValue) {
+	public void setTargetValue(String targetValue) {
 		setTargetValueT( valueToType(targetValue));
 	}
+	
 }

@@ -44,7 +44,7 @@ import org.slf4j.LoggerFactory;
 import uk.ac.gda.ClientManager;
 
 public class DALStartup implements IStartup {
-	private static final Logger logger = LoggerFactory.getLogger(DALStartup.class);
+	public static final Logger logger = LoggerFactory.getLogger(DALStartup.class);
 	private IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 
 	/**
@@ -108,10 +108,8 @@ public class DALStartup implements IStartup {
 	 */
 	public void importExisitingProject(IPath projectPath) throws CoreException {
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
-
 		final IProjectDescription description = workspace.loadProjectDescription(projectPath.append(IPath.SEPARATOR + IProjectDescription.DESCRIPTION_FILE_NAME));
 		final IProject project = workspace.getRoot().getProject(description.getName());
-
 		if (!project.exists()) {
 			IWorkspaceRunnable runnable = new IWorkspaceRunnable() {
 				@Override

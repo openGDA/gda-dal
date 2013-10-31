@@ -35,4 +35,5 @@ public class StringProvideStatusRunnable extends ProvideStatusRunnable<String> {
 		else
 			return "Ready";
 	}
+	
 }

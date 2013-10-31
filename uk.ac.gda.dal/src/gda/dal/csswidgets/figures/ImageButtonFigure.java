@@ -65,34 +65,26 @@ public final class ImageButtonFigure extends Shape implements IAdaptable {
 
 	@Override
 	public void paintFigure(final Graphics gfx) {
-		Rectangle bound = getBounds().getCopy();
-		bound.crop(this.getInsets());
 		int width = this.getSize().width;
 		int height = this.getSize().height;
 		int x = this.getLocation().x;
 		int y = this.getLocation().y;
-
 		gfx.setBackgroundColor(color);
-
 		Font defaultFont = gfx.getFont();
-		
 		if (style == 0) {
 			gfx.fillRoundRectangle(new Rectangle(x, y, width - 1, height - 1), 22, 22);
 			gfx.setFont(defaultFont);
 		}
-
 		if (style == 1) {
 			gfx.fillRectangle(new Rectangle(x, y, width - 1, height - 1));
 			gfx.setFont(new Font(null, "courier", 11, 0));
 		}
-
 		if (!_path.isEmpty()) {
 			InputStream imageStream = getClass().getResourceAsStream(_path.toString());
 			_image = new Image(Display.getDefault(), imageStream);
 			gfx.drawImage(_image, x + ((width / 2) - (_image.getImageData().width / 2)), y
 					+ ((height / 2) - (_image.getImageData().height / 2)));
 		}
-
 		gfx.drawString(label, x - 6, y + 1);
 	}
 
@@ -112,26 +104,24 @@ public final class ImageButtonFigure extends Shape implements IAdaptable {
 		this.style = style;
 	}
 
-	@SuppressWarnings("rawtypes")
 	@Override
 	public Object getAdapter(final Class adapter) {
 		if (adapter == IBorderEquippedWidget.class) {
-			if (_borderAdapter == null) {
+			if (_borderAdapter == null)
 				_borderAdapter = new BorderAdapter(this);
-			}
 			return _borderAdapter;
-		} else if (adapter == ICrossedFigure.class) {
-			if (_crossedOutAdapter == null) {
+		} 
+		else if (adapter == ICrossedFigure.class) {
+			if (_crossedOutAdapter == null)
 				_crossedOutAdapter = new CrossedOutAdapter(this);
-			}
 			return _crossedOutAdapter;
-		} else if (adapter == IRhombusEquippedWidget.class) {
-			if (_rhombusAdapter == null) {
+		} 
+		else if (adapter == IRhombusEquippedWidget.class) {
+			if (_rhombusAdapter == null)
 				_rhombusAdapter = new RhombusAdapter(this);
-			}
 			return _rhombusAdapter;
 		}
-
 		return null;
 	}
+	
 }

@@ -35,147 +35,76 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 
-/**
- * 
- * 
- */
 public final class ArrowFigure extends Shape implements IAdaptable {
-
-	/**
-	 * A border adapter, which covers all border handling.
-	 */
 	private IBorderEquippedWidget _borderAdapter;
 	private CrossedOutAdapter _crossedOutAdapter;
 	private RhombusAdapter _rhombusAdapter;
-	/**
-	 * The {@link IPath} to the image.
-	 */
 	private IPath _path = new Path("");
-	/**
-	 * The image itself.
-	 */
 	private Image _image = null;
-	/**
-	 * The width of the image.
-	 */
 	private int _imgWidth = 0;
-	/**
-	 * The height of the image.
-	 */
 	private int _imgHeight = 0;
 
-	public Rectangle bound = getBounds().getCopy();
+	public Rectangle bound;
 
-	/**
-	 * We want to have local coordinates here.
-	 * 
-	 * @return True if here should used local coordinates
-	 */
 	@Override
 	protected boolean useLocalCoordinates() {
 		return true;
 	}
 
-	/**
-	 * Fills the image. Nothing to do here.
-	 * 
-	 * @param gfx
-	 *            The {@link Graphics} to use
-	 */
 	@Override
 	protected void fillShape(final Graphics gfx) {
 	}
 
-	/**
-	 * Draws the outline of the image. Nothing to do here.
-	 * 
-	 * @param gfx
-	 *            The {@link Graphics} to use
-	 */
 	@Override
 	protected void outlineShape(final Graphics gfx) {
 	}
 
-	/**
-	 * The main drawing routine.
-	 * 
-	 * @param gfx
-	 *            The {@link Graphics} to use
-	 */
 	@Override
 	public void paintFigure(final Graphics gfx) {
 		bound = getBounds().getCopy();
-
-		bound.crop(this.getInsets());
-
 		try {
 			if (_image == null && !_path.isEmpty()) {
-
-				final InputStream imageStream = getClass().getResourceAsStream(_path.toString());
+				InputStream imageStream = getClass().getResourceAsStream(_path.toString());
 				_image = new Image(Display.getDefault(), imageStream);
-
 				_imgWidth = _image.getBounds().width;
 				_imgHeight = _image.getBounds().height;
 			}
 		} catch (Exception e) {
-			if (_image != null) {
+			if (_image != null)
 				_image.dispose();
-			}
 		}
-		if (_image != null) {
-
+		if (_image != null)
 			gfx.drawImage(_image, 0, 0, _imgWidth, _imgHeight, bound.x, bound.y, _imgWidth, _imgHeight);
-		}
 	}
 
-	/**
-	 * Sets the path to the image.
-	 * 
-	 * @param newval
-	 *            The path to the image
-	 */
 	public void setFilePath(final IPath newval) {
 		_path = newval;
-		if (_image != null) {
+		if (_image != null)
 			_image.dispose();
-		}
 		_image = null;
 	}
 
-	/**
-	 * Returns the path to the image.
-	 * 
-	 * @return The path to the image
-	 */
 	public IPath getFilePath() {
 		return _path;
 	}
-
-	
-	/**
-	 * {@inheritDoc}
-	 */
 
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Object getAdapter(final Class adapter) {
 		if (adapter == IBorderEquippedWidget.class) {
-			if (_borderAdapter == null) {
+			if (_borderAdapter == null)
 				_borderAdapter = new BorderAdapter(this);
-			}
 			return _borderAdapter;
 		} else if (adapter == ICrossedFigure.class) {
-			if (_crossedOutAdapter == null) {
+			if (_crossedOutAdapter == null)
 				_crossedOutAdapter = new CrossedOutAdapter(this);
-			}
 			return _crossedOutAdapter;
 		} else if (adapter == IRhombusEquippedWidget.class) {
-			if (_rhombusAdapter == null) {
+			if (_rhombusAdapter == null)
 				_rhombusAdapter = new RhombusAdapter(this);
-			}
 			return _rhombusAdapter;
 		}
-
 		return null;
 	}
+	
 }

@@ -40,10 +40,10 @@ import gda.dal.dataprovider.StringProvideDataRunnable;
 
 public class StringPropertyProxyImpl extends PropertyProxyImpl<String> {
 
-	@SuppressWarnings("unchecked")
 	public StringPropertyProxyImpl(String name) {
 		super(name);
 		dataProvider = new StringProvideDataRunnable(name);
 		connect();
 	}
+	
 }

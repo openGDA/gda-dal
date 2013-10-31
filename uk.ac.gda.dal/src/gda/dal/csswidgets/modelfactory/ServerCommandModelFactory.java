@@ -33,4 +33,5 @@ import org.csstudio.sds.model.IWidgetModelFactory;
 		public Class getWidgetModelType() {
 			return ServerCommandModel.class;
 		}
+		
 	}

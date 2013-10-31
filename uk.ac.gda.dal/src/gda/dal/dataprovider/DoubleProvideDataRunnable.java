@@ -46,7 +46,7 @@ public class DoubleProvideDataRunnable extends ProvideDataRunnable<Double> {
 	}
 
 	@Override
-	public void setTargetValue(Object targetValue) {
+	public void setTargetValue(Double targetValue) {
 		setTargetValueT(valueToType(targetValue));
 	}
 

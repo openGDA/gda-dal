@@ -32,10 +32,6 @@ public class SDSView extends ViewPart {
 		RunModeService.getInstance().openDisplayViewInRunMode(new Path(url));
 	}
 	
-	/**
-	 * This is a callback that will allow us to create the viewer and initialize
-	 * it.
-	 */
 	@Override
 	public void createPartControl(Composite parent) {
 	}
@@ -43,4 +39,5 @@ public class SDSView extends ViewPart {
 	@Override
 	public void setFocus() {
 	}
+	
 }

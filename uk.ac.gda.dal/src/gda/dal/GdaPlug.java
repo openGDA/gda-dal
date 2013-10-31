@@ -59,7 +59,6 @@ public class GdaPlug extends AbstractPlug {
 	public static final String DEFAULT_AUTHORITY = "DEFAULT";
 	public static final String SCHEME_SUFFIX = "GDA";
 	private static GdaPlug instance;
-	
 	private DirContext gdaContext;
 
 	protected GdaPlug(Properties configuration) {
@@ -69,7 +68,6 @@ public class GdaPlug extends AbstractPlug {
 	public GdaPlug(AbstractApplicationContext ctx) {
 		super(ctx);
 	}
-
 
 	public static GdaPlug getInstance() {
 		return getInstance((Properties) null);

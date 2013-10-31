@@ -122,4 +122,5 @@ public class ArrowEditPart extends AbstractWidgetEditPart {
 		};
 		setPropertyChangeHandler(ArrowModel.PROP_ARROW, handle);
 	}
+	
 }

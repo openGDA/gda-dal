@@ -40,10 +40,6 @@ import org.eclipse.swt.widgets.Display;
  * An image figure that supports SVG.
  */
 public final class SVGFigure extends Shape implements IAdaptable {
-
-	/**
-	 * A border adapter, which covers all border handling.
-	 */
 	private IBorderEquippedWidget _borderAdapter;
     private CrossedOutAdapter _crossedOutAdapter;
     private RhombusAdapter _rhombusAdapter;
@@ -54,7 +50,7 @@ public final class SVGFigure extends Shape implements IAdaptable {
 	private int _yTranslate = 0;
 	private int _xTranslateX = 0;
 	private int _xTranslateY = 0;
-	private Rectangle bound = getBounds().getCopy();
+	private Rectangle bound;
 	
 	/**
 	 * We want to have local coordinates here.
@@ -113,15 +109,12 @@ public final class SVGFigure extends Shape implements IAdaptable {
 	@Override
 	public void paintFigure(final Graphics gfx) {
 		bound = getBounds().getCopy();
-		bound.crop(this.getInsets());
-
 		if (_image == null && !_path.isEmpty()) {
-			final InputStream imageStream = getClass().getResourceAsStream(_path.toString());
+			InputStream imageStream = getClass().getResourceAsStream(_path.toString());
 			_image = new Image(Display.getDefault(), imageStream);
 			_imgWidth = _image.getBounds().width;
 			_imgHeight = _image.getBounds().height;
 		}
-		
 		if (_image != null)
 			gfx.drawImage(_image, 0, 0, _imgWidth, _imgHeight, bound.x+_xTranslateX,bound.y+_yTranslate+_xTranslateY, _imgWidth, _imgHeight);
 	}
@@ -177,15 +170,18 @@ public final class SVGFigure extends Shape implements IAdaptable {
 			if(_borderAdapter==null)
 				_borderAdapter = new BorderAdapter(this);
 			return _borderAdapter;
-		} else if(adapter == ICrossedFigure.class) {
+		} 
+		else if(adapter == ICrossedFigure.class) {
             if(_crossedOutAdapter==null)
                 _crossedOutAdapter = new CrossedOutAdapter(this);
             return _crossedOutAdapter;
-        } else if(adapter == IRhombusEquippedWidget.class) {
+        } 
+		else if(adapter == IRhombusEquippedWidget.class) {
             if(_rhombusAdapter==null)
                 _rhombusAdapter = new RhombusAdapter(this);
             return _rhombusAdapter;
         }
 		return null;
 	}
+	
 }

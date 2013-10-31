@@ -23,25 +23,16 @@ import gda.dal.csswidgets.model.ScannableControlModel;
 import org.csstudio.sds.model.AbstractWidgetModel;
 import org.csstudio.sds.model.IWidgetModelFactory;
 
-	/**
-	 * An image model factory for {@link ScannableControlModel}.
-	 */
 	public final class ScannableControlModelFactory implements IWidgetModelFactory {
 
-		/**
-		 * {@inheritDoc}.
-		 */
 		@Override
 		public AbstractWidgetModel createWidgetModel() {
 			return new ScannableControlModel();
 		}
 
-		/**
-		 * {@inheritDoc}.
-		 */
-		@SuppressWarnings("rawtypes")
 		@Override
 		public Class getWidgetModelType() {
 			return ScannableControlModel.class;
 		}
+		
 	}

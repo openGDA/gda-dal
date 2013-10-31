@@ -101,9 +101,6 @@ public class ImageButtonEditPart extends AbstractWidgetEditPart {
 		}
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected IFigure doCreateFigure() {
 		model = getCastedModel();
@@ -150,9 +147,6 @@ public class ImageButtonEditPart extends AbstractWidgetEditPart {
 		return figure;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected void registerPropertyChangeHandlers() {
 		// changes to the filename property
@@ -177,4 +171,5 @@ public class ImageButtonEditPart extends AbstractWidgetEditPart {
 		};
 		setPropertyChangeHandler(ImageButtonModel.PROP_LABEL, handle);
 	}
+	
 }

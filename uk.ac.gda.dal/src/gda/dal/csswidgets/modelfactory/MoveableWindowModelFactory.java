@@ -27,21 +27,15 @@ import org.csstudio.sds.model.IWidgetModelFactory;
  * Model factory for {@link MoveableWindowModel}.
  */
 public final class MoveableWindowModelFactory implements IWidgetModelFactory {
-	/**
-	 * {@inheritDoc}
-	 */
+
 	@Override
 	public AbstractWidgetModel createWidgetModel() {
 		return new MoveableWindowModel();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-
-	@SuppressWarnings("rawtypes")
 	@Override
 	public Class getWidgetModelType() {
 		return MoveableWindowModel.class;
 	}
+	
 }

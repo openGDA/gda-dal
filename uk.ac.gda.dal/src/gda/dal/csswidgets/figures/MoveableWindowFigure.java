@@ -52,7 +52,6 @@ public final class MoveableWindowFigure extends Panel implements IAdaptable {
 	private boolean autoFit;
 	private ScrollPane scrollpane;
 
-	@SuppressWarnings("deprecation")
 	public MoveableWindowFigure() {
 		XYLayout layout = new XYLayout();
 		setLayoutManager(layout);
@@ -137,4 +136,5 @@ public final class MoveableWindowFigure extends Panel implements IAdaptable {
         }
 		return null;
 	}
+	
 }

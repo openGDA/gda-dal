@@ -28,6 +28,7 @@ import org.eclipse.draw2d.IFigure;
 
 public class AttenuatorEditPart extends AbstractWidgetEditPart {
 	AttenuatorFigure refreshableAttenuatorFigure;
+	
 	/**
 	 * Returns the casted model. This is just for convenience.
 	 * 

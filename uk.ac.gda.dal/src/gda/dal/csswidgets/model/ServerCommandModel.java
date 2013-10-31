@@ -54,4 +54,5 @@ public final class ServerCommandModel extends AbstractWidgetModel {
 	public String getServerCommand() {
 		return getStringProperty(PROP_SERVER_COMMAND);
 	}
+	
 }

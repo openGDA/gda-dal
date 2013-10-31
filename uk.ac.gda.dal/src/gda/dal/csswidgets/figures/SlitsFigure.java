@@ -36,9 +36,6 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 
-/**
- * An image figure that supports SVG.
- */
 public final class SlitsFigure extends Shape implements IAdaptable {
 	private IBorderEquippedWidget _borderAdapter;
     private CrossedOutAdapter _crossedOutAdapter;
@@ -63,42 +60,19 @@ public final class SlitsFigure extends Shape implements IAdaptable {
 	private int _slitType = 0;
 	private Rectangle bound = getBounds().getCopy();
 
-	/**
-	 * We want to have local coordinates here.
-	 * 
-	 * @return True if here should used local coordinates
-	 */
 	@Override
 	protected boolean useLocalCoordinates() {
 		return true;
 	}
 
-	/**
-	 * Fills the image. Nothing to do here.
-	 * 
-	 * @param gfx
-	 *            The {@link Graphics} to use
-	 */
 	@Override
 	protected void fillShape(final Graphics gfx) {
 	}
 
-	/**
-	 * Draws the outline of the image. Nothing to do here.
-	 * 
-	 * @param gfx
-	 *            The {@link Graphics} to use
-	 */
 	@Override
 	protected void outlineShape(final Graphics gfx) {
 	}
 
-	/**
-	 * The main drawing routine.
-	 * 
-	 * @param gfx
-	 *            The {@link Graphics} to use
-	 */
 	@Override
 	public void paintFigure(final Graphics gfx) {
 		bound = getBounds().getCopy();

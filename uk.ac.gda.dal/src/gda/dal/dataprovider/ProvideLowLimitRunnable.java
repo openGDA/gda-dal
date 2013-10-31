@@ -31,7 +31,6 @@ import org.epics.css.dal.Timestamp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@SuppressWarnings("unchecked")
 public  abstract class ProvideLowLimitRunnable<T> implements ProvideRunnable<T>{
 	private static final Logger logger = LoggerFactory.getLogger(ProvideLowLimitRunnable.class);
 	private Scannable scannable;
@@ -39,14 +38,11 @@ public  abstract class ProvideLowLimitRunnable<T> implements ProvideRunnable<T>{
 	protected double currentValue = 0.0;
 	// TODO: listeners list isn't used thread safely
 	protected List<ProvideDataEventListener<T>> listeners = new ArrayList<ProvideDataEventListener<T>>(1);
+	abstract T createValue(Object val);
 	
 	@Override
 	public T getCurrentValue() {
 		return createValue(currentValue);
-	}
-
-	public void setTargetValue(@SuppressWarnings("unused") double targetValue) {
-		//deliberately does nothing
 	}
 	
 	@Override
@@ -71,14 +67,12 @@ public  abstract class ProvideLowLimitRunnable<T> implements ProvideRunnable<T>{
 		if (findable instanceof Scannable) {
 			scannable = (Scannable) findable;
 			scannable.addIObserver(new IObserver() {
-
 				@Override
 				public void update(Object source, Object arg) {
 					if (source instanceof Scannable  && arg instanceof ScannableLowLimitChangeEvent)
 						if ((((Scannable)source).getName()).equals(scannable.getName()))
 							updateListeners(((ScannableLowLimitChangeEvent)arg).newLowLimits[0]);
 				}
-
 			});
 			try {
 				updateListeners(readValue());
@@ -118,9 +112,6 @@ public  abstract class ProvideLowLimitRunnable<T> implements ProvideRunnable<T>{
 			listener.newData(event);	
 	}
 	
-	
-	abstract T createValue(Object val);
-	
 	@Override
 	public void stop() {
 		running = true;
@@ -131,20 +122,18 @@ public  abstract class ProvideLowLimitRunnable<T> implements ProvideRunnable<T>{
 		return running;
 	}
 	
-	@SuppressWarnings("rawtypes")
 	@Override
-	public void addListener(ProvideDataEventListener newListener) {
+	public void addListener(ProvideDataEventListener<T> newListener) {
 		listeners.add(newListener);
 	}
 
-	@SuppressWarnings("rawtypes")
 	@Override
-	public void removeListener(ProvideDataEventListener listenerToRemove) {
+	public void removeListener(ProvideDataEventListener<T> listenerToRemove) {
 		listeners.remove(listenerToRemove);
 	}
+	
 	@Override
 	public void refresh() {
 		updateListeners(readValue());
 	}
 }
-

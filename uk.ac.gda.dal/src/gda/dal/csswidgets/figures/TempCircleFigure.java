@@ -44,42 +44,19 @@ public final class TempCircleFigure extends Shape implements IAdaptable {
 		liveColor = newColor;
 	}
 	
-	/**
-	 * We want to have local coordinates here.
-	 * 
-	 * @return True if here should used local coordinates
-	 */
 	@Override
 	protected boolean useLocalCoordinates() {
 		return true;
 	}
 
-	/**
-	 * Fills the image. Nothing to do here.
-	 * 
-	 * @param gfx
-	 *            The {@link Graphics} to use
-	 */
 	@Override
 	protected void fillShape(final Graphics gfx) {
 	}
 
-	/**
-	 * Draws the outline of the image. Nothing to do here.
-	 * 
-	 * @param gfx
-	 *            The {@link Graphics} to use
-	 */
 	@Override
 	protected void outlineShape(final Graphics gfx) {
 	}
 
-	/**
-	 * The main drawing routine.
-	 * 
-	 * @param gfx
-	 *            The {@link Graphics} to use
-	 */
 	@Override
 	public void paintFigure(final Graphics gfx) {
 		bound = getBounds().getCopy();
@@ -147,4 +124,5 @@ public final class TempCircleFigure extends Shape implements IAdaptable {
 	public Color getHistoryColorC(){
 		return historyColorC;
 	}
+	
 }

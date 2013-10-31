@@ -47,4 +47,5 @@ public class DeviceNameEditPart extends AbstractWidgetEditPart {
 	protected DeviceNameModel getCastedModel() {
 		return (DeviceNameModel) getModel();
 	}
+	
 }

@@ -25,17 +25,12 @@ import org.epics.css.dal.spi.LinkPolicy;
 import org.epics.css.dal.spi.Plugs;
 
 public class GdaPropertyFactory extends AbstractPropertyFactory {
-	/**
-	 * @see org.epics.css.dal.spi.AbstractFactorySupport#getPlugClass()
-	 */
+
 	@Override
 	protected Class<? extends AbstractPlug> getPlugClass() {
 		return GdaPlug.class;
 	}
 
-	/**
-	 * Creates a new PropertyFactoryImpl object.
-	 */
 	public GdaPropertyFactory() {
 		super();
 	}
@@ -45,4 +40,5 @@ public class GdaPropertyFactory extends AbstractPropertyFactory {
 		ctx.getConfiguration().setProperty(Plugs.PROPERTIES_FROM_CACHE, "true");
 		super.initialize(ctx, policy);
 	}
+	
 }

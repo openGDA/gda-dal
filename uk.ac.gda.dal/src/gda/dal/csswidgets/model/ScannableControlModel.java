@@ -22,7 +22,6 @@ import org.csstudio.sds.model.AbstractWidgetModel;
 import org.csstudio.sds.model.WidgetPropertyCategory;
 
 public final class ScannableControlModel extends AbstractWidgetModel {
-
 	public static final String ID = "org.csstudio.sds.components.ScannableControl";
 	public static final String PROP_READBACK_VALUE = "readback";
 	public static final String PROP_HIGH_LIMIT = "high";
@@ -41,15 +40,15 @@ public final class ScannableControlModel extends AbstractWidgetModel {
 
 	@Override
 	protected void configureProperties() {
-		this.addDoubleProperty(PROP_READBACK_VALUE, "Value", WidgetPropertyCategory.BEHAVIOR, 0, false, "");
-		this.addDoubleProperty(PROP_HIGH_LIMIT, "High Limit", WidgetPropertyCategory.BEHAVIOR, 10.0, false, "");
-		this.addDoubleProperty(PROP_LOW_LIMIT, "Low Limit", WidgetPropertyCategory.BEHAVIOR, -10.0, false, "");
-		this.addStringProperty(PROP_UNITS, "Units", WidgetPropertyCategory.BEHAVIOR, "deg", false, "");
-		this.addStringProperty(PROP_OFFSET, "offset", WidgetPropertyCategory.BEHAVIOR, "deg", false, "");
-		this.addIntegerProperty(PROP_DP, "decimal places", WidgetPropertyCategory.BEHAVIOR, 4, false, "");
-		this.addBooleanProperty(PROP_SHOW_BUTTONS, "action buttons", WidgetPropertyCategory.BEHAVIOR, false, false, "");
-		this.addDoubleProperty(PROP_SIM_READBACK_VALUE, "Simulation Value", WidgetPropertyCategory.BEHAVIOR, 0, false, "");
-		this.addDoubleProperty(PROP_DEF_INCREMENT, "default increment", WidgetPropertyCategory.BEHAVIOR, 1, false, "");
+		addDoubleProperty(PROP_READBACK_VALUE, "Value", WidgetPropertyCategory.BEHAVIOR, 0, false, "");
+		addDoubleProperty(PROP_HIGH_LIMIT, "High Limit", WidgetPropertyCategory.BEHAVIOR, 10.0, false, "");
+		addDoubleProperty(PROP_LOW_LIMIT, "Low Limit", WidgetPropertyCategory.BEHAVIOR, -10.0, false, "");
+		addStringProperty(PROP_UNITS, "Units", WidgetPropertyCategory.BEHAVIOR, "deg", false, "");
+		addStringProperty(PROP_OFFSET, "offset", WidgetPropertyCategory.BEHAVIOR, "deg", false, "");
+		addIntegerProperty(PROP_DP, "decimal places", WidgetPropertyCategory.BEHAVIOR, 4, false, "");
+		addBooleanProperty(PROP_SHOW_BUTTONS, "action buttons", WidgetPropertyCategory.BEHAVIOR, false, false, "");
+		addDoubleProperty(PROP_SIM_READBACK_VALUE, "Simulation Value", WidgetPropertyCategory.BEHAVIOR, 0, false, "");
+		addDoubleProperty(PROP_DEF_INCREMENT, "default increment", WidgetPropertyCategory.BEHAVIOR, 1, false, "");
 	}
 
 	@Override
@@ -117,4 +116,5 @@ public final class ScannableControlModel extends AbstractWidgetModel {
 	public void setDefaultIncrement(double val) {
 		getPropertyInternal(PROP_DEF_INCREMENT).setManualValue(val);
 	}
+	
 }

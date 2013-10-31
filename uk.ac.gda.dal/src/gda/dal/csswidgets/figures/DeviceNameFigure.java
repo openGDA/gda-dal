@@ -49,7 +49,6 @@ public class DeviceNameFigure extends Shape implements IAdaptable {
 	protected void outlineShape(Graphics graphics) {
 	}
 
-	@SuppressWarnings("rawtypes")
 	@Override
 	public Object getAdapter(Class adapter) {
 		if (adapter == IBorderEquippedWidget.class) {

@@ -81,4 +81,5 @@ public class ServerCommandEditPart extends AbstractWidgetEditPart {
 	@Override
 	protected void registerPropertyChangeHandlers() {
 	}
+	
 }

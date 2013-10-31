@@ -31,7 +31,6 @@ import org.epics.css.dal.Timestamp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@SuppressWarnings("unchecked")
 public abstract class ProvideHighLimitRunnable<T> implements  ProvideRunnable<T>{
 	private Scannable scannable;
 	private static final Logger logger = LoggerFactory.getLogger(ProvideHighLimitRunnable.class);
@@ -43,9 +42,6 @@ public abstract class ProvideHighLimitRunnable<T> implements  ProvideRunnable<T>
 	@Override
 	public T getCurrentValue() {
 		return createValue(currentValue);
-	}
-
-	public void setTargetValue(@SuppressWarnings("unused") double upperLim) {
 	}
 	
 	@Override
@@ -131,19 +127,19 @@ public abstract class ProvideHighLimitRunnable<T> implements  ProvideRunnable<T>
 		return running;
 	}
 	
-	@SuppressWarnings("rawtypes")
 	@Override
-	public void addListener(ProvideDataEventListener newListener) {
+	public void addListener(ProvideDataEventListener<T> newListener) {
 		listeners.add(newListener);
 	}
-
-	@SuppressWarnings("rawtypes")
+	
 	@Override
-	public void removeListener(ProvideDataEventListener listenerToRemove) {
+	public void removeListener(ProvideDataEventListener<T> listenerToRemove) {
 		listeners.remove(listenerToRemove);
 	}
+	
 	@Override
 	public void refresh() {
 		updateListeners(readValue());
 	}
+	
 }

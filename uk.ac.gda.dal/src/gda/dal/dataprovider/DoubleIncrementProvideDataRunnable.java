@@ -35,9 +35,9 @@ public class DoubleIncrementProvideDataRunnable extends ProvideDataRunnable<Doub
 		else 
 			throw new RuntimeException("Unknown type: " + o.getClass().getName());
 	}
-	
+
 	@Override
-	public void setTargetValue(Object targetValue) {
+	public void setTargetValue(Double targetValue) {
 		setTargetValueT( valueToType(targetValue));
 	}
 

@@ -64,4 +64,5 @@ public final class TempCircleModel extends AbstractWidgetModel {
 	public double getTempMax() {
 		return getDoubleProperty(PROP_TEMP_MAX);
 	}
+	
 }

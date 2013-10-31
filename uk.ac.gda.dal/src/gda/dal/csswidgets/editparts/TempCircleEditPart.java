@@ -112,4 +112,5 @@ public class TempCircleEditPart extends AbstractWidgetEditPart {
 			col = heatMap[8];
 		return col;
 	}
+	
 }

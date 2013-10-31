@@ -47,9 +47,9 @@ public final class ScannableControlFigure extends Shape implements IAdaptable {
     private RhombusAdapter _rhombusAdapter;
     private boolean amIHolder;
     private boolean demandSet = false;
-    public CellEditor demandCellEditor;
-    public CellEditor incrementCellEditor;
-    public CellEditor offsetCellEditor;
+    private CellEditor demandCellEditor;
+    private CellEditor incrementCellEditor;
+    private CellEditor offsetCellEditor;
 	private int boxWidth = 60;
 	private int dp=5;
 	private IBorderEquippedWidget _borderAdapter;
@@ -59,42 +59,19 @@ public final class ScannableControlFigure extends Shape implements IAdaptable {
 		amIHolder = baton;
 	}
 
-	/**
-	 * We want to have local coordinates here.
-	 * 
-	 * @return True if here should used local coordinates
-	 */
 	@Override
 	protected boolean useLocalCoordinates() {
 		return true;
 	}
 
-	/**
-	 * Fills the image. Nothing to do here.
-	 * 
-	 * @param gfx
-	 *            The {@link Graphics} to use
-	 */
 	@Override
 	protected void fillShape(final Graphics gfx) {
 	}
 
-	/**
-	 * Draws the outline of the image. Nothing to do here.
-	 * 
-	 * @param gfx
-	 *            The {@link Graphics} to use
-	 */
 	@Override
 	protected void outlineShape(final Graphics gfx) {
 	}
 
-	/**
-	 * The main drawing routine.
-	 * 
-	 * @param gfx
-	 *            The {@link Graphics} to use
-	 */
 	@Override
 	public void paintFigure(final Graphics gfx) {
 		if(!demandSet)
@@ -159,30 +136,21 @@ public final class ScannableControlFigure extends Shape implements IAdaptable {
 		offsetCellEditor.setFocus();
 	}
 	
-
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
-	@SuppressWarnings({ "rawtypes" })
 	public Object getAdapter(final Class adapter) {
 		if (adapter == IBorderEquippedWidget.class) {
-			if(_borderAdapter==null) {
+			if(_borderAdapter==null)
 				_borderAdapter = new BorderAdapter(this);
-			}
 			return _borderAdapter;
 		} else if(adapter == ICrossedFigure.class) {
-            if(_crossedOutAdapter==null) {
+            if(_crossedOutAdapter==null)
                 _crossedOutAdapter = new CrossedOutAdapter(this);
-            }
             return _crossedOutAdapter;
         } else if(adapter == IRhombusEquippedWidget.class) {
-            if(_rhombusAdapter==null) {
+            if(_rhombusAdapter==null)
                 _rhombusAdapter = new RhombusAdapter(this);
-            }
             return _rhombusAdapter;
         }
-
 		return null;
 	}
 
@@ -220,4 +188,29 @@ public final class ScannableControlFigure extends Shape implements IAdaptable {
 	public void setDP(int val){
 		dp=val;
 	}
+
+	public CellEditor getDemandCellEditor() {
+		return demandCellEditor;
+	}
+
+	public CellEditor getIncrementCellEditor() {
+		return incrementCellEditor;
+	}
+
+	public void setDemandCellEditor(CellEditor demandCellEditor) {
+		this.demandCellEditor = demandCellEditor;
+	}
+
+	public void setIncrementCellEditor(CellEditor incrementCellEditor) {
+		this.incrementCellEditor = incrementCellEditor;
+	}
+
+	public CellEditor getOffsetCellEditor() {
+		return offsetCellEditor;
+	}
+
+	public void setOffsetCellEditor(CellEditor offsetCellEditor) {
+		this.offsetCellEditor = offsetCellEditor;
+	}
+	
 }

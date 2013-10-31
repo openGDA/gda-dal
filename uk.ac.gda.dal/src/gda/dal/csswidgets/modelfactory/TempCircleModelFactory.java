@@ -25,20 +25,14 @@ import org.csstudio.sds.model.IWidgetModelFactory;
 
 public final class TempCircleModelFactory implements IWidgetModelFactory {
 
-	/**
-	 * {@inheritDoc}.
-	 */
 	@Override
 	public AbstractWidgetModel createWidgetModel() {
 		return new TempCircleModel();
 	}
 
-	/**
-	 * {@inheritDoc}.
-	 */
-	@SuppressWarnings("rawtypes")
 	@Override
 	public Class getWidgetModelType() {
 		return TempCircleModel.class;
 	}
+	
 }

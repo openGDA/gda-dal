@@ -150,17 +150,9 @@ public class ComboEditPart extends AbstractWidgetEditPart implements IProcessVar
 	 * @author Kai Meyer
 	 */
 	private final class MenuAction extends Action {
-		/**
-		 * The {@link AbstractWidgetActionModel}.
-		 */
+
 		private AbstractWidgetActionModel _widgetAction;
 
-		/**
-		 * Constructor.
-		 * 
-		 * @param widgetAction
-		 *            The encapsulated {@link AbstractWidgetActionModel}
-		 */
 		public MenuAction(final AbstractWidgetActionModel widgetAction) {
 			_widgetAction = widgetAction;
 			this.setText(_widgetAction.getActionLabel());

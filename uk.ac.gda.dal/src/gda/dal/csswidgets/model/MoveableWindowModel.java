@@ -27,34 +27,13 @@ import org.eclipse.core.runtime.Path;
  * A widget that can contain multiple movable linking containers.
  */
 public final class MoveableWindowModel extends ContainerModel {
-	/**
-	 * The ID of the resource property.
-	 */
+
 	public static final String PROP_RESOURCE = "resource";
-
-	/**
-	 * The ID of the auto zoom property.
-	 */
 	private static final String PROP_AUTOZOOM = "autozoom";
-	
-	/**
-	 * The ID of this widget model.
-	 */
 	public static final String ID = "org.csstudio.sds.components.MoveableWindow";
-
-	/**
-	 * The default value of the height property.
-	 */
 	private static final int DEFAULT_HEIGHT = 100;
-
-	/**
-	 * The default value of the width property.
-	 */
 	private static final int DEFAULT_WIDTH = 100;
 
-	/**
-	 * Standard constructor.
-	 */
 	public MoveableWindowModel() {
 		setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 	}
@@ -83,10 +62,6 @@ public final class MoveableWindowModel extends ContainerModel {
 		return getResourceProperty(PROP_RESOURCE);
 	}
 
-	/**
-	 * Returns the auto zoom state.
-	 * @return the auto zoom state
-	 */
 	public boolean isAutoZoom() {
 		return getBooleanProperty(PROP_AUTOZOOM);
 	}

@@ -91,4 +91,5 @@ public final class ArrowModel extends AbstractWidgetModel {
 	public String isBusy() {
 		return getStringProperty(PROP_BUSY);
 	}
+	
 }

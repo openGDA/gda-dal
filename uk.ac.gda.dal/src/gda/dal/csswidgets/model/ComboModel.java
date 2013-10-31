@@ -7,40 +7,13 @@ import org.csstudio.sds.model.WidgetPropertyCategory;
 import org.csstudio.sds.util.ColorAndFontUtil;
 
 public final class ComboModel extends AbstractWidgetModel {
-	
-	/**
-	 * The ID of the label property.
-	 */
 	public static final String PROP_LABEL = "label"; //$NON-NLS-1$
-	
-	/**
-	 * The ID of the font property.
-	 */
 	public static final String PROP_FONT = "font"; //$NON-NLS-1$
-
-	/**
-	 * The ID of the text alignment property.
-	 */
 	public static final String PROP_TEXT_ALIGNMENT = "textAlignment"; //$NON-NLS-1$
-	
-	/**
-	 * The default value of the height property.
-	 */
-	private static final int DEFAULT_HEIGHT = 20;
-
-	/**
-	 * The default value of the width property.
-	 */
-	private static final int DEFAULT_WIDTH = 80;
-	
-	/**
-	 * The ID of this widget model.
-	 */
+	public static final int DEFAULT_HEIGHT = 20;
+	public static final int DEFAULT_WIDTH = 80;
 	public static final String ID = "uk.ac.gda.dal.combo";
 
-	/**
-	 * Constructor.
-	 */
 	public ComboModel() {
 		setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 		this.setPropertyValue(PROP_BORDER_STYLE, BorderStyleEnum.RAISED.getIndex());

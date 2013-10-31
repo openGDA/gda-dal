@@ -22,10 +22,10 @@ import gda.dal.dataprovider.StringProvideStatusRunnable;
 
 public class StopPropertyProxyImpl extends PropertyProxyImpl<String> {
 
-		public StopPropertyProxyImpl(String name) {
-			super(name);
-			dataProvider = new StringProvideStatusRunnable(name);
-			connect();
-		}
+	public StopPropertyProxyImpl(String name) {
+		super(name);
+		dataProvider = new StringProvideStatusRunnable(name);
+		connect();
+	}
 
 }

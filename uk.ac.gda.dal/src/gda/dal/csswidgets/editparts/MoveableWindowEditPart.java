@@ -75,10 +75,7 @@ public class MoveableWindowEditPart extends AbstractContainerEditPart {
 	private MoveableTitleBarModel overRect;
 	private MoveableWindow win;
 	private Point lastLocation;
-	
-	/**
-	 * Constructor.
-	 */
+
 	public MoveableWindowEditPart() {
 		lastLocation = new Point();
 		setChildrenSelectable(true);
@@ -434,4 +431,5 @@ public class MoveableWindowEditPart extends AbstractContainerEditPart {
 			return result;
 		}
 	}
+	
 }

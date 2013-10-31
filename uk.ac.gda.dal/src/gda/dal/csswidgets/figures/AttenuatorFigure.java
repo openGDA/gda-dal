@@ -52,65 +52,37 @@ public final class AttenuatorFigure extends Shape implements IAdaptable {
 	private int _noBlocks = 6;
 	private int _emptyBlockPos = 5;
 	private int _yOffset = 0;
-	public Rectangle bound = getBounds().getCopy();
+	private Rectangle bound;
 
-	/**
-	 * We want to have local coordinates here.
-	 * 
-	 * @return True if here should used local coordinates
-	 */
 	@Override
 	protected boolean useLocalCoordinates() {
 		return true;
 	}
 
-	/**
-	 * Fills the image. Nothing to do here.
-	 * 
-	 * @param gfx
-	 *            The {@link Graphics} to use
-	 */
 	@Override
 	protected void fillShape(final Graphics gfx) {
 	}
 
-	/**
-	 * Draws the outline of the image. Nothing to do here.
-	 * 
-	 * @param gfx
-	 *            The {@link Graphics} to use
-	 */
 	@Override
 	protected void outlineShape(final Graphics gfx) {
 	}
 
-	/**
-	 * The main drawing routine.
-	 * 
-	 * @param gfx
-	 *            The {@link Graphics} to use
-	 */
-	@SuppressWarnings("deprecation")
 	@Override
 	public void paintFigure(final Graphics gfx) {
 		bound = getBounds().getCopy();
-		bound.crop(this.getInsets());
 		InputStream arrowImageStream = getClass().getResourceAsStream(arrowPath.toString());
 		_arrowImage = new Image(Display.getDefault(), arrowImageStream);
 		
 		try {
 			if (_image == null && !_path.isEmpty()) {
-
-				final InputStream imageStream = getClass().getResourceAsStream(_path.toString());
+				InputStream imageStream = getClass().getResourceAsStream(_path.toString());
 				_image = new Image(Display.getDefault(), imageStream);
-				
-				final InputStream emptyBlockStream = getClass().getResourceAsStream(empty_block_path.toString());
+				InputStream emptyBlockStream = getClass().getResourceAsStream(empty_block_path.toString());
 				emptyBlockImage = new Image(Display.getDefault(), emptyBlockStream);
 			}
 		} catch (Exception e) {
-			if (_image != null) {
+			if (_image != null)
 				_image.dispose();
-			}
 		}
 		if (_image != null) {
 			int blockHeight = 30;
@@ -154,22 +126,24 @@ public final class AttenuatorFigure extends Shape implements IAdaptable {
 		this.arrowPath = arrowPath;
 	}
 
-	@SuppressWarnings("rawtypes")
 	@Override
 	public Object getAdapter(final Class adapter) {
 		if (adapter == IBorderEquippedWidget.class) {
 			if(_borderAdapter==null)
 				_borderAdapter = new BorderAdapter(this);
 			return _borderAdapter;
-		} else if(adapter == ICrossedFigure.class) {
+		} 
+		else if(adapter == ICrossedFigure.class) {
             if(_crossedOutAdapter==null)
                 _crossedOutAdapter = new CrossedOutAdapter(this);
             return _crossedOutAdapter;
-        } else if(adapter == IRhombusEquippedWidget.class) {
+        } 
+		else if(adapter == IRhombusEquippedWidget.class) {
             if(_rhombusAdapter==null)
                 _rhombusAdapter = new RhombusAdapter(this);
             return _rhombusAdapter;
         }
 		return null;
 	}
+	
 }
