@@ -21,37 +21,23 @@ package gda.dal.csswidgets.model;
 import org.csstudio.sds.model.AbstractWidgetModel;
 import org.csstudio.sds.model.WidgetPropertyCategory;
 
-/**
- *
- */
 public final class TempCircleModel extends AbstractWidgetModel {
-	/**
-	 * Unique identifier.
-	 */
 	public static final String ID = "org.csstudio.sds.components.TempCircle";
-
 	public static final String PROP_TEMP = "temp";
 	public static final String PROP_TEMP_MIN = "min";
 	public static final String PROP_TEMP_MAX = "max";
-	
-	private static final int DEFAULT_WIDTH = 20;
-	private static final int DEFAULT_HEIGHT = 10;
+	private int DEFAULT_WIDTH = 20;
+	private int DEFAULT_HEIGHT = 10;
 
 	public TempCircleModel() {
 		setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public String getTypeID() {
 		return ID;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected void configureProperties() {
 		addDoubleProperty(PROP_TEMP, "Temperature", WidgetPropertyCategory.BEHAVIOR, 0.0, false, "");
@@ -59,9 +45,6 @@ public final class TempCircleModel extends AbstractWidgetModel {
 		addDoubleProperty(PROP_TEMP_MAX, "Maximum Temperature", WidgetPropertyCategory.BEHAVIOR, 0.0, false, "");
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected String getDefaultToolTip() {
 		StringBuffer buffer = new StringBuffer();

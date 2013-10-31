@@ -21,22 +21,14 @@ package gda.dal.csswidgets.model;
 import org.csstudio.sds.model.AbstractWidgetModel;
 import org.csstudio.sds.model.WidgetPropertyCategory;
 
-
-/**
- *
- */
 public final class AttenuatorModel extends AbstractWidgetModel {
 	/**
 	 * Unique identifier.
 	 */
 	public static final String ID = "org.csstudio.sds.components.Attenuator";
-	
 	public static final String PROP_Y_Translate = "translate.y";
-	
 	public static final String PROP_BUSY = "Ready";
-	
 	public static final String PROP_NO_BLOCKS = "blocks";
-	
 	public static final String PROP_EMPTY_POS = "empty pos";
 	
 	/**
@@ -47,9 +39,6 @@ public final class AttenuatorModel extends AbstractWidgetModel {
 		return ID;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected void configureProperties() {
 		addIntegerProperty(PROP_Y_Translate, "Translate Y Position", WidgetPropertyCategory.IMAGE, 0, false, "");
@@ -58,9 +47,6 @@ public final class AttenuatorModel extends AbstractWidgetModel {
 		addIntegerProperty(PROP_EMPTY_POS, "Empty position", WidgetPropertyCategory.IMAGE, 6, false, "");
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected String getDefaultToolTip() {
 		StringBuffer buffer = new StringBuffer();

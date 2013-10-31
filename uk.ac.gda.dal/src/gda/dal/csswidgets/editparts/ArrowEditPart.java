@@ -18,7 +18,7 @@
 
 package gda.dal.csswidgets.editparts;
 
-import gda.dal.csswidgets.figures.RefreshableArrowFigure;
+import gda.dal.csswidgets.figures.ArrowFigure;
 import gda.dal.csswidgets.model.ArrowModel;
 
 import org.csstudio.sds.ui.editparts.AbstractWidgetEditPart;
@@ -28,7 +28,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.draw2d.IFigure;
 
 public final class ArrowEditPart extends AbstractWidgetEditPart {
-	RefreshableArrowFigure arrowFigure = new RefreshableArrowFigure();
+	private ArrowFigure arrowFigure = new ArrowFigure();
 
 	@Override
 	protected ArrowModel getCastedModel() {
@@ -47,7 +47,7 @@ public final class ArrowEditPart extends AbstractWidgetEditPart {
 		IWidgetPropertyChangeHandler handle = new IWidgetPropertyChangeHandler() {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
-				RefreshableArrowFigure imageFigure = (RefreshableArrowFigure) figure;
+				ArrowFigure imageFigure = (ArrowFigure) figure;
 				imageFigure.setFilePath((IPath) newValue);
 				return true;
 			}
@@ -57,7 +57,7 @@ public final class ArrowEditPart extends AbstractWidgetEditPart {
 		handle = new IWidgetPropertyChangeHandler() {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
-				RefreshableArrowFigure imageFigure = (RefreshableArrowFigure) figure;
+				ArrowFigure imageFigure = (ArrowFigure) figure;
 				String path = imageFigure.getFilePath().toString();
 				if (((String) newValue).equals("Busy")) {
 					if (!path.contains("red")) {
@@ -69,7 +69,6 @@ public final class ArrowEditPart extends AbstractWidgetEditPart {
 					imageFigure.setFilePath(new Path(path));
 					imageFigure.repaint();
 				}
-
 				else {
 					if (path.contains("red")) {
 						int beginIndex = 0;
@@ -83,17 +82,14 @@ public final class ArrowEditPart extends AbstractWidgetEditPart {
 				imageFigure.setFilePath((IPath) newValue);
 				return true;
 			}
-
 		};
 		setPropertyChangeHandler(ArrowModel.PROP_BUSY, handle);
 
 		handle = new IWidgetPropertyChangeHandler() {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
-				RefreshableArrowFigure imageFigure = (RefreshableArrowFigure) figure;
-				
+				ArrowFigure imageFigure = (ArrowFigure) figure;
 				Path path = new Path("");
-				
 				if(Integer.parseInt(newValue.toString())==0)
 					path = new Path("/arrow images/x.png");
 				else if(Integer.parseInt(newValue.toString())==1)
@@ -120,7 +116,6 @@ public final class ArrowEditPart extends AbstractWidgetEditPart {
 					path = new Path("/arrow images/yaw2.png");
 				else if(Integer.parseInt(newValue.toString())==12)
 					path = new Path("/arrow images/x2.png");
-				
 				imageFigure.setFilePath(path);
 				return true;
 			}

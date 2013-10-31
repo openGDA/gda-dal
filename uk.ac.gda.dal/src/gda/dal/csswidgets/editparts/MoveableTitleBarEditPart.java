@@ -32,9 +32,6 @@ import org.eclipse.swt.graphics.Image;
 
 public final class MoveableTitleBarEditPart extends AbstractWidgetEditPart {
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected IFigure doCreateFigure() {
 				

@@ -23,37 +23,23 @@ import java.io.InputStream;
 import org.csstudio.sds.model.AbstractWidgetModel;
 
 public class MoveableTitleBarModel extends AbstractWidgetModel{
-
-
-		/**
-		 * The ID of this widget model.
-		 */
-		public static final String ID = "org.csstudio.sds.components.MoveableTitleBarModel"; //$NON-NLS-1$
-
+	public static final String ID = "org.csstudio.sds.components.MoveableTitleBarModel"; //$NON-NLS-1$
+	public String theTitle = "";
+	public InputStream icon;
 	
-		public String theTitle = "";
-		public InputStream icon;
-		
-		/**
-		 * Standard constructor.
-		 */
-		public MoveableTitleBarModel(String title, InputStream newIcon) {
-			theTitle = title;
-			icon = newIcon ;
-		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		public String getTypeID() {
-			return ID;
-		}
-		
-
-
-		@Override
-		protected void configureProperties() {
-			
-		}
+	public MoveableTitleBarModel(String title, InputStream newIcon) {
+		theTitle = title;
+		icon = newIcon ;
 	}
+
+	@Override
+	public String getTypeID() {
+		return ID;
+	}
+	
+	@Override
+	protected void configureProperties() {
+		
+	}
+	
+}

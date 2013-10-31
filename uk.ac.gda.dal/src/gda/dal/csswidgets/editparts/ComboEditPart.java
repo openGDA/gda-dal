@@ -33,15 +33,10 @@ import org.eclipse.ui.model.IWorkbenchAdapter;
 
 public final class ComboEditPart extends AbstractWidgetEditPart implements IProcessVariableWithSamples {
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected IFigure doCreateFigure() {
-		final ComboModel model = (ComboModel) getWidgetModel();
-
+		ComboModel model = (ComboModel) getWidgetModel();
 		RefreshableLabelFigure label = new RefreshableLabelFigure();
-
 		label.setTextValue(model.getLabel());
 		label.setFont(getModelFont(ComboModel.PROP_FONT));
 		label.setTextAlignment(model.getTextAlignment());
@@ -63,9 +58,7 @@ public final class ComboEditPart extends AbstractWidgetEditPart implements IProc
 			@Override
 			public void mouseReleased(final MouseEvent me) {
 			}
-
 		});
-
 		return label;
 	}
 
@@ -77,9 +70,8 @@ public final class ComboEditPart extends AbstractWidgetEditPart implements IProc
 	 */
 	private void performDirectEdit(final Point point, final int absolutX, final int absolutY) {
 		if (this.getCastedModel().isAccesible() && getExecutionMode().equals(ExecutionMode.RUN_MODE)) {
-			final List<AbstractWidgetActionModel> widgetActions = ((ComboModel) this.getCastedModel()).getActionData()
-					.getWidgetActions();
-			final Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+			final List<AbstractWidgetActionModel> widgetActions = ((ComboModel) this.getCastedModel()).getActionData().getWidgetActions();
+			Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 			MenuManager menuManager = new MenuManager();
 			Menu menu = menuManager.createContextMenu(shell);
 			if (widgetActions.size() == 1) {
@@ -90,24 +82,19 @@ public final class ComboEditPart extends AbstractWidgetEditPart implements IProc
 					}
 				});
 			} else {
-				for (AbstractWidgetActionModel action : widgetActions) {
+				for (AbstractWidgetActionModel action : widgetActions)
 					menuManager.add(new MenuAction(action));
-				}
-				
 				int x = absolutX;
 	            int y = absolutY;
 	            x = x - point.x + this.getCastedModel().getX();
 	            y = y - point.y + this.getCastedModel().getY() + this.getCastedModel().getHeight();
-
 				menu.setLocation(x, y);
 				menu.setVisible(true);
 			}
 
-			while (!menu.isDisposed() && menu.isVisible()) {
-				if (!Display.getCurrent().readAndDispatch()) {
+			while (!menu.isDisposed() && menu.isVisible())
+				if (!Display.getCurrent().readAndDispatch())
 					Display.getCurrent().sleep();
-				}
-			}
 			menu.dispose();
 			shell.getParent().setFocus();
 		}
@@ -122,9 +109,6 @@ public final class ComboEditPart extends AbstractWidgetEditPart implements IProc
 		return (RefreshableLabelFigure) getFigure();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected void registerPropertyChangeHandlers() {
 		// label
@@ -180,17 +164,12 @@ public final class ComboEditPart extends AbstractWidgetEditPart implements IProc
 		public MenuAction(final AbstractWidgetActionModel widgetAction) {
 			_widgetAction = widgetAction;
 			this.setText(_widgetAction.getActionLabel());
-			IWorkbenchAdapter adapter = (IWorkbenchAdapter) Platform.getAdapterManager().getAdapter(widgetAction,
-					IWorkbenchAdapter.class);
-			if (adapter != null) {
+			IWorkbenchAdapter adapter = (IWorkbenchAdapter) Platform.getAdapterManager().getAdapter(widgetAction, IWorkbenchAdapter.class);
+			if (adapter != null)
 				this.setImageDescriptor(adapter.getImageDescriptor(widgetAction));
-			}
 			this.setEnabled(_widgetAction.isEnabled());
 		}
 
-		/**
-		 * {@inheritDoc}
-		 */
 		@Override
 		public void run() {
 			Display.getCurrent().asyncExec(new Runnable() {
@@ -202,42 +181,26 @@ public final class ComboEditPart extends AbstractWidgetEditPart implements IProc
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public IValue getSample(final int index) {
-		if (index != 0) {
+		if (index != 0)
 			throw new IndexOutOfBoundsException(index + " is not a valid sample index");
-		}
-
 		ComboModel model = (ComboModel) getWidgetModel();
 		ITimestamp timestamp = TimestampFactory.now();
-
 		// Note: the IValue implementations require a Severity, otherwise the
 		// format() method will throw a NullPointerException. We don't really
 		// have a severity here, so we fake one. This may cause problems for
 		// clients who rely on getting a meaningful severity from the IValue.
 		ISeverity severity = ValueFactory.createOKSeverity();
-
-		IValue result = ValueFactory.createStringValue(timestamp, severity, null, Quality.Original,
-				new String[] { model.getLabel() });
-
+		IValue result = ValueFactory.createStringValue(timestamp, severity, null, Quality.Original, new String[] { model.getLabel() });
 		return result;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public int size() {
-		// always one sample
 		return 1;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected boolean forceDisabledInEditMode() {
 		return true;

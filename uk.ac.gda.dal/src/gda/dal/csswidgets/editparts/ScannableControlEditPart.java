@@ -18,15 +18,12 @@
 
 package gda.dal.csswidgets.editparts;
 
-
 import gda.dal.csswidgets.figures.ScannableControlFigure;
 import gda.dal.csswidgets.model.ScannableControlModel;
 import gda.jython.InterfaceProvider;
 import gda.jython.batoncontrol.BatonChanged;
 import gda.observable.IObserver;
-
 import java.util.List;
-
 import org.csstudio.sds.model.AbstractWidgetModel;
 import org.csstudio.sds.model.WidgetProperty;
 import org.csstudio.sds.model.properties.actions.AbstractWidgetActionModel;
@@ -57,24 +54,21 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 
 public final class ScannableControlEditPart extends AbstractWidgetEditPart {
-	ScannableControlFigure figure;
-	double incrementVal = 1.0;
-	double offset = 0.0;
-	boolean doneOnce = false;
-	ArrowButton increment = new ArrowButton(PositionConstants.EAST);
-	ArrowButton decrement = new ArrowButton(PositionConstants.WEST);
-	Button goReal = new Button("Go Real");
-	Button goSim = new Button("Go Sim");
-	Boolean amIHolder = InterfaceProvider.getBatonStateProvider().amIBatonHolder();
-	Label label = new Label();
-	RectangleFigure border = new RectangleFigure();
-	String originalTooltipText;
-	String tooltipText;
-	ScannableControlModel model;
-	double readback;
-	int wholeDigits=1;
-	int dp=4;
-	boolean showButtons=false;
+	private ScannableControlFigure scannableControlFigure;
+	private double incrementVal = 1.0;
+	private double offset = 0.0;
+	private ArrowButton increment = new ArrowButton(PositionConstants.EAST);
+	private ArrowButton decrement = new ArrowButton(PositionConstants.WEST);
+	private Button goReal = new Button("Go Real");
+	private Button goSim = new Button("Go Sim");
+	private Boolean amIHolder = InterfaceProvider.getBatonStateProvider().amIBatonHolder();
+	private Label label = new Label();
+	private RectangleFigure border = new RectangleFigure();
+	private String tooltipText;
+	private ScannableControlModel model;
+	private int wholeDigits=1;
+	private int dp=4;
+	private boolean showButtons=false;
 
 	/**
 	 * Returns the casted model. This is just for convenience.
@@ -91,32 +85,27 @@ public final class ScannableControlEditPart extends AbstractWidgetEditPart {
 	 */
 	@Override
 	protected IFigure doCreateFigure() {
-
 		model = getCastedModel();
-
 		incrementVal = model.getDefaultIncrement();
-		
-		figure = new ScannableControlFigure(amIHolder);
+		scannableControlFigure = new ScannableControlFigure(amIHolder);
 		dp = model.getDP();
-		figure.setDP(dp);
-		figure.setBoxWidth(15+(dp*10)+((wholeDigits-1)*10));
-
+		scannableControlFigure.setDP(dp);
+		scannableControlFigure.setBoxWidth(15+(dp*10)+((wholeDigits-1)*10));
 		if (model.isLive()) {
-
-			figure.addMouseListener(new MouseListener.Stub() {
+			scannableControlFigure.addMouseListener(new MouseListener.Stub() {
 				@Override
 				public void mousePressed(MouseEvent me) {
 					me.consume();
 					if (me.button == 1 && amIHolder) {
 						Rectangle mouseBound = new Rectangle(me.x, me.y, 1, 1);
-						if (figure.getDemandBox().intersects(mouseBound)) {
-							Rectangle rect = ScannableControlEditPart.this.figure.getBounds().getCopy();
+						if (scannableControlFigure.getDemandBox().intersects(mouseBound)) {
+							Rectangle rect = ScannableControlEditPart.this.scannableControlFigure.getBounds().getCopy();
 							rect.x = rect.x + 1;
 							rect.y = rect.y + 1;
 							rect.height = rect.height - 1;
 							rect.width = rect.width - 1;
 							getFigure().translateToAbsolute(rect);
-							figure.showDemand(rect.x, rect.y);
+							scannableControlFigure.showDemand(rect.x, rect.y);
 						}
 					}
 				}
@@ -135,14 +124,14 @@ public final class ScannableControlEditPart extends AbstractWidgetEditPart {
 					double upperBound = model.getHighLimit();
 					if (model.getReadbackValue() + incrementVal <= upperBound) {
 						double incVal = incrementVal;
-						model.setReadbackValue(figure.getDemand() + incVal);
-						figure.setDemand(figure.getDemand() + incVal);
+						model.setReadbackValue(scannableControlFigure.getDemand() + incVal);
+						scannableControlFigure.setDemand(scannableControlFigure.getDemand() + incVal);
 					}
 				}
 			}
 		});
 
-		figure.incrementCellEditor = new TextCellEditor((Composite) getViewer().getControl());
+		scannableControlFigure.incrementCellEditor = new TextCellEditor((Composite) getViewer().getControl());
 
 		if (model.isLive()) {
 
@@ -151,7 +140,7 @@ public final class ScannableControlEditPart extends AbstractWidgetEditPart {
 				public void mousePressed(MouseEvent me) {
 					me.consume();
 					if (me.button == 2) {
-						Rectangle rect = ScannableControlEditPart.this.figure.getBounds().getCopy();
+						Rectangle rect = ScannableControlEditPart.this.scannableControlFigure.getBounds().getCopy();
 						rect.x = rect.x + 1;
 						rect.y = rect.y + 1;
 						rect.height = rect.height - 1;
@@ -164,13 +153,13 @@ public final class ScannableControlEditPart extends AbstractWidgetEditPart {
 						label.setLocation(new Point(0, 0));
 						label.setSize(rect.width, 20);
 						label.setForegroundColor(new Color(null, 0, 0, 0));
-						figure.add(border);
-						figure.add(label);
-						figure.showIncrement(rect.x + 19, rect.y + 19);
+						scannableControlFigure.add(border);
+						scannableControlFigure.add(label);
+						scannableControlFigure.showIncrement(rect.x + 19, rect.y + 19);
 					}
 
 					if (me.button == 3) {
-						Rectangle rect = ScannableControlEditPart.this.figure.getBounds().getCopy();
+						Rectangle rect = ScannableControlEditPart.this.scannableControlFigure.getBounds().getCopy();
 						rect.x = rect.x + 1;
 						rect.y = rect.y + 1;
 						rect.height = rect.height - 1;
@@ -183,9 +172,9 @@ public final class ScannableControlEditPart extends AbstractWidgetEditPart {
 						label.setLocation(new Point(0, 0));
 						label.setSize(rect.width, 20);
 						label.setForegroundColor(new Color(null, 0, 0, 0));
-						figure.add(border);
-						figure.add(label);
-						figure.showOffset(rect.x + 19, rect.y + 19);
+						scannableControlFigure.add(border);
+						scannableControlFigure.add(label);
+						scannableControlFigure.showOffset(rect.x + 19, rect.y + 19);
 					}
 				}
 			});
@@ -195,7 +184,7 @@ public final class ScannableControlEditPart extends AbstractWidgetEditPart {
 				public void mousePressed(MouseEvent me) {
 					me.consume();
 					if (me.button == 2) {
-						Rectangle rect = ScannableControlEditPart.this.figure.getBounds().getCopy();
+						Rectangle rect = ScannableControlEditPart.this.scannableControlFigure.getBounds().getCopy();
 						rect.x = rect.x + 1;
 						rect.y = rect.y + 1;
 						rect.height = rect.height - 1;
@@ -208,12 +197,12 @@ public final class ScannableControlEditPart extends AbstractWidgetEditPart {
 						label.setLocation(new Point(0, 0));
 						label.setSize(rect.width, 20);
 						label.setForegroundColor(new Color(null, 0, 0, 0));
-						figure.add(border);
-						figure.add(label);
-						figure.showIncrement(rect.x + 19, rect.y + 19);
+						scannableControlFigure.add(border);
+						scannableControlFigure.add(label);
+						scannableControlFigure.showIncrement(rect.x + 19, rect.y + 19);
 					}
 					if (me.button == 3) {
-						Rectangle rect = ScannableControlEditPart.this.figure.getBounds().getCopy();
+						Rectangle rect = ScannableControlEditPart.this.scannableControlFigure.getBounds().getCopy();
 						rect.x = rect.x + 1;
 						rect.y = rect.y + 1;
 						rect.height = rect.height - 1;
@@ -226,22 +215,22 @@ public final class ScannableControlEditPart extends AbstractWidgetEditPart {
 						label.setLocation(new Point(0, 0));
 						label.setSize(rect.width, 20);
 						label.setForegroundColor(new Color(null, 0, 0, 0));
-						figure.add(border);
-						figure.add(label);
-						figure.showOffset(rect.x + 19, rect.y + 19);
+						scannableControlFigure.add(border);
+						scannableControlFigure.add(label);
+						scannableControlFigure.showOffset(rect.x + 19, rect.y + 19);
 					}
 				}
 			});
 		}
 
-		figure.incrementCellEditor.addListener(new ICellEditorListener() {
+		scannableControlFigure.incrementCellEditor.addListener(new ICellEditorListener() {
 
 			@Override
 			public void applyEditorValue() {
-				figure.remove(label);
-				figure.remove(border);
+				scannableControlFigure.remove(label);
+				scannableControlFigure.remove(border);
 				try {
-					incrementVal = Double.parseDouble(figure.incrementCellEditor.getValue().toString());
+					incrementVal = Double.parseDouble(scannableControlFigure.incrementCellEditor.getValue().toString());
 					tooltipText = "Limits:Low=" + model.getLowLimit() + ",High=" + model.getHighLimit() + "\rUnits="
 							+ model.getPropUnits() + "\rIncrement=" + incrementVal;
 					model.setPropertyValue(AbstractWidgetModel.PROP_TOOLTIP, tooltipText);
@@ -259,16 +248,14 @@ public final class ScannableControlEditPart extends AbstractWidgetEditPart {
 			}
 		});
 
-		figure.offsetCellEditor = new TextCellEditor((Composite) getViewer().getControl());
-		
-		figure.offsetCellEditor.addListener(new ICellEditorListener() {
-
+		scannableControlFigure.offsetCellEditor = new TextCellEditor((Composite) getViewer().getControl());
+		scannableControlFigure.offsetCellEditor.addListener(new ICellEditorListener() {
 			@Override
 			public void applyEditorValue() {
-				figure.remove(label);
-				figure.remove(border);
+				scannableControlFigure.remove(label);
+				scannableControlFigure.remove(border);
 				try {
-					offset = Double.parseDouble(figure.offsetCellEditor.getValue().toString());
+					offset = Double.parseDouble(scannableControlFigure.offsetCellEditor.getValue().toString());
 					model.setOffset(offset);
 
 				} catch (Exception e) {
@@ -285,13 +272,12 @@ public final class ScannableControlEditPart extends AbstractWidgetEditPart {
 			}
 		});
 
-		figure.add(increment);
+		scannableControlFigure.add(increment);
 
 		decrement.setLocation(new Point(0, 19));
 		decrement.setVisible(true);
 		decrement.setSize(20, 20);
 		decrement.setEnabled(amIHolder);
-
 		decrement.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -299,14 +285,13 @@ public final class ScannableControlEditPart extends AbstractWidgetEditPart {
 					double lowerBound = model.getLowLimit();
 					if (model.getReadbackValue() + incrementVal >= lowerBound) {
 						double incVal = incrementVal;
-						model.setReadbackValue(figure.getDemand() - incVal);
-						figure.setDemand(figure.getDemand() - incVal);
+						model.setReadbackValue(scannableControlFigure.getDemand() - incVal);
+						scannableControlFigure.setDemand(scannableControlFigure.getDemand() - incVal);
 					}
 				}
 			}
 		});
-
-		figure.add(decrement);
+		scannableControlFigure.add(decrement);
 
 		InterfaceProvider.getBatonStateProvider().addBatonChangedObserver(new IObserver() {
 
@@ -319,30 +304,29 @@ public final class ScannableControlEditPart extends AbstractWidgetEditPart {
 						display.asyncExec(new Runnable() {
 							@Override
 							public void run() {
-								figure.setBatton(amIHolder);
+								scannableControlFigure.setBatton(amIHolder);
 								increment.setEnabled(amIHolder);
 								decrement.setEnabled(amIHolder);
-								figure.repaint();
+								scannableControlFigure.repaint();
 							}
 						});
 					}
 				}
 			}
 		});
-
-		figure.demandCellEditor = new TextCellEditor((Composite) getViewer().getControl());	
+		scannableControlFigure.demandCellEditor = new TextCellEditor((Composite) getViewer().getControl());	
 		
-		final Text text = (Text) figure.demandCellEditor.getControl();
+		final Text text = (Text) scannableControlFigure.demandCellEditor.getControl();
 		text.addKeyListener(new KeyAdapter(){
 			@Override
 			public void keyPressed(KeyEvent e) {
 				showButtons=model.isShowButtons();
 				if (((e.keyCode == SWT.CR) || (e.keyCode == SWT.KEYPAD_CR)) && !showButtons) {
-					String demandVal = figure.demandCellEditor.getValue().toString();
+					String demandVal = scannableControlFigure.demandCellEditor.getValue().toString();
 					double demand = Double.parseDouble(demandVal);
 					if((demand>=model.getLowLimit())&&(demand<=model.getHighLimit())){
-						figure.setDemand(demand);
-						model.setReadbackValue(Double.parseDouble(figure.demandCellEditor.getValue().toString()));
+						scannableControlFigure.setDemand(demand);
+						model.setReadbackValue(Double.parseDouble(scannableControlFigure.demandCellEditor.getValue().toString()));
 					}
 				}
 			}
@@ -356,16 +340,16 @@ public final class ScannableControlEditPart extends AbstractWidgetEditPart {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String demandVal = figure.demandCellEditor.getValue().toString();
+				String demandVal = scannableControlFigure.demandCellEditor.getValue().toString();
 				double demand = Double.parseDouble(demandVal);
 				if((demand>=model.getLowLimit())&&(demand<=model.getHighLimit()) && amIHolder){
-					figure.setDemand(demand);
-					model.setReadbackValue(Double.parseDouble(figure.demandCellEditor.getValue().toString()));
+					scannableControlFigure.setDemand(demand);
+					model.setReadbackValue(Double.parseDouble(scannableControlFigure.demandCellEditor.getValue().toString()));
 				}
 			}
 		});
 		
-		figure.add(goReal);
+		scannableControlFigure.add(goReal);
 		
 		goSim.setLocation(new Point(55+(dp*10)+((wholeDigits-1)*10), 39));
 		goSim.setVisible(model.isShowButtons());
@@ -375,11 +359,11 @@ public final class ScannableControlEditPart extends AbstractWidgetEditPart {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String demandVal = figure.demandCellEditor.getValue().toString();
+				String demandVal = scannableControlFigure.demandCellEditor.getValue().toString();
 				double demand = Double.parseDouble(demandVal);
 				if((demand>=model.getLowLimit())&&(demand<=model.getHighLimit()) && amIHolder){
-					figure.setDemand(demand);
-					model.setSimReadbackValue(Double.parseDouble(figure.demandCellEditor.getValue().toString()));
+					scannableControlFigure.setDemand(demand);
+					model.setSimReadbackValue(Double.parseDouble(scannableControlFigure.demandCellEditor.getValue().toString()));
 					List<AbstractWidgetActionModel> actions = model.getActionData().getWidgetActions();
 					WidgetProperty property = model.getPropertyInternal(AbstractWidgetModel.PROP_ACTIONDATA);
 					property.setManualValue("dummy");
@@ -393,12 +377,11 @@ public final class ScannableControlEditPart extends AbstractWidgetEditPart {
 			}
 		});
 		
-		figure.add(goSim);
-		//incrementVal = 1.0;
+		scannableControlFigure.add(goSim);
 		tooltipText = "Limits:Low=" + model.getLowLimit() + ",High=" + model.getHighLimit() + "\rUnits="
 				+ model.getPropUnits() + "\rIncrement=" + incrementVal;
 		model.setPropertyValue(AbstractWidgetModel.PROP_TOOLTIP, tooltipText);
-		return figure;
+		return scannableControlFigure;
 	}
 		
 	/**
@@ -412,7 +395,6 @@ public final class ScannableControlEditPart extends AbstractWidgetEditPart {
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure refreshableFigure) {
 				ScannableControlFigure figure = (ScannableControlFigure) refreshableFigure;
 				wholeDigits=1;
-				readback=(Double) newValue;
 				figure.setReadback((Double)newValue);
 				figure.repaint();
 				return true;
@@ -465,7 +447,7 @@ public final class ScannableControlEditPart extends AbstractWidgetEditPart {
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure refreshableFigure) {
 				dp = (int) Double.parseDouble(newValue.toString());
 				increment.setLocation(new Point(35+(dp*10)+((wholeDigits-1)*10), 19));
-				figure.setBoxWidth(15+(dp*10)+((wholeDigits-1)*10));
+				scannableControlFigure.setBoxWidth(15+(dp*10)+((wholeDigits-1)*10));
 				return true;
 			}
 		};

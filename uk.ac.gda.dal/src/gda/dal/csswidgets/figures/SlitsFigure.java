@@ -39,7 +39,7 @@ import org.eclipse.swt.widgets.Display;
 /**
  * An image figure that supports SVG.
  */
-public final class RefreshableSlitsFigure extends Shape implements IAdaptable {
+public final class SlitsFigure extends Shape implements IAdaptable {
 
 	private IBorderEquippedWidget _borderAdapter;
     private CrossedOutAdapter _crossedOutAdapter;

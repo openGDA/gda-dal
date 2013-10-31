@@ -23,13 +23,8 @@ import org.csstudio.sds.model.WidgetPropertyCategory;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 
-/**
- *
- */
 public final class ImageButtonModel extends AbstractWidgetModel {
-
 	public static final String ID = "org.csstudio.sds.components.ImageButton";
-	
 	public static final String PROP_FILENAME = "filename";
 	public static final String PROP_STYLE = "style";
 	public static final String PROP_LABEL = "label";
@@ -45,17 +40,11 @@ public final class ImageButtonModel extends AbstractWidgetModel {
 	 */
 	private static final String[] FILE_EXTENSIONS = new String[] {"*", "jpg", "jpeg", "gif", "bmp", "png", "svg"};
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public String getTypeID() {
 		return ID;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected void configureProperties() {
 		this.addResourceProperty(PROP_FILENAME, "File", WidgetPropertyCategory.IMAGE, new Path(""), FILE_EXTENSIONS, false, "");
@@ -69,9 +58,6 @@ public final class ImageButtonModel extends AbstractWidgetModel {
 		this.addStringProperty(PROP_SERVER_COMMAND_VARIABLE, "Server Command Variable", WidgetPropertyCategory.BEHAVIOR, "", false, "");
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected String getDefaultToolTip() {
 		return "";

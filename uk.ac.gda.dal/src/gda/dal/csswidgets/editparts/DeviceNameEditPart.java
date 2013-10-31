@@ -25,6 +25,7 @@ import org.csstudio.sds.ui.editparts.AbstractWidgetEditPart;
 import org.eclipse.draw2d.IFigure;
 
 public class DeviceNameEditPart extends AbstractWidgetEditPart {
+	
 	@Override
 	protected IFigure doCreateFigure() {
 		DeviceNameModel model = (DeviceNameModel) getWidgetModel();

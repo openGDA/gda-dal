@@ -18,7 +18,7 @@
 
 package gda.dal.csswidgets.editparts;
 
-import gda.dal.csswidgets.figures.RefreshableSlitsFigure;
+import gda.dal.csswidgets.figures.SlitsFigure;
 import gda.dal.csswidgets.model.SlitsModel;
 
 import org.csstudio.sds.ui.editparts.AbstractWidgetEditPart;
@@ -27,9 +27,8 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.draw2d.IFigure;
 
 public final class SlitsEditPart extends AbstractWidgetEditPart {
-	RefreshableSlitsFigure figure;
+	private SlitsFigure refreshableSlitsFigure;
 	private SlitsModel model;
-	
 	private int _yTranslate;
 	private int _xTranslateX;
 	private int _Vgap;
@@ -51,17 +50,17 @@ public final class SlitsEditPart extends AbstractWidgetEditPart {
 	@Override
 	protected IFigure doCreateFigure() {
 		model = getCastedModel();
-		figure = new RefreshableSlitsFigure();
-		figure.setSlitType(model.getSlitType());
+		refreshableSlitsFigure = new SlitsFigure();
+		refreshableSlitsFigure.setSlitType(model.getSlitType());
 		
-		_yTranslate = figure.getYTranslate();
-		_xTranslateX = figure.getXTranslate().x;
-		_Vgap = figure.getVGap();
-		_Hgap = figure.getHGap();
+		_yTranslate = refreshableSlitsFigure.getYTranslate();
+		_xTranslateX = refreshableSlitsFigure.getXTranslate().x;
+		_Vgap = refreshableSlitsFigure.getVGap();
+		_Hgap = refreshableSlitsFigure.getHGap();
 		
-		setBeamOut(figure);
+		setBeamOut(refreshableSlitsFigure);
 		
-		return figure;
+		return refreshableSlitsFigure;
 	}
 
 
@@ -74,7 +73,7 @@ public final class SlitsEditPart extends AbstractWidgetEditPart {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
 				
-				RefreshableSlitsFigure imageFigure = (RefreshableSlitsFigure) figure;
+				SlitsFigure imageFigure = (SlitsFigure) figure;
 			
 				String upPath = imageFigure.getVGapUpPath().toString();
 				String downPath = imageFigure.getVGapDownPath().toString();
@@ -131,7 +130,7 @@ public final class SlitsEditPart extends AbstractWidgetEditPart {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
 				
-				RefreshableSlitsFigure slitsFigure = (RefreshableSlitsFigure) figure;
+				SlitsFigure slitsFigure = (SlitsFigure) figure;
 			
 				String plusPath = slitsFigure.getHGapPlusPath().toString();
 				String minusPath = slitsFigure.getHGapMinusPath().toString();
@@ -187,7 +186,7 @@ public final class SlitsEditPart extends AbstractWidgetEditPart {
 		handle = new IWidgetPropertyChangeHandler() {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
-				RefreshableSlitsFigure slitsFigure = (RefreshableSlitsFigure) figure;
+				SlitsFigure slitsFigure = (SlitsFigure) figure;
 
 				_xTranslateX = Integer.parseInt(newValue.toString());
 				
@@ -203,7 +202,7 @@ public final class SlitsEditPart extends AbstractWidgetEditPart {
 		handle = new IWidgetPropertyChangeHandler() {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
-				RefreshableSlitsFigure slitsFigure = (RefreshableSlitsFigure) figure;
+				SlitsFigure slitsFigure = (SlitsFigure) figure;
 				
 				_yTranslate = Integer.parseInt(newValue.toString());
 				
@@ -219,7 +218,7 @@ public final class SlitsEditPart extends AbstractWidgetEditPart {
 		handle = new IWidgetPropertyChangeHandler() {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
-				RefreshableSlitsFigure slitsFigure = (RefreshableSlitsFigure) figure;
+				SlitsFigure slitsFigure = (SlitsFigure) figure;
 				
 				_Vgap = Integer.parseInt(newValue.toString());
 				
@@ -235,7 +234,7 @@ public final class SlitsEditPart extends AbstractWidgetEditPart {
 		handle = new IWidgetPropertyChangeHandler() {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
-				RefreshableSlitsFigure slitsFigure = (RefreshableSlitsFigure) figure;
+				SlitsFigure slitsFigure = (SlitsFigure) figure;
 				
 				_Hgap = Integer.parseInt(newValue.toString());
 				
@@ -251,7 +250,7 @@ public final class SlitsEditPart extends AbstractWidgetEditPart {
 		handle = new IWidgetPropertyChangeHandler() {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
-				RefreshableSlitsFigure slitsFigure = (RefreshableSlitsFigure) figure;
+				SlitsFigure slitsFigure = (SlitsFigure) figure;
 				slitsFigure.setSlitType(Integer.parseInt(newValue.toString()));
 				return true;
 			}
@@ -259,7 +258,7 @@ public final class SlitsEditPart extends AbstractWidgetEditPart {
 		setPropertyChangeHandler(SlitsModel.PROP_SLIT_TYPE, handle);
 	}
 	
-	public void setBeamOut(RefreshableSlitsFigure slitsFigure){
+	public void setBeamOut(SlitsFigure slitsFigure){
 		if (slitsFigure.getSlitType() == 0
 				&& (Math.abs(_yTranslate / 1.3571428571428572) > 60 + Math.abs(_Vgap) / 2 + 6 || Math
 						.abs(_yTranslate / 1.3571428571428572) < Math.abs(_Vgap) / 2)) {

@@ -43,61 +43,32 @@ import org.eclipse.gef.editparts.ZoomManager;
  * A widget that can contain multiple movable linking containers.
  */
 public final class MoveableWindowFigure extends Panel implements IAdaptable {
-	
 	private IBorderEquippedWidget _borderAdapter;
     private CrossedOutAdapter _crossedOutAdapter;
     private RhombusAdapter _rhombusAdapter;
-	
-	/**
-	 * The content pane of this widget.
-	 */
 	public ScalableFreeformLayeredPane _pane;
-	/**
-	 * The zoom manager for this widget.
-	 */
 	private ZoomManager _zoomManager;
-
-	/**
-	 * 
-	 */
 	public FreeformViewport _freeformViewport;
 	private boolean autoFit;
-
 	private ScrollPane scrollpane;
 
-	/**
-	 * Constructor.
-	 */
 	@SuppressWarnings("deprecation")
 	public MoveableWindowFigure() {
-		
-		final XYLayout layout = new XYLayout();
-		
+		XYLayout layout = new XYLayout();
 		setLayoutManager(layout);
-
 		scrollpane = new ScrollPane();
-		
 		scrollpane.setScrollBarVisibility(ScrollPane.NEVER);
 		scrollpane.setFocusTraversable(false);
-		
-		
 		_freeformViewport = new FreeformViewport();
 		_freeformViewport.setSize(40, 40);
-		
 		scrollpane.setViewport(_freeformViewport);
-
 		add(scrollpane);
-
 		_pane = new ScalableFreeformLayeredPane();
 		_pane.setLayoutManager(new FreeformLayout());
-		
 		scrollpane.setContents(_pane);
-
 		_zoomManager = new ZoomManager(_pane, _freeformViewport);
-		
 		setForegroundColor(ColorConstants.blue);
 		setOpaque(true);
-
 		addFigureListener(new FigureListener() {
 			@Override
 			public void figureMoved(final IFigure source) {
@@ -105,20 +76,13 @@ public final class MoveableWindowFigure extends Panel implements IAdaptable {
 				updateZoom();
 			}
 		});
-
 		updateChildConstraints();
 		updateZoom();
 	}
 
-	/**
-	 * 
-	 */
 	private void updateChildConstraints() {
 		final Rectangle figureBounds = getBounds();
-
-		Rectangle r = new Rectangle(0, 0, figureBounds.width,
-				figureBounds.height);
-
+		Rectangle r = new Rectangle(0, 0, figureBounds.width, figureBounds.height);
 		_freeformViewport.setSize(r.width, r.height);
 		_pane.setSize(new Dimension(r.width, r.height));
 		setConstraint(scrollpane, r);
@@ -138,10 +102,8 @@ public final class MoveableWindowFigure extends Panel implements IAdaptable {
 	 */
 	public void updateZoom() {
 		_zoomManager.setZoom(1.0);
-
-		if (autoFit) {
+		if (autoFit)
 			_zoomManager.setZoomAsText(ZoomManager.FIT_ALL);
-		}
 	}
 
 	/**
@@ -167,22 +129,18 @@ public final class MoveableWindowFigure extends Panel implements IAdaptable {
 	@Override
 	public Object getAdapter(final Class adapter) {
 		if (adapter == IBorderEquippedWidget.class) {
-			if(_borderAdapter==null) {
+			if(_borderAdapter==null)
 				_borderAdapter = new BorderAdapter(this);
-			}
 			return _borderAdapter;
 		} else if(adapter == ICrossedFigure.class) {
-            if(_crossedOutAdapter==null) {
+            if(_crossedOutAdapter==null)
                 _crossedOutAdapter = new CrossedOutAdapter(this);
-            }
             return _crossedOutAdapter;
         } else if(adapter == IRhombusEquippedWidget.class) {
-            if(_rhombusAdapter==null) {
+            if(_rhombusAdapter==null)
                 _rhombusAdapter = new RhombusAdapter(this);
-            }
             return _rhombusAdapter;
         }
-
 		return null;
 	}
 }

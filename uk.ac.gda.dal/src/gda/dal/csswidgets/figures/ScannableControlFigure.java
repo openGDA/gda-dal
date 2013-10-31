@@ -39,7 +39,6 @@ import org.eclipse.swt.graphics.Color;
  * An image figure that supports SVG.
  */
 public final class ScannableControlFigure extends Shape implements IAdaptable {
-
 	private Rectangle demandBox;
 	private Rectangle readbackBox;
 	private double demand;
@@ -98,20 +97,14 @@ public final class ScannableControlFigure extends Shape implements IAdaptable {
 	 */
 	@Override
 	public void paintFigure(final Graphics gfx) {
-
 		if(!demandSet)
 			demand = readback;
-		
 		bound = getBounds().getCopy();
-
 		gfx.setForegroundColor(new Color(null, 0, 0, 0));
-
 		readbackBox = new Rectangle(bound.x + 19, bound.y, boxWidth, 19);
 		gfx.drawRectangle(readbackBox); // readback
 		gfx.drawText(String.valueOf(readback), bound.x + 23, bound.y + 2);
-
 		demandBox = new Rectangle(bound.x + 19, bound.y + 19, boxWidth, 19);
-
 		if (amIHolder) {
 			gfx.setBackgroundColor(new Color(null, 255, 255, 255));
 			gfx.drawRectangle(demandBox); // demand
@@ -130,10 +123,8 @@ public final class ScannableControlFigure extends Shape implements IAdaptable {
 	public void showDemand(int x, int y) {
 		int width = boxWidth-1;
 		int height = 18;
-		
 		x=x+19;
 		y=y+19;
-		
 		demandCellEditor.getControl().setBounds(x, y, width,height);
 		demandCellEditor.getControl().setLayoutData(new GridData(SWT.CENTER));
 		demandCellEditor.getControl().setVisible(true);
@@ -146,7 +137,6 @@ public final class ScannableControlFigure extends Shape implements IAdaptable {
 	public void showIncrement(int x, int y){
 		int cellWidth = 59;
 		int cellHeight = 18;
-		
 		incrementCellEditor.getControl().setBounds(x, y, cellWidth,cellHeight);
 		incrementCellEditor.getControl().setLayoutData(new GridData(SWT.CENTER));
 		incrementCellEditor.getControl().setVisible(true);

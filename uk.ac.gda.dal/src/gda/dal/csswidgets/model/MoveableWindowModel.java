@@ -59,26 +59,17 @@ public final class MoveableWindowModel extends ContainerModel {
 		setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public String getTypeID() {
 		return ID;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected void configureProperties() {
 		addResourceProperty(PROP_RESOURCE, "Resource", WidgetPropertyCategory.BEHAVIOR, new Path(""), new String[] { "css-sds" }, false, "");
 		addBooleanProperty(PROP_AUTOZOOM, "Automatic Zoom", WidgetPropertyCategory.DISPLAY, true, false, "");
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected String getDefaultToolTip() {
 		StringBuffer buffer = new StringBuffer();
@@ -88,8 +79,6 @@ public final class MoveableWindowModel extends ContainerModel {
 		return buffer.toString();
 	}
 
-
-	
 	public IPath getResource() {
 		return getResourceProperty(PROP_RESOURCE);
 	}
@@ -102,5 +91,4 @@ public final class MoveableWindowModel extends ContainerModel {
 		return getBooleanProperty(PROP_AUTOZOOM);
 	}
 	
-
 }

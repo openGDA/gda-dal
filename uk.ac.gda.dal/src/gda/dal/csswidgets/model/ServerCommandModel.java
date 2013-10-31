@@ -22,7 +22,6 @@ import org.csstudio.sds.model.AbstractWidgetModel;
 import org.csstudio.sds.model.WidgetPropertyCategory;
 
 public final class ServerCommandModel extends AbstractWidgetModel {
-
 	public static final String ID = "org.csstudio.sds.components.ServerCommand";
 	public static final String PROP_READBACK_VALUE = "readback";
 	public static final String PROP_SERVER_COMMAND  = "server.command";
@@ -34,8 +33,8 @@ public final class ServerCommandModel extends AbstractWidgetModel {
 
 	@Override
 	protected void configureProperties() {
-		this.addDoubleProperty(PROP_READBACK_VALUE, "Value", WidgetPropertyCategory.BEHAVIOR, 0, false, "");
-		this.addStringProperty(PROP_SERVER_COMMAND, "Server Command", WidgetPropertyCategory.BEHAVIOR, "", false, "");
+		addDoubleProperty(PROP_READBACK_VALUE, "Value", WidgetPropertyCategory.BEHAVIOR, 0, false, "");
+		addStringProperty(PROP_SERVER_COMMAND, "Server Command", WidgetPropertyCategory.BEHAVIOR, "", false, "");
 	}
 
 	@Override

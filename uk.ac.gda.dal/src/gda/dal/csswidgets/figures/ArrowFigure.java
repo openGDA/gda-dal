@@ -36,23 +36,34 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 
 /**
- * An image figure that supports SVG.
+ * 
+ * 
  */
-public final class RefreshableAttenuatorFigure extends Shape implements IAdaptable {
+public final class ArrowFigure extends Shape implements IAdaptable {
 
+	/**
+	 * A border adapter, which covers all border handling.
+	 */
 	private IBorderEquippedWidget _borderAdapter;
 	private CrossedOutAdapter _crossedOutAdapter;
 	private RhombusAdapter _rhombusAdapter;
-	private IPath _path = new Path("/oe images/attenuator_single_block.png");
-	private IPath empty_block_path = new Path("/oe images/attenuator_single_block_empty.png");
-	private IPath arrowPath = new Path("/arrow images/y.png");
+	/**
+	 * The {@link IPath} to the image.
+	 */
+	private IPath _path = new Path("");
+	/**
+	 * The image itself.
+	 */
 	private Image _image = null;
-	private Image emptyBlockImage = null;
-	private Image _arrowImage = null;
-	private int _yTranslate = 0;
-	private int _noBlocks = 6;
-	private int _emptyBlockPos = 5;
-	private int _yOffset = 0;
+	/**
+	 * The width of the image.
+	 */
+	private int _imgWidth = 0;
+	/**
+	 * The height of the image.
+	 */
+	private int _imgHeight = 0;
+
 	public Rectangle bound = getBounds().getCopy();
 
 	/**
@@ -91,24 +102,20 @@ public final class RefreshableAttenuatorFigure extends Shape implements IAdaptab
 	 * @param gfx
 	 *            The {@link Graphics} to use
 	 */
-	@SuppressWarnings("deprecation")
 	@Override
 	public void paintFigure(final Graphics gfx) {
 		bound = getBounds().getCopy();
 
 		bound.crop(this.getInsets());
 
-		final InputStream arrowImageStream = getClass().getResourceAsStream(arrowPath.toString());
-		_arrowImage = new Image(Display.getDefault(), arrowImageStream);
-		
 		try {
 			if (_image == null && !_path.isEmpty()) {
 
 				final InputStream imageStream = getClass().getResourceAsStream(_path.toString());
 				_image = new Image(Display.getDefault(), imageStream);
-				
-				final InputStream emptyBlockStream = getClass().getResourceAsStream(empty_block_path.toString());
-				emptyBlockImage = new Image(Display.getDefault(), emptyBlockStream);
+
+				_imgWidth = _image.getBounds().width;
+				_imgHeight = _image.getBounds().height;
 			}
 		} catch (Exception e) {
 			if (_image != null) {
@@ -117,52 +124,34 @@ public final class RefreshableAttenuatorFigure extends Shape implements IAdaptab
 		}
 		if (_image != null) {
 
-			int blockHeight = 30;
-			
-			if(_emptyBlockPos!=0){
-				_yOffset=(_noBlocks-1)*blockHeight;
-				_yTranslate = -Math.abs(_yTranslate);
-			}
-			else{
-				_yOffset=0;
-				
-			}
-			
-			for (int i = 0; i < _noBlocks; i++) {
-				if(i==_noBlocks-_emptyBlockPos-1)
-					gfx.drawImage(emptyBlockImage, bound.x, (_noBlocks*blockHeight) + bound.y - (i*blockHeight) - blockHeight + _yTranslate + _yOffset);
-				else
-					gfx.drawImage(_image, bound.x, (_noBlocks*blockHeight) + bound.y - (i*blockHeight) - blockHeight + _yTranslate + _yOffset);
-			}
-			
-			gfx.drawImage(_arrowImage, bound.x+40, bound.y + 16 + _yTranslate + _yOffset);
+			gfx.drawImage(_image, 0, 0, _imgWidth, _imgHeight, bound.x, bound.y, _imgWidth, _imgHeight);
 		}
 	}
 
-	public void setYTranslate(int newval) {
-		_yTranslate = newval * 30;
+	/**
+	 * Sets the path to the image.
+	 * 
+	 * @param newval
+	 *            The path to the image
+	 */
+	public void setFilePath(final IPath newval) {
+		_path = newval;
+		if (_image != null) {
+			_image.dispose();
+		}
+		_image = null;
 	}
 
-	public int getYTranslate() {
-		return _yTranslate;
+	/**
+	 * Returns the path to the image.
+	 * 
+	 * @return The path to the image
+	 */
+	public IPath getFilePath() {
+		return _path;
 	}
 
-	public void setNoBlocks(int newval) {
-		_noBlocks = newval;
-	}
 	
-	public void setEmptyBlockPos(int newval) {
-		_emptyBlockPos = newval;
-	}
-
-	public IPath getArrowPath() {
-		return arrowPath;
-	}
-
-	public void setArrowPath(IPath arrowPath) {
-		this.arrowPath = arrowPath;
-	}
-
 	/**
 	 * {@inheritDoc}
 	 */
@@ -171,21 +160,21 @@ public final class RefreshableAttenuatorFigure extends Shape implements IAdaptab
 	@Override
 	public Object getAdapter(final Class adapter) {
 		if (adapter == IBorderEquippedWidget.class) {
-			if(_borderAdapter==null) {
+			if (_borderAdapter == null) {
 				_borderAdapter = new BorderAdapter(this);
 			}
 			return _borderAdapter;
-		} else if(adapter == ICrossedFigure.class) {
-            if(_crossedOutAdapter==null) {
-                _crossedOutAdapter = new CrossedOutAdapter(this);
-            }
-            return _crossedOutAdapter;
-        } else if(adapter == IRhombusEquippedWidget.class) {
-            if(_rhombusAdapter==null) {
-                _rhombusAdapter = new RhombusAdapter(this);
-            }
-            return _rhombusAdapter;
-        }
+		} else if (adapter == ICrossedFigure.class) {
+			if (_crossedOutAdapter == null) {
+				_crossedOutAdapter = new CrossedOutAdapter(this);
+			}
+			return _crossedOutAdapter;
+		} else if (adapter == IRhombusEquippedWidget.class) {
+			if (_rhombusAdapter == null) {
+				_rhombusAdapter = new RhombusAdapter(this);
+			}
+			return _rhombusAdapter;
+		}
 
 		return null;
 	}

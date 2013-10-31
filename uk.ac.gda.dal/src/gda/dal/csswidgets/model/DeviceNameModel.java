@@ -20,15 +20,11 @@ package gda.dal.csswidgets.model;
 
 import org.csstudio.sds.model.AbstractWidgetModel;
 
-
-
 public class DeviceNameModel extends AbstractWidgetModel{
-	
 	public static final String ID = "org.csstudio.sds.components.DeviceName";
 	
 	@Override
 	protected void configureProperties() {
-		
 	}
 
 	@Override

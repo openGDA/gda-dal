@@ -67,7 +67,6 @@ import org.eclipse.ui.progress.IJobRunnable;
 public final class MoveableWindowEditPart extends AbstractContainerEditPart {
 
 	private IProgressMonitor _runningMonitor;
-
 	private int delta_x = 0;
 	private int delta_y = 0;
 	private String title;

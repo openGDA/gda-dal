@@ -19,7 +19,7 @@
 package gda.dal.csswidgets.editparts;
 
 import gda.dal.CameraAction;
-import gda.dal.csswidgets.figures.RefreshableImageButtonFigure;
+import gda.dal.csswidgets.figures.ImageButtonFigure;
 import gda.dal.csswidgets.model.ImageButtonModel;
 import gda.jython.JythonServerFacade;
 
@@ -108,7 +108,7 @@ public final class ImageButtonEditPart extends AbstractWidgetEditPart {
 	@Override
 	protected IFigure doCreateFigure() {
 		model = getCastedModel();
-		final RefreshableImageButtonFigure figure = new RefreshableImageButtonFigure();
+		final ImageButtonFigure figure = new ImageButtonFigure();
 		figure.setStyle(model.getIntegerProperty(ImageButtonModel.PROP_STYLE));
 		String colourHex = model.getButtonColour();
 		int r = Integer.parseInt(colourHex.substring(1,3), 16);
@@ -160,7 +160,7 @@ public final class ImageButtonEditPart extends AbstractWidgetEditPart {
 		IWidgetPropertyChangeHandler handle = new IWidgetPropertyChangeHandler() {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
-				RefreshableImageButtonFigure testFigure = (RefreshableImageButtonFigure) figure;
+				ImageButtonFigure testFigure = (ImageButtonFigure) figure;
 				testFigure.setFilePath(newValue.toString());
 				return true;
 			}
@@ -170,7 +170,7 @@ public final class ImageButtonEditPart extends AbstractWidgetEditPart {
 		handle = new IWidgetPropertyChangeHandler() {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
-				RefreshableImageButtonFigure imageButtonFigure = (RefreshableImageButtonFigure) figure;
+				ImageButtonFigure imageButtonFigure = (ImageButtonFigure) figure;
 				imageButtonFigure.setLabel(newValue.toString());
 				imageButtonFigure.repaint();
 				return true;

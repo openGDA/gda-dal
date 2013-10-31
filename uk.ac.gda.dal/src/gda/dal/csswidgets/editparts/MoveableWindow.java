@@ -30,81 +30,99 @@ import org.eclipse.draw2d.geometry.Dimension;
 
 public class MoveableWindow {
 	
-	String name;
-	List<AbstractWidgetModel> box;
-	RectangleFigure rectangle;
-	RectangleFigure button;
-	MoveableTitleBarModel titleBarModel;
-	MoveableTitleBarModel overTitleBarModel;
-	MouseListener mouseListener;
-	MouseMotionListener mouseMotionListener;
-	MouseListener closeListener;
-	Dimension boxSize;
-	MouseMotionListener closeButtonHoverListener;
+	private String name;
+	private List<AbstractWidgetModel> box;
+	private RectangleFigure rectangle;
+	private RectangleFigure button;
+	private MoveableTitleBarModel titleBarModel;
+	private MoveableTitleBarModel overTitleBarModel;
+	private MouseListener mouseListener;
+	private MouseMotionListener mouseMotionListener;
+	private MouseListener closeListener;
+	private Dimension boxSize;
+	private MouseMotionListener closeButtonHoverListener;
 	
 	public String getName() {
 		return name;
 	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	public List<AbstractWidgetModel> getBox() {
 		return box;
 	}
+	
 	public void setBox(List<AbstractWidgetModel> box) {
 		this.box = box;
 	}
+	
 	public RectangleFigure getRectangle() {
 		return rectangle;
 	}
+	
 	public void setRectangle(RectangleFigure rectangle) {
 		this.rectangle = rectangle;
 	}
+	
 	public RectangleFigure getButton() {
 		return button;
 	}
+	
 	public void setButton(RectangleFigure button) {
 		this.button = button;
 	}
 	public MoveableTitleBarModel getTitleBarModel() {
 		return titleBarModel;
 	}
+	
 	public void setTitleBarModel(MoveableTitleBarModel titleBarModel) {
 		this.titleBarModel = titleBarModel;
 	}
+	
 	public MoveableTitleBarModel getOverTitleBarModel() {
 		return overTitleBarModel;
 	}
 	public void setOverTitleBarModel(MoveableTitleBarModel overTitleBarModel) {
 		this.overTitleBarModel = overTitleBarModel;
 	}
+	
 	public MouseListener getMouseListener() {
 		return mouseListener;
 	}
+	
 	public void setMouseListener(MouseListener mouseListener) {
 		this.mouseListener = mouseListener;
 	}
 	public MouseMotionListener getMouseMotionListener() {
 		return mouseMotionListener;
 	}
+	
 	public void setMouseMotionListener(MouseMotionListener mouseMotionListener) {
 		this.mouseMotionListener = mouseMotionListener;
 	}
+	
 	public MouseListener getCloseListener() {
 		return closeListener;
 	}
+	
 	public void setCloseListener(MouseListener closeListener) {
 		this.closeListener = closeListener;
 	}
+	
 	public Dimension getBoxSize() {
 		return boxSize;
 	}
+	
 	public void setBoxSize(Dimension boxSize) {
 		this.boxSize = boxSize;
 	}
+	
 	public MouseMotionListener getCloseButtonHoverListener() {
 		return closeButtonHoverListener;
 	}
+	
 	public void setCloseButtonHoverListener(MouseMotionListener closeButtonHoverListener) {
 		this.closeButtonHoverListener = closeButtonHoverListener;
 	}

@@ -40,7 +40,7 @@ import org.eclipse.swt.widgets.Display;
  * An image figure that supports SVG.
  * 
  */
-public final class RefreshableSVGFigure extends Shape implements IAdaptable {
+public final class SVGFigure extends Shape implements IAdaptable {
 
 	/**
 	 * A border adapter, which covers all border handling.

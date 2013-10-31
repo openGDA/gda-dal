@@ -23,28 +23,18 @@ import org.csstudio.sds.model.WidgetPropertyCategory;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 
-/**
- *
- */
 public final class ArrowModel extends AbstractWidgetModel {
-
 	public static final String ID = "org.csstudio.sds.components.Arrow";
 	public static final String PROP_FILENAME = "filename";
-	private static final String[] FILE_EXTENSIONS = new String[] {"*", "jpg", "jpeg", "gif", "bmp", "png", "svg"};
 	public static final String PROP_BUSY = "Ready";
 	public static final String PROP_ARROW = "x";
+	private String[] FILE_EXTENSIONS = new String[] {"*", "jpg", "jpeg", "gif", "bmp", "png", "svg"};
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public String getTypeID() {
 		return ID;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected void configureProperties() {
 		addResourceProperty(PROP_FILENAME, "File", WidgetPropertyCategory.IMAGE, new Path(""), FILE_EXTENSIONS, false, "");
@@ -53,9 +43,6 @@ public final class ArrowModel extends AbstractWidgetModel {
 		addArrayOptionProperty(PROP_ARROW, "Arrow type", WidgetPropertyCategory.IMAGE, options, 0, false, "");
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected String getDefaultToolTip() {
 		StringBuffer buffer = new StringBuffer();
@@ -65,15 +52,9 @@ public final class ArrowModel extends AbstractWidgetModel {
 		return buffer.toString();
 	}
 	
-	/**
-	 * @return The path to the specified file
-	 */
 	public IPath getFilename() {
-		
 		int newValue = getArrow();
-		
 		Path path = new Path("");
-		
 		if(newValue==0)
 			path = new Path("/arrow images/x.png");
 		else if(newValue==1)
@@ -100,7 +81,6 @@ public final class ArrowModel extends AbstractWidgetModel {
 			path = new Path("/arrow images/yaw2.png");
 		else if(newValue==12)
 			path = new Path("/arrow images/x2.png");
-		
 		return path;
 	}
 	

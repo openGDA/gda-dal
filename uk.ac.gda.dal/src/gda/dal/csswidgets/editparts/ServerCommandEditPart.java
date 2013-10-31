@@ -44,7 +44,6 @@ public final class ServerCommandEditPart extends AbstractWidgetEditPart {
 	protected IFigure doCreateFigure() {
 		model = getCastedModel();
 		final RefreshableLabelFigure figure = new RefreshableLabelFigure();
-		
 		final Job updateReadbackJob = new Job("updateReadback") {
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
@@ -67,7 +66,6 @@ public final class ServerCommandEditPart extends AbstractWidgetEditPart {
 				return Status.OK_STATUS;
 			}
 		};
-		
 		Timer timer = new Timer();
 		TimerTask timerTask = new TimerTask() {
 			@Override
@@ -77,7 +75,6 @@ public final class ServerCommandEditPart extends AbstractWidgetEditPart {
 			}
 		};
 		timer.schedule(timerTask, 100, 100);
-		
 		return figure;
 	}
 

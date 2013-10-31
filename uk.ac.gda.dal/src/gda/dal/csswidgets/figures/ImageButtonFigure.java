@@ -38,7 +38,7 @@ import org.eclipse.swt.widgets.Display;
 /**
  *
  */
-public final class RefreshableImageButtonFigure extends Shape implements IAdaptable {
+public final class ImageButtonFigure extends Shape implements IAdaptable {
 
 	private IBorderEquippedWidget _borderAdapter;
 	private CrossedOutAdapter _crossedOutAdapter;

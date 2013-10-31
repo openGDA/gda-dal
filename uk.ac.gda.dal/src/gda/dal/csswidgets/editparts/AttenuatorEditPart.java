@@ -18,8 +18,7 @@
 
 package gda.dal.csswidgets.editparts;
 
-import gda.dal.csswidgets.figures.RefreshableAttenuatorFigure;
-
+import gda.dal.csswidgets.figures.AttenuatorFigure;
 import gda.dal.csswidgets.model.AttenuatorModel;
 
 import org.csstudio.sds.ui.editparts.AbstractWidgetEditPart;
@@ -28,8 +27,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.draw2d.IFigure;
 
 public final class AttenuatorEditPart extends AbstractWidgetEditPart {
-	@SuppressWarnings("hiding")
-	RefreshableAttenuatorFigure figure;
+	AttenuatorFigure refreshableAttenuatorFigure;
 	/**
 	 * Returns the casted model. This is just for convenience.
 	 * 
@@ -46,10 +44,10 @@ public final class AttenuatorEditPart extends AbstractWidgetEditPart {
 	@Override
 	protected IFigure doCreateFigure() {
 		AttenuatorModel model = getCastedModel();
-		figure = new RefreshableAttenuatorFigure();
-		figure.setNoBlocks(model.getNoBlocks());
-		figure.setEmptyBlockPos(model.getEmptyBlockPos());
-		return figure;
+		refreshableAttenuatorFigure = new AttenuatorFigure();
+		refreshableAttenuatorFigure.setNoBlocks(model.getNoBlocks());
+		refreshableAttenuatorFigure.setEmptyBlockPos(model.getEmptyBlockPos());
+		return refreshableAttenuatorFigure;
 	}
 
 	/**
@@ -61,7 +59,7 @@ public final class AttenuatorEditPart extends AbstractWidgetEditPart {
 		IWidgetPropertyChangeHandler handle = new IWidgetPropertyChangeHandler() {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
-				RefreshableAttenuatorFigure imageFigure = (RefreshableAttenuatorFigure) figure;
+				AttenuatorFigure imageFigure = (AttenuatorFigure) figure;
 
 				imageFigure.setYTranslate(Integer.parseInt(newValue.toString()));
 				return true;
@@ -72,7 +70,7 @@ public final class AttenuatorEditPart extends AbstractWidgetEditPart {
 		handle = new IWidgetPropertyChangeHandler() {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
-				RefreshableAttenuatorFigure imageFigure = (RefreshableAttenuatorFigure) figure;
+				AttenuatorFigure imageFigure = (AttenuatorFigure) figure;
 
 				imageFigure.setNoBlocks(Integer.parseInt(newValue.toString()));
 				return true;
@@ -83,7 +81,7 @@ public final class AttenuatorEditPart extends AbstractWidgetEditPart {
 		handle = new IWidgetPropertyChangeHandler() {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
-				RefreshableAttenuatorFigure imageFigure = (RefreshableAttenuatorFigure) figure;
+				AttenuatorFigure imageFigure = (AttenuatorFigure) figure;
 
 				imageFigure.setEmptyBlockPos(Integer.parseInt(newValue.toString()));
 				return true;
@@ -94,24 +92,18 @@ public final class AttenuatorEditPart extends AbstractWidgetEditPart {
 		handle = new IWidgetPropertyChangeHandler() {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
-				
-				RefreshableAttenuatorFigure imageFigure = (RefreshableAttenuatorFigure) figure;
-			
+				AttenuatorFigure imageFigure = (AttenuatorFigure) figure;
 				String upPath = imageFigure.getArrowPath().toString();
-
 				if (((String) newValue).equals("Busy")) {
-
 					if (!upPath.contains("red")) {
 						int beginIndex = 0;
 						int endIndex = upPath.indexOf('.');
 						upPath = upPath.substring(beginIndex, endIndex);
 						upPath = upPath + "_red.png";
 					}
-		
 					imageFigure.setArrowPath(new Path(upPath));
 					imageFigure.repaint();
 				}
-
 				else {
 					if (upPath.contains("red")) {
 						int beginIndex = 0;
@@ -119,11 +111,9 @@ public final class AttenuatorEditPart extends AbstractWidgetEditPart {
 						upPath = upPath.substring(beginIndex, endIndex);
 						upPath = upPath + ".png";
 					}
-
 					imageFigure.setArrowPath(new Path(upPath));
 					imageFigure.repaint();
 				}
-
 				return true;
 			}
 		};

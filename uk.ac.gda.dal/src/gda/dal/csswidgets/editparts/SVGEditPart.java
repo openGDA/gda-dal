@@ -18,7 +18,7 @@
 
 package gda.dal.csswidgets.editparts;
 
-import gda.dal.csswidgets.figures.RefreshableSVGFigure;
+import gda.dal.csswidgets.figures.SVGFigure;
 import gda.dal.csswidgets.model.SVGModel;
 
 import org.csstudio.sds.ui.editparts.AbstractWidgetEditPart;
@@ -28,14 +28,12 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.draw2d.IFigure;
 
 public final class SVGEditPart extends AbstractWidgetEditPart {
-	RefreshableSVGFigure svgFigure;
-	/**
-	 * {@inheritDoc}
-	 */
+	private SVGFigure svgFigure;
+
 	@Override
 	protected IFigure doCreateFigure() {
 		SVGModel model = (SVGModel) getModel();
-		svgFigure = new RefreshableSVGFigure();
+		svgFigure = new SVGFigure();
 		svgFigure.setFilePath(model.getFilename());
 		return svgFigure;
 	}
@@ -46,15 +44,12 @@ public final class SVGEditPart extends AbstractWidgetEditPart {
 		svgFigure.dispose();
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected void registerPropertyChangeHandlers() {
 		IWidgetPropertyChangeHandler handle = new IWidgetPropertyChangeHandler() {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
-				((RefreshableSVGFigure) figure).setFilePath((IPath) newValue);
+				((SVGFigure) figure).setFilePath((IPath) newValue);
 				return true;
 			}
 		};
@@ -64,7 +59,7 @@ public final class SVGEditPart extends AbstractWidgetEditPart {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
 				
-				String path = ((RefreshableSVGFigure) figure).getFilePath().toString();
+				String path = ((SVGFigure) figure).getFilePath().toString();
 				
 				if(((String)newValue).equals("Busy")){
 					
@@ -75,7 +70,7 @@ public final class SVGEditPart extends AbstractWidgetEditPart {
 						path = path + "_red.png";
 					}
 					
-					((RefreshableSVGFigure) figure).setFilePath(new Path(path));
+					((SVGFigure) figure).setFilePath(new Path(path));
 					figure.repaint();
 				}
 				
@@ -87,7 +82,7 @@ public final class SVGEditPart extends AbstractWidgetEditPart {
 						path = path + ".png";
 					}
 					
-					((RefreshableSVGFigure) figure).setFilePath(new Path(path));
+					((SVGFigure) figure).setFilePath(new Path(path));
 					figure.repaint();
 				}
 				
@@ -100,7 +95,7 @@ public final class SVGEditPart extends AbstractWidgetEditPart {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
 				
-				((RefreshableSVGFigure) figure).setYTranslate((Integer)newValue);
+				((SVGFigure) figure).setYTranslate((Integer)newValue);
 				return true;
 			}
 		};
@@ -109,7 +104,7 @@ public final class SVGEditPart extends AbstractWidgetEditPart {
 		handle = new IWidgetPropertyChangeHandler() {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
-				((RefreshableSVGFigure) figure).setXTranslate((Integer)newValue);
+				((SVGFigure) figure).setXTranslate((Integer)newValue);
 				return true;
 			}
 		};

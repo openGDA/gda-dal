@@ -21,70 +21,42 @@ package gda.dal.csswidgets.model;
 import org.csstudio.sds.model.AbstractWidgetModel;
 import org.csstudio.sds.model.WidgetPropertyCategory;
 
-
-/**
- *
- */
 public final class SlitsModel extends AbstractWidgetModel {
-	/**
-	 * Unique identifier.
-	 */
+
 	public static final String ID = "org.csstudio.sds.components.Slits";
-	
 	public static final String PROP_X_Translate = "translate.x";
 	public static final String PROP_Y_Translate = "translate.y";
-	
 	public static final String PROP_X_BUSY = "ready.x";
 	public static final String PROP_Y_BUSY = "ready.y";
 	public static final String PROP_HGAP_BUSY = "ready.hgap";
 	public static final String PROP_VGAP_BUSY = "ready.vgap";
-	
 	public static final String PROP_VGAP = "v gap";
 	public static final String PROP_HGAP = "h gap";
-	
 	public static final String PROP_SLIT_TYPE = "type";
-	
 	public static final String PROP_BEAM_OUT = "out";
 
-	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public String getTypeID() {
 		return ID;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected void configureProperties() {
 		this.addIntegerProperty(PROP_X_Translate, "Translate X Position", WidgetPropertyCategory.IMAGE, 0, false, "");
 		this.addIntegerProperty(PROP_Y_Translate, "Translate Y Position", WidgetPropertyCategory.IMAGE, 0, false, "");
 		this.addIntegerProperty(PROP_VGAP, "V Gap", WidgetPropertyCategory.IMAGE, 0, false, "");
 		this.addIntegerProperty(PROP_HGAP, "H Gap", WidgetPropertyCategory.IMAGE, 0, false, "");
-		
 		this.addStringProperty(PROP_X_BUSY, "Check if x is busy", WidgetPropertyCategory.BEHAVIOR, "Ready", false, "");
 		this.addStringProperty(PROP_Y_BUSY, "Check if y is busy", WidgetPropertyCategory.BEHAVIOR, "Ready", false, "");
 		this.addStringProperty(PROP_HGAP_BUSY, "Check if hgap is busy", WidgetPropertyCategory.BEHAVIOR, "Ready", false, "");
 		this.addStringProperty(PROP_VGAP_BUSY, "Check if vgap is busy", WidgetPropertyCategory.BEHAVIOR, "Ready", false, "");
-		
 		String[] options = {"vertical", "slits"};
-		
 		this.addArrayOptionProperty(PROP_SLIT_TYPE, "Slit type", WidgetPropertyCategory.IMAGE, options, 0, false, "");
 		this.addStringProperty(PROP_BEAM_OUT, "Beam out", WidgetPropertyCategory.BEHAVIOR, "yes", false, "");
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected String getDefaultToolTip() {
-//		StringBuffer buffer = new StringBuffer();
-//		buffer.append(createTooltipParameter(PROP_ALIASES)+"\n");
-//		buffer.append("Image:\t");
-//		return buffer.toString();
 		return null;
 	}
 	
@@ -92,9 +64,6 @@ public final class SlitsModel extends AbstractWidgetModel {
 		return this.getPropertyInternal(PROP_SLIT_TYPE).getPropertyValue();
 	}
 	
-	/**
-	 * @return gap
-	 */
 	public double getVGap() {
 		return getDoubleProperty(PROP_VGAP);
 	}
@@ -103,16 +72,10 @@ public final class SlitsModel extends AbstractWidgetModel {
 		return getDoubleProperty(PROP_HGAP);
 	}
 
-	/**
-	 * @return x translation
-	 */
 	public double getXTranslate() {
 		return getDoubleProperty(PROP_X_Translate);
 	}
 	
-	/**
-	 * @return y translation
-	 */
 	public double getYTranslate() {
 		return getDoubleProperty(PROP_Y_Translate);
 	}
@@ -136,6 +99,5 @@ public final class SlitsModel extends AbstractWidgetModel {
 	public String isBeamOut() {
 		return getStringProperty(PROP_BEAM_OUT);
 	}
-	
 	
 }
