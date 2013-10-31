@@ -29,8 +29,7 @@ import org.epics.css.dal.impl.ResponseImpl;
 import org.epics.css.dal.proxy.CommandProxy;
 import org.epics.css.dal.proxy.DeviceProxy;
 
-public class CommandProxyImpl extends CommandSupport implements CommandProxy
-{
+public class CommandProxyImpl extends CommandSupport implements CommandProxy{
 	protected DeviceProxy owner;
 
 	/**
@@ -40,34 +39,22 @@ public class CommandProxyImpl extends CommandSupport implements CommandProxy
 	 * @param host the host commands are called on
 	 * @param method the method that the command executes
 	 */
-	public CommandProxyImpl(DeviceProxy owner, Object host, Method method)
-	{
+	public CommandProxyImpl(DeviceProxy owner, Object host, Method method){
 		super(null, host, method);
 		this.owner = owner;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.epics.css.dal.proxy.CommandProxy#isAsyncrhonous()
-	 */
 	@Override
-	public boolean isAsynchronous()
-	{
+	public boolean isAsynchronous(){
 		return true;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.epics.css.dal.proxy.CommandProxy#execute(org.epics.css.dal.ResponseListener, java.lang.Object...)
-	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public <T> Request<T> execute(ResponseListener<T> callback, Object... parameters)
-		throws RemoteException
-	{
+	public <T> Request<T> execute(ResponseListener<T> callback, Object... parameters) throws RemoteException{
 		RequestImpl<T> r = new RequestImpl<T>(owner, callback);
 		Object ret = execute(parameters);
-		r.addResponse(new ResponseImpl<T>(owner, r, (T)ret, getName(), true, null,
-		        null, null, true));
-
+		r.addResponse(new ResponseImpl<T>(owner, r, (T)ret, getName(), true, null, null, null, true));
 		return r;
 	}
 }

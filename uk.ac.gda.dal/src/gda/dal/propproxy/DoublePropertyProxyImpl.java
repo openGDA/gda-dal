@@ -20,14 +20,8 @@ package gda.dal.propproxy;
 
 import gda.dal.dataprovider.DoubleProvideDataRunnable;
 
-
 public class DoublePropertyProxyImpl extends PropertyProxyImpl<Double> {
 
-
-	/**
-	 * 
-	 * @param name
-	 */
 	@SuppressWarnings("unchecked")
 	public DoublePropertyProxyImpl(String name) {
 		super(name);

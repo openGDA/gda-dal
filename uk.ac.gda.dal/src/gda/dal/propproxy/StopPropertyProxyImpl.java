@@ -17,18 +17,15 @@
  */
 
 package gda.dal.propproxy;
+
 import gda.dal.dataprovider.StringProvideStatusRunnable;
+
 public class StopPropertyProxyImpl extends PropertyProxyImpl<String> {
 
-	    /**
-		 * 
-		 * @param name
-		 */
 		public StopPropertyProxyImpl(String name) {
 			super(name);
 			dataProvider = new StringProvideStatusRunnable(name);
 			connect();
 		}
-	
 
 }

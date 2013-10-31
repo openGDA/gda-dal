@@ -53,9 +53,7 @@ import org.epics.css.dal.proxy.PropertyProxy;
 
 import com.cosylab.naming.URIName;
 
-public class PropertyProxyImpl<T> extends AbstractProxyImpl
-implements PropertyProxy<T>, DirectoryProxy {
-	
+public class PropertyProxyImpl<T> extends AbstractProxyImpl implements PropertyProxy<T>, DirectoryProxy {
 	protected ProvideRunnable<T> dataProvider=null;
 	protected List<MonitorProxyImpl<T>> monitors = new ArrayList<MonitorProxyImpl<T>>(1);
 	protected DynamicValueCondition condition;
@@ -64,22 +62,18 @@ implements PropertyProxy<T>, DirectoryProxy {
 		super(name);
 	}
 
-	protected void connect()
-	{
+	protected void connect(){
 		condition = new DynamicValueCondition(EnumSet.of(DynamicValueState.NORMAL), new Timestamp(),"NORMAL");
 		// *** Race condition, the state can't go to Connected until all the listeners have been setup. 
 		Timer t = new Timer();
 		t.schedule(new TimerTask() {
 				@Override
-				public void run()
-				{
+				public void run(){
 					setConnectionState(ConnectionState.CONNECTED);
 					dataProvider.refresh();
 				}
 			}, 1000);
 	}
-
-
 
 	@Override
 	public void destroy() {
@@ -92,8 +86,7 @@ implements PropertyProxy<T>, DirectoryProxy {
 	 * Destroy all monitors.
 	 */
 	@SuppressWarnings("unchecked")
-	private void destroyMonitors()
-	{
+	private void destroyMonitors(){
 		MonitorProxyImpl<T>[] array = new MonitorProxyImpl[monitors.size()];
 		synchronized (monitors) { 
 			array = monitors.toArray(array);
@@ -118,14 +111,11 @@ implements PropertyProxy<T>, DirectoryProxy {
 	}
 
 	@Override
-	public Request<T> getValueAsync(ResponseListener<T> callback)
-			throws DataExchangeException {
-		if (getConnectionState() != ConnectionState.CONNECTED) {
+	public Request<T> getValueAsync(ResponseListener<T> callback) throws DataExchangeException {
+		if (getConnectionState() != ConnectionState.CONNECTED)
 			throw new DataExchangeException(this, "Proxy not connected");
-		}
 		RequestImpl<T> r = new RequestImpl<T>(this, callback);
-		r.addResponse(new ResponseImpl<T>(this, r, dataProvider.getCurrentValue(), "value",
-		        true, null, getCondition(), null, true));
+		r.addResponse(new ResponseImpl<T>(this, r, dataProvider.getCurrentValue(), "value", true, null, getCondition(), null, true));
 		return r;
 	}
 
@@ -136,140 +126,101 @@ implements PropertyProxy<T>, DirectoryProxy {
 	}
 
 	@Override
-	public Request<T> setValueAsync(T value,
-			ResponseListener<T> callback) throws DataExchangeException {
+	public Request<T> setValueAsync(T value, ResponseListener<T> callback) throws DataExchangeException {
 		if (getConnectionState() != ConnectionState.CONNECTED)
 			throw new DataExchangeException(this, "Proxy not connected");
-		
 		dataProvider.setTargetValue(value);
-
 		RequestImpl<T> r = new RequestImpl<T>(this, callback);
-		r.addResponse(new ResponseImpl<T>(this, r, value, "", true, null,
-		        condition, null, true));
-
+		r.addResponse(new ResponseImpl<T>(this, r, value, "", true, null, condition, null, true));
 		return r;
 	}
 	
 	@Override
-	public Object getCharacteristic(String characteristicName)
-			throws DataExchangeException {
-	
-			DirContext ctx = GdaPlug.getInstance().getDefaultDirectory();
-
-			try {
-				URIName uri = new URIName(null, GdaPlug.DEFAULT_AUTHORITY,
-					    this.getUniqueName(), null);
-				Attributes attr = ctx.getAttributes(uri);
-				Object characteristic = null;
-
+	public Object getCharacteristic(String characteristicName) throws DataExchangeException {
+		DirContext ctx = GdaPlug.getInstance().getDefaultDirectory();
+		try {
+			URIName uri = new URIName(null, GdaPlug.DEFAULT_AUTHORITY, this.getUniqueName(), null);
+			Attributes attr = ctx.getAttributes(uri);
+			Object characteristic = null;
+			if (attr instanceof org.epics.css.dal.directory.Attributes) {
+				org.epics.css.dal.directory.Attributes at = (org.epics.css.dal.directory.Attributes)attr;
+				characteristic = at.getAttributeValue(characteristicName);
+			} 
+			else if (attr != null)
+				characteristic = attr.get(characteristicName).get();
+			if (characteristic == null) {
+				uri = new URIName(null, GdaPlug.DEFAULT_AUTHORITY, this.getClass().getSimpleName(), null);
+				attr = ctx.getAttributes(uri);
 				if (attr instanceof org.epics.css.dal.directory.Attributes) {
 					org.epics.css.dal.directory.Attributes at = (org.epics.css.dal.directory.Attributes)attr;
 					characteristic = at.getAttributeValue(characteristicName);
-				} else if (attr != null) {
+				} 
+				else if (attr != null)
 					characteristic = attr.get(characteristicName).get();
-				}
-
-				if (characteristic == null) {
-					uri = new URIName(null, GdaPlug.DEFAULT_AUTHORITY,
-						    this.getClass().getSimpleName(), null);
-					attr = ctx.getAttributes(uri);
-
-					if (attr instanceof org.epics.css.dal.directory.Attributes) {
-						org.epics.css.dal.directory.Attributes at = (org.epics.css.dal.directory.Attributes)attr;
-						characteristic = at.getAttributeValue(characteristicName);
-					} else if (attr != null) {
-						characteristic = attr.get(characteristicName).get();
-					}
-				}
-
-				return characteristic;
-			} catch (NamingException e) {
-				throw new RuntimeException("Cannot instanitate URIName.", e);
 			}
+			return characteristic;
+		} catch (NamingException e) {
+			throw new RuntimeException("Cannot instanitate URIName.", e);
 		}
+	}
 
-		@SuppressWarnings("null")
-		public static Object putCharacteristic(String characteristicName,
-			    String propertyUniqueName, Object value)
-		{
-			DirContext ctx = GdaPlug.getInstance().getDefaultDirectory();
-
-			try {
-				URIName uri = new URIName(null, GdaPlug.DEFAULT_AUTHORITY,
-					    propertyUniqueName, null);
-				Attributes attr = ctx.getAttributes(uri);
-				
-				if (attr==null) {
-					attr=new org.epics.css.dal.directory.Attributes();
-					ctx.bind(uri, null, attr);
-				}
-				
-				Object characteristic = null;
-
-				if (attr instanceof org.epics.css.dal.directory.Attributes) {
-					org.epics.css.dal.directory.Attributes at = (org.epics.css.dal.directory.Attributes)attr;
-					characteristic = at.putAttributeValue(characteristicName, value);
-				} else if (attr != null) {
-					characteristic = attr.put(characteristicName, value);
-				}
-
-				return characteristic;
-			} catch (NamingException e) {
-				throw new RuntimeException("Cannot instanitate URIName.", e);
+	@SuppressWarnings("null")
+	public static Object putCharacteristic(String characteristicName, String propertyUniqueName, Object value){
+		DirContext ctx = GdaPlug.getInstance().getDefaultDirectory();
+		try {
+			URIName uri = new URIName(null, GdaPlug.DEFAULT_AUTHORITY, propertyUniqueName, null);
+			Attributes attr = ctx.getAttributes(uri);
+			if (attr==null) {
+				attr=new org.epics.css.dal.directory.Attributes();
+				ctx.bind(uri, null, attr);
 			}
+			Object characteristic = null;
+			if (attr instanceof org.epics.css.dal.directory.Attributes) {
+				org.epics.css.dal.directory.Attributes at = (org.epics.css.dal.directory.Attributes)attr;
+				characteristic = at.putAttributeValue(characteristicName, value);
+			} 
+			else if (attr != null)
+				characteristic = attr.put(characteristicName, value);
+			return characteristic;
+		} catch (NamingException e) {
+			throw new RuntimeException("Cannot instanitate URIName.", e);
 		}
+	}
 
-		/**
-		 * @see DirectoryProxy#getCharacteristicNames()
-		 */
-		@Override
-		public String[] getCharacteristicNames() throws DataExchangeException
-		{
-			DirContext ctx = GdaPlug.getInstance().getDefaultDirectory();
-
-			try {
-				URIName uri = new URIName(null, GdaPlug.DEFAULT_AUTHORITY,
-					    this.getUniqueName(), null);
-				Attributes attr = ctx.getAttributes(uri);
-
-				if (attr == null) {
-					uri = new URIName(null, GdaPlug.DEFAULT_AUTHORITY,
-						    this.getClass().getSimpleName(), null);
-					attr = ctx.getAttributes(uri);
-				}
-
-				NamingEnumeration<String> en = attr.getIDs();
-				ArrayList<String> list = new ArrayList<String>();
-
-				while (en.hasMore()) {
-					list.add(en.next());
-				}
-
-				String[] names = new String[list.size()];
-
-				return list.toArray(names);
-			} catch (NamingException e) {
-				throw new RuntimeException("Cannot instanitate URIName.", e);
+	@Override
+	public String[] getCharacteristicNames() throws DataExchangeException
+	{
+		DirContext ctx = GdaPlug.getInstance().getDefaultDirectory();
+		try {
+			URIName uri = new URIName(null, GdaPlug.DEFAULT_AUTHORITY, this.getUniqueName(), null);
+			Attributes attr = ctx.getAttributes(uri);
+			if (attr == null) {
+				uri = new URIName(null, GdaPlug.DEFAULT_AUTHORITY, this.getClass().getSimpleName(), null);
+				attr = ctx.getAttributes(uri);
 			}
+			NamingEnumeration<String> en = attr.getIDs();
+			ArrayList<String> list = new ArrayList<String>();
+			while (en.hasMore())
+				list.add(en.next());
+			String[] names = new String[list.size()];
+			return list.toArray(names);
+		} catch (NamingException e) {
+			throw new RuntimeException("Cannot instanitate URIName.", e);
 		}
-		/**
-		 * @see DirectoryProxy#getCharacteristics(String[], ResponseListener)
-		 */
-		@Override
-		@SuppressWarnings("unchecked")
-		public Request<? extends Object> getCharacteristics(String[] characteristics,
-		    ResponseListener<? extends Object> callback) throws DataExchangeException
-		{
-			RequestImpl<Object> r = new RequestImpl<Object>(this, (ResponseListener<Object>) callback);
-
-			for (int i = 0; i < characteristics.length; i++) {
-				Object value = PropertyUtilities.verifyCharacteristic(this, characteristics[i], getCharacteristic(characteristics[i]));
-				r.addResponse(new ResponseImpl<Object>(this, r, value, characteristics[i],
-				        value != null, null, condition, null, true));
-			}
-
-			return r;
+	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public Request<? extends Object> getCharacteristics(String[] characteristics, ResponseListener<? extends Object> callback) throws DataExchangeException{
+		RequestImpl<Object> r = new RequestImpl<Object>(this, (ResponseListener<Object>) callback);
+		for (int i = 0; i < characteristics.length; i++) {
+			Object value = PropertyUtilities.verifyCharacteristic(this, characteristics[i], getCharacteristic(characteristics[i]));
+			r.addResponse(new ResponseImpl<Object>(this, r, value, characteristics[i],
+			        value != null, null, condition, null, true));
 		}
+		return r;
+	}
+	
 	@Override
 	public String[] getCommandNames() throws DataExchangeException {
 		// TODO Auto-generated method stub

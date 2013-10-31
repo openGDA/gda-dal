@@ -39,7 +39,6 @@ import org.eclipse.swt.widgets.Display;
  * An image figure that supports SVG.
  */
 public final class AttenuatorFigure extends Shape implements IAdaptable {
-
 	private IBorderEquippedWidget _borderAdapter;
 	private CrossedOutAdapter _crossedOutAdapter;
 	private RhombusAdapter _rhombusAdapter;
@@ -95,10 +94,8 @@ public final class AttenuatorFigure extends Shape implements IAdaptable {
 	@Override
 	public void paintFigure(final Graphics gfx) {
 		bound = getBounds().getCopy();
-
 		bound.crop(this.getInsets());
-
-		final InputStream arrowImageStream = getClass().getResourceAsStream(arrowPath.toString());
+		InputStream arrowImageStream = getClass().getResourceAsStream(arrowPath.toString());
 		_arrowImage = new Image(Display.getDefault(), arrowImageStream);
 		
 		try {
@@ -116,25 +113,19 @@ public final class AttenuatorFigure extends Shape implements IAdaptable {
 			}
 		}
 		if (_image != null) {
-
 			int blockHeight = 30;
-			
 			if(_emptyBlockPos!=0){
 				_yOffset=(_noBlocks-1)*blockHeight;
 				_yTranslate = -Math.abs(_yTranslate);
 			}
-			else{
+			else
 				_yOffset=0;
-				
-			}
-			
 			for (int i = 0; i < _noBlocks; i++) {
 				if(i==_noBlocks-_emptyBlockPos-1)
 					gfx.drawImage(emptyBlockImage, bound.x, (_noBlocks*blockHeight) + bound.y - (i*blockHeight) - blockHeight + _yTranslate + _yOffset);
 				else
 					gfx.drawImage(_image, bound.x, (_noBlocks*blockHeight) + bound.y - (i*blockHeight) - blockHeight + _yTranslate + _yOffset);
 			}
-			
 			gfx.drawImage(_arrowImage, bound.x+40, bound.y + 16 + _yTranslate + _yOffset);
 		}
 	}
@@ -163,30 +154,22 @@ public final class AttenuatorFigure extends Shape implements IAdaptable {
 		this.arrowPath = arrowPath;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Object getAdapter(final Class adapter) {
 		if (adapter == IBorderEquippedWidget.class) {
-			if(_borderAdapter==null) {
+			if(_borderAdapter==null)
 				_borderAdapter = new BorderAdapter(this);
-			}
 			return _borderAdapter;
 		} else if(adapter == ICrossedFigure.class) {
-            if(_crossedOutAdapter==null) {
+            if(_crossedOutAdapter==null)
                 _crossedOutAdapter = new CrossedOutAdapter(this);
-            }
             return _crossedOutAdapter;
         } else if(adapter == IRhombusEquippedWidget.class) {
-            if(_rhombusAdapter==null) {
+            if(_rhombusAdapter==null)
                 _rhombusAdapter = new RhombusAdapter(this);
-            }
             return _rhombusAdapter;
         }
-
 		return null;
 	}
 }

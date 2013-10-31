@@ -36,6 +36,4 @@ public class DoubleProvideLowLimitRunnable extends ProvideLowLimitRunnable<Doubl
 			throw new RuntimeException("Unknown type: " + o.getClass().getName());
 	}
 
-	
-
 }

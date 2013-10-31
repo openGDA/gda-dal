@@ -106,9 +106,6 @@ public final class MoveableWindowFigure extends Panel implements IAdaptable {
 			_zoomManager.setZoomAsText(ZoomManager.FIT_ALL);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected boolean useLocalCoordinates() {
 		return true;
@@ -122,9 +119,6 @@ public final class MoveableWindowFigure extends Panel implements IAdaptable {
 		updateZoom();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Object getAdapter(final Class adapter) {

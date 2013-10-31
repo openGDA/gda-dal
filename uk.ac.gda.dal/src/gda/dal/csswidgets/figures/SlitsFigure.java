@@ -40,7 +40,6 @@ import org.eclipse.swt.widgets.Display;
  * An image figure that supports SVG.
  */
 public final class SlitsFigure extends Shape implements IAdaptable {
-
 	private IBorderEquippedWidget _borderAdapter;
     private CrossedOutAdapter _crossedOutAdapter;
     private RhombusAdapter _rhombusAdapter;
@@ -62,7 +61,7 @@ public final class SlitsFigure extends Shape implements IAdaptable {
 	private int _Vgap = 0;
 	private int _Hgap = 0;
 	private int _slitType = 0;
-	public Rectangle bound = getBounds().getCopy();
+	private Rectangle bound = getBounds().getCopy();
 
 	/**
 	 * We want to have local coordinates here.
@@ -104,19 +103,19 @@ public final class SlitsFigure extends Shape implements IAdaptable {
 	public void paintFigure(final Graphics gfx) {
 		bound = getBounds().getCopy();
 
-		final InputStream slitImageStream = getClass().getResourceAsStream(_slit_path.toString());
+		InputStream slitImageStream = getClass().getResourceAsStream(_slit_path.toString());
 		_slitImage = new Image(Display.getDefault(), slitImageStream);
 
-		final InputStream upArrowImageStream = getClass().getResourceAsStream(_upArrowPath.toString());
+		InputStream upArrowImageStream = getClass().getResourceAsStream(_upArrowPath.toString());
 		_upArrowImage = new Image(Display.getDefault(), upArrowImageStream);
 
-		final InputStream downArrowImageStream = getClass().getResourceAsStream(_downArrowPath.toString());
+		InputStream downArrowImageStream = getClass().getResourceAsStream(_downArrowPath.toString());
 		_downArrowImage = new Image(Display.getDefault(), downArrowImageStream);
 
-		final InputStream xPlusArrowImageStream = getClass().getResourceAsStream(_xPlusArrowPath.toString());
+		InputStream xPlusArrowImageStream = getClass().getResourceAsStream(_xPlusArrowPath.toString());
 		_xPlusArrowImage = new Image(Display.getDefault(), xPlusArrowImageStream);
 		
-		final InputStream xMinusArrowImageStream = getClass().getResourceAsStream(_xMinusArrowPath.toString());
+		InputStream xMinusArrowImageStream = getClass().getResourceAsStream(_xMinusArrowPath.toString());
 		_xMinusArrowImage = new Image(Display.getDefault(), xMinusArrowImageStream);
 		
 		_imgWidth = _slitImage.getBounds().width;
@@ -247,29 +246,22 @@ public final class SlitsFigure extends Shape implements IAdaptable {
 		_xPlusArrowPath = path;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	@SuppressWarnings({ "rawtypes" })
 	public Object getAdapter(final Class adapter) {
 		if (adapter == IBorderEquippedWidget.class) {
-			if(_borderAdapter==null) {
+			if(_borderAdapter==null)
 				_borderAdapter = new BorderAdapter(this);
-			}
 			return _borderAdapter;
 		} else if(adapter == ICrossedFigure.class) {
-            if(_crossedOutAdapter==null) {
+            if(_crossedOutAdapter==null)
                 _crossedOutAdapter = new CrossedOutAdapter(this);
-            }
             return _crossedOutAdapter;
         } else if(adapter == IRhombusEquippedWidget.class) {
-            if(_rhombusAdapter==null) {
+            if(_rhombusAdapter==null)
                 _rhombusAdapter = new RhombusAdapter(this);
-            }
             return _rhombusAdapter;
         }
-
 		return null;
 	}
 }

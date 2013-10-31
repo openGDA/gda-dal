@@ -38,14 +38,8 @@ package gda.dal.propproxy;
 
 import gda.dal.dataprovider.StringProvideDataRunnable;
 
-
 public class StringPropertyProxyImpl extends PropertyProxyImpl<String> {
 
-
-	/**
-	 * 
-	 * @param name
-	 */
 	@SuppressWarnings("unchecked")
 	public StringPropertyProxyImpl(String name) {
 		super(name);

@@ -35,23 +35,15 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 
-/**
- *
- */
 public final class ImageButtonFigure extends Shape implements IAdaptable {
-
 	private IBorderEquippedWidget _borderAdapter;
 	private CrossedOutAdapter _crossedOutAdapter;
 	private RhombusAdapter _rhombusAdapter;
 	private int style = 0;
 	private String _path = "";
-
 	private String label = "";
-
 	private Image _image = null;
-
-	public Color color = new Color(null, 143, 186, 210);
-	public Color foreground = new Color(null, 0, 0, 0);
+	private Color color = new Color(null, 143, 186, 210);
 
 	@Override
 	protected boolean useLocalCoordinates() {
@@ -73,7 +65,6 @@ public final class ImageButtonFigure extends Shape implements IAdaptable {
 
 	@Override
 	public void paintFigure(final Graphics gfx) {
-
 		Rectangle bound = getBounds().getCopy();
 		bound.crop(this.getInsets());
 		int width = this.getSize().width;
@@ -105,23 +96,14 @@ public final class ImageButtonFigure extends Shape implements IAdaptable {
 		gfx.drawString(label, x - 6, y + 1);
 	}
 
-	/**
-	 * @param newval
-	 */
 	public void setFilePath(String newval) {
 		_path = newval;
 	}
 
-	/**
-	 * @param newval
-	 */
 	public void setLabel(String newval) {
 		label = newval;
 	}
 
-	/**
-	 * @return _path
-	 */
 	public String getFilePath() {
 		return _path;
 	}
@@ -129,15 +111,6 @@ public final class ImageButtonFigure extends Shape implements IAdaptable {
 	public void setStyle(int style) {
 		this.style = style;
 	}
-
-	// public void setForegroundColor(Color newColor) {
-	// foreground = newColor;
-	// repaint();
-	// }
-
-	/**
-	 * {@inheritDoc}
-	 */
 
 	@SuppressWarnings("rawtypes")
 	@Override

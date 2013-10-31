@@ -170,11 +170,10 @@ public class GdaPlug extends AbstractPlug {
 					return OffsetPropertyProxyImpl.class;
 			}
 			if (type != null) {
-				if (type.equals(org.epics.css.dal.DoubleProperty.class)) {
+				if (type.equals(org.epics.css.dal.DoubleProperty.class))
 					return DoublePropertyProxyImpl.class;
-				} else if (type.equals(org.epics.css.dal.LongProperty.class)) {
+				else if (type.equals(org.epics.css.dal.LongProperty.class))
 					return LongPropertyProxyImpl.class;
-				}
 			}
 			return StringPropertyProxyImpl.class;
 		}

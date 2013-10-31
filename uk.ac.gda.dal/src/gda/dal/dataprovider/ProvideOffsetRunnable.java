@@ -36,15 +36,15 @@ import org.slf4j.LoggerFactory;
 @SuppressWarnings("rawtypes")
 public abstract class ProvideOffsetRunnable<T> implements ProvideRunnable {
 	private static final Logger logger = LoggerFactory.getLogger(ProvideHighLimitRunnable.class);
-	protected double currentValue = 0.0;
+	private double currentValue = 0.0;
 	private boolean running;
-	protected List<ProvideDataEventListener<T>> listeners = new ArrayList<ProvideDataEventListener<T>>(1);
+	private List<ProvideDataEventListener<T>> listeners = new ArrayList<ProvideDataEventListener<T>>(1);
 	private String scannableName;
 	private ProvideDataEvent<T> event = null;
 	private Scannable scannable;
 	private IObserver observer = null;
-	TimerTask timerTask;
-	private static Timer timer = new Timer();
+	private TimerTask timerTask;
+	private Timer timer = new Timer();
 	
 	public ProvideOffsetRunnable(String scannableName) {
 		createTimers(scannableName);
@@ -57,16 +57,14 @@ public abstract class ProvideOffsetRunnable<T> implements ProvideRunnable {
 		updateListeners(readValue());
 		Findable findable = Finder.getInstance().find(scannableName.substring(0, scannableName.indexOf('.')));
 		if (findable instanceof Scannable) {
-			this.scannable = (Scannable) findable;
-			
-			this.scannable.addIObserver(observer = new IObserver() {
+			scannable = (Scannable) findable;
+			scannable.addIObserver(observer = new IObserver() {
 				@Override
 				public void update(Object source, Object arg) {
 					if (source == null) {
 						try {
-							if (timerTask != null) {
+							if (timerTask != null)
 								timerTask.cancel();
-							}
 							timerTask = new TimerTask() {
 								@Override
 								public void run() {
@@ -102,9 +100,8 @@ public abstract class ProvideOffsetRunnable<T> implements ProvideRunnable {
 			return;
 		}
 		event.timestamp = new Timestamp();
-		for (ProvideDataEventListener<T> listener : listeners) {
+		for (ProvideDataEventListener<T> listener : listeners)
 			listener.newData(event);
-		}
 	}
 
 	abstract T createValue(Object val);

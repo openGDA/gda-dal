@@ -31,9 +31,9 @@ public class StringScannableStatusPropertyProxyImpl extends PropertyProxyImpl<St
 		dataProvider = new StringProvideStatusRunnable(name);
 		connect();
 	}
+	
 	@Override
-	public Class<? extends SimpleProperty<?>> getPropertyType(
-			String propertyName) throws RemoteException {
+	public Class<? extends SimpleProperty<?>> getPropertyType(String propertyName) throws RemoteException {
 		return StringProperty.class;
 	}
 	

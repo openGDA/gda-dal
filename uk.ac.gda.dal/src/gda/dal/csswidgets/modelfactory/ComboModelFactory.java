@@ -23,6 +23,7 @@ import org.csstudio.sds.model.AbstractWidgetModel;
 import org.csstudio.sds.model.IWidgetModelFactory;
 
 public class ComboModelFactory implements IWidgetModelFactory {
+	
 	@Override
 	public AbstractWidgetModel createWidgetModel() {
 		return new ComboModel();

@@ -23,22 +23,13 @@ import gda.dal.csswidgets.model.AttenuatorModel;
 import org.csstudio.sds.model.AbstractWidgetModel;
 import org.csstudio.sds.model.IWidgetModelFactory;
 
-/**
- * An image model factory for {@link AttenuatorModel}.
- */
 public final class AttenuatorModelFactory implements IWidgetModelFactory {
 
-	/**
-	 * {@inheritDoc}.
-	 */
 	@Override
 	public AbstractWidgetModel createWidgetModel() {
 		return new AttenuatorModel();
 	}
 
-	/**
-	 * {@inheritDoc}.
-	 */
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Class getWidgetModelType() {

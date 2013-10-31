@@ -32,20 +32,14 @@ import org.epics.css.dal.Timestamp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 public abstract class ProvideStatusRunnable<T> implements ProvideRunnable<T> {
 	private static final Logger logger = LoggerFactory.getLogger(ProvideStatusRunnable.class);
-
 	private Scannable scannable;
-
 	private boolean running = false;
-
-	protected int currentStatus = ScannableStatus.IDLE;
+	private int currentStatus = ScannableStatus.IDLE;
 	// TODO: listeners list isn't used thread safely
-	protected List<ProvideDataEventListener<T>> listeners = new ArrayList<ProvideDataEventListener<T>>(1);
-
+	private List<ProvideDataEventListener<T>> listeners = new ArrayList<ProvideDataEventListener<T>>(1);
 	private IObserver observer;
-
 	private ProvideDataEvent<T> event;
 
 	@Override
@@ -81,8 +75,8 @@ public abstract class ProvideStatusRunnable<T> implements ProvideRunnable<T> {
 			scannableName = scannableName.substring(0, index);
 		Findable findable = Finder.getInstance().find(scannableName);
 		if (findable instanceof Scannable) {
-			this.scannable = (Scannable) findable;
-			this.scannable.addIObserver(observer = new IObserver() {
+			scannable = (Scannable) findable;
+			scannable.addIObserver(observer = new IObserver() {
 
 				@Override
 				public void update(Object source, Object arg) {
@@ -107,7 +101,6 @@ public abstract class ProvideStatusRunnable<T> implements ProvideRunnable<T> {
 		event = new ProvideDataEvent<T>();
 		event.value = createValue(isBusy);
 		event.timestamp = new Timestamp();
-
 		for (ProvideDataEventListener<T> listener : listeners)
 			listener.newData(event);
 	}
@@ -143,4 +136,5 @@ public abstract class ProvideStatusRunnable<T> implements ProvideRunnable<T> {
 	@Override
 	public void refresh() {
 	}
+	
 }

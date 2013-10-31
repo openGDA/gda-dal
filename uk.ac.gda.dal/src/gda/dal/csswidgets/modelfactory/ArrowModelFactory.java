@@ -28,9 +28,6 @@ import org.csstudio.sds.model.IWidgetModelFactory;
  */
 public final class ArrowModelFactory implements IWidgetModelFactory {
 
-	/**
-	 * {@inheritDoc}.
-	 */
 	@Override
 	public AbstractWidgetModel createWidgetModel() {
 		return new ArrowModel();

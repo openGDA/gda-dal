@@ -31,15 +31,13 @@ import org.slf4j.LoggerFactory;
 
 @SuppressWarnings("unchecked")
 public abstract class ProvideUnitsRunnable <T> implements  ProvideRunnable<T>  {
-
-private Scannable scannable;
-private static final Logger logger = LoggerFactory.getLogger(ProvideHighLimitRunnable.class);
-	
+	private Scannable scannable;
+	private static final Logger logger = LoggerFactory.getLogger(ProvideHighLimitRunnable.class);
 	private boolean running;
-
 	protected String currentValue= "";
 	// TODO: listeners list isn't used thread safely
 	protected List<ProvideDataEventListener<T>> listeners = new ArrayList<ProvideDataEventListener<T>>(1);
+	abstract T createValue(Object val);
 	
 	@Override
 	public T getCurrentValue() {
@@ -66,8 +64,7 @@ private static final Logger logger = LoggerFactory.getLogger(ProvideHighLimitRun
 		running = true;
 	}
 	
-	private Object readValue()
-	{
+	private Object readValue(){
 		Object position = null;
 		try {
 			position =  scannable.getAttribute("userunits");
@@ -79,8 +76,7 @@ private static final Logger logger = LoggerFactory.getLogger(ProvideHighLimitRun
 		return position;
 	}
 	
-	private void updateListeners(Object position)
-	{
+	private void updateListeners(Object position){
 		ProvideDataEvent<T> event = new ProvideDataEvent<T>();		
 		try{
 			event.value = createValue(position);
@@ -93,10 +89,7 @@ private static final Logger logger = LoggerFactory.getLogger(ProvideHighLimitRun
 		for (ProvideDataEventListener<T> listener : listeners)
 			listener.newData(event);
 	}
-	
-	
-	abstract T createValue(Object val);
-	
+
 	@Override
 	public void stop() {
 		running = false;
@@ -122,7 +115,6 @@ private static final Logger logger = LoggerFactory.getLogger(ProvideHighLimitRun
 	@Override
 	public void refresh() {
 		updateListeners(readValue());
-		
 	}
 
 }

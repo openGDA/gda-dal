@@ -23,26 +23,17 @@ import gda.dal.csswidgets.model.ImageButtonModel;
 import org.csstudio.sds.model.AbstractWidgetModel;
 import org.csstudio.sds.model.IWidgetModelFactory;
 
-
-/**
- *
- */
 public final class ImageButtonModelFactory implements IWidgetModelFactory {
-	/**
-	 * {@inheritDoc}
-	 */
+
 	@Override
 	public AbstractWidgetModel createWidgetModel() {
 		return new ImageButtonModel();
 	}
-
-	/**
-	 * {@inheritDoc}
-	 */
 
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Class getWidgetModelType() {
 		return ImageButtonModel.class;
 	}
+	
 }

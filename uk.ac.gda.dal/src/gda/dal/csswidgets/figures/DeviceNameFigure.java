@@ -30,7 +30,6 @@ import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.geometry.Rectangle;
 
 public class DeviceNameFigure extends Shape implements IAdaptable {
-	
 	private Rectangle bound = getBounds().getCopy();
 	private String text = "alias not set";
 	private IBorderEquippedWidget _borderAdapter;

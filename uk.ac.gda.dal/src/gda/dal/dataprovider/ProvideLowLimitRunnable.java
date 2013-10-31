@@ -31,15 +31,11 @@ import org.epics.css.dal.Timestamp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 @SuppressWarnings("unchecked")
 public  abstract class ProvideLowLimitRunnable<T> implements ProvideRunnable<T>{
 	private static final Logger logger = LoggerFactory.getLogger(ProvideLowLimitRunnable.class);
 	private Scannable scannable;
-	@SuppressWarnings("unused")
-	private IObserver observer= null;
 	private boolean running;
-
 	protected double currentValue = 0.0;
 	// TODO: listeners list isn't used thread safely
 	protected List<ProvideDataEventListener<T>> listeners = new ArrayList<ProvideDataEventListener<T>>(1);
@@ -73,15 +69,14 @@ public  abstract class ProvideLowLimitRunnable<T> implements ProvideRunnable<T>{
 			scannableName = scannableName.substring(0, index);
 		Findable findable = Finder.getInstance().find(scannableName);
 		if (findable instanceof Scannable) {
-			this.scannable = (Scannable) findable;
-			this.scannable.addIObserver(observer = new IObserver() {
+			scannable = (Scannable) findable;
+			scannable.addIObserver(new IObserver() {
 
 				@Override
 				public void update(Object source, Object arg) {
-					if (source instanceof Scannable  && arg instanceof ScannableLowLimitChangeEvent) {
+					if (source instanceof Scannable  && arg instanceof ScannableLowLimitChangeEvent)
 						if ((((Scannable)source).getName()).equals(scannable.getName()))
 							updateListeners(((ScannableLowLimitChangeEvent)arg).newLowLimits[0]);
-					}
 				}
 
 			});
@@ -91,43 +86,36 @@ public  abstract class ProvideLowLimitRunnable<T> implements ProvideRunnable<T>{
 			} catch (Exception e) {
 				logger.error(e.getMessage(), e);
 			}
-		} else {
-			
+		} 
+		else
 			throw new RuntimeException("ProvideLowLimitRunnable. " + scannableName + " is not a Scannable");
-		}
-		
 	}
 	
-	private Object readValue()
-	{
+	private Object readValue(){
 		Object position = null;
 		try {
 			Object limit = scannable.getAttribute("lowerMotorLimit");
-			if (limit != null) {
+			if (limit != null)
 				position = limit;
-			}	
 		
 		} catch (Exception e1) {
 			logger.error("Error reading Low Limits from the scannable " + scannable.getName(), e1);
 		}
 		return position;
 	}
-	private void updateListeners(Object position)
-	{
+	
+	private void updateListeners(Object position){
 		ProvideDataEvent<T> event = new ProvideDataEvent<T>();		
 		try{
 			event.value = createValue(position);
-			
 		} catch(Exception e){
 			logger.error(e.getMessage(),e);
 			event = null;
 			return;
 		}
 		event.timestamp = new Timestamp();
-		for (ProvideDataEventListener<T> listener : listeners) {
-			listener.newData(event);
-		}		
-		
+		for (ProvideDataEventListener<T> listener : listeners)
+			listener.newData(event);	
 	}
 	
 	
@@ -147,19 +135,16 @@ public  abstract class ProvideLowLimitRunnable<T> implements ProvideRunnable<T>{
 	@Override
 	public void addListener(ProvideDataEventListener newListener) {
 		listeners.add(newListener);
-		
 	}
 
 	@SuppressWarnings("rawtypes")
 	@Override
 	public void removeListener(ProvideDataEventListener listenerToRemove) {
 		listeners.remove(listenerToRemove);
-		
 	}
 	@Override
 	public void refresh() {
 		updateListeners(readValue());
-		
 	}
 }
 

@@ -31,17 +31,11 @@ import org.epics.css.dal.Timestamp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 @SuppressWarnings("unchecked")
 public abstract class ProvideHighLimitRunnable<T> implements  ProvideRunnable<T>{
-
 	private Scannable scannable;
 	private static final Logger logger = LoggerFactory.getLogger(ProvideHighLimitRunnable.class);
-	@SuppressWarnings("unused")
-	private IObserver observer= null;
 	private boolean running;
-	
-
 	protected double currentValue = 0.0;
 	// TODO: listeners list isn't used thread safely
 	protected List<ProvideDataEventListener<T>> listeners = new ArrayList<ProvideDataEventListener<T>>(1);
@@ -52,7 +46,6 @@ public abstract class ProvideHighLimitRunnable<T> implements  ProvideRunnable<T>
 	}
 
 	public void setTargetValue(@SuppressWarnings("unused") double upperLim) {
-		//deliberately does nothing
 	}
 	
 	@Override
@@ -78,15 +71,14 @@ public abstract class ProvideHighLimitRunnable<T> implements  ProvideRunnable<T>
 			scannableName = scannableName.substring(0, index);
 		Findable findable = Finder.getInstance().find(scannableName);
 		if (findable instanceof Scannable) {
-			this.scannable = (Scannable) findable;
-			this.scannable.addIObserver(observer = new IObserver() {
+			scannable = (Scannable) findable;
+			scannable.addIObserver(new IObserver() {
 
 				@Override
 				public void update(Object source, Object arg) {
-					if (source instanceof Scannable  && arg instanceof ScannableHighLimitChangeEvent) {
+					if (source instanceof Scannable  && arg instanceof ScannableHighLimitChangeEvent)
 						if ((((Scannable)source).getName()).equals(scannable.getName()))
 							updateListeners(((ScannableHighLimitChangeEvent)arg).newHighLimits[0]);
-					}
 				}
 
 			});
@@ -97,29 +89,23 @@ public abstract class ProvideHighLimitRunnable<T> implements  ProvideRunnable<T>
 			} catch (Exception e) {
 				logger.error(e.getMessage(), e);
 			}
-		} else {
-			
+		} 
+		else
 			throw new RuntimeException("ProvideHighLimitRunnable. " + scannableName + " is not a Scannable");
-		}
 	}
 	
-	private Object readValue()
-	{
+	private Object readValue(){
 		Object position = null;
 		try {
 			Object limits =  scannable.getAttribute("upperMotorLimit");
-			
-			if (limits != null) {
+			if (limits != null)
 				position = limits ;
-			}	
-		
 		} catch (Exception e1) {
 			logger.error("Error reading High Limits from the scannable " + scannable.getName(), e1);
 		}
 		return position;
 	}
-	private void updateListeners(Object position)
-	{
+	private void updateListeners(Object position){
 		ProvideDataEvent<T> event = new ProvideDataEvent<T>();		
 		try{
 			event.value = createValue(position);
@@ -129,10 +115,8 @@ public abstract class ProvideHighLimitRunnable<T> implements  ProvideRunnable<T>
 			return;
 		}
 		event.timestamp = new Timestamp();
-		for (ProvideDataEventListener<T> listener : listeners) {
+		for (ProvideDataEventListener<T> listener : listeners)
 			listener.newData(event);
-		}		
-		
 	}
 	
 	abstract T createValue(Object val);
@@ -151,19 +135,15 @@ public abstract class ProvideHighLimitRunnable<T> implements  ProvideRunnable<T>
 	@Override
 	public void addListener(ProvideDataEventListener newListener) {
 		listeners.add(newListener);
-		
 	}
 
 	@SuppressWarnings("rawtypes")
 	@Override
 	public void removeListener(ProvideDataEventListener listenerToRemove) {
 		listeners.remove(listenerToRemove);
-		
 	}
 	@Override
 	public void refresh() {
 		updateListeners(readValue());
-		
 	}
 }
-
