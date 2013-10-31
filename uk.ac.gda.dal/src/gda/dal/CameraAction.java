@@ -24,7 +24,6 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 public class CameraAction extends Action {
-
 	private String _viewIdToOpen = null;
 	private String var;
 	

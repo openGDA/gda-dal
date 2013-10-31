@@ -55,12 +55,11 @@ import org.epics.css.dal.proxy.PropertyProxy;
 import com.cosylab.naming.URIName;
 
 public class GdaPlug extends AbstractPlug {
-
 	public static final String PLUG_TYPE = "GDA";
 	public static final String DEFAULT_AUTHORITY = "DEFAULT";
-
 	public static final String SCHEME_SUFFIX = "GDA";
-
+	private static GdaPlug instance;
+	
 	private DirContext gdaContext;
 
 	protected GdaPlug(Properties configuration) {
@@ -71,17 +70,14 @@ public class GdaPlug extends AbstractPlug {
 		super(ctx);
 	}
 
-	private static GdaPlug instance;
 
 	public static GdaPlug getInstance() {
 		return getInstance((Properties) null);
 	}
 
 	public static synchronized GdaPlug getInstance(Properties conf) {
-		if (instance == null) {
+		if (instance == null)
 			instance = new GdaPlug(conf);
-		}
-
 		return instance;
 	}
 
@@ -134,30 +130,22 @@ public class GdaPlug extends AbstractPlug {
 	@Override
 	public Class<? extends SimpleProperty<?>> getPropertyImplementationClass(Class<? extends SimpleProperty<?>> type,
 			String propertyName) throws RemoteException {
-		if (type == null) {
+		if (type == null)
 			type = DoubleProperty.class;
-		}
 		Class<? extends SimpleProperty<?>> impl = super.getPropertyImplementationClass(type, propertyName);
-
-		if (impl == null) {
+		if (impl == null)
 			return PropertyUtilities.getImplementationClass(type);
-		}
 		return impl;
 	}
 
 	@Override
-	protected Class<? extends SimpleProperty<?>> getPropertyImplementationClass(String uniquePropertyName)
-			throws RemoteException {
+	protected Class<? extends SimpleProperty<?>> getPropertyImplementationClass(String uniquePropertyName) throws RemoteException {
 		throw new RuntimeException("Unsupported property type.");
 	}
 
 	@Override
-	public Class<? extends PropertyProxy<?>> getPropertyProxyImplementationClass(
-			Class<? extends SimpleProperty<?>> type, Class<? extends SimpleProperty<?>> implType, String propertyName)
-			throws RemoteException {
-		Class<? extends PropertyProxy<?>> impl = super
-				.getPropertyProxyImplementationClass(type, implType, propertyName);
-
+	public Class<? extends PropertyProxy<?>> getPropertyProxyImplementationClass(Class<? extends SimpleProperty<?>> type, Class<? extends SimpleProperty<?>> implType, String propertyName) throws RemoteException {
+		Class<? extends PropertyProxy<?>> impl = super.getPropertyProxyImplementationClass(type, implType, propertyName);
 		if (impl == null) {
 			int index = propertyName.lastIndexOf(".");
 			if (index != -1) {
@@ -191,12 +179,10 @@ public class GdaPlug extends AbstractPlug {
 			return StringPropertyProxyImpl.class;
 		}
 		return impl;
-
 	}
 
 	@Override
-	protected Class<? extends PropertyProxy<?>> getPropertyProxyImplementationClass(String uniquePropertyName)
-			throws RemoteException {
+	protected Class<? extends PropertyProxy<?>> getPropertyProxyImplementationClass(String uniquePropertyName) throws RemoteException {
 		return null;
 	}
 
@@ -214,11 +200,10 @@ public class GdaPlug extends AbstractPlug {
 			URIName nameS = (URIName) name.getPrefix(1);
 			Object simContext = initialContext.lookup(nameS);
 
-			if (simContext == null) {
+			if (simContext == null)
 				gdaContext = (DirContext) initialContext.createSubcontext(nameS);
-			} else {
+			else
 				gdaContext = (DirContext) simContext;
-			}
 
 			// bind proxy implementations
 			URIName ppi = new URIName(null, DEFAULT_AUTHORITY, "PropertyProxyImpl", null);

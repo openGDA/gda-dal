@@ -32,40 +32,36 @@ import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 
 public class OpenSDSView implements IWorkbenchWindowActionDelegate, IExecutableExtension {
 	private String url;
+	
 	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void init(IWorkbenchWindow window) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void run(IAction action) {
-		if (url == null || "".equals(url)) { //$NON-NLS-1$
+		if (url == null || "".equals(url))
 			return;
-		}
 		RunModeService.getInstance().openDisplayViewInRunMode(new Path(url));
 	}
 
 	@Override
 	public void selectionChanged(IAction action, ISelection selection) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@SuppressWarnings("rawtypes")
 	@Override
 	public void setInitializationData(IConfigurationElement config, String propertyName, Object data) throws CoreException {
-			if (data != null && data instanceof Hashtable) {
-				url = (String) ((Hashtable) data).get("url"); //$NON-NLS-1$
-			}
-			if (url == null || url.length() == 0)
-				url = config.getAttribute("url"); //$NON-NLS-1$
+		if (data != null && data instanceof Hashtable)
+			url = (String) ((Hashtable) data).get("url"); //$NON-NLS-1$
+		if (url == null || url.length() == 0)
+			url = config.getAttribute("url"); //$NON-NLS-1$
 	}
 
 }

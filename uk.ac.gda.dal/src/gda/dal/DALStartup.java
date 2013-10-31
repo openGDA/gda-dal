@@ -44,10 +44,8 @@ import org.slf4j.LoggerFactory;
 import uk.ac.gda.ClientManager;
 
 public class DALStartup implements IStartup {
-
 	private static final Logger logger = LoggerFactory.getLogger(DALStartup.class);
-	
-	IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+	private IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 
 	/**
 	 * Currently normal users can see these projects, however they should not edit them. 
@@ -55,28 +53,15 @@ public class DALStartup implements IStartup {
 	 */
 	@Override
 	public void earlyStartup() {
-
-		if (!ClientManager.isClient()) return;
+		if (!ClientManager.isClient()) 
+			return;
 		
 		checkFoldersExistAndImport();
-
-		//checkExistsAndImport(LocalProperties.get("gda.dal.images") + "oe images/", "oe images");
-		//checkExistsAndImport(LocalProperties.get("gda.dal.images")+ "oe thumb images/", "oe thumb images");
-		//checkExistsAndImport(LocalProperties.get("gda.dal.images") + "arrow images/", "arrow images");
-
-		//setHidden("SDS Script Rules", true);
-		//setHidden("SDS",              true);
-		//setHidden("SDS Cursors",      true);
-		
-		
 		
 		IPreferenceStore store = SdsUiPlugin.getCorePreferenceStore();
 		String scriptsLocation = "/scripts/scr";
 		if(!store.getString(PreferenceConstants.PROP_RULE_FOLDERS).equals(scriptsLocation))
 			store.setValue(PreferenceConstants.PROP_RULE_FOLDERS, scriptsLocation);
-
-
-		
 		
 		IWorkingSetManager workingSetManager = PlatformUI.getWorkbench().getWorkingSetManager();
 		if(workingSetManager.getWorkingSet("Synoptic")==null){
@@ -85,27 +70,20 @@ public class DALStartup implements IStartup {
 			IAdaptable[] sds = {screens, scripts};
 			workingSetManager.addWorkingSet(workingSetManager.createWorkingSet("Synoptic", sds));
 		}
-		
 	}
 
 	private void checkFoldersExistAndImport() {
 		String dalScreens = LocalProperties.get("gda.dal.screens");
 		String dalScripts = LocalProperties.get("gda.dal.scripts");
-		if (dalScreens == null || dalScripts == null){
-			// do not proceed if these properties have not been setup
+		// do not proceed if these properties have not been setup
+		if (dalScreens == null || dalScripts == null)
 			return;
-		}
-		
 		checkExistsAndImport(dalScreens, "screens");
 		checkExistsAndImport(dalScripts, "scripts");
-
-		
 	}
 	
 	public void checkExistsAndImport(String projectLocation, String name) {
-	
 		if (!root.getProject(name).exists()) {
-
 			try {
 				importExisitingProject(new Path(projectLocation));
 			} catch (Throwable e) {
@@ -115,14 +93,12 @@ public class DALStartup implements IStartup {
 	}
 	
 	public void checkExistsAndDelete(String projectName) {
-
 		if (root.getProject(projectName).exists()) {
 			try {
 				root.getProject(projectName).delete(true, null);
 			} catch (Throwable e) {
 				logger.error("Cannot delete "+projectName, e);
 			}
-			
 		}
 	}
 
@@ -131,27 +107,20 @@ public class DALStartup implements IStartup {
 	 * @throws CoreException
 	 */
 	public void importExisitingProject(IPath projectPath) throws CoreException {
-
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 
-		final IProjectDescription description = workspace
-				.loadProjectDescription(projectPath.append(IPath.SEPARATOR
-						+ IProjectDescription.DESCRIPTION_FILE_NAME));
-		final IProject project = workspace.getRoot().getProject(
-				description.getName());
+		final IProjectDescription description = workspace.loadProjectDescription(projectPath.append(IPath.SEPARATOR + IProjectDescription.DESCRIPTION_FILE_NAME));
+		final IProject project = workspace.getRoot().getProject(description.getName());
 
 		if (!project.exists()) {
 			IWorkspaceRunnable runnable = new IWorkspaceRunnable() {
 				@Override
 				public void run(IProgressMonitor monitor) throws CoreException {
-
 					project.create(description, monitor);
 					project.open(IResource.NONE, monitor);
-					//project.setHidden(true);
 				}
 			};
-			workspace.run(runnable, workspace.getRuleFactory().modifyRule(
-					workspace.getRoot()), IResource.NONE, null);
+			workspace.run(runnable, workspace.getRuleFactory().modifyRule(workspace.getRoot()), IResource.NONE, null);
 		}
 	}
 

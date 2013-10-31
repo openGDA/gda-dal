@@ -28,36 +28,30 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 
 public class SDSPerspective implements IPerspectiveFactory {
+	public final static String ID = "gda.dal.sdsperspective";
+	private Path sdsDisplay = new Path("/screens/synoptic.css-sds");
+	private boolean displayOpened = false;
+	
+	@Override
+	public void createInitialLayout(IPageLayout layout) {
+		layout.setEditorAreaVisible(false);
+		DALStartup s = new DALStartup();
+		s.earlyStartup();
 		
-		public final static String ID = "gda.dal.sdsperspective";
-		Path sdsDisplay = new Path("/screens/synoptic.css-sds");
-		boolean displayOpened = false;
-		
-		/**
-		 * Creates the initial layout for a page.
-		 */
-		@Override
-		public void createInitialLayout(IPageLayout layout) {
-				layout.setEditorAreaVisible(false);
-				DALStartup s = new DALStartup();
-				s.earlyStartup();
-				
-				PlatformUI.getWorkbench().getActiveWorkbenchWindow().addPerspectiveListener(new IPerspectiveListener(){
+		PlatformUI.getWorkbench().getActiveWorkbenchWindow().addPerspectiveListener(new IPerspectiveListener(){
 
-					@Override
-					public void perspectiveActivated(IWorkbenchPage page,
-							IPerspectiveDescriptor perspective) {
-						
-						if(perspective.getId().equals(ID) && !displayOpened){
-							RunModeService.getInstance().openDisplayViewInRunMode(sdsDisplay);
-							displayOpened = true;
-						}
-					}
+			@Override
+			public void perspectiveActivated(IWorkbenchPage page, IPerspectiveDescriptor perspective) {
+				if(perspective.getId().equals(ID) && !displayOpened){
+					RunModeService.getInstance().openDisplayViewInRunMode(sdsDisplay);
+					displayOpened = true;
+				}
+			}
 
-					@Override
-					public void perspectiveChanged(IWorkbenchPage page,
-							IPerspectiveDescriptor perspective, String changeId) {	
-					}
-				});		
-		}
+			@Override
+			public void perspectiveChanged(IWorkbenchPage page,
+					IPerspectiveDescriptor perspective, String changeId) {	
+			}
+		});	
+	}
 }

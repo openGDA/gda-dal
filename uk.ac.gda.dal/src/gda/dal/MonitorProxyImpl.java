@@ -30,10 +30,7 @@ import org.epics.css.dal.impl.RequestImpl;
 import org.epics.css.dal.impl.ResponseImpl;
 import org.epics.css.dal.proxy.MonitorProxy;
 
-
-public class MonitorProxyImpl<T> extends RequestImpl<T> implements MonitorProxy,
-		ProvideDataEventListener<T> {
-
+public class MonitorProxyImpl<T> extends RequestImpl<T> implements MonitorProxy, ProvideDataEventListener<T> {
 	private Object valueSync = new Object();
 	private PropertyProxyImpl<T> proxy;
 	private ProvideRunnable<T> dataProvider;
@@ -49,7 +46,6 @@ public class MonitorProxyImpl<T> extends RequestImpl<T> implements MonitorProxy,
 		dataProvider.removeListener(this);		
 	}
 
-
 	@Override
 	public Request<Double> getRequest() {
 		// TODO Auto-generated method stub
@@ -59,7 +55,6 @@ public class MonitorProxyImpl<T> extends RequestImpl<T> implements MonitorProxy,
 	@Override
 	public void refresh() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -99,23 +94,16 @@ public class MonitorProxyImpl<T> extends RequestImpl<T> implements MonitorProxy,
 	}
 
 	@Override
-	public void setTimerTrigger(long trigger) throws DataExchangeException,
-			UnsupportedOperationException {
+	public void setTimerTrigger(long trigger) throws DataExchangeException, UnsupportedOperationException {
 		// TODO Auto-generated method stub
-		
 	}
-
 	
 	@Override
 	public void newData(ProvideDataEvent<T> event) {
-		synchronized (valueSync)
-		{
-			ResponseImpl<T> r = new ResponseImpl<T>(proxy, this, event.value, "value", true,
-					null, proxy.getCondition(), event.timestamp, false);
+		synchronized (valueSync){
+			ResponseImpl<T> r = new ResponseImpl<T>(proxy, this, event.value, "value", true, null, proxy.getCondition(), event.timestamp, false);
 			if( r.getValue() != null)
 				addResponse(r);
 		}	
 	}
 }
-
-/* __oOo__ */
