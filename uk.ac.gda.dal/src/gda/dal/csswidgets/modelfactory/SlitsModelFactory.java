@@ -34,7 +34,7 @@ public final class SlitsModelFactory implements IWidgetModelFactory {
 	}
 
 	@Override
-	public Class getWidgetModelType() {
+	public Class<SlitsModel> getWidgetModelType() {
 		return SlitsModel.class;
 	}
 	

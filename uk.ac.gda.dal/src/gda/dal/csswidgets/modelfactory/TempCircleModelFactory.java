@@ -31,7 +31,7 @@ public final class TempCircleModelFactory implements IWidgetModelFactory {
 	}
 
 	@Override
-	public Class getWidgetModelType() {
+	public Class<TempCircleModel> getWidgetModelType() {
 		return TempCircleModel.class;
 	}
 	

@@ -126,6 +126,7 @@ public final class AttenuatorFigure extends Shape implements IAdaptable {
 		this.arrowPath = arrowPath;
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public Object getAdapter(final Class adapter) {
 		if (adapter == IBorderEquippedWidget.class) {

@@ -34,7 +34,7 @@ public final class SVGModelFactory implements IWidgetModelFactory {
 	}
 
 	@Override
-	public Class getWidgetModelType() {
+	public Class<SVGModel> getWidgetModelType() {
 		return SVGModel.class;
 	}
 	

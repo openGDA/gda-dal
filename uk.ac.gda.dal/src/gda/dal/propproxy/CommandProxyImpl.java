@@ -49,11 +49,12 @@ public class CommandProxyImpl extends CommandSupport implements CommandProxy{
 		return true;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> Request<T> execute(ResponseListener<T> callback, Object... parameters) throws RemoteException{
 		RequestImpl<T> r = new RequestImpl<T>(owner, callback);
-		Object ret = execute(parameters);
-		r.addResponse(new ResponseImpl<T>(owner, r, (T)ret, getName(), true, null, null, null, true));
+		Object execute = execute(parameters);
+		r.addResponse(new ResponseImpl<T>(owner, r, (T)execute, getName(), true, null, null, null, true));
 		return r;
 	}
 	

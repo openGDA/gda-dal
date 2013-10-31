@@ -136,6 +136,7 @@ public final class ScannableControlFigure extends Shape implements IAdaptable {
 		offsetCellEditor.setFocus();
 	}
 	
+	@SuppressWarnings("rawtypes")
 	@Override
 	public Object getAdapter(final Class adapter) {
 		if (adapter == IBorderEquippedWidget.class) {

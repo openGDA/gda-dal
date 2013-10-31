@@ -34,7 +34,7 @@ public final class MoveableWindowModelFactory implements IWidgetModelFactory {
 	}
 
 	@Override
-	public Class getWidgetModelType() {
+	public Class<MoveableWindowModel> getWidgetModelType() {
 		return MoveableWindowModel.class;
 	}
 	

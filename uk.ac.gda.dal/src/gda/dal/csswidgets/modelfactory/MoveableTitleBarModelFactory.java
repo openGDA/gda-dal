@@ -30,7 +30,7 @@ public final class MoveableTitleBarModelFactory implements IWidgetModelFactory {
 	}
 
 	@Override
-	public Class getWidgetModelType() {
+	public Class<MoveableTitleBarModel> getWidgetModelType() {
 		return MoveableTitleBarModel.class;
 	}
 }

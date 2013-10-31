@@ -31,7 +31,7 @@ import org.csstudio.sds.model.IWidgetModelFactory;
 		}
 
 		@Override
-		public Class getWidgetModelType() {
+		public Class<ScannableControlModel> getWidgetModelType() {
 			return ScannableControlModel.class;
 		}
 		

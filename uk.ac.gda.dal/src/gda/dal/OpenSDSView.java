@@ -58,9 +58,9 @@ public class OpenSDSView implements IWorkbenchWindowActionDelegate, IExecutableE
 	@Override
 	public void setInitializationData(IConfigurationElement config, String propertyName, Object data) throws CoreException {
 		if (data != null && data instanceof Hashtable)
-			url = (String) ((Hashtable) data).get("url"); //$NON-NLS-1$
+			url = (String) ((Hashtable<?, ?>) data).get("url");
 		if (url == null || url.length() == 0)
-			url = config.getAttribute("url"); //$NON-NLS-1$
+			url = config.getAttribute("url");
 	}
 
 }

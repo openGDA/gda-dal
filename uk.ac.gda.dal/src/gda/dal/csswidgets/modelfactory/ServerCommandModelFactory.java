@@ -30,7 +30,7 @@ import org.csstudio.sds.model.IWidgetModelFactory;
 		}
 
 		@Override
-		public Class getWidgetModelType() {
+		public Class<ServerCommandModel> getWidgetModelType() {
 			return ServerCommandModel.class;
 		}
 		

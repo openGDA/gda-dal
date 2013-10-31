@@ -85,6 +85,7 @@ public class PropertyProxyImpl<T> extends AbstractProxyImpl implements PropertyP
 	/**
 	 * Destroy all monitors.
 	 */
+	@SuppressWarnings("unchecked")
 	private void destroyMonitors(){
 		MonitorProxyImpl<T>[] array = new MonitorProxyImpl[monitors.size()];
 		synchronized (monitors) { 

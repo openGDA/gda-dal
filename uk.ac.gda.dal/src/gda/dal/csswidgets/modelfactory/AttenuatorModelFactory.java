@@ -31,7 +31,7 @@ public final class AttenuatorModelFactory implements IWidgetModelFactory {
 	}
 
 	@Override
-	public Class getWidgetModelType() {
+	public Class<AttenuatorModel> getWidgetModelType() {
 		return AttenuatorModel.class;
 	}
 	

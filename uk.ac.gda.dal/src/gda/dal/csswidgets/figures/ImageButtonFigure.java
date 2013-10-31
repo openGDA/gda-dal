@@ -104,6 +104,7 @@ public final class ImageButtonFigure extends Shape implements IAdaptable {
 		this.style = style;
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public Object getAdapter(final Class adapter) {
 		if (adapter == IBorderEquippedWidget.class) {

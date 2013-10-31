@@ -31,7 +31,7 @@ public final class DeviceNameModelFactory implements IWidgetModelFactory {
 	}
 
 	@Override
-	public Class getWidgetModelType() {
+	public Class<DeviceNameModel> getWidgetModelType() {
 		return DeviceNameModel.class;
 	}
 

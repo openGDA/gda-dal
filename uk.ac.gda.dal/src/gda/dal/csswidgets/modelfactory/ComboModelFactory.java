@@ -30,7 +30,7 @@ public class ComboModelFactory implements IWidgetModelFactory {
 	}
 
 	@Override
-	public Class getWidgetModelType() {
+	public Class<ComboModel> getWidgetModelType() {
 		return ComboModel.class;
 	}
 	

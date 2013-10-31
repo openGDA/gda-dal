@@ -34,7 +34,7 @@ public final class ArrowModelFactory implements IWidgetModelFactory {
 	}
 
 	@Override
-	public Class getWidgetModelType() {
+	public Class<ArrowModel> getWidgetModelType() {
 		return ArrowModel.class;
 	}
 	
