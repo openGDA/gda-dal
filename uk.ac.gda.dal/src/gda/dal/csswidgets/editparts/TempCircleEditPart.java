@@ -20,96 +20,64 @@ package gda.dal.csswidgets.editparts;
 
 import gda.dal.csswidgets.figures.TempCircleFigure;
 import gda.dal.csswidgets.model.TempCircleModel;
-import java.text.DecimalFormat;
+
 import org.csstudio.sds.ui.editparts.AbstractWidgetEditPart;
 import org.csstudio.sds.ui.editparts.IWidgetPropertyChangeHandler;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.swt.graphics.Color;
 
-public final class TempCircleEditPart extends AbstractWidgetEditPart {
+public class TempCircleEditPart extends AbstractWidgetEditPart {
+	private TempCircleFigure tempCircleFigure;
+	private Color previousColor;
 
-	TempCircleFigure figure;
-	double oldVal;
-	double steady;
-	DecimalFormat d = new DecimalFormat("#.##");
-	Color previousColor;
-	int shift = 0;
-
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected IFigure doCreateFigure() {
 		TempCircleModel model = (TempCircleModel) getWidgetModel();
-
 		double temp = model.getTemp();
 		double min = model.getTempMin();
 		double max = model.getTempMax();
-
-		figure = new TempCircleFigure(heatMap(temp, min, max));
-
+		tempCircleFigure = new TempCircleFigure(heatMap(temp, min, max));
 		Color currentColor = heatMap(temp, min, max);
 		previousColor = currentColor;
-		figure.setLiveColor(currentColor);
-
-		figure.setHistoryColorA(new Color(null, 255, 255, 255));
-		figure.setHistoryColorB(new Color(null, 255, 255, 255));
-		figure.setHistoryColorC(new Color(null, 255, 255, 255));
-
-		return figure;
+		tempCircleFigure.setLiveColor(currentColor);
+		tempCircleFigure.setHistoryColorA(new Color(null, 255, 255, 255));
+		tempCircleFigure.setHistoryColorB(new Color(null, 255, 255, 255));
+		tempCircleFigure.setHistoryColorC(new Color(null, 255, 255, 255));
+		return tempCircleFigure;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected void registerPropertyChangeHandlers() {
-
 		IWidgetPropertyChangeHandler handle = new IWidgetPropertyChangeHandler() {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
-
 				TempCircleFigure tempCircleFigure = (TempCircleFigure) figure;
-
 				TempCircleModel model = (TempCircleModel) getWidgetModel();
-
 				double temp = model.getTemp();
 				double min = model.getTempMin();
 				double max = model.getTempMax();
-
 				Color currentColor = heatMap(temp, min, max);
-
 				if (!compareColors(currentColor, previousColor)) {
-
 					tempCircleFigure.setHistoryColorC(tempCircleFigure.getHistoryColorB());
 					tempCircleFigure.setHistoryColorB(tempCircleFigure.getHistoryColorA());
 					tempCircleFigure.setHistoryColorA(previousColor);
-
 				}
-
 				tempCircleFigure.setLiveColor(currentColor);
-
 				previousColor = heatMap(temp, min, max);
-
 				return true;
 			}
 		};
 		setPropertyChangeHandler(TempCircleModel.PROP_TEMP, handle);
-
 	}
 
 	public boolean compareColors(Color col1, Color col2) {
-
 		boolean same = true;
-
 		if (col1.getRed() != col2.getRed() || col1.getGreen() != col2.getGreen() || col1.getBlue() != col2.getBlue())
 			same = false;
-
 		return same;
 	}
 
 	public Color heatMap(double temp, double min, double max) {
-
 		Color heatMap[] = new Color[10];
 		heatMap[0] = new Color(null, 0, 0, 255);
 		heatMap[1] = new Color(null, 0, 128, 255);
@@ -120,11 +88,8 @@ public final class TempCircleEditPart extends AbstractWidgetEditPart {
 		heatMap[6] = new Color(null, 255, 255, 0);
 		heatMap[7] = new Color(null, 255, 128, 0);
 		heatMap[8] = new Color(null, 255, 0, 0);
-
 		double factor = temp / (max - min);
-
 		Color col = new Color(null, 0, 0, 0);
-
 		if (factor < 0.11)
 			col = heatMap[0];
 		else if (factor < 0.22)
@@ -145,7 +110,6 @@ public final class TempCircleEditPart extends AbstractWidgetEditPart {
 			col = heatMap[8];
 		else if (factor > 1)
 			col = heatMap[8];
-		
 		return col;
 	}
 }

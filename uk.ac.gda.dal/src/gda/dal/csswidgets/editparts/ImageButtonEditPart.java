@@ -40,8 +40,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * A button widget that includes an image icon.
  */
-public final class ImageButtonEditPart extends AbstractWidgetEditPart {
-
+public class ImageButtonEditPart extends AbstractWidgetEditPart {
 	public ImageButtonModel model;
 
 	/**

@@ -26,7 +26,7 @@ import org.csstudio.sds.ui.editparts.IWidgetPropertyChangeHandler;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.draw2d.IFigure;
 
-public final class SlitsEditPart extends AbstractWidgetEditPart {
+public class SlitsEditPart extends AbstractWidgetEditPart {
 	private SlitsFigure refreshableSlitsFigure;
 	private SlitsModel model;
 	private int _yTranslate;

@@ -64,8 +64,7 @@ import org.eclipse.ui.progress.IJobRunnable;
 /**
  * A widget that can contain multiple movable linking containers.
  */
-public final class MoveableWindowEditPart extends AbstractContainerEditPart {
-
+public class MoveableWindowEditPart extends AbstractContainerEditPart {
 	private IProgressMonitor _runningMonitor;
 	private int delta_x = 0;
 	private int delta_y = 0;
@@ -85,17 +84,11 @@ public final class MoveableWindowEditPart extends AbstractContainerEditPart {
 		setChildrenSelectable(true);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public IFigure getContentPane() {
 		return ((MoveableWindowFigure) getFigure()).getContentsPane();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected IFigure doCreateFigure() {
 		MoveableWindowModel widget = (MoveableWindowModel) getContainerModel();
@@ -112,9 +105,6 @@ public final class MoveableWindowEditPart extends AbstractContainerEditPart {
 		return moveableWindowFigure;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected void registerPropertyChangeHandlers() {
 		final HashMap<String, MoveableWindow> moveableWindows = new HashMap<String, MoveableWindow>();
@@ -270,7 +260,8 @@ public final class MoveableWindowEditPart extends AbstractContainerEditPart {
 								if (newY >= 0) {
 									titleBarY = newY;
 									buttonY = titleBarY + 3;
-								} else {
+								} 
+								else {
 									titleBarY = 0;
 									buttonY = titleBarY + 3;
 								}
@@ -347,18 +338,12 @@ public final class MoveableWindowEditPart extends AbstractContainerEditPart {
 		setPropertyChangeHandler(MoveableWindowModel.PROP_RESOURCE, handler);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected void refreshChildren() {
 		super.refreshChildren();
 		((MoveableWindowFigure) getFigure()).updateZoom();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected void createEditPolicies() {
 		super.createEditPolicies();

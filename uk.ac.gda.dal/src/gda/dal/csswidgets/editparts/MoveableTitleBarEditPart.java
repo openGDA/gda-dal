@@ -30,17 +30,13 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 
-public final class MoveableTitleBarEditPart extends AbstractWidgetEditPart {
+public class MoveableTitleBarEditPart extends AbstractWidgetEditPart {
 
 	@Override
-	protected IFigure doCreateFigure() {
-				
+	protected IFigure doCreateFigure() {		
 		Panel panel = new Panel();
-		
 		MoveableTitleBarModel model = (MoveableTitleBarModel) getWidgetModel();
-		
 		Color color = new Color(null, 143,186,210);
-
 		Label label = new Label(model.theTitle);
 		label.setSize(model.getWidth(), 24);
 		label.setLocation(new Point(1,1));
@@ -48,16 +44,12 @@ public final class MoveableTitleBarEditPart extends AbstractWidgetEditPart {
 		label.setBackgroundColor(color);
 		label.setOpaque(true);
 		panel.setBackgroundColor(color);		
-		
 		panel.add(label);
-		
 		Image image = new Image(null,model.icon);
 		ImageFigure img = new ImageFigure(image);
 		img.setLocation(new Point(model.getWidth()-20, 3));
 		img.setSize(19, 19);
-		
 		panel.add(img);
-		
 		RectangleFigure rect = new RectangleFigure();
 		rect.setSize(model.getWidth(), 24);
 		rect.setLocation(new Point(0,0));
@@ -66,7 +58,6 @@ public final class MoveableTitleBarEditPart extends AbstractWidgetEditPart {
 		rect.setForegroundColor(new Color(null, 0,0,0));
 		rect.setBackgroundColor(new Color(null, 0,0,0));
 		panel.add(rect);
-		
 		return panel;
 	}
 

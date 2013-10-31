@@ -31,7 +31,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.model.IWorkbenchAdapter;
 
-public final class ComboEditPart extends AbstractWidgetEditPart implements IProcessVariableWithSamples {
+public class ComboEditPart extends AbstractWidgetEditPart implements IProcessVariableWithSamples {
 
 	@Override
 	protected IFigure doCreateFigure() {

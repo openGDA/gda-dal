@@ -27,7 +27,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.draw2d.IFigure;
 
-public final class SVGEditPart extends AbstractWidgetEditPart {
+public class SVGEditPart extends AbstractWidgetEditPart {
 	private SVGFigure svgFigure;
 
 	@Override

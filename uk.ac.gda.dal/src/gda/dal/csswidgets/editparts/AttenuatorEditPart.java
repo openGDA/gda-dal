@@ -26,7 +26,7 @@ import org.csstudio.sds.ui.editparts.IWidgetPropertyChangeHandler;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.draw2d.IFigure;
 
-public final class AttenuatorEditPart extends AbstractWidgetEditPart {
+public class AttenuatorEditPart extends AbstractWidgetEditPart {
 	AttenuatorFigure refreshableAttenuatorFigure;
 	/**
 	 * Returns the casted model. This is just for convenience.
@@ -38,9 +38,6 @@ public final class AttenuatorEditPart extends AbstractWidgetEditPart {
 		return (AttenuatorModel) getModel();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected IFigure doCreateFigure() {
 		AttenuatorModel model = getCastedModel();
@@ -50,9 +47,6 @@ public final class AttenuatorEditPart extends AbstractWidgetEditPart {
 		return refreshableAttenuatorFigure;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected void registerPropertyChangeHandlers() {
 		

@@ -27,7 +27,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.draw2d.IFigure;
 
-public final class ArrowEditPart extends AbstractWidgetEditPart {
+public class ArrowEditPart extends AbstractWidgetEditPart {
 	private ArrowFigure arrowFigure = new ArrowFigure();
 
 	@Override

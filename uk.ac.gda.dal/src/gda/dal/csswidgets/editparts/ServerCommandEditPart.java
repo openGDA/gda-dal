@@ -31,7 +31,7 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.swt.widgets.Display;
 
-public final class ServerCommandEditPart extends AbstractWidgetEditPart {
+public class ServerCommandEditPart extends AbstractWidgetEditPart {
 	private String lastReadback;
 	private ServerCommandModel model;
 

@@ -53,7 +53,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 
-public final class ScannableControlEditPart extends AbstractWidgetEditPart {
+public class ScannableControlEditPart extends AbstractWidgetEditPart {
 	private ScannableControlFigure scannableControlFigure;
 	private double incrementVal = 1.0;
 	private double offset = 0.0;

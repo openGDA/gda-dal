@@ -29,7 +29,6 @@ import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 
 public class MoveableWindow {
-	
 	private String name;
 	private List<AbstractWidgetModel> box;
 	private RectangleFigure rectangle;
@@ -73,6 +72,7 @@ public class MoveableWindow {
 	public void setButton(RectangleFigure button) {
 		this.button = button;
 	}
+	
 	public MoveableTitleBarModel getTitleBarModel() {
 		return titleBarModel;
 	}
@@ -84,6 +84,7 @@ public class MoveableWindow {
 	public MoveableTitleBarModel getOverTitleBarModel() {
 		return overTitleBarModel;
 	}
+	
 	public void setOverTitleBarModel(MoveableTitleBarModel overTitleBarModel) {
 		this.overTitleBarModel = overTitleBarModel;
 	}
