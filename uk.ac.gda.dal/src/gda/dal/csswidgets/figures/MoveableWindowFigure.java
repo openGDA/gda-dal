@@ -46,9 +46,9 @@ public final class MoveableWindowFigure extends Panel implements IAdaptable {
 	private IBorderEquippedWidget _borderAdapter;
     private CrossedOutAdapter _crossedOutAdapter;
     private RhombusAdapter _rhombusAdapter;
-	public ScalableFreeformLayeredPane _pane;
+    private ScalableFreeformLayeredPane _pane;
 	private ZoomManager _zoomManager;
-	public FreeformViewport _freeformViewport;
+	private FreeformViewport _freeformViewport;
 	private boolean autoFit;
 	private ScrollPane scrollpane;
 

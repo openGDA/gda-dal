@@ -54,7 +54,7 @@ public class ImageButtonEditPart extends AbstractWidgetEditPart {
 	}
 
 	private void handleLeftButtonClick(MouseEvent me){
-		final ImageButtonModel model = (ImageButtonModel) getWidgetModel();
+		ImageButtonModel model = (ImageButtonModel) getWidgetModel();
 		String serverCommand = model.getServerCommand();
 		String serverCommandVariable = model.getServerCommandVariable();
 		String placeHolder = "var";

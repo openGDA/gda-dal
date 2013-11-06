@@ -114,4 +114,5 @@ public class AttenuatorEditPart extends AbstractWidgetEditPart {
 		};
 		setPropertyChangeHandler(AttenuatorModel.PROP_BUSY, handle);
 	}
+	
 }

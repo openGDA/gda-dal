@@ -50,7 +50,7 @@ public class ComboEditPart extends AbstractWidgetEditPart implements IProcessVar
 			@Override
 			public void mousePressed(final MouseEvent me) {
 				if (me.button == 1 && getExecutionMode().equals(ExecutionMode.RUN_MODE)) { 
-					final org.eclipse.swt.graphics.Point cursorLocation = Display.getCurrent().getCursorLocation();
+					org.eclipse.swt.graphics.Point cursorLocation = Display.getCurrent().getCursorLocation();
 					performDirectEdit(me.getLocation(), cursorLocation.x, cursorLocation.y);
 				}
 			}

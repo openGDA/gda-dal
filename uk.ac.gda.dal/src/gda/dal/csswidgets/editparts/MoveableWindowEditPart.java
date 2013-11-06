@@ -108,7 +108,6 @@ public class MoveableWindowEditPart extends AbstractContainerEditPart {
 		IWidgetPropertyChangeHandler handler = new IWidgetPropertyChangeHandler() {
 			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
-
 				if (!moveableWindows.containsKey(newValue.toString())) {
 					InputStream icon = getClass().getResourceAsStream("/icons/close.png");
 					InputStream	overIcon = getClass().getResourceAsStream("/icons/close_over.png");
