@@ -25,7 +25,6 @@ import java.util.List;
 import org.csstudio.sds.model.AbstractWidgetModel;
 import org.csstudio.sds.model.WidgetProperty;
 import org.csstudio.sds.model.properties.actions.AbstractWidgetActionModel;
-import org.csstudio.sds.model.properties.actions.CommitValueActionModel;
 import org.csstudio.sds.ui.editparts.AbstractWidgetEditPart;
 import org.csstudio.sds.ui.editparts.IWidgetPropertyChangeHandler;
 import org.csstudio.sds.ui.widgetactionhandler.WidgetActionHandlerService;
@@ -62,8 +61,12 @@ public class ImageButtonEditPart extends AbstractWidgetEditPart {
 		String serverCommandVariable = model.getServerCommandVariable();
 		String placeHolder = "var";
 		
-		if(!serverCommandVariable.equals("") && serverCommand.contains(placeHolder))
+		if(!serverCommandVariable.equals("") && serverCommand.contains(placeHolder)){
 			serverCommand = serverCommand.substring(0, serverCommand.indexOf(placeHolder)) + serverCommandVariable + serverCommand.substring(serverCommand.indexOf(placeHolder) + placeHolder.length());
+			JythonServerFacade.getInstance().runCommand(serverCommand);
+		}
+		else if(!serverCommand.equals(""))
+			JythonServerFacade.getInstance().runCommand(serverCommand);
 		
 		String id = model.getViewID();
 		
@@ -72,13 +75,17 @@ public class ImageButtonEditPart extends AbstractWidgetEditPart {
             final ImageButtonModel widget = (ImageButtonModel) getWidgetModel();
             
 			List<AbstractWidgetActionModel> actions = widget.getActionData().getWidgetActions();
-            final AbstractWidgetActionModel action = actions.get(0);
-            Display.getCurrent().asyncExec(new Runnable() {
-                @Override
-                public void run() {
-                    WidgetActionHandlerService.getInstance().performAction(widget, action);
+			if(actions.size()>0){
+				final AbstractWidgetActionModel action = actions.get(0);
+            	Display.getCurrent().asyncExec(new Runnable() {
+            		@Override
+                	public void run() {
+            		WidgetProperty property = widget.getPropertyInternal(AbstractWidgetModel.PROP_ACTIONDATA);
+					property.setManualValue("dummy");
+                	WidgetActionHandlerService.getInstance().performAction(widget, action);
                 }
-            });
+            	});
+			}
 		}
 		
 		else {
@@ -91,7 +98,7 @@ public class ImageButtonEditPart extends AbstractWidgetEditPart {
 				anv = new CameraAction(id1, id2); 
 			}
 			else
-				anv = new CameraAction(model.getViewID(), "hello world"); 
+				anv = new CameraAction(model.getViewID(), ""); 
 			anv.run();  
 		}
 	}
@@ -112,9 +119,8 @@ public class ImageButtonEditPart extends AbstractWidgetEditPart {
 			figure.addMouseListener(new MouseListener.Stub() {
 				@Override
 				public void mousePressed(MouseEvent me) {
-					if (me.button == 1) {
+					if (me.button == 1)
 						handleLeftButtonClick(me);
-					}
 				}
 			});
 

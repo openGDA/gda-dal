@@ -19,7 +19,9 @@
 package uk.ac.gda.dal.dataprovider;
 
 import gda.device.DeviceException;
+import gda.device.EnumPositionerStatus;
 import gda.device.Scannable;
+import gda.device.enumpositioner.corba.impl.EnumpositionerAdapter;
 import gda.device.scannable.ScannablePositionChangeEvent;
 import gda.device.scannable.ScannableStatus;
 import gda.factory.Findable;
@@ -111,6 +113,8 @@ public abstract class ProvideDataRunnable<T> implements ProvideRunnable<T> {
 						};
 						timer.schedule(timerTask, 100);
 					}
+					
+					readValAndUpdateListeners();
 					
 					if ((scannableBusy || timeSinceLastBusy<10000000 || firstUpdate) && scannableConnected) {
 						firstUpdate=false;

@@ -84,12 +84,14 @@ public class ComboEditPart extends AbstractWidgetEditPart {
 				menu.setLocation(x, y);
 				menu.setVisible(true);
 			}
+			
+			
 
-			while (!menu.isDisposed() && menu.isVisible())
-				if (!Display.getCurrent().readAndDispatch())
-					Display.getCurrent().sleep();
-			menu.dispose();
-			shell.getParent().setFocus();
+//			while (!menu.isDisposed() && menu.isVisible())
+//				if (!Display.getCurrent().readAndDispatch())
+//					Display.getCurrent().sleep();
+//			menu.dispose();
+//			shell.setFocus();
 		}
 	}
 
