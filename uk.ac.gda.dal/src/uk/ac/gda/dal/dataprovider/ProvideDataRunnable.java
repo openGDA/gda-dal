@@ -19,9 +19,7 @@
 package uk.ac.gda.dal.dataprovider;
 
 import gda.device.DeviceException;
-import gda.device.EnumPositionerStatus;
 import gda.device.Scannable;
-import gda.device.enumpositioner.corba.impl.EnumpositionerAdapter;
 import gda.device.scannable.ScannablePositionChangeEvent;
 import gda.device.scannable.ScannableStatus;
 import gda.factory.Findable;
