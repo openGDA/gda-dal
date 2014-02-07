@@ -1,8 +1,2 @@
-# Ignores that are common to all Eclipse GDA plugin projects
-/@dot
-/@dot.log
+/classes
 /bin
-/build.xml
-/javaCompiler...args
-
-# Ignores that are specific to this Eclipse project
