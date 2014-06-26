@@ -25,6 +25,10 @@ import org.eclipse.core.runtime.Path;
 
 /**
  * A widget that can contain multiple movable linking containers.
+ * This is a new widget that is not available in standard SDS.
+ * Each window can be opened, closed, moved just like an operating systems windowing.
+ * Each window contains a single screen which can be defined in the normal way except you need to draw a rectangle to represent the outer boundary of the window.
+ * The windows are defined in an ECMA script. I20 is a good source of examples.
  */
 public final class MoveableWindowModel extends ContainerModel {
 
