@@ -72,6 +72,7 @@ public final class LinkingContainerEditPart extends AbstractContainerEditPart {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public IFigure getContentPane() {
 		return ((LinkingContainerFigure) getFigure()).getContentsPane();
 	}
@@ -95,6 +96,7 @@ public final class LinkingContainerEditPart extends AbstractContainerEditPart {
 	@Override
 	protected void registerPropertyChangeHandlers() {
 		IWidgetPropertyChangeHandler handler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue, final IFigure figure) {
 				loadResource((IPath) newValue, (LinkingContainerFigure) figure);
@@ -184,6 +186,7 @@ public final class LinkingContainerEditPart extends AbstractContainerEditPart {
 			_figure = figure;
 		}
 
+		@Override
 		public IStatus run(final IProgressMonitor progressMonitor) {
 			IStatus status = Status.OK_STATUS;
 
@@ -272,6 +275,7 @@ public final class LinkingContainerEditPart extends AbstractContainerEditPart {
 										+ errors.get(0));
 							}
 
+							@Override
 							public void onDisplayModelLoaded() {
 								// remove old widgets
 								_container.removeWidgets(_container.getWidgets());

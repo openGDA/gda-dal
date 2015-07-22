@@ -52,10 +52,12 @@ public abstract class ProcessVariablePopupAction implements
 		_pvAdressListProviders = new ArrayList<WeakReference<IProcessVariableAdressProvider>>();
 	}
 
+	@Override
 	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
 
 	}
 
+	@Override
 	public void run(IAction action) {
 		Set<IProcessVariableAddress> pvs = new HashSet<IProcessVariableAddress>();
 
@@ -69,6 +71,7 @@ public abstract class ProcessVariablePopupAction implements
 		handlePvs(pvs);
 	}
 
+	@Override
 	public void selectionChanged(IAction action, ISelection selection) {
 		_pvAdressListProviders.clear();
 

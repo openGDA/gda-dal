@@ -33,6 +33,7 @@ public final class ScaledSliderEditPart extends AbstractMarkedWidgetEditPart {
 		slider.setHorizontal(model.isHorizontal());
 		slider.setIncrement(model.getIncrement());
 		slider.addSliderListener(new ScaledSliderFigure.IScaledSliderListener() {
+			@Override
 			public void sliderValueChanged(final double newValue) {
 				if (getExecutionMode() == ExecutionMode.RUN_MODE) {
 					model.setPropertyManualValue(ScaledSliderModel.PROP_VALUE, newValue);
@@ -78,6 +79,7 @@ public final class ScaledSliderEditPart extends AbstractMarkedWidgetEditPart {
 
 		// effect 3D
 		IWidgetPropertyChangeHandler effect3DHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure refreshableFigure) {
 				ScaledSliderFigure slider = (ScaledSliderFigure) refreshableFigure;
 				slider.setEffect3D((Boolean) newValue);
@@ -88,6 +90,7 @@ public final class ScaledSliderEditPart extends AbstractMarkedWidgetEditPart {
 
 		// horizontal
 		IWidgetPropertyChangeHandler horizontalHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure refreshableFigure) {
 				ScaledSliderFigure slider = (ScaledSliderFigure) refreshableFigure;
 				slider.setHorizontal((Boolean) newValue);
@@ -112,6 +115,7 @@ public final class ScaledSliderEditPart extends AbstractMarkedWidgetEditPart {
 		// model,
 		// which is not the case for the scaled slider
 		IWidgetPropertyChangeHandler enableHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure refreshableFigure) {
 				ScaledSliderFigure slider = (ScaledSliderFigure) refreshableFigure;
 
@@ -125,6 +129,7 @@ public final class ScaledSliderEditPart extends AbstractMarkedWidgetEditPart {
 		setPropertyChangeHandler(ScaledSliderModel.PROP_ENABLED, enableHandler);
 
 		IWidgetPropertyChangeHandler incrementHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure refreshableFigure) {
 				ScaledSliderFigure slider = (ScaledSliderFigure) refreshableFigure;
 				slider.setIncrement((Double) newValue);

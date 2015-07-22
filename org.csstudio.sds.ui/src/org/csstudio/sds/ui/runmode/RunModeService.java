@@ -51,7 +51,7 @@ import org.slf4j.LoggerFactory;
 public final class RunModeService {
     private static final Logger LOG = LoggerFactory.getLogger(RunModeService.class);
 
-	private static final String SEPARATOR = "°°°";
+	private static final String SEPARATOR = "ï¿½ï¿½ï¿½";
 
 	/**
 	 * The singleton instance.
@@ -127,6 +127,7 @@ public final class RunModeService {
 
 				// when the box is disposed, forget the box
 				runModeBox.addDisposeListener(new IRunModeDisposeListener() {
+					@Override
 					public void dispose() {
 						_activeBoxes.remove(runModeBoxInput);
 						assert !_activeBoxes.containsKey(runModeBox) : "!_activeBoxes.containsKey(runModeBox)";
@@ -248,6 +249,7 @@ public final class RunModeService {
 
 				// when the box is disposed, forget the box
 				runModeBox.addDisposeListener(new IRunModeDisposeListener() {
+					@Override
 					public void dispose() {
 						_activeBoxes.remove(runModeBoxInput);
 					}
@@ -256,6 +258,7 @@ public final class RunModeService {
 				// create a runnable that is executed, when the view is fully
 				// launched
 				Runnable runnable = new Runnable() {
+					@Override
 					public void run() {
 						// IMPORTANT: set the memento infos on the view
 						Map<String, String> mementoInfos = new HashMap<String, String>();

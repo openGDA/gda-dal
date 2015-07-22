@@ -249,6 +249,7 @@ class XYGraphTest extends Figure {
 		});
 
 		updater = new Runnable(){
+			@Override
 			public void run() {
 				 t+=60000;
 				trace3Provider.setCurrentYData(Math.cos(updateIndex), t);

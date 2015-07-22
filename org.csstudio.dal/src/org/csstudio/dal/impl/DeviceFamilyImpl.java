@@ -60,6 +60,7 @@ public class DeviceFamilyImpl<T extends AbstractDevice> extends DeviceCollection
 	 *  (non-Javadoc)
 	 * @see org.csstudio.dal.context.DeviceFamily#destroyAll()
 	 */
+	@Override
 	public void destroyAll(){
 		Object[] devArray = devices.values().toArray();
 		this.devices.clear();
@@ -71,6 +72,7 @@ public class DeviceFamilyImpl<T extends AbstractDevice> extends DeviceCollection
 	 *  (non-Javadoc)
 	 * @see org.csstudio.dal.context.DeviceFamily#destroy(org.csstudio.dal.device.AbstractDevice)
 	 */
+	@Override
 	public void destroy(T device){
 		remove(device);
 		if (!device.isDestroyed()) {
@@ -87,6 +89,7 @@ public class DeviceFamilyImpl<T extends AbstractDevice> extends DeviceCollection
 	 *  (non-Javadoc)
 	 * @see org.csstudio.dal.context.DeviceFamily#getApplicationContext()
 	 */
+	@Override
 	public AbstractApplicationContext getApplicationContext()
 	{
 		return df.getApplicationContext();
@@ -96,6 +99,7 @@ public class DeviceFamilyImpl<T extends AbstractDevice> extends DeviceCollection
 	 *  (non-Javadoc)
 	 * @see org.csstudio.dal.group.GroupDataAccessProvider#getGroupDataAccess(java.lang.Class, java.lang.Class)
 	 */
+	@Override
 	public <Tt, P extends DynamicValueProperty<?>> GroupDataAccess<Tt, P> getGroupDataAccess(
 	    Class<Tt> dataType, Class<P> propertyType)
 	{
@@ -107,6 +111,7 @@ public class DeviceFamilyImpl<T extends AbstractDevice> extends DeviceCollection
 	 *  (non-Javadoc)
 	 * @see org.csstudio.dal.group.GroupDataAccessProvider#getGroupDataAccess(java.lang.Class, java.lang.Class, org.csstudio.dal.group.PropertyGroupConstrain)
 	 */
+	@Override
 	public <Tt, P extends DynamicValueProperty<Tt>> GroupDataAccess<Tt, P> getGroupDataAccess(Class<Tt> dataType, Class<P> propertyType, PropertyGroupConstrain constrain){
 		// NOT TO BE DONE
 		throw new UnsupportedOperationException();
@@ -116,6 +121,7 @@ public class DeviceFamilyImpl<T extends AbstractDevice> extends DeviceCollection
 	 *  (non-Javadoc)
 	 * @see org.csstudio.dal.device.DeviceCollectionMap#add(null)
 	 */
+	@Override
 	public void add(T object){
 		super.add(object);
 	}

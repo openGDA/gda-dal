@@ -27,6 +27,7 @@ public class NullRule implements IRule {
 
 	public static final String ID = "rule.null";
 
+	@Override
 	public Object evaluate(final Object[] arguments) {
 		return null;
 	}

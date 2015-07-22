@@ -72,6 +72,7 @@ public class RefreshableXMeterFigure extends AbstractRoundRampedFigure {
 		add(needleCenter, XMeterLayout.NEEDLE_CENTER);
 
 		addFigureListener(new FigureListener() {
+			@Override
 			public void figureMoved(final IFigure source) {
 				ramp.setDirty(true);
 				revalidate();
@@ -172,6 +173,7 @@ public class RefreshableXMeterFigure extends AbstractRoundRampedFigure {
 		}
 
 
+		@Override
 		public void layout(final IFigure container) {
 			Rectangle area = container.getClientArea();
 			// calculate a virtual area

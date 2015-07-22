@@ -39,6 +39,7 @@ public class TabDescriptorProvider implements ITabDescriptorProvider {
 	/**
 	 *{@inheritDoc}
 	 */
+	@Override
 	public ITabDescriptor[] getTabDescriptors(final IWorkbenchPart part, final ISelection selection) {
 		// .. determine all properties that are compatible for all selected
 		// widgets
@@ -183,18 +184,22 @@ public class TabDescriptorProvider implements ITabDescriptorProvider {
 			this.sectionClass = section;
 		}
 
+		@Override
 		public String getId() {
 			return sectionId;
 		}
 
+		@Override
 		public ISection getSectionClass() {
 			return sectionClass;
 		}
 
+		@Override
 		public String getTargetTab() {
 			return targetTabId;
 		}
 
+		@Override
 		public IFilter getFilter() {
 			return new PropertyFilter(propertyId);
 		}
@@ -219,14 +224,17 @@ public class TabDescriptorProvider implements ITabDescriptorProvider {
 			setSectionDescriptors(sections);
 		}
 
+		@Override
 		public String getCategory() {
 			return "test";
 		}
 
+		@Override
 		public String getId() {
 			return widgetCategory.name();
 		}
 
+		@Override
 		public String getLabel() {
 		    if(_haveDynProperty) {
 		        return widgetCategory.getDescription()+" +";

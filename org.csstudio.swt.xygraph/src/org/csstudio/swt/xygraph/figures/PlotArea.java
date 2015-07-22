@@ -292,7 +292,8 @@ public class PlotArea extends Figure {
 
 		private SaveStateCommand command;
 
-        public void mousePressed(final MouseEvent me)
+        @Override
+		public void mousePressed(final MouseEvent me)
         {
         	fireMousePressed(me);
         	
@@ -337,7 +338,8 @@ public class PlotArea extends Figure {
         		// Start timer that will zoom while mouse button is pressed
         		Display.getCurrent().timerExec(Axis.ZOOM_SPEED, new Runnable()
         		{
-                    public void run()
+                    @Override
+					public void run()
         			{
         				if (!armed)
         				    return;
@@ -356,7 +358,8 @@ public class PlotArea extends Figure {
         	me.consume();
         }
 
-        public void mouseDoubleClicked(final MouseEvent me) { 
+        @Override
+		public void mouseDoubleClicked(final MouseEvent me) { 
         	fireMouseDoubleClicked(me);
         }
 
@@ -405,7 +408,8 @@ public class PlotArea extends Figure {
             }
 		}
 
-        public void mouseReleased(final MouseEvent me)
+        @Override
+		public void mouseReleased(final MouseEvent me)
 		{
         	fireMouseReleased(me);
             if (! armed)

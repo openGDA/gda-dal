@@ -59,6 +59,7 @@ public class CountdownLongGenerator implements ValueProvider<Long> {
 	 * (non-Javadoc)
 	 * @see org.epics.css.dal.simulation.ValueProvider#get()
 	 */
+	@Override
 	public Long get() throws DataExchangeException {
 		long result = -1;
 		
@@ -85,6 +86,7 @@ public class CountdownLongGenerator implements ValueProvider<Long> {
 	 * (non-Javadoc)
 	 * @see org.epics.css.dal.simulation.ValueProvider#set(java.lang.Object)
 	 */
+	@Override
 	public void set(Long value) throws DataExchangeException {
 		//ignore; data generator		
 	}

@@ -49,6 +49,7 @@ public class NameClassEnumeration implements NamingEnumeration<NameClassPair>
 	/*
 	 * @see javax.naming.NamingEnumeration#close()
 	 */
+	@Override
 	public void close() throws NamingException
 	{
 		data.clear();
@@ -57,6 +58,7 @@ public class NameClassEnumeration implements NamingEnumeration<NameClassPair>
 	/*
 	 * @see javax.naming.NamingEnumeration#hasMore()
 	 */
+	@Override
 	public boolean hasMore() throws NamingException
 	{
 		return hasMoreElements();
@@ -65,6 +67,7 @@ public class NameClassEnumeration implements NamingEnumeration<NameClassPair>
 	/*
 	 * @see javax.naming.NamingEnumeration#next()
 	 */
+	@Override
 	public NameClassPair next() throws NamingException
 	{
 		return nextElement();
@@ -73,6 +76,7 @@ public class NameClassEnumeration implements NamingEnumeration<NameClassPair>
 	/*
 	 * @see java.util.Enumeration#hasMoreElements()
 	 */
+	@Override
 	public boolean hasMoreElements()
 	{
 		return iterator.hasNext();
@@ -81,6 +85,7 @@ public class NameClassEnumeration implements NamingEnumeration<NameClassPair>
 	/*
 	 * @see java.util.Enumeration#nextElement()
 	 */
+	@Override
 	public NameClassPair nextElement()
 	{
 		String key = iterator.next();

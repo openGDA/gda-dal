@@ -150,6 +150,7 @@ public abstract class AbstractMarkedWidgetEditPart extends
      */
 	private void setShowHihiHandler() {
 		IWidgetPropertyChangeHandler showHihiHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue, final IFigure refreshableFigure) {
 				AbstractMarkedWidgetFigure figure = (AbstractMarkedWidgetFigure) refreshableFigure;
@@ -166,6 +167,7 @@ public abstract class AbstractMarkedWidgetEditPart extends
      */
 	private void setShowHiHandler() {
 		IWidgetPropertyChangeHandler showHiHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue, final IFigure refreshableFigure) {
 				AbstractMarkedWidgetFigure figure = (AbstractMarkedWidgetFigure) refreshableFigure;
@@ -182,6 +184,7 @@ public abstract class AbstractMarkedWidgetEditPart extends
      */
 	private void setShowLoHandler() {
 		IWidgetPropertyChangeHandler showLoHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue, final IFigure refreshableFigure) {
 				AbstractMarkedWidgetFigure figure = (AbstractMarkedWidgetFigure) refreshableFigure;
@@ -198,6 +201,7 @@ public abstract class AbstractMarkedWidgetEditPart extends
      */
 	private void setShowLoloHandler() {
 		IWidgetPropertyChangeHandler showLoloHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue, final IFigure refreshableFigure) {
 				AbstractMarkedWidgetFigure figure = (AbstractMarkedWidgetFigure) refreshableFigure;
@@ -214,6 +218,7 @@ public abstract class AbstractMarkedWidgetEditPart extends
      */
 	private void setHihiLevelHandler() {
 		IWidgetPropertyChangeHandler hihiHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue, final IFigure refreshableFigure) {
 				AbstractMarkedWidgetFigure figure = (AbstractMarkedWidgetFigure) refreshableFigure;
@@ -230,6 +235,7 @@ public abstract class AbstractMarkedWidgetEditPart extends
      */
 	private void setHiLevelHandler() {
 		IWidgetPropertyChangeHandler hiHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue, final IFigure refreshableFigure) {
 				AbstractMarkedWidgetFigure figure = (AbstractMarkedWidgetFigure) refreshableFigure;
@@ -246,6 +252,7 @@ public abstract class AbstractMarkedWidgetEditPart extends
      */
 	private void setLoLevelHandler() {
 		IWidgetPropertyChangeHandler loHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue, final IFigure refreshableFigure) {
 				AbstractMarkedWidgetFigure figure = (AbstractMarkedWidgetFigure) refreshableFigure;
@@ -263,6 +270,7 @@ public abstract class AbstractMarkedWidgetEditPart extends
 	private void setLoloLevelHandler() {
 		// LoLo Level
 		IWidgetPropertyChangeHandler loloHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue, final IFigure refreshableFigure) {
 				AbstractMarkedWidgetFigure figure = (AbstractMarkedWidgetFigure) refreshableFigure;
@@ -279,6 +287,7 @@ public abstract class AbstractMarkedWidgetEditPart extends
      */
 	private void setShowMarkersHandler() {
 		IWidgetPropertyChangeHandler showMarkersHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue, final IFigure refreshableFigure) {
 				AbstractMarkedWidgetFigure figure = (AbstractMarkedWidgetFigure) refreshableFigure;

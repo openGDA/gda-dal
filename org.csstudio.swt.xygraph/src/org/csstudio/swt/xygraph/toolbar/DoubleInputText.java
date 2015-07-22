@@ -29,10 +29,12 @@ public class DoubleInputText{
 		text = new Text(parent, style);
 		text.addFocusListener(new FocusListener(){
 
+			@Override
 			public void focusGained(FocusEvent e) {
 				previousText = text.getText();
 			}
 
+			@Override
 			public void focusLost(FocusEvent e) {
 				try{
 					double acceptedValue = Double.parseDouble(text.getText());

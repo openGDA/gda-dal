@@ -35,6 +35,7 @@ import org.csstudio.sds.model.WidgetPropertyCategory;
  * @deprecated
  * 
  */
+@Deprecated
 public final class ProcessVariableProperty extends WidgetProperty {
 
 	/**
@@ -72,6 +73,7 @@ public final class ProcessVariableProperty extends WidgetProperty {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public Class[] getCompatibleJavaTypes() {
 		return new Class[]{IProcessVariableAddress.class};

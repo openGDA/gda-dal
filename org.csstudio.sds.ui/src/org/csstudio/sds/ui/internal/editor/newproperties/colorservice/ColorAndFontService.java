@@ -85,6 +85,7 @@ public class ColorAndFontService implements IColorAndFontService {
 		return _colorAndFontSaxHandler.getStyle(styleName);
 	}
 
+	@Override
 	public Font getFont(String fontOrVariable) {
 		FontData fd = null;
 
@@ -112,6 +113,7 @@ public class ColorAndFontService implements IColorAndFontService {
 		return CustomMediaFactory.getInstance().getFont(fd);
 	}
 
+	@Override
 	public Color getColor(String hexOrVariable) {
 		assert hexOrVariable != null;
 
@@ -138,6 +140,7 @@ public class ColorAndFontService implements IColorAndFontService {
 		return CustomMediaFactory.getInstance().getColor(rgb);
 	}
 
+	@Override
 	public List<NamedColor> listAvailableColors() {
 		checkForUpdate();
 		NamedStyle selectedStyle = getSelectedStyle();
@@ -148,6 +151,7 @@ public class ColorAndFontService implements IColorAndFontService {
 		}
 	}
 
+	@Override
 	public List<NamedFont> listAvailableFonts() {
 		checkForUpdate();
 		NamedStyle selectedStyle = getSelectedStyle();
@@ -158,6 +162,7 @@ public class ColorAndFontService implements IColorAndFontService {
 		}
 	}
 
+	@Override
 	public List<NamedStyle> getStyles() {
 		checkForUpdate();
 		return _colorAndFontSaxHandler.getStyles();

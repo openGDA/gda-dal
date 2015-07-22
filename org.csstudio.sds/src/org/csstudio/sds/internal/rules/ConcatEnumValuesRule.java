@@ -27,6 +27,7 @@ import org.csstudio.sds.model.IRule;
 
 public class ConcatEnumValuesRule implements IRule {
 
+	@Override
 	public Object evaluate(final Object[] arguments) {
 		StringBuffer result = new StringBuffer();
 

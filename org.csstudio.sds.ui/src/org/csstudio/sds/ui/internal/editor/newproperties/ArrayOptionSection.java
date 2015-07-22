@@ -58,6 +58,7 @@ public class ArrayOptionSection extends AbstractBaseSection<ArrayOptionProperty>
 
 		// .. listen to changes
 		changeListener = new ISelectionChangedListener() {
+			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
 				String[] options = (String[]) optionViewer.getInput();
 				Object tmp = ((IStructuredSelection) optionViewer.getSelection()).getFirstElement();

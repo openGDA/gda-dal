@@ -87,6 +87,7 @@ public class MeterFigure extends AbstractRoundRampedFigure {
 		add(valueLabel, XMeterLayout.VALUE_LABEL);
 		
 		addFigureListener(new FigureListener() {			
+			@Override
 			public void figureMoved(IFigure source) {
 				ramp.setDirty(true);
 				revalidate();	
@@ -208,6 +209,7 @@ public class MeterFigure extends AbstractRoundRampedFigure {
 		}
 
 
+		@Override
 		public void layout(IFigure container) {
 			Rectangle area = container.getClientArea();	
 			// calculate a virtual area

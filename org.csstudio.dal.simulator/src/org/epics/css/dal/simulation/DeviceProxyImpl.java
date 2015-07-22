@@ -67,6 +67,7 @@ public class DeviceProxyImpl extends AbstractProxyImpl<SimulatorPlug> implements
 	/* (non-Javadoc)
 	 * @see org.epics.css.dal.proxy.DeviceProxy#getCommand(java.lang.String)
 	 */
+	@Override
 	public CommandProxy getCommand(String name) throws RemoteException
 	{
 		return commands.get(name);
@@ -75,6 +76,7 @@ public class DeviceProxyImpl extends AbstractProxyImpl<SimulatorPlug> implements
 	/* (non-Javadoc)
 	 * @see org.epics.css.dal.proxy.DeviceProxy#getDirectoryProxy(java.lang.String)
 	 */
+	@Override
 	public DirectoryProxy getDirectoryProxy(String name)
 		throws RemoteException
 	{
@@ -97,6 +99,7 @@ public class DeviceProxyImpl extends AbstractProxyImpl<SimulatorPlug> implements
 	/* (non-Javadoc)
 	 * @see org.epics.css.dal.proxy.DeviceProxy#getPropertyProxy(java.lang.String)
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
     public PropertyProxy<?,SimulatorPlug> getPropertyProxy(String name)
 		throws RemoteException
@@ -123,6 +126,7 @@ public class DeviceProxyImpl extends AbstractProxyImpl<SimulatorPlug> implements
 	/* (non-Javadoc)
 	 * @see org.epics.css.dal.proxy.DirectoryProxy#getCharacteristic(java.lang.String)
 	 */
+	@Override
 	public Object getCharacteristic(String characteristicName)
 		throws DataExchangeException
 	{
@@ -132,6 +136,7 @@ public class DeviceProxyImpl extends AbstractProxyImpl<SimulatorPlug> implements
 	/* (non-Javadoc)
 	 * @see org.epics.css.dal.proxy.DirectoryProxy#getCharacteristicNames()
 	 */
+	@Override
 	public String[] getCharacteristicNames() throws DataExchangeException
 	{
 		return characteristics.keySet()
@@ -141,6 +146,7 @@ public class DeviceProxyImpl extends AbstractProxyImpl<SimulatorPlug> implements
 	/* (non-Javadoc)
 	 * @see org.epics.css.dal.proxy.DirectoryProxy#getCharacteristics(java.lang.String[], org.epics.css.dal.ResponseListener)
 	 */
+	@Override
 	public Request<? extends Object> getCharacteristics(String[] characteristics,
 	    ResponseListener<? extends Object> callback) throws DataExchangeException
 	{
@@ -158,6 +164,7 @@ public class DeviceProxyImpl extends AbstractProxyImpl<SimulatorPlug> implements
 	/* (non-Javadoc)
 	 * @see org.epics.css.dal.proxy.DirectoryProxy#getCommandNames()
 	 */
+	@Override
 	public String[] getCommandNames() throws DataExchangeException
 	{
 		return commands.keySet().toArray(new String[commands.size()]);
@@ -166,6 +173,7 @@ public class DeviceProxyImpl extends AbstractProxyImpl<SimulatorPlug> implements
 	/* (non-Javadoc)
 	 * @see org.epics.css.dal.proxy.DirectoryProxy#getPropertyNames()
 	 */
+	@Override
 	public String[] getPropertyNames()
 	{
 		return propertyTypes.keySet().toArray(new String[propertyTypes.size()]);
@@ -174,11 +182,13 @@ public class DeviceProxyImpl extends AbstractProxyImpl<SimulatorPlug> implements
 	/* (non-Javadoc)
 	 * @see org.epics.css.dal.proxy.DirectoryProxy#getPropertyType(String)
 	 */
+	@Override
 	public Class<?extends SimpleProperty<?>> getPropertyType(String propertyName)
 	{
 		return propertyTypes.get(propertyName);
 	}
 
+	@Override
 	public void destroy ()
 	{
 		if (connectionStateMachine.isConnected()) {
@@ -212,6 +222,7 @@ public class DeviceProxyImpl extends AbstractProxyImpl<SimulatorPlug> implements
 		setConnectionState(ConnectionState.DESTROYED);
 	}
 
+	@Override
 	public void refresh()
 	{
 		// Override in order to clean up cached values.

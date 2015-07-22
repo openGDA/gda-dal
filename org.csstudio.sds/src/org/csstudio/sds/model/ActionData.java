@@ -120,7 +120,8 @@ public final class ActionData {
 		_actions.add(index, newModel);
 	}
     
-    public ActionData clone() {
+    @Override
+	public ActionData clone() {
     	ActionData result = new ActionData();
     	for (AbstractWidgetActionModel model : _actions) {
     		result.addAction(model.makeCopy());

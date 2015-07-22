@@ -81,6 +81,7 @@ public abstract class AbstractPropertyFactory extends AbstractFactorySupport imp
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.spi.PropertyFactory#getProperty(java.lang.String)
 	 */
+	@Override
 	public DynamicValueProperty<?> getProperty(String uniqueName)throws InstantiationException, RemoteException{
 		return createProperty(uniqueName, null, null);
 	}
@@ -88,6 +89,7 @@ public abstract class AbstractPropertyFactory extends AbstractFactorySupport imp
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.spi.PropertyFactory#getProperty(org.csstudio.dal.context.RemoteInfo)
 	 */
+	@Override
 	public DynamicValueProperty<?> getProperty(RemoteInfo ri) throws InstantiationException, RemoteException{
 		String plugType = ri.getPlugType();
 		return createProperty(ri.getRemoteName(), null, null);
@@ -159,6 +161,7 @@ public abstract class AbstractPropertyFactory extends AbstractFactorySupport imp
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.spi.PropertyFactory#getProperty(java.lang.String, java.lang.Class, org.csstudio.dal.context.LinkListener)
 	 */
+	@Override
 	public <P extends DynamicValueProperty<?>> P getProperty(String uniqueName, Class<P> type, LinkListener<?> l) throws InstantiationException, RemoteException{
 		if (type == null)
 			throw new IllegalArgumentException("type may not be null");
@@ -168,6 +171,7 @@ public abstract class AbstractPropertyFactory extends AbstractFactorySupport imp
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.spi.PropertyFactory#getProperty(org.csstudio.dal.context.RemoteInfo, java.lang.Class, org.csstudio.dal.context.LinkListener)
 	 */
+	@Override
 	public <P extends DynamicValueProperty<?>> P getProperty(RemoteInfo ri, Class<P> type, LinkListener<?> l) throws InstantiationException, RemoteException{
 		return getProperty(ri.getRemoteName(), type, l);
 	}
@@ -175,6 +179,7 @@ public abstract class AbstractPropertyFactory extends AbstractFactorySupport imp
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.spi.PropertyFactory#asyncLinkProperty(org.csstudio.dal.context.RemoteInfo, org.csstudio.dal.context.LinkListener)
 	 */
+	@Override
 	public RemoteInfo asyncLinkProperty(RemoteInfo name, Class<?extends DynamicValueProperty<?>> type, LinkListener<?> l) throws InstantiationException, RemoteException{
 		String uid= name.getRemoteName()+type;
 		DynamicValuePropertyImpl<?> property = null;
@@ -238,6 +243,7 @@ public abstract class AbstractPropertyFactory extends AbstractFactorySupport imp
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.spi.PropertyFactory#asyncLinkProperty(java.lang.String, org.csstudio.dal.context.LinkListener)
 	 */
+	@Override
 	public RemoteInfo asyncLinkProperty(String name, Class<?extends DynamicValueProperty<?>> type, LinkListener<?> l) throws InstantiationException, RemoteException{
 		try {
 			return asyncLinkProperty(getPlugInstance().createRemoteInfo(name),
@@ -251,6 +257,7 @@ public abstract class AbstractPropertyFactory extends AbstractFactorySupport imp
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.spi.PropertyFactory#getPropertyFamily()
 	 */
+	@Override
 	public PropertyFamily getPropertyFamily(){
 		return family;
 	}
@@ -298,6 +305,7 @@ public abstract class AbstractPropertyFactory extends AbstractFactorySupport imp
 		}
 	}
 
+	@Override
 	protected void destroyAll(){
 		family.destroyAll();
 	}

@@ -40,6 +40,7 @@ public class ConnectionAdapter<C extends Connectable> extends LinkAdapter<C> imp
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.ConnectionListener#connecting(org.csstudio.dal.context.ConnectionEvent)
 	 */
+	@Override
 	public void connecting(ConnectionEvent<C> e){
 		// override in necessary
 	}
@@ -47,6 +48,7 @@ public class ConnectionAdapter<C extends Connectable> extends LinkAdapter<C> imp
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.ConnectionListener#disconnecting(org.csstudio.dal.context.ConnectionEvent)
 	 */
+	@Override
 	public void disconnecting(ConnectionEvent<C> e){
 		// override in necessary
 	}
@@ -54,6 +56,7 @@ public class ConnectionAdapter<C extends Connectable> extends LinkAdapter<C> imp
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.ConnectionListener#destroyed(org.csstudio.dal.context.ConnectionEvent)
 	 */
+	@Override
 	public void destroyed(ConnectionEvent<C> e){
 		// override in necessary
 	}
@@ -61,6 +64,7 @@ public class ConnectionAdapter<C extends Connectable> extends LinkAdapter<C> imp
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.ConnectionListener#connectionFailed(org.csstudio.dal.context.ConnectionEvent)
 	 */
+	@Override
 	public void connectionFailed(ConnectionEvent<C> e){
 		// override in necessary
 	}
@@ -68,6 +72,7 @@ public class ConnectionAdapter<C extends Connectable> extends LinkAdapter<C> imp
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.ConnectionListener#initialState(org.csstudio.dal.context.ConnectionEvent)
 	 */
+	@Override
 	public void initialState(ConnectionEvent<C> e){
 		// override in necessary
 	}
@@ -75,6 +80,7 @@ public class ConnectionAdapter<C extends Connectable> extends LinkAdapter<C> imp
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.ConnectionListener#ready(org.csstudio.dal.context.ConnectionEvent)
 	 */
+	@Override
 	public void ready(ConnectionEvent<C> e){
 		// override in necessary
 	}

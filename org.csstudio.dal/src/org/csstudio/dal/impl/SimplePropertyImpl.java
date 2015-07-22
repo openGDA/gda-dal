@@ -98,6 +98,7 @@ public abstract class SimplePropertyImpl<T> extends DataAccessImpl<T>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.SimpleProperty#getAccessTypes()
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public Class<? extends DataAccess<?>>[] getAccessTypes()
 	{
@@ -122,6 +123,7 @@ public abstract class SimplePropertyImpl<T> extends DataAccessImpl<T>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.SimpleProperty#getCondition()
 	 */
+	@Override
 	public DynamicValueCondition getCondition()
 	{
 		if (condition == null && proxy == null) throw new IllegalStateException("Proxy is null");
@@ -131,6 +133,7 @@ public abstract class SimplePropertyImpl<T> extends DataAccessImpl<T>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.SimpleProperty#getDataAccess(java.lang.Class)
 	 */
+	@Override
 	public <D extends DataAccess<?>> D getDataAccess(Class<D> type)
 		throws IllegalViewException
 	{
@@ -156,6 +159,7 @@ public abstract class SimplePropertyImpl<T> extends DataAccessImpl<T>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.SimpleProperty#getDefaultDataAccess()
 	 */
+	@Override
 	public DataAccess<T> getDefaultDataAccess()
 	{
 		return this;
@@ -164,6 +168,7 @@ public abstract class SimplePropertyImpl<T> extends DataAccessImpl<T>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.SimpleProperty#getDescription()
 	 */
+	@Override
 	public String getDescription() throws DataExchangeException
 	{
 		if (directoryProxy == null || !directoryProxy.getConnectionState().isConnected())
@@ -175,6 +180,7 @@ public abstract class SimplePropertyImpl<T> extends DataAccessImpl<T>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.SimpleProperty#getUniqueName()
 	 */
+	@Override
 	public String getUniqueName()
 	{
 		if (proxy == null) throw new IllegalStateException("Proxy is null");
@@ -184,6 +190,7 @@ public abstract class SimplePropertyImpl<T> extends DataAccessImpl<T>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.SimpleProperty#isTimelag()
 	 */
+	@Override
 	public boolean isTimelag()
 	{
 		if (condition != null) {
@@ -198,6 +205,7 @@ public abstract class SimplePropertyImpl<T> extends DataAccessImpl<T>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.SimpleProperty#isTimeout()
 	 */
+	@Override
 	public boolean isTimeout()
 	{
 		if (condition != null) {
@@ -212,6 +220,7 @@ public abstract class SimplePropertyImpl<T> extends DataAccessImpl<T>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.CharacteristicContext#addPropertyChangeListener(java.beans.PropertyChangeListener)
 	 */
+	@Override
 	public void addPropertyChangeListener(PropertyChangeListener l)
 	{
 		propertyListener.add(l);
@@ -220,6 +229,7 @@ public abstract class SimplePropertyImpl<T> extends DataAccessImpl<T>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.CharacteristicContext#getCharacteristic(java.lang.String)
 	 */
+	@Override
 	public Object getCharacteristic(String name) throws DataExchangeException
 	{
 		if (directoryProxy == null || !directoryProxy.getConnectionState().isConnected())
@@ -230,6 +240,7 @@ public abstract class SimplePropertyImpl<T> extends DataAccessImpl<T>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.CharacteristicContext#getCharacteristicNames()
 	 */
+	@Override
 	public String[] getCharacteristicNames() throws DataExchangeException
 	{
 		if (directoryProxy == null || !directoryProxy.getConnectionState().isConnected())
@@ -240,6 +251,7 @@ public abstract class SimplePropertyImpl<T> extends DataAccessImpl<T>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.CharacteristicContext#getCharacteristics(java.lang.String[])
 	 */
+	@Override
 	public Map<String,Object> getCharacteristics(String[] names) throws DataExchangeException
 	{
 		if (directoryProxy == null || !directoryProxy.getConnectionState().isConnected())
@@ -267,6 +279,7 @@ public abstract class SimplePropertyImpl<T> extends DataAccessImpl<T>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.CharacteristicContext#getPropertyChangeListeners()
 	 */
+	@Override
 	public PropertyChangeListener[] getPropertyChangeListeners()
 	{
 		return (PropertyChangeListener[])propertyListener.toArray();
@@ -275,6 +288,7 @@ public abstract class SimplePropertyImpl<T> extends DataAccessImpl<T>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.CharacteristicContext#removePropertyChangeListener(java.beans.PropertyChangeListener)
 	 */
+	@Override
 	public void removePropertyChangeListener(PropertyChangeListener l)
 	{
 		propertyListener.remove(l);
@@ -283,6 +297,7 @@ public abstract class SimplePropertyImpl<T> extends DataAccessImpl<T>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.ValueUpdateable#createNewMonitor(org.csstudio.dal.DynamicValueListener)
 	 */
+	@Override
 	public <E extends SimpleProperty<T>> DynamicValueMonitor createNewMonitor(DynamicValueListener<T, E> listener)
 		throws RemoteException
 	{
@@ -302,6 +317,7 @@ public abstract class SimplePropertyImpl<T> extends DataAccessImpl<T>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.ValueUpdateable#getDefaultMonitor()
 	 */
+	@Override
 	public synchronized DynamicValueMonitor getDefaultMonitor()
 	{
 		if (defaultMonitor == null && proxy!=null && proxy.getConnectionState().isConnected()) {
@@ -328,6 +344,7 @@ public abstract class SimplePropertyImpl<T> extends DataAccessImpl<T>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.DataAccess#addDynamicValueListener(org.csstudio.dal.DynamicValueListener)
 	 */
+	@Override
 	public <P extends SimpleProperty<T>> void addDynamicValueListener(DynamicValueListener<T, P> l)
 	{
 		super.addDynamicValueListener(l);
@@ -350,6 +367,7 @@ public abstract class SimplePropertyImpl<T> extends DataAccessImpl<T>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.DataAccess#removeDynamicValueListener(org.csstudio.dal.DynamicValueListener)
 	 */
+	@Override
 	public <P extends SimpleProperty<T>> void removeDynamicValueListener(DynamicValueListener<T, P> l)
 	{
 		super.removeDynamicValueListener(l);
@@ -358,6 +376,7 @@ public abstract class SimplePropertyImpl<T> extends DataAccessImpl<T>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.ValueUpdateable#getLatestValueChangeTimestamp()
 	 */
+	@Override
 	public Timestamp getLatestValueChangeTimestamp()
 	{
 		return lastValueChangeTimestamp;
@@ -366,6 +385,7 @@ public abstract class SimplePropertyImpl<T> extends DataAccessImpl<T>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.ValueUpdateable#getLatestValueSuccess()
 	 */
+	@Override
 	public boolean getLatestValueSuccess()
 	{
 		return lastValueSuccess;
@@ -374,6 +394,7 @@ public abstract class SimplePropertyImpl<T> extends DataAccessImpl<T>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.ValueUpdateable#getLatestValueUpdateTimestamp()
 	 */
+	@Override
 	public Timestamp getLatestValueUpdateTimestamp()
 	{
 		return lastValueUpdateTimestamp;
@@ -404,6 +425,7 @@ public abstract class SimplePropertyImpl<T> extends DataAccessImpl<T>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.SimpleProperty#getName()
 	 */
+	@Override
 	public String getName()
 	{
 		if (name == null) {
@@ -417,6 +439,7 @@ public abstract class SimplePropertyImpl<T> extends DataAccessImpl<T>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.Identifiable#getIdentifier()
 	 */
+	@Override
 	public Identifier getIdentifier()
 	{
 		if (identifier == null) {
@@ -429,6 +452,7 @@ public abstract class SimplePropertyImpl<T> extends DataAccessImpl<T>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.Identifiable#isDebug()
 	 */
+	@Override
 	public boolean isDebug()
 	{
 		if (proxy == null) throw new IllegalStateException("Proxy is null");
@@ -493,6 +517,7 @@ public abstract class SimplePropertyImpl<T> extends DataAccessImpl<T>
 		return tmp;
 	}
 	
+	@Override
 	public ChannelListener[] getListeners() {
 		return getChListeners().getChannelListeners();
 	}
@@ -508,14 +533,17 @@ public abstract class SimplePropertyImpl<T> extends DataAccessImpl<T>
 		return chListeners;
 	}
 	
+	@Override
 	public void addListener(ChannelListener listener) {
 		getChListeners().addChannelListener(listener);
 	}
 	
+	@Override
 	public void removeListener(ChannelListener listener) {
 		getChListeners().removeChannelListener(listener);
 	}
 	
+	@Override
 	public DynamicValueMonitor[] getMonitors() {
 		synchronized (monitors) {
 			return monitors.toArray(new DynamicValueMonitor[monitors.size()]);

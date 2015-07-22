@@ -25,7 +25,7 @@ import org.eclipse.swt.widgets.Control;
 /**
  * Cell editor implementation that uses a combo box.
  * 
- * The editor displays a set of {@link IOption}´s. When one of the options is
+ * The editor displays a set of {@link IOption}ï¿½s. When one of the options is
  * chosen, the identifier of that option (see {@link IOption#getIdentifier()})
  * is returned as selected value for this cell editor.
  * 
@@ -73,17 +73,20 @@ public class OptionComboBoxCellEditor extends CellEditor {
 
 		_combobox.addKeyListener(new KeyAdapter() {
             // hook key pressed - see PR 14201  
-            public void keyPressed(KeyEvent e) {
+            @Override
+			public void keyPressed(KeyEvent e) {
                 keyReleaseOccured(e);
             }
         });
         
 		_combobox.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetDefaultSelected(SelectionEvent event) {
 				applyEditorValueAndDeactivate();
 			}
 			
-            public void widgetSelected(SelectionEvent event) {
+            @Override
+			public void widgetSelected(SelectionEvent event) {
             	ISelection sel = _viewer.getSelection();
             	
             	if(sel instanceof IStructuredSelection) {
@@ -94,6 +97,7 @@ public class OptionComboBoxCellEditor extends CellEditor {
 		});
 
 		_combobox.addTraverseListener(new TraverseListener() {
+			@Override
 			public void keyTraversed(TraverseEvent e) {
 				if (e.detail == SWT.TRAVERSE_ESCAPE
 						|| e.detail == SWT.TRAVERSE_RETURN) {
@@ -103,6 +107,7 @@ public class OptionComboBoxCellEditor extends CellEditor {
 		});
 
 		_combobox.addFocusListener(new FocusAdapter() {
+			@Override
 			public void focusLost(FocusEvent e) {
 				OptionComboBoxCellEditor.this.focusLost();
 			}
@@ -157,6 +162,7 @@ public class OptionComboBoxCellEditor extends CellEditor {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected void focusLost() {
 		if (isActivated()) {
 			applyEditorValueAndDeactivate();
@@ -166,6 +172,7 @@ public class OptionComboBoxCellEditor extends CellEditor {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected void keyReleaseOccured(KeyEvent keyEvent) {
 		if (keyEvent.character == '\u001b') { // Escape character
 			fireCancelEditor();

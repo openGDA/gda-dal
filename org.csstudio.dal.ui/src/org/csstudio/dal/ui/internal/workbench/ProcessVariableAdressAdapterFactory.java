@@ -31,6 +31,7 @@ public class ProcessVariableAdressAdapterFactory implements IAdapterFactory {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Object getAdapter(final Object adaptableObject,
 			final Class adapterType) {
 		assert adaptableObject != null;
@@ -47,6 +48,7 @@ public class ProcessVariableAdressAdapterFactory implements IAdapterFactory {
 	}
 
 
+	@Override
 	public Class[] getAdapterList() {
 		return new Class[] { IWorkbenchAdapter.class };
 	}

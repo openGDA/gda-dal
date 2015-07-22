@@ -130,6 +130,7 @@ public final class Timestamp implements Comparable<Timestamp>
 	/* (non-Javadoc)
 	 * @see java.lang.Comparable#compareTo(T)
 	 */
+	@Override
 	public int compareTo(Timestamp o)
 	{
 		if (o instanceof Timestamp) {

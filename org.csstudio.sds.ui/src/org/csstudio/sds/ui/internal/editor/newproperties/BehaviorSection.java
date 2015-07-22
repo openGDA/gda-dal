@@ -61,6 +61,7 @@ public class BehaviorSection extends AbstractBaseSection<BehaviorProperty> {
 
 		// .. listen to changes
 		changeListener = new ISelectionChangedListener() {
+			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
 				IBehaviorDescription behaviorDescription = (IBehaviorDescription) ((IStructuredSelection) optionViewer
 						.getSelection()).getFirstElement();

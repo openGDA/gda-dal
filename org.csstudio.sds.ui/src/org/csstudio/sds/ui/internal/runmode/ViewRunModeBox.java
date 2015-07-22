@@ -73,6 +73,7 @@ public final class ViewRunModeBox extends AbstractRunModeBox implements
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected void handleWindowPositionChange(int x, int y, int width,
 			int height) {
 	}
@@ -141,6 +142,7 @@ public final class ViewRunModeBox extends AbstractRunModeBox implements
 	 * {@inheritDoc}
 	 */
 
+	@Override
 	protected void doDispose() {
 		if (_viewPart != null) {
 			 _viewPart.getViewSite().getPage().removePartListener(this);
@@ -194,35 +196,43 @@ public final class ViewRunModeBox extends AbstractRunModeBox implements
 		return _viewPart;
 	}
 
+	@Override
 	public void partActivated(IWorkbenchPartReference partRef) {
 
 	}
 
+	@Override
 	public void partBroughtToTop(IWorkbenchPartReference partRef) {
 
 	}
 
+	@Override
 	public void partClosed(IWorkbenchPartReference partRef) {
 		if (partRef.getPart(false) == _viewPart) {
 			dispose();
 		}
 	}
 
+	@Override
 	public void partDeactivated(IWorkbenchPartReference partRef) {
 
 	}
 
+	@Override
 	public void partHidden(IWorkbenchPartReference partRef) {
 	}
 
+	@Override
 	public void partInputChanged(IWorkbenchPartReference partRef) {
 
 	}
 
+	@Override
 	public void partOpened(IWorkbenchPartReference partRef) {
 
 	}
 
+	@Override
 	public void partVisible(IWorkbenchPartReference partRef) {
 
 	}
@@ -230,6 +240,7 @@ public final class ViewRunModeBox extends AbstractRunModeBox implements
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void perspectiveChanged(IWorkbenchPage page,
 			IPerspectiveDescriptor perspective,
 			IWorkbenchPartReference partRef, String changeId) {
@@ -283,11 +294,13 @@ public final class ViewRunModeBox extends AbstractRunModeBox implements
 		}
 	}
 
+	@Override
 	public void perspectiveActivated(IWorkbenchPage page,
 			IPerspectiveDescriptor perspective) {
 
 	}
 
+	@Override
 	public void perspectiveChanged(IWorkbenchPage page,
 			IPerspectiveDescriptor perspective, String changeId) {
 

@@ -47,18 +47,21 @@ public final class ColorPropertyPersistenceHandler extends AbstractPropertyPersi
 	 * XML attribute name <code>red</code>.
 	 * @deprecated keep only for compatibility reasons
 	 */
+	@Deprecated
 	public static final String XML_ATTRIBUTE_RED = "red"; //$NON-NLS-1$
 
 	/**
 	 * XML attribute name <code>green</code>.
 	 * @deprecated keep only for compatibility reasons
 	 */
+	@Deprecated
 	public static final String XML_ATTRIBUTE_GREEN = "green"; //$NON-NLS-1$
 
 	/**
 	 * XML attribute name <code>blue</code>.
 	 * @deprecated keep only for compatibility reasons
 	 */
+	@Deprecated
 	public static final String XML_ATTRIBUTE_BLUE = "blue"; //$NON-NLS-1$	
 
 	/**

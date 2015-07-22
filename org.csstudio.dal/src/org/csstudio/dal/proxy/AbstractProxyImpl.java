@@ -47,6 +47,7 @@ public abstract class AbstractProxyImpl<P extends AbstractPlug> implements Proxy
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.Identifiable#getIdentifier()
 	 */
+	@Override
 	public Identifier getIdentifier(){
 		if (identifier == null)
 			identifier = IdentifierUtilities.createIdentifier(this);
@@ -57,6 +58,7 @@ public abstract class AbstractProxyImpl<P extends AbstractPlug> implements Proxy
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.Identifiable#isDebug()
 	 */
+	@Override
 	public boolean isDebug(){
 		return debug;
 	}
@@ -70,6 +72,7 @@ public abstract class AbstractProxyImpl<P extends AbstractPlug> implements Proxy
 		this.plug = plug;
 	}
 	
+	@Override
 	public P getPlug() {
 		return plug;
 	}
@@ -77,6 +80,7 @@ public abstract class AbstractProxyImpl<P extends AbstractPlug> implements Proxy
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.proxy.Proxy#getUniqueName()
 	 */
+	@Override
 	public String getUniqueName(){
 		return name;
 	}
@@ -84,12 +88,14 @@ public abstract class AbstractProxyImpl<P extends AbstractPlug> implements Proxy
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.proxy.Proxy#destroy()
 	 */
+	@Override
 	public void destroy(){
 	}
 
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.proxy.Proxy#addProxyListener(org.csstudio.dal.proxy.ProxyListener)
 	 */
+	@Override
 	public void addProxyListener(ProxyListener<?> l){
 		if (proxyListeners == null)
 			proxyListeners = new ListenerList(ProxyListener.class);
@@ -105,6 +111,7 @@ public abstract class AbstractProxyImpl<P extends AbstractPlug> implements Proxy
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.proxy.Proxy#removeProxyListener(org.csstudio.dal.proxy.ProxyListener)
 	 */
+	@Override
 	public void removeProxyListener(ProxyListener<?> l){
 		if (proxyListeners != null)
 			proxyListeners.remove(l);
@@ -113,6 +120,7 @@ public abstract class AbstractProxyImpl<P extends AbstractPlug> implements Proxy
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.proxy.Proxy#getConnectionState()
 	 */
+	@Override
 	public ConnectionState getConnectionState(){
 		return connectionStateMachine.getConnectionState();
 	}
@@ -167,6 +175,7 @@ public abstract class AbstractProxyImpl<P extends AbstractPlug> implements Proxy
 		}
 	}
 	
+	@Override
 	public String getConnectionInfo() {
 		if (connectionInfo == null) {
 			if (connectionStateMachine.isConnected()) {

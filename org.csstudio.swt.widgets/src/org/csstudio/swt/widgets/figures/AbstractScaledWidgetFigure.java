@@ -48,6 +48,7 @@ public abstract class AbstractScaledWidgetFigure extends Figure implements Intro
 	
 	protected String valueLabelFormat = ""; //$NON-NLS-1$
 	
+	@Override
 	public BeanInfo getBeanInfo() throws IntrospectionException {
 		return new ScaleWidgetIntrospector().getBeanInfo(this.getClass());
 	}
@@ -163,6 +164,7 @@ public abstract class AbstractScaledWidgetFigure extends Figure implements Intro
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void paintFigure(final Graphics graphics) {		
 		if (!transparent) {
 			graphics.setBackgroundColor(this.getBackgroundColor());

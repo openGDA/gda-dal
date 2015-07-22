@@ -45,13 +45,13 @@ import org.slf4j.LoggerFactory;
  * needed to use a certain application layer that accesses process variables.
  * 
  * A connector can be used for one-time-action, e.g. getting or setting a
- * process variable´s value as well for permanent-action which means to register
+ * process variableï¿½s value as well for permanent-action which means to register
  * listeners for updates of process variables values.
  * 
  * For convenience the {@link IProcessVariableValueListener}s are only weakly
  * referenced. The connector tracks for {@link IProcessVariableValueListener}s
  * that have been garbage collected and removes those references from its
- * internal list. This way {@link IProcessVariableValueListener}s don´t have to
+ * internal list. This way {@link IProcessVariableValueListener}s donï¿½t have to
  * be removed from the connector explicitly.
  * 
  * @author Sven Wende, Xihui Chen
@@ -124,6 +124,7 @@ public abstract class AbstractConnector implements IConnector, IProcessVariableA
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public synchronized void init() {
 		if (!initialized) {
 			try {
@@ -138,6 +139,7 @@ public abstract class AbstractConnector implements IConnector, IProcessVariableA
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public final int getListenerCount() {
 		return _weakListenerReferences.size();
 	}
@@ -145,6 +147,7 @@ public abstract class AbstractConnector implements IConnector, IProcessVariableA
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public final ConnectionState getLatestConnectionState() {
 		return _latestConnectionState;
 	}
@@ -152,6 +155,7 @@ public abstract class AbstractConnector implements IConnector, IProcessVariableA
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public final Object getLatestValue() {
 		return _latestValue;
 	}
@@ -159,6 +163,7 @@ public abstract class AbstractConnector implements IConnector, IProcessVariableA
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public final String getLatestError() {
 		return _latestError;
 	}
@@ -265,6 +270,7 @@ public abstract class AbstractConnector implements IConnector, IProcessVariableA
 	 * 
 	 * @return true, if this connector can be disposed, false otherwise
 	 */
+	@Override
 	public final boolean isDisposable() {
 		// perform a cleanup first
 		// cleanupWeakReferences();
@@ -276,6 +282,7 @@ public abstract class AbstractConnector implements IConnector, IProcessVariableA
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public final IProcessVariableAddress getProcessVariableAddress() {
 		return _processVariableAddress;
 	}
@@ -283,6 +290,7 @@ public abstract class AbstractConnector implements IConnector, IProcessVariableA
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public final ValueType getValueType() {
 		return _valueType;
 	}
@@ -319,6 +327,7 @@ public abstract class AbstractConnector implements IConnector, IProcessVariableA
 	/**
 	 *{@inheritDoc}
 	 */
+	@Override
 	public void forceDispose() {
 		_weakListenerReferences.clear();
 		dispose();
@@ -555,10 +564,12 @@ public abstract class AbstractConnector implements IConnector, IProcessVariableA
 			_latestConnectionState = connectionState;
 
 			execute(new IInternalRunnable() {
+				@Override
 				public void doRun(IProcessVariableValueListener valueListener, String characteristicId) {
 					valueListener.connectionStateChanged(connectionState);
 				}
 
+				@Override
 				public void doRun(IProcessVariableValueListener valueListener) {
 					valueListener.connectionStateChanged(connectionState);
 				}
@@ -578,11 +589,13 @@ public abstract class AbstractConnector implements IConnector, IProcessVariableA
 		if (value != null) {
 
 			execute(new IInternalRunnable() {
+				@Override
 				public void doRun(IProcessVariableValueListener valueListener, String characteristicId) {
 					// nothing to do - this is for "normal" value listeners only
 
 				}
 
+				@Override
 				public void doRun(IProcessVariableValueListener valueListener) {
 					try {
 						valueListener.valueChanged(ConverterUtil.convert(value, _valueType), timestamp);
@@ -613,6 +626,7 @@ public abstract class AbstractConnector implements IConnector, IProcessVariableA
 
 			// forward the value
 			execute(new IInternalRunnable() {
+				@Override
 				public void doRun(IProcessVariableValueListener valueListener, String cId) {
 					// forward the value only, if the current listener is
 					// registered for the same characteristic id
@@ -621,6 +635,7 @@ public abstract class AbstractConnector implements IConnector, IProcessVariableA
 					}
 				}
 
+				@Override
 				public void doRun(IProcessVariableValueListener valueListener) {
 					// do not forward the value because these listeners are not
 					// registered for a characteristic
@@ -638,10 +653,12 @@ public abstract class AbstractConnector implements IConnector, IProcessVariableA
 	 */
 	protected final void doForwardError(final String error) {
 		execute(new IInternalRunnable() {
+			@Override
 			public void doRun(IProcessVariableValueListener valueListener, String characteristicId) {
 				valueListener.errorOccured(error);
 			}
 
+			@Override
 			public void doRun(IProcessVariableValueListener valueListener) {
 				valueListener.errorOccured(error);
 			}
@@ -743,6 +760,7 @@ public abstract class AbstractConnector implements IConnector, IProcessVariableA
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public List<IProcessVariableAddress> getProcessVariableAdresses() {
 		return Collections.singletonList(_processVariableAddress);
 	}
@@ -750,6 +768,7 @@ public abstract class AbstractConnector implements IConnector, IProcessVariableA
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public IProcessVariableAddress getPVAdress() {
 		return _processVariableAddress;
 	}

@@ -63,18 +63,22 @@ public class InstallDefaultSettingsAction extends Action implements ICheatSheetA
 
     private static final Logger LOG = LoggerFactory.getLogger(InstallDefaultSettingsAction.class);
 	
+	@Override
 	public void run(String[] params, ICheatSheetManager manager) {
 		run(null);
 	}
 
+	@Override
 	public void dispose() {
 
 	}
 
+	@Override
 	public void init(IWorkbenchWindow window) {
 
 	}
 
+	@Override
 	public void run(IAction action) {
 		final IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 
@@ -173,6 +177,7 @@ public class InstallDefaultSettingsAction extends Action implements ICheatSheetA
 		}
 	}
 
+	@Override
 	public void selectionChanged(IAction action, ISelection selection) {
 
 	}

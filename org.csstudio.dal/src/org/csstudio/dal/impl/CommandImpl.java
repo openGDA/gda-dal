@@ -54,6 +54,7 @@ public class CommandImpl implements Command
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.commands.Command#getName()
 	 */
+	@Override
 	public String getName()
 	{
 		return proxy.getName();
@@ -62,6 +63,7 @@ public class CommandImpl implements Command
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.commands.Command#execute(java.lang.Object...)
 	 */
+	@Override
 	public Object execute(Object... parameters) throws RemoteException
 	{
 		return proxy.execute(parameters);
@@ -70,6 +72,7 @@ public class CommandImpl implements Command
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.commands.Command#getParameterTypes()
 	 */
+	@Override
 	public Class[] getParameterTypes()
 	{
 		return proxy.getParameterTypes();
@@ -78,6 +81,7 @@ public class CommandImpl implements Command
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.commands.Command#getOwner()
 	 */
+	@Override
 	public CommandContext getOwner()
 	{
 		return owner;
@@ -86,11 +90,13 @@ public class CommandImpl implements Command
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.commands.Command#getReturnedType()
 	 */
+	@Override
 	public Class getReturnedType()
 	{
 		return proxy.getReturnedType();
 	}
 
+	@Override
 	public boolean isAsynchronous()
 	{
 		return false;

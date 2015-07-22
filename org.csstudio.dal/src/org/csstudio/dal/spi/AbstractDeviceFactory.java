@@ -85,6 +85,7 @@ public abstract class AbstractDeviceFactory extends AbstractFactorySupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.spi.DeviceFactory#getDevice(java.lang.String)
 	 */
+	@Override
 	public AbstractDevice getDevice(String uniqueName)
 		throws InstantiationException, RemoteException
 	{
@@ -94,6 +95,7 @@ public abstract class AbstractDeviceFactory extends AbstractFactorySupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.spi.DeviceFactory#getDevice(org.csstudio.dal.context.RemoteInfo)
 	 */
+	@Override
 	public AbstractDevice getDevice(RemoteInfo ri)
 		throws InstantiationException, RemoteException
 	{
@@ -103,6 +105,7 @@ public abstract class AbstractDeviceFactory extends AbstractFactorySupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.spi.DeviceFactory#getDevice(java.lang.String, java.lang.Class, org.csstudio.dal.context.LinkListener)
 	 */
+	@Override
 	public <D extends AbstractDevice> D getDevice(String uniqueName,
 	    Class<D> type, LinkListener<? extends Linkable> l)
 		throws InstantiationException, RemoteException
@@ -216,6 +219,7 @@ public abstract class AbstractDeviceFactory extends AbstractFactorySupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.spi.DeviceFactory#getDevice(org.csstudio.dal.context.RemoteInfo, java.lang.Class, org.csstudio.dal.context.LinkListener)
 	 */
+	@Override
 	public <D extends AbstractDevice> D getDevice(RemoteInfo ri, Class<D> type,
 	    LinkListener<?> l) throws InstantiationException, RemoteException
 	{
@@ -225,6 +229,7 @@ public abstract class AbstractDeviceFactory extends AbstractFactorySupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.spi.DeviceFactory#asyncLinkDevice(org.csstudio.dal.context.RemoteInfo, org.csstudio.dal.context.LinkListener)
 	 */
+	@Override
 	public RemoteInfo asyncLinkDevice(RemoteInfo name,
 	    Class<?extends AbstractDevice> type, LinkListener<?> l)
 		throws InstantiationException, RemoteException
@@ -267,6 +272,7 @@ public abstract class AbstractDeviceFactory extends AbstractFactorySupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.spi.DeviceFactory#asyncLinkDevice(java.lang.String, org.csstudio.dal.context.LinkListener)
 	 */
+	@Override
 	public RemoteInfo asyncLinkDevice(String name,
 	    Class<?extends AbstractDevice> type, LinkListener<?> l)
 		throws InstantiationException, RemoteException
@@ -283,6 +289,7 @@ public abstract class AbstractDeviceFactory extends AbstractFactorySupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.spi.DeviceFactory#getDeviceFamily()
 	 */
+	@Override
 	public DeviceFamily getDeviceFamily()
 	{
 		return family;
@@ -291,6 +298,7 @@ public abstract class AbstractDeviceFactory extends AbstractFactorySupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.spi.DeviceFactory#reconnectDevice(org.csstudio.dal.device.AbstractDevice)
 	 */
+	@Override
 	public void reconnectDevice(AbstractDevice device)
 		throws ConnectionException
 	{
@@ -320,6 +328,7 @@ public abstract class AbstractDeviceFactory extends AbstractFactorySupport
 		    (AbstractDeviceImpl)device);
 	}
 
+	@Override
 	protected void destroyAll()
 	{
 		family.destroyAll();

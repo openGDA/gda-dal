@@ -178,6 +178,7 @@ public final class RefreshableBargraphFigure extends RectangleFigure implements
 		this.refreshConstraints();
 		// listen to figure movement events
 		addFigureListener(new FigureListener() {
+			@Override
 			public void figureMoved(final IFigure source) {
 				refreshConstraints();
 			}
@@ -823,6 +824,7 @@ public final class RefreshableBargraphFigure extends RectangleFigure implements
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public Object getAdapter(final Class adapter) {
 		if (adapter == IBorderEquippedWidget.class) {
@@ -1021,6 +1023,7 @@ public final class RefreshableBargraphFigure extends RectangleFigure implements
 			}
 			// listen to figure movement events
 			addFigureListener(new FigureListener() {
+				@Override
 				public void figureMoved(final IFigure source) {
 					refreshConstraints();
 				}
@@ -1174,6 +1177,7 @@ public final class RefreshableBargraphFigure extends RectangleFigure implements
 			this.add(_textLabel);
 			this.refreshConstraints();
 			addFigureListener(new FigureListener() {
+				@Override
 				public void figureMoved(final IFigure source) {
 					refreshConstraints();
 				}
@@ -1435,6 +1439,7 @@ public final class RefreshableBargraphFigure extends RectangleFigure implements
 			this.refreshConstraints();
 			// listen to figure movement events
 			addFigureListener(new FigureListener() {
+				@Override
 				public void figureMoved(final IFigure source) {
 					refreshConstraints();
 				}
@@ -1766,6 +1771,7 @@ public final class RefreshableBargraphFigure extends RectangleFigure implements
 				this.add(_textLabel);
 				refreshConstraints();
 				addFigureListener(new FigureListener() {
+					@Override
 					public void figureMoved(final IFigure source) {
 						refreshConstraints();
 					}

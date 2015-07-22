@@ -9,6 +9,7 @@ import org.csstudio.platform.simpledal.IConnector;
 
 enum SortDirection {
 	BY_CONTROL_SYTEM(new Comparator<IConnector>() {
+		@Override
 		public int compare(IConnector s1, IConnector s2) {
 			String t1 = s1.getProcessVariableAddress().getControlSystem() != null ? s1
 					.getProcessVariableAddress().getControlSystem()
@@ -23,6 +24,7 @@ enum SortDirection {
 	}),
 
 	BY_NAME((new Comparator<IConnector>() {
+		@Override
 		public int compare(IConnector s1, IConnector s2) {
 			String t1 = s1.getProcessVariableAddress().getProperty() != null ? s1
 					.getProcessVariableAddress().getProperty()
@@ -35,6 +37,7 @@ enum SortDirection {
 	})),
 
 	BY_CONNECTION_STATE((new Comparator<IConnector>() {
+		@Override
 		public int compare(IConnector s1, IConnector s2) {
 			String t1 = s1.getLatestConnectionState() != null ? s1
 					.getLatestConnectionState().toString() : "";
@@ -45,6 +48,7 @@ enum SortDirection {
 	})),
 
 	BY_TYPE((new Comparator<IConnector>() {
+		@Override
 		public int compare(IConnector s1, IConnector s2) {
 			String t1 = s1.getValueType() != null ? s1.getValueType()
 					.toString() : "";
@@ -55,6 +59,7 @@ enum SortDirection {
 	})),
 
 	BY_VALUE((new Comparator<IConnector>() {
+		@Override
 		public int compare(IConnector s1, IConnector s2) {
 			String t1 = s1.getLatestValue() != null ? s1.getLatestValue()
 					.toString() : "";
@@ -65,6 +70,7 @@ enum SortDirection {
 	})),
 
 	BY_NR_OF_LISTENERS((new Comparator<IConnector>() {
+		@Override
 		public int compare(IConnector s1, IConnector s2) {
 			int t1 = s1.getListenerCount();
 			int t2 = s2.getListenerCount();
@@ -73,6 +79,7 @@ enum SortDirection {
 	})),
 
 	BY_ERROR((new Comparator<IConnector>() {
+		@Override
 		public int compare(IConnector s1, IConnector s2) {
 			String t1 = s1.getLatestError() != null ? s1.getLatestError()
 					: "";

@@ -147,6 +147,7 @@ public final class UndoablePropertySheetEntry extends PropertySheetEntry {
 	void setCommandStack(final CommandStack stack) {
 		this._stack = stack;
 		_commandStackListener = new CommandStackListener() {
+			@Override
 			public void commandStackChanged(final EventObject e) {
 				refreshFromRoot();
 			}

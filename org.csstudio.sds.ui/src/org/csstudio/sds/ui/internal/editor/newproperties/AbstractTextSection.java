@@ -174,6 +174,7 @@ public abstract class AbstractTextSection<E extends WidgetProperty, V> extends
 		ContentProposalAdapter adapter = new ContentProposalAdapter(
 				textControl, new TextContentAdapter(),
 				new IContentProposalProvider() {
+					@Override
 					public IContentProposal[] getProposals(final String contents,
 							final int position) {
 						List<IContentProposal> proposals = getContentProposals(

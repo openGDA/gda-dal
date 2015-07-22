@@ -112,6 +112,7 @@ public class CircularBufferDataProvider extends AbstractDataProvider{
 		super(chronological);
 		traceData = new CircularBuffer<ISample>(100);
 		fireUpdate = new Runnable(){
+			@Override
 			public void run() {
 				for(IDataProviderListener listener : listeners){
 					listener.dataChanged(CircularBufferDataProvider.this);

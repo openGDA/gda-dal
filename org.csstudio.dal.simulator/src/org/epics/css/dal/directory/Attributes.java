@@ -68,6 +68,7 @@ public class Attributes implements javax.naming.directory.Attributes
 	/* (non-Javadoc)
 	 * @see javax.naming.directory.Attributes#isCaseIgnored()
 	 */
+	@Override
 	public boolean isCaseIgnored()
 	{
 		return false;
@@ -76,6 +77,7 @@ public class Attributes implements javax.naming.directory.Attributes
 	/* (non-Javadoc)
 	 * @see javax.naming.directory.Attributes#size()
 	 */
+	@Override
 	public int size()
 	{
 		return elements.size();
@@ -84,6 +86,7 @@ public class Attributes implements javax.naming.directory.Attributes
 	/* (non-Javadoc)
 	 * @see javax.naming.directory.Attributes#get(java.lang.String)
 	 */
+	@Override
 	public Attribute get(String attrID)
 	{
 		Object o = elements.get(attrID);
@@ -105,31 +108,37 @@ public class Attributes implements javax.naming.directory.Attributes
 	/* (non-Javadoc)
 	 * @see javax.naming.directory.Attributes#getAll()
 	 */
+	@Override
 	public NamingEnumeration<?extends Attribute> getAll()
 	{
 		return new NamingEnumeration<Attribute>() {
 				Iterator<String> it = elements.keySet().iterator();
 
+				@Override
 				public Attribute nextElement()
 				{
 					return get(it.next());
 				}
 
+				@Override
 				public boolean hasMoreElements()
 				{
 					return it.hasNext();
 				}
 
+				@Override
 				public void close() throws NamingException
 				{
 					it = null;
 				}
 
+				@Override
 				public boolean hasMore() throws NamingException
 				{
 					return it.hasNext();
 				}
 
+				@Override
 				public Attribute next() throws NamingException
 				{
 					return get(it.next());
@@ -140,31 +149,37 @@ public class Attributes implements javax.naming.directory.Attributes
 	/* (non-Javadoc)
 	 * @see javax.naming.directory.Attributes#getIDs()
 	 */
+	@Override
 	public NamingEnumeration<String> getIDs()
 	{
 		return new NamingEnumeration<String>() {
 				Iterator<String> it = elements.keySet().iterator();
 
+				@Override
 				public String nextElement()
 				{
 					return it.next();
 				}
 
+				@Override
 				public boolean hasMoreElements()
 				{
 					return it.hasNext();
 				}
 
+				@Override
 				public void close() throws NamingException
 				{
 					it = null;
 				}
 
+				@Override
 				public boolean hasMore() throws NamingException
 				{
 					return it.hasNext();
 				}
 
+				@Override
 				public String next() throws NamingException
 				{
 					return it.next();
@@ -175,6 +190,7 @@ public class Attributes implements javax.naming.directory.Attributes
 	/* (non-Javadoc)
 	 * @see javax.naming.directory.Attributes#put(java.lang.String, java.lang.Object)
 	 */
+	@Override
 	public Attribute put(String attrID, Object val)
 	{
 		Attribute a = get(attrID);
@@ -194,6 +210,7 @@ public class Attributes implements javax.naming.directory.Attributes
 	/* (non-Javadoc)
 	 * @see javax.naming.directory.Attributes#put(javax.naming.directory.Attribute)
 	 */
+	@Override
 	public Attribute put(Attribute attr)
 	{
 		Attribute a = get(attr.getID());
@@ -205,6 +222,7 @@ public class Attributes implements javax.naming.directory.Attributes
 	/* (non-Javadoc)
 	 * @see javax.naming.directory.Attributes#remove(java.lang.String)
 	 */
+	@Override
 	public Attribute remove(String attrID)
 	{
 		Attribute a = get(attrID);

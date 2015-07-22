@@ -56,6 +56,7 @@ public class IdentifierImpl implements Identifier
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.Identifier#getLongQualifiedName()
 	 */
+	@Override
 	public String getLongQualifiedName()
 	{
 		return longName;
@@ -64,6 +65,7 @@ public class IdentifierImpl implements Identifier
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.Identifier#getName()
 	 */
+	@Override
 	public String getName()
 	{
 		return name;
@@ -72,6 +74,7 @@ public class IdentifierImpl implements Identifier
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.Identifier#getType()
 	 */
+	@Override
 	public Type getType()
 	{
 		return type;
@@ -80,6 +83,7 @@ public class IdentifierImpl implements Identifier
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.Identifier#getUniqueName()
 	 */
+	@Override
 	public String getUniqueName()
 	{
 		return uniqueName;

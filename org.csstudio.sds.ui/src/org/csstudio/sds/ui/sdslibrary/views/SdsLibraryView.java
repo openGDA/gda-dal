@@ -70,6 +70,7 @@ public class SdsLibraryView extends ViewPart {
 	 * This is a callback that will allow us to create the viewer and initialize
 	 * it.
 	 */
+	@Override
 	public void createPartControl(final Composite parent) {
 		parent.setLayout(new FillLayout());
 
@@ -120,10 +121,12 @@ public class SdsLibraryView extends ViewPart {
 		dragSource.setDragSourceEffect(effect);
 		dragSource.addDragListener(new DragSourceAdapter() {
 
+			@Override
 			public void dragStart(DragSourceEvent event) {
 				event.doit = libraryPanel.getSelectedFile() != null;
 			}
 
+			@Override
 			public void dragSetData(DragSourceEvent event) {
 				DisplayModel model = new DisplayModel();
 				FileInputStream fip;

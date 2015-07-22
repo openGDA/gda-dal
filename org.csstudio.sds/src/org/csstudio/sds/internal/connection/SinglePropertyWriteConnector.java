@@ -25,6 +25,7 @@ public class SinglePropertyWriteConnector implements IPropertyChangeListener {
 		this.broker = broker;
 	}
 
+	@Override
 	public void propertyManualValueChanged(String propertyId, Object manualValue) {
 		ControlSystemEnum controlSystem = pv.getControlSystem();
 		String responsibleDalPlugId = controlSystem.getResponsibleDalPlugId();
@@ -51,19 +52,23 @@ public class SinglePropertyWriteConnector implements IPropertyChangeListener {
 
 	private void setBrokerValue(ConnectionParameters connectionParameters, Object manualValue) throws Exception{
 		broker.setValueAsync(connectionParameters, manualValue, new ResponseListener<Object>() {
+			@Override
 			public void responseError(ResponseEvent event) {
 				LOG.error("Could not set value for ["+pv.toString()+"].");
 			}
+			@Override
 			public void responseReceived(ResponseEvent event) {
 				LOG.info("Value for ["+pv.toString()+"] was set.");
 			}
 		});
 	}
 	
+	@Override
 	public void dynamicsDescriptorChanged(DynamicsDescriptor dynamicsDescriptor) {
 
 	}
 
+	@Override
 	public void propertyValueChanged(Object oldValue, Object newValue) {
 
 	}

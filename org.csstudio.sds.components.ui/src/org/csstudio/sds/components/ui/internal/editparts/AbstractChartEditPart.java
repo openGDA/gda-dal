@@ -94,6 +94,7 @@ abstract class AbstractChartEditPart extends AbstractWidgetEditPart {
 	 */
 	private void registerLabelChangeHandler() {
 		IWidgetPropertyChangeHandler labelHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue,
 					final IFigure refreshableFigure) {
 				AbstractChartFigure figure = (AbstractChartFigure) refreshableFigure;
@@ -133,6 +134,7 @@ abstract class AbstractChartEditPart extends AbstractWidgetEditPart {
      */
     private void setPropYAxisLabelHandler() {
         IWidgetPropertyChangeHandler yAxisLabelHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue,
 					final IFigure refreshableFigure) {
 				AbstractChartFigure figure = (AbstractChartFigure) refreshableFigure;
@@ -149,6 +151,7 @@ abstract class AbstractChartEditPart extends AbstractWidgetEditPart {
     private void setPropXAxisScalingHandler() {
         // x-axis label
 		IWidgetPropertyChangeHandler xAxisLabelHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue,
 					final IFigure refreshableFigure) {
 				AbstractChartFigure figure = (AbstractChartFigure) refreshableFigure;
@@ -164,6 +167,7 @@ abstract class AbstractChartEditPart extends AbstractWidgetEditPart {
      */
     private void setPropYAxisScalingHandler() {
         IWidgetPropertyChangeHandler yAxisScalingHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue,
 					final IFigure refreshableFigure) {
 				AbstractChartFigure figure = (AbstractChartFigure) refreshableFigure;
@@ -179,6 +183,7 @@ abstract class AbstractChartEditPart extends AbstractWidgetEditPart {
      */
     private void setPropShowAxesHandler() {
         IWidgetPropertyChangeHandler scaleHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -195,6 +200,7 @@ abstract class AbstractChartEditPart extends AbstractWidgetEditPart {
      */
     private void setPropShowGridLinesHandler() {
         IWidgetPropertyChangeHandler ledgerLinesHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -211,6 +217,7 @@ abstract class AbstractChartEditPart extends AbstractWidgetEditPart {
      */
     private void setPropLabeledTicksHandler() {
         IWidgetPropertyChangeHandler showValuesHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -227,6 +234,7 @@ abstract class AbstractChartEditPart extends AbstractWidgetEditPart {
     private void setPropAutoScaleHandler() {
         IWidgetPropertyChangeHandler handler;
         handler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -243,7 +251,8 @@ abstract class AbstractChartEditPart extends AbstractWidgetEditPart {
     private void setPropMaxHandler() {
         IWidgetPropertyChangeHandler handler;
         handler = new IWidgetPropertyChangeHandler() {
-            public boolean handleChange(final Object oldValue,
+            @Override
+			public boolean handleChange(final Object oldValue,
                                         final Object newValue,
                                         final IFigure refreshableFigure) {
                 AbstractChartFigure figure = (AbstractChartFigure) refreshableFigure;
@@ -258,6 +267,7 @@ abstract class AbstractChartEditPart extends AbstractWidgetEditPart {
     private void setPropMinHandler() {
         IWidgetPropertyChangeHandler handler;
         handler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -278,6 +288,7 @@ abstract class AbstractChartEditPart extends AbstractWidgetEditPart {
 		setPropTransparentHandler();
 		// border width and style
 		IWidgetPropertyChangeHandler borderHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -310,6 +321,7 @@ abstract class AbstractChartEditPart extends AbstractWidgetEditPart {
      */
     private void setDataPointDrawingStyleHandler() {
         IWidgetPropertyChangeHandler drawingStyleHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue,
 					final IFigure refreshableFigure) {
 				AbstractChartFigure figure = (AbstractChartFigure) refreshableFigure;
@@ -325,6 +337,7 @@ abstract class AbstractChartEditPart extends AbstractWidgetEditPart {
      */
     private void setPropTransparentHandler() {
         IWidgetPropertyChangeHandler transparentHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -341,6 +354,7 @@ abstract class AbstractChartEditPart extends AbstractWidgetEditPart {
      */
     private void setPropLineWidthHandler() {
         IWidgetPropertyChangeHandler lineWidthHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -357,6 +371,7 @@ abstract class AbstractChartEditPart extends AbstractWidgetEditPart {
      */
     private void setPropLineChartHandler() {
         IWidgetPropertyChangeHandler connectionLinesHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {

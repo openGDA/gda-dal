@@ -18,6 +18,7 @@ abstract class AbstractDragSourceListener<E> extends
 		super(viewer, transfer);
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
 	public final void dragSetData(DragSourceEvent event) {
 		List<AbstractEditPart> controllers = getViewer().getSelectedEditParts();

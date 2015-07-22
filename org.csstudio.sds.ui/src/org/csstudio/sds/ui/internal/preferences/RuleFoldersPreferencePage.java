@@ -23,6 +23,7 @@ public class RuleFoldersPreferencePage extends FieldEditorPreferencePage
 		return SdsUiPlugin.getCorePreferenceStore();
 	}
 
+	@Override
 	public void init(IWorkbench workbench) {
 		// nothing to do
 	}

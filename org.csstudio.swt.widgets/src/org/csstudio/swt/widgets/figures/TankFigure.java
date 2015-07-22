@@ -255,6 +255,7 @@ public class TankFigure extends AbstractLinearMarkedFigure {
 			return d;
 		}
 		
+		@Override
 		public void layout(IFigure container) {
 			Rectangle area = container.getClientArea();		
 			area.height-=1;

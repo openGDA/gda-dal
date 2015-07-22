@@ -83,6 +83,7 @@ public final class DisplayEditPart extends AbstractContainerEditPart {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected void createEditPolicies() {
 		super.createEditPolicies();
 
@@ -96,6 +97,7 @@ public final class DisplayEditPart extends AbstractContainerEditPart {
 	@Override
 	protected void registerPropertyChangeHandlers() {
 		IWidgetPropertyChangeHandler boundsHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
 				if (figure instanceof LayeredWidgetPane) {
 					((LayeredWidgetPane) figure).setBorderBounds(getCastedModel().getWidth(), getCastedModel().getHeight());
@@ -107,6 +109,7 @@ public final class DisplayEditPart extends AbstractContainerEditPart {
 		setPropertyChangeHandler(DisplayModel.PROP_HEIGHT, boundsHandler);
 
 		IWidgetPropertyChangeHandler displayBorderHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
 				if (figure instanceof LayeredWidgetPane) {
 					((LayeredWidgetPane) figure).setShowBorder((Boolean) newValue);

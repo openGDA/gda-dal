@@ -61,6 +61,7 @@ public class RandomNoiseValueProvider<T> implements ValueProvider<T>
 	/* (non-Javadoc)
 	 * @see org.epics.css.dal.simulation.ValueProvider#get()
 	 */
+	@Override
 	public T get() throws DataExchangeException
 	{
 		boolean positive = Math.random() > 0.5;
@@ -86,6 +87,7 @@ public class RandomNoiseValueProvider<T> implements ValueProvider<T>
 	/* (non-Javadoc)
 	 * @see org.epics.css.dal.simulation.ValueProvider#set(T)
 	 */
+	@Override
 	public void set(T value) throws DataExchangeException
 	{
 		if (dval != null) {

@@ -38,6 +38,7 @@ public class LongSeqDataAccessWrapper extends AbstractDataAccessWrapper<long[]>
 		super(long[].class, sourceDA);
 	}
 
+	@Override
 	protected int getConversion()
 	{
 		if (valClass.equals(long[].class)) {
@@ -86,6 +87,7 @@ public class LongSeqDataAccessWrapper extends AbstractDataAccessWrapper<long[]>
 		return null;
 	}
 	
+	@Override
 	public int getSequenceLength() throws DataExchangeException {
 		return ((SequenceAccess<?>)sourceDA).getSequenceLength();
 	}

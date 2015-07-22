@@ -76,6 +76,7 @@ public final class BargraphEditPart extends AbstractWidgetEditPart {
 	protected void registerPropertyChangeHandlers() {
 		// fill
 		IWidgetPropertyChangeHandler fillHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -87,6 +88,7 @@ public final class BargraphEditPart extends AbstractWidgetEditPart {
 		setPropertyChangeHandler(BargraphModel.PROP_FILL, fillHandler);
 		// orientation
 		IWidgetPropertyChangeHandler orientationHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -103,6 +105,7 @@ public final class BargraphEditPart extends AbstractWidgetEditPart {
 		this.registerLevelPropertyChangeHandler();
 		// Show_value
 		IWidgetPropertyChangeHandler showValuesHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -115,6 +118,7 @@ public final class BargraphEditPart extends AbstractWidgetEditPart {
 				showValuesHandler);
 		// Show_marks
 		IWidgetPropertyChangeHandler showMarksHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -127,6 +131,7 @@ public final class BargraphEditPart extends AbstractWidgetEditPart {
 				showMarksHandler);
 		// Show_scale
 		IWidgetPropertyChangeHandler showScaleHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -139,6 +144,7 @@ public final class BargraphEditPart extends AbstractWidgetEditPart {
 				showScaleHandler);
 		// Scale_count
 		IWidgetPropertyChangeHandler scaleCountHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -152,6 +158,7 @@ public final class BargraphEditPart extends AbstractWidgetEditPart {
 		
 		// Transparent background
 		IWidgetPropertyChangeHandler transparentHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -164,6 +171,7 @@ public final class BargraphEditPart extends AbstractWidgetEditPart {
 		
 		// Value Representation
 		IWidgetPropertyChangeHandler valueRepresentationHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -198,6 +206,7 @@ public final class BargraphEditPart extends AbstractWidgetEditPart {
 		
 		
 		IWidgetPropertyChangeHandler borderHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -215,6 +224,7 @@ public final class BargraphEditPart extends AbstractWidgetEditPart {
 	 */
 	private void registerLevelPropertyChangeHandler() {
 		IWidgetPropertyChangeHandler minimumHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -226,6 +236,7 @@ public final class BargraphEditPart extends AbstractWidgetEditPart {
 		setPropertyChangeHandler(BargraphModel.PROP_MIN, minimumHandler);
 		
 		IWidgetPropertyChangeHandler loloHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -237,6 +248,7 @@ public final class BargraphEditPart extends AbstractWidgetEditPart {
 		};
 		setPropertyChangeHandler(BargraphModel.PROP_LOLO_LEVEL, loloHandler);
 		IWidgetPropertyChangeHandler loHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -247,6 +259,7 @@ public final class BargraphEditPart extends AbstractWidgetEditPart {
 		};
 		setPropertyChangeHandler(BargraphModel.PROP_LO_LEVEL, loHandler);
 		IWidgetPropertyChangeHandler hiHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -257,6 +270,7 @@ public final class BargraphEditPart extends AbstractWidgetEditPart {
 		};
 		setPropertyChangeHandler(BargraphModel.PROP_HI_LEVEL, hiHandler);
 		IWidgetPropertyChangeHandler hihiHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -267,6 +281,7 @@ public final class BargraphEditPart extends AbstractWidgetEditPart {
 		};
 		setPropertyChangeHandler(BargraphModel.PROP_HIHI_LEVEL, hihiHandler);
 		IWidgetPropertyChangeHandler maximumHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {

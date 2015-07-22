@@ -243,6 +243,7 @@ public final class RefreshableLabelFigure extends Shape implements IAdaptable, I
 	 * Sets the value for the text.
 	 * @param newval The value for the text
 	 */
+	@Override
 	public void setTextValue(final String newval) {
 		_textValue=newval;
 	}
@@ -250,6 +251,7 @@ public final class RefreshableLabelFigure extends Shape implements IAdaptable, I
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public Object getAdapter(final Class adapter) {
 		if (adapter == IBorderEquippedWidget.class) {

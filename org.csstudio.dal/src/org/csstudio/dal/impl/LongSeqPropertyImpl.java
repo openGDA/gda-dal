@@ -68,6 +68,7 @@ public class LongSeqPropertyImpl extends NumericPropertyImpl<long[],Long>
 	 *  (non-Javadoc)
 	 * @see org.csstudio.dal.SequenceAccess#getSequenceLength()
 	 */
+	@Override
 	public int getSequenceLength() throws DataExchangeException
 	{
 		if (!chInitialized)

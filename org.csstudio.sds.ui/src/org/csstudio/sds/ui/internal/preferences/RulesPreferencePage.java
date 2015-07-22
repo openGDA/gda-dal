@@ -26,7 +26,8 @@ public class RulesPreferencePage extends PreferencePage implements
      * 
      * {@inheritDoc}
      */
-    public void init(final IWorkbench workbench) {
+    @Override
+	public void init(final IWorkbench workbench) {
         // nothing to do here
     }
 }

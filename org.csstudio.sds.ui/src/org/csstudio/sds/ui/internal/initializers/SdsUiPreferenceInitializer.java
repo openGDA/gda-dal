@@ -35,6 +35,7 @@ import org.eclipse.core.runtime.preferences.IEclipsePreferences;
  * @deprecated is never called!!!
  * 			The values are set in the {@link SdsPlugin}
  */
+@Deprecated
 public final class SdsUiPreferenceInitializer extends AbstractPreferenceInitializer {
 
 	/**

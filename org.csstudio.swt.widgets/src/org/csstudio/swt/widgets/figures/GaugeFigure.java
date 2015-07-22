@@ -86,6 +86,7 @@ public class GaugeFigure extends AbstractRoundRampedFigure {
 		add(needle, GaugeLayout.NEEDLE);
 		add(needleCenter, GaugeLayout.NEEDLE_CENTER);		
 		addFigureListener(new FigureListener() {			
+			@Override
 			public void figureMoved(IFigure source) {
 				ramp.setDirty(true);
 				revalidate();	
@@ -292,6 +293,7 @@ public class GaugeFigure extends AbstractRoundRampedFigure {
 		}
 
 
+		@Override
 		public void layout(IFigure container) {
 			Rectangle area = container.getClientArea();
 			

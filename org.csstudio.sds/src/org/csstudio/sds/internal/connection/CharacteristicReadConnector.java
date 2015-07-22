@@ -17,6 +17,7 @@ public class CharacteristicReadConnector implements PropertyChangeListener {
 		this.characteristic = characteristic;
 	}
 
+	@Override
 	public void propertyChange(PropertyChangeEvent event) {
 		if (characteristic.equalsIgnoreCase(event.getPropertyName()))
 			channelInputProcessor.valueChanged(event.getNewValue());

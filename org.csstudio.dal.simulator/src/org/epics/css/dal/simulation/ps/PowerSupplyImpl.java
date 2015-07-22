@@ -76,6 +76,7 @@ public class PowerSupplyImpl extends AbstractDeviceImpl implements PowerSupply
 	 * (non-Javadoc)
 	 * @see org.epics.css.dal.impl.AbstractDeviceImpl#initialize(org.epics.css.dal.proxy.DeviceProxy, org.epics.css.dal.proxy.DirectoryProxy)
 	 */
+	@Override
 	public void initialize(DeviceProxy devp, DirectoryProxy dirp)
 	{
 		super.initialize(devp, dirp);
@@ -121,6 +122,7 @@ public class PowerSupplyImpl extends AbstractDeviceImpl implements PowerSupply
 	 * (non-Javadoc)
 	 * @see org.epics.css.dal.device.PowerSupply#getCurrent()
 	 */
+	@Override
 	public DoubleProperty getCurrent()
 	{
 		return (DoubleProperty)getProperty("current");
@@ -130,6 +132,7 @@ public class PowerSupplyImpl extends AbstractDeviceImpl implements PowerSupply
 	 * (non-Javadoc)
 	 * @see org.epics.css.dal.device.PowerSupply#getReadback()
 	 */
+	@Override
 	public DoubleProperty getReadback()
 	{
 		return (DoubleProperty)getProperty("readback");
@@ -139,6 +142,7 @@ public class PowerSupplyImpl extends AbstractDeviceImpl implements PowerSupply
 	 * (non-Javadoc)
 	 * @see org.epics.css.dal.device.PowerSupply#getStatus()
 	 */
+	@Override
 	public PatternProperty getStatus()
 	{
 		return (PatternProperty)getProperty("status");
@@ -148,6 +152,7 @@ public class PowerSupplyImpl extends AbstractDeviceImpl implements PowerSupply
 	 * (non-Javadoc)
 	 * @see org.epics.css.dal.impl.AbstractDeviceImpl#createProperty(java.lang.String)
 	 */
+	@Override
 	protected DynamicValueProperty<?> createProperty(String name)
 		throws RemoteException, IllegalAccessException, InstantiationException,
 			InvocationTargetException, NoSuchMethodException
@@ -201,6 +206,7 @@ public class PowerSupplyImpl extends AbstractDeviceImpl implements PowerSupply
 	 * (non-Javadoc)
 	 * @see org.epics.css.dal.device.PowerSupply#off()
 	 */
+	@Override
 	public void off() throws RemoteException
 	{
 		getCommand("turnOff").execute();
@@ -210,6 +216,7 @@ public class PowerSupplyImpl extends AbstractDeviceImpl implements PowerSupply
 	 * (non-Javadoc)
 	 * @see org.epics.css.dal.device.PowerSupply#on()
 	 */
+	@Override
 	public void on() throws RemoteException
 	{
 		getCommand("turnOn").execute();

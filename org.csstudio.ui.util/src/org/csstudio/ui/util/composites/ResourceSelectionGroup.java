@@ -106,6 +106,7 @@ public final class ResourceSelectionGroup extends Composite {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void run() {
 			final IResource resource = ResourcesPlugin.getWorkspace().getRoot().findMember(getFullPath());
 			final StringBuffer buffer = new StringBuffer(Messages.CreateFolderAction_DIALOG_MESSAGE);
@@ -159,6 +160,7 @@ public final class ResourceSelectionGroup extends Composite {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void run() {
 			InputDialog inputDialog = new InputDialog(_shell, Messages.CreateProjectAction_DIALOG_TITLE,
 					Messages.CreateProjectAction_DIALOG_MESSAGE, "", null); //$NON-NLS-1$ //$NON-NLS-2$
@@ -424,6 +426,7 @@ public final class ResourceSelectionGroup extends Composite {
 		_treeViewer.setUseHashlookup(true);
 		_treeViewer
 				.addSelectionChangedListener(new ISelectionChangedListener() {
+					@Override
 					public void selectionChanged(
 							final SelectionChangedEvent event) {
 						IStructuredSelection selection = (IStructuredSelection) event
@@ -436,6 +439,7 @@ public final class ResourceSelectionGroup extends Composite {
 					}
 				});
 		_treeViewer.addDoubleClickListener(new IDoubleClickListener() {
+			@Override
 			public void doubleClick(final DoubleClickEvent event) {
 				ISelection selection = event.getSelection();
 				if (selection instanceof IStructuredSelection) {
@@ -514,6 +518,7 @@ public final class ResourceSelectionGroup extends Composite {
 	 */
 	private void refreshTree() {
 		_treeViewer.getTree().getDisplay().asyncExec(new Runnable() {
+			@Override
 			public void run() {
 				_treeViewer.refresh();
 			}

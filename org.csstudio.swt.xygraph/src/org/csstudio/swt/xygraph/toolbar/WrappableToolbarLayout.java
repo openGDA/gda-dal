@@ -63,6 +63,7 @@ public class WrappableToolbarLayout extends AbstractLayout {
 		}		
 	}
 
+	@Override
 	public void layout(IFigure container) {
 		Rectangle clientArea = container.getClientArea();
 		int w = 0;

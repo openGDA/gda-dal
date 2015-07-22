@@ -50,6 +50,7 @@ public interface IPropertySource2 extends IPropertySource {
 	 */
 	boolean isPropertyResettable(Object id);
 
+	@Override
 	/**
 	 * <code>IPropertySource2</code> overrides the specification of this
 	 * <code>IPropertySource</code> method to return <code>true</code>

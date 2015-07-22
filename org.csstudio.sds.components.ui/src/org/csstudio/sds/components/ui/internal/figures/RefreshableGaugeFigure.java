@@ -77,6 +77,7 @@ public class RefreshableGaugeFigure extends AbstractRoundRampedFigure {
 		add(needle, GaugeLayout.NEEDLE);
 		add(needleCenter, GaugeLayout.NEEDLE_CENTER);
 		addFigureListener(new FigureListener() {
+			@Override
 			public void figureMoved(final IFigure source) {
 				ramp.setDirty(true);
 				revalidate();
@@ -264,6 +265,7 @@ public class RefreshableGaugeFigure extends AbstractRoundRampedFigure {
 		}
 
 
+		@Override
 		public void layout(final IFigure container) {
 			Rectangle area = container.getClientArea();
 

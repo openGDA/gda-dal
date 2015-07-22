@@ -47,10 +47,12 @@ public class XYGraphConfigCommand implements IUndoableCommand {
 		}
 	}
 
+	@Override
 	public void redo() {
 		restoreXYGraphPropsFromMemento(xyGraph, afterXYGraphMem);
 	}
 
+	@Override
 	public void undo() {
 		restoreXYGraphPropsFromMemento(xyGraph, previousXYGraphMem);
 	}

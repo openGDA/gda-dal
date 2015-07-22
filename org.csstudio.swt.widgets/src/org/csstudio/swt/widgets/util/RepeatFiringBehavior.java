@@ -68,6 +68,7 @@ public class RepeatFiringBehavior
 class Task 
 	extends TimerTask {
 	
+	@Override
 	public void run() {
 		display.syncExec(runTask);
 	}

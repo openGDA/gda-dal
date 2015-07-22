@@ -56,10 +56,12 @@ public class PropertyCollectionMap<T extends DynamicValueProperty<?>>
 			this.it=it;
 		}
 		
+		@Override
 		public boolean hasNext() {
 			return (elements!=null && elements.length>i) || it.hasNext();
 		}
 		
+		@Override
 		public Tt next() {
 			if (elements!=null) {
 				if (i<elements.length) {
@@ -74,6 +76,7 @@ public class PropertyCollectionMap<T extends DynamicValueProperty<?>>
 			i=0;
 			return next();
 		}
+		@Override
 		public void remove() {
 			throw new UnsupportedOperationException();
 		}
@@ -99,6 +102,7 @@ public class PropertyCollectionMap<T extends DynamicValueProperty<?>>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.PropertyCollection#size()
 	 */
+	@Override
 	public int size()
 	{
 		return size;
@@ -107,6 +111,7 @@ public class PropertyCollectionMap<T extends DynamicValueProperty<?>>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.PropertyCollection#isEmpty()
 	 */
+	@Override
 	public boolean isEmpty()
 	{
 		return properties.isEmpty();
@@ -115,6 +120,7 @@ public class PropertyCollectionMap<T extends DynamicValueProperty<?>>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.PropertyCollection#contains(java.lang.Object)
 	 */
+	@Override
 	public boolean contains(Object property)
 	{
 		if (property==null) {
@@ -136,6 +142,7 @@ public class PropertyCollectionMap<T extends DynamicValueProperty<?>>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.PropertyCollection#iterator()
 	 */
+	@Override
 	public Iterator<T> iterator()
 	{
 		return new PIterator<T>(properties.values().iterator());
@@ -144,6 +151,7 @@ public class PropertyCollectionMap<T extends DynamicValueProperty<?>>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.PropertyCollection#toArray()
 	 */
+	@Override
 	public Object[] toArray()
 	{
 		return toPropertyArray();
@@ -152,6 +160,7 @@ public class PropertyCollectionMap<T extends DynamicValueProperty<?>>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.PropertyCollection#toPropertyArray()
 	 */
+	@Override
 	public T[] toPropertyArray()
 	{
 		T[] t= (T[])Array.newInstance(type, size);
@@ -165,6 +174,7 @@ public class PropertyCollectionMap<T extends DynamicValueProperty<?>>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.PropertyCollection#toArray(E[])
 	 */
+	@Override
 	public <E extends T> E[] toArray(E[] array)
 	{
 		ArrayList<E> l= new ArrayList<E>(size);
@@ -180,6 +190,7 @@ public class PropertyCollectionMap<T extends DynamicValueProperty<?>>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.PropertyCollection#containsAll(java.util.Collection)
 	 */
+	@Override
 	public boolean containsAll(Collection<?> colection)
 	{
 		for (Object p : colection) {
@@ -193,6 +204,7 @@ public class PropertyCollectionMap<T extends DynamicValueProperty<?>>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.PropertyCollection#contains(java.lang.String)
 	 */
+	@Override
 	public boolean contains(String name)
 	{
 		return properties.containsKey(name);
@@ -201,6 +213,7 @@ public class PropertyCollectionMap<T extends DynamicValueProperty<?>>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.PropertyCollection#contains(java.lang.String)
 	 */
+	@Override
 	public boolean contains(String name, Class<? extends T> type) {
 		return getFirst(name, type)!=null;
 	}
@@ -208,6 +221,7 @@ public class PropertyCollectionMap<T extends DynamicValueProperty<?>>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.PropertyCollection#get(java.lang.String)
 	 */
+	@Override
 	public T[] get(String name)
 	{
 		T[] t= properties.get(name);
@@ -220,6 +234,7 @@ public class PropertyCollectionMap<T extends DynamicValueProperty<?>>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.PropertyCollection#get(java.lang.String)
 	 */
+	@Override
 	public <A extends T> A[] get(String name, Class<A> type) {
 		
 		T[] t= get(name);
@@ -239,6 +254,7 @@ public class PropertyCollectionMap<T extends DynamicValueProperty<?>>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.PropertyCollection#get(java.lang.String)
 	 */
+	@Override
 	public T getFirst(String name) {
 		T[] t=properties.get(name);
 		if (t != null && t.length>0) {
@@ -250,6 +266,7 @@ public class PropertyCollectionMap<T extends DynamicValueProperty<?>>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.PropertyCollection#get(java.lang.String)
 	 */
+	@Override
 	public <A extends T> A getFirst(String name, Class<A> type) {
 		T[] t= get(name);
 		if (t!=null && t.length>0) {
@@ -267,6 +284,7 @@ public class PropertyCollectionMap<T extends DynamicValueProperty<?>>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.PropertyCollection#getPropertyNames()
 	 */
+	@Override
 	public String[] getPropertyNames()
 	{
 		return (String[])properties.keySet().toArray();
@@ -275,6 +293,7 @@ public class PropertyCollectionMap<T extends DynamicValueProperty<?>>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.PropertyCollection#addGroupListner(org.csstudio.dal.group.GroupListener)
 	 */
+	@Override
 	public void addPropertyGroupListner(PropertyGroupListener<T> l)
 	{
 		if (groupListeners == null) {
@@ -287,6 +306,7 @@ public class PropertyCollectionMap<T extends DynamicValueProperty<?>>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.PropertyCollection#removeGroupListner(org.csstudio.dal.group.GroupListener)
 	 */
+	@Override
 	public void removePropertyGroupListner(PropertyGroupListener<T> l)
 	{
 		if (groupListeners != null) {
@@ -297,6 +317,7 @@ public class PropertyCollectionMap<T extends DynamicValueProperty<?>>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.PropertyCollection#getGroupListners()
 	 */
+	@Override
 	public PropertyGroupListener<T>[] getPropertyGroupListners()
 	{
 		if (groupListeners != null) {

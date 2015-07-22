@@ -143,6 +143,7 @@ public final class RefreshableSwitchFigure extends Shape implements IAdaptable {
 	 * Draws the outline of the image, i.e. the switch itself.
 	 * @param gfx The {@link Graphics} to use
 	 */
+	@Override
 	protected void outlineShape(final Graphics gfx) {
 		AntialiasingUtil.getInstance().enableAntialiasing(gfx);
 		Rectangle figureBounds = getBounds().getCopy().crop(this.getInsets());
@@ -282,6 +283,7 @@ public final class RefreshableSwitchFigure extends Shape implements IAdaptable {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public Object getAdapter(final Class adapter) {
 		if (adapter == IBorderEquippedWidget.class) {

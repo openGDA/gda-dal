@@ -1359,7 +1359,8 @@ public class Trace extends Figure implements IDataProviderListener,
                 return name;
         }
 
-        public void dataChanged(IDataProvider dataProvider) {
+        @Override
+		public void dataChanged(IDataProvider dataProvider) {
                 // if the axis has been repainted, it will cause the trace to be
                 // repainted autoly,
                 // the trace doesn't have to be repainted again.
@@ -1455,11 +1456,13 @@ public class Trace extends Figure implements IDataProviderListener,
                 return -(low + 1); // key not found.
         }
 
-        public void axisRevalidated(Axis axis) {
+        @Override
+		public void axisRevalidated(Axis axis) {
                 repaint();
         }
 
-        public void axisRangeChanged(Axis axis, Range old_range, Range new_range) {
+        @Override
+		public void axisRangeChanged(Axis axis, Range old_range, Range new_range) {
                 // do nothing
         }
 

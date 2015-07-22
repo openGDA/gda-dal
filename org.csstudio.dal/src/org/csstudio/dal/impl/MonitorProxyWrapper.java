@@ -192,6 +192,7 @@ public class MonitorProxyWrapper<T, P extends SimpleProperty<T>> implements Resp
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.ResponseListener#responseError(org.csstudio.dal.ResponseEvent)
 	 */
+	@Override
 	public void responseError(ResponseEvent<T> event){
 		Response<T> response = event.getResponse();
 		if (property instanceof DynamicValuePropertyImpl)
@@ -216,6 +217,7 @@ public class MonitorProxyWrapper<T, P extends SimpleProperty<T>> implements Resp
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.ResponseListener#responseReceived(org.csstudio.dal.ResponseEvent)
 	 */
+	@Override
 	public void responseReceived(ResponseEvent<T> event){
 		Response<T> response = event.getResponse();
 		T value = response.getValue();
@@ -274,6 +276,7 @@ public class MonitorProxyWrapper<T, P extends SimpleProperty<T>> implements Resp
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.DynamicValueMonitor#getDefaultTimerTrigger()
 	 */
+	@Override
 	public long getDefaultTimerTrigger() throws DataExchangeException{
 		return proxy.getDefaultTimerTrigger();
 	}
@@ -281,6 +284,7 @@ public class MonitorProxyWrapper<T, P extends SimpleProperty<T>> implements Resp
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.DynamicValueMonitor#getTimerTrigger()
 	 */
+	@Override
 	public long getTimerTrigger() throws DataExchangeException{
 		return proxy.getTimerTrigger();
 	}
@@ -288,6 +292,7 @@ public class MonitorProxyWrapper<T, P extends SimpleProperty<T>> implements Resp
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.DynamicValueMonitor#isDefault()
 	 */
+	@Override
 	public boolean isDefault(){
 		return proxy.isDefault();
 	}
@@ -295,6 +300,7 @@ public class MonitorProxyWrapper<T, P extends SimpleProperty<T>> implements Resp
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.DynamicValueMonitor#isHeartbeat()
 	 */
+	@Override
 	public boolean isHeartbeat(){
 		return proxy.isHeartbeat();
 	}
@@ -302,6 +308,7 @@ public class MonitorProxyWrapper<T, P extends SimpleProperty<T>> implements Resp
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.DynamicValueMonitor#setHeartbeat(boolean)
 	 */
+	@Override
 	public void setHeartbeat(boolean heartbeat) throws DataExchangeException, UnsupportedOperationException{
 		proxy.setHeartbeat(heartbeat);
 	}
@@ -309,6 +316,7 @@ public class MonitorProxyWrapper<T, P extends SimpleProperty<T>> implements Resp
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.DynamicValueMonitor#setTimerTrigger(long)
 	 */
+	@Override
 	public void setTimerTrigger(long trigger) throws DataExchangeException, UnsupportedOperationException{
 		proxy.setTimerTrigger(trigger);
 	}
@@ -316,6 +324,7 @@ public class MonitorProxyWrapper<T, P extends SimpleProperty<T>> implements Resp
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.CharacteristicContext#addPropertyChangeListener(java.beans.PropertyChangeListener)
 	 */
+	@Override
 	public void addPropertyChangeListener(PropertyChangeListener l){
 		if (plistners==null)
 			plistners = new ListenerList(PropertyChangeListener.class);
@@ -325,6 +334,7 @@ public class MonitorProxyWrapper<T, P extends SimpleProperty<T>> implements Resp
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.CharacteristicContext#getCharacteristic(java.lang.String)
 	 */
+	@Override
 	public Object getCharacteristic(String name) throws DataExchangeException{
 		if (C_DEFAULT_TIMER_TRIGGER.equals(name))
 			return proxy.getDefaultTimerTrigger();
@@ -338,6 +348,7 @@ public class MonitorProxyWrapper<T, P extends SimpleProperty<T>> implements Resp
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.CharacteristicContext#getCharacteristicNames()
 	 */
+	@Override
 	public String[] getCharacteristicNames() throws DataExchangeException{
 		return new String[]{
 			C_DEFAULT_TIMER_TRIGGER, C_HEARTBEAT, C_TIMER_TRIGGER
@@ -347,6 +358,7 @@ public class MonitorProxyWrapper<T, P extends SimpleProperty<T>> implements Resp
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.CharacteristicContext#getCharacteristics(java.lang.String[])
 	 */
+	@Override
 	public Map<String, Object> getCharacteristics(String[] names) throws DataExchangeException{
 		Map<String, Object> m = new HashMap<String, Object>(names.length);
 		for (int i = 0; i < names.length; i++)
@@ -357,6 +369,7 @@ public class MonitorProxyWrapper<T, P extends SimpleProperty<T>> implements Resp
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.CharacteristicContext#getPropertyChangeListeners()
 	 */
+	@Override
 	public PropertyChangeListener[] getPropertyChangeListeners(){
 		return plistners == null 
 			? new PropertyChangeListener[0] 
@@ -366,6 +379,7 @@ public class MonitorProxyWrapper<T, P extends SimpleProperty<T>> implements Resp
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.CharacteristicContext#removePropertyChangeListener(java.beans.PropertyChangeListener)
 	 */
+	@Override
 	public void removePropertyChangeListener(PropertyChangeListener l){
 		if (plistners!=null)
 			plistners.remove(l);
@@ -374,6 +388,7 @@ public class MonitorProxyWrapper<T, P extends SimpleProperty<T>> implements Resp
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.SimpleMonitor#destroy()
 	 */
+	@Override
 	public void destroy(){
 		((SimplePropertyImpl)property).removeMonitor(this);
 		property.removeDynamicValueListener(internalListener);
@@ -384,10 +399,12 @@ public class MonitorProxyWrapper<T, P extends SimpleProperty<T>> implements Resp
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.SimpleMonitor#isDestroyed()
 	 */
+	@Override
 	public boolean isDestroyed(){
 		return proxy.isDestroyed();
 	}
 
+	@Override
 	public void suspend() {
 		if (!(proxy instanceof Suspendable)) 
 			throw new UnsupportedOperationException("Monitor proxy doesn't support suspend/resume operations!");
@@ -396,6 +413,7 @@ public class MonitorProxyWrapper<T, P extends SimpleProperty<T>> implements Resp
 		suspendCount++;
 	}
 
+	@Override
 	public void resume() {
 		if (!(proxy instanceof Suspendable)) 
 			throw new UnsupportedOperationException("Monitor proxy doesn't support suspend/resume operations!");
@@ -405,6 +423,7 @@ public class MonitorProxyWrapper<T, P extends SimpleProperty<T>> implements Resp
 			suspendCount--;;
 	}
 
+	@Override
 	public boolean isSuspended() {
 		if (!(proxy instanceof Suspendable)) 
 			throw new UnsupportedOperationException("Monitor proxy doesn't support suspend/resume operations!");
@@ -425,12 +444,14 @@ public class MonitorProxyWrapper<T, P extends SimpleProperty<T>> implements Resp
 		return p;
 	}
 	
+	@Override
 	public Map<String, Object> getParameters() {
 		if (proxy instanceof ExpertMonitor)
 			return ((ExpertMonitor)proxy).getParameters();
 		return null;
 	}
 	
+	@Override
 	public void setParameters(Map<String, Object> param) throws RemoteException {
 		if (proxy instanceof ExpertMonitor)
 			((ExpertMonitor)proxy).setParameters(param);

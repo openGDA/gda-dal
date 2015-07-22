@@ -56,6 +56,7 @@ public class InitialContextFactoryImpl implements InitialContextFactory
 	/* (non-Javadoc)
 	 * @see javax.naming.spi.InitialContextFactory#getInitialContext(java.util.Hashtable)
 	 */
+	@Override
 	public Context getInitialContext(Hashtable<?, ?> environment)
 		throws NamingException
 	{

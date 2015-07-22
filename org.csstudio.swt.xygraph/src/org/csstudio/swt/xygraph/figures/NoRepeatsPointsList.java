@@ -13,6 +13,7 @@ public class NoRepeatsPointsList extends PointList {
 	/**
 	 * Does not add the same point twice in a row.
 	 */
+	@Override
 	public void addPoint(int x, int y) {
 		
 		if (size()<1) {

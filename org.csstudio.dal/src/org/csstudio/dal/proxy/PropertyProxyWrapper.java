@@ -47,6 +47,7 @@ public class PropertyProxyWrapper<T,P extends AbstractPlug> implements SyncPrope
 {
 	private PropertyProxy<T,P> proxy;
 
+	@Override
 	public P getPlug() {
 		return proxy.getPlug();
 	}
@@ -64,6 +65,7 @@ public class PropertyProxyWrapper<T,P extends AbstractPlug> implements SyncPrope
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.proxy.SyncPropertyProxy#getValueSync()
 	 */
+	@Override
 	public T getValueSync() throws DataExchangeException
 	{
 		return new GetValueInterceptor<T>().executeAndWait(proxy);
@@ -72,6 +74,7 @@ public class PropertyProxyWrapper<T,P extends AbstractPlug> implements SyncPrope
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.proxy.SyncPropertyProxy#setValueSync(T)
 	 */
+	@Override
 	public void setValueSync(T value) throws DataExchangeException
 	{
 		new SetValueInterceptor<T>().executeAndWait(proxy, value);
@@ -80,6 +83,7 @@ public class PropertyProxyWrapper<T,P extends AbstractPlug> implements SyncPrope
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.proxy.PropertyProxy#destroy()
 	 */
+	@Override
 	public void destroy()
 	{
 		proxy.destroy();
@@ -88,6 +92,7 @@ public class PropertyProxyWrapper<T,P extends AbstractPlug> implements SyncPrope
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.proxy.PropertyProxy#getValueAsync(java.lang.String, org.csstudio.dal.ResponseListener)
 	 */
+	@Override
 	public Request<T> getValueAsync(ResponseListener<T> callback)
 		throws DataExchangeException
 	{
@@ -97,6 +102,7 @@ public class PropertyProxyWrapper<T,P extends AbstractPlug> implements SyncPrope
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.proxy.PropertyProxy#setValueAsync(java.lang.String, T, org.csstudio.dal.ResponseListener)
 	 */
+	@Override
 	public Request<T> setValueAsync(T value, ResponseListener<T> callback)
 		throws DataExchangeException
 	{
@@ -106,6 +112,7 @@ public class PropertyProxyWrapper<T,P extends AbstractPlug> implements SyncPrope
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.proxy.PropertyProxy#getUniqueName()
 	 */
+	@Override
 	public String getUniqueName()
 	{
 		return proxy.getUniqueName();
@@ -114,6 +121,7 @@ public class PropertyProxyWrapper<T,P extends AbstractPlug> implements SyncPrope
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.proxy.PropertyProxy#isSettable()
 	 */
+	@Override
 	public boolean isSettable()
 	{
 		return proxy.isSettable();
@@ -122,6 +130,7 @@ public class PropertyProxyWrapper<T,P extends AbstractPlug> implements SyncPrope
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.proxy.PropertyProxy#createMonitor(org.csstudio.dal.ResponseListener)
 	 */
+	@Override
 	public MonitorProxy createMonitor(ResponseListener<T> callback,
 			Map<String, Object> parameters) throws RemoteException {
 		return proxy.createMonitor(callback,parameters);
@@ -130,6 +139,7 @@ public class PropertyProxyWrapper<T,P extends AbstractPlug> implements SyncPrope
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.proxy.Proxy#addProxyListener(org.csstudio.dal.proxy.ProxyListener)
 	 */
+	@Override
 	public void addProxyListener(ProxyListener<?> l)
 	{
 		proxy.addProxyListener(l);
@@ -138,6 +148,7 @@ public class PropertyProxyWrapper<T,P extends AbstractPlug> implements SyncPrope
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.proxy.Proxy#removeProxyListener(org.csstudio.dal.proxy.ProxyListener)
 	 */
+	@Override
 	public void removeProxyListener(ProxyListener<?> l)
 	{
 		proxy.removeProxyListener(l);
@@ -146,6 +157,7 @@ public class PropertyProxyWrapper<T,P extends AbstractPlug> implements SyncPrope
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.proxy.PropertyProxy#getCondition()
 	 */
+	@Override
 	public DynamicValueCondition getCondition()
 	{
 		return proxy.getCondition();
@@ -154,6 +166,7 @@ public class PropertyProxyWrapper<T,P extends AbstractPlug> implements SyncPrope
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.proxy.Proxy#getConnectionState()
 	 */
+	@Override
 	public ConnectionState getConnectionState()
 	{
 		return proxy.getConnectionState();
@@ -162,6 +175,7 @@ public class PropertyProxyWrapper<T,P extends AbstractPlug> implements SyncPrope
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.Identifiable#getIdentifier()
 	 */
+	@Override
 	public Identifier getIdentifier()
 	{
 		return proxy.getIdentifier();
@@ -170,15 +184,18 @@ public class PropertyProxyWrapper<T,P extends AbstractPlug> implements SyncPrope
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.Identifiable#isDebug()
 	 */
+	@Override
 	public boolean isDebug()
 	{
 		return proxy.isDebug();
 	}
 	
+	@Override
 	public Response<T> getLatestValueResponse() {
 		return proxy.getLatestValueResponse();
 	}
 	
+	@Override
 	public String getConnectionInfo() {
 		return proxy.getConnectionInfo();
 	}

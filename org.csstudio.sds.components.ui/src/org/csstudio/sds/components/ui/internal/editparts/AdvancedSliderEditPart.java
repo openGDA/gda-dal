@@ -68,6 +68,7 @@ public final class AdvancedSliderEditPart extends AbstractWidgetEditPart {
 
 		final AdvancedSliderFigure slider = new AdvancedSliderFigure();
 		slider.addSliderListener(new AdvancedSliderFigure.ISliderListener() {
+			@Override
 			public void sliderValueChanged(final double newValue) {
 				if (getExecutionMode().equals(ExecutionMode.RUN_MODE)) {
 					model.setPropertyManualValue(AdvancedSliderModel.PROP_VALUE, newValue);
@@ -109,6 +110,7 @@ public final class AdvancedSliderEditPart extends AbstractWidgetEditPart {
 	protected void registerPropertyChangeHandlers() {
 		// value
 		IWidgetPropertyChangeHandler valHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -121,6 +123,7 @@ public final class AdvancedSliderEditPart extends AbstractWidgetEditPart {
 
 		// min
 		IWidgetPropertyChangeHandler minHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -133,6 +136,7 @@ public final class AdvancedSliderEditPart extends AbstractWidgetEditPart {
 
 		// max
 		IWidgetPropertyChangeHandler maxHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -145,6 +149,7 @@ public final class AdvancedSliderEditPart extends AbstractWidgetEditPart {
 
 		// increment
 		IWidgetPropertyChangeHandler incrementHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -157,6 +162,7 @@ public final class AdvancedSliderEditPart extends AbstractWidgetEditPart {
 
 		// orientation
 		IWidgetPropertyChangeHandler orientationHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {

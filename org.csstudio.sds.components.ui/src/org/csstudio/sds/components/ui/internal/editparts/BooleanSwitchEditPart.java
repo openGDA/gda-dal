@@ -30,6 +30,7 @@ public class BooleanSwitchEditPart extends AbstractWidgetEditPart {
 		figure.setOnLabel(model.getOnLabel());
 		figure.setOffLabel(model.getOffLabel());
 		figure.addBoolControlListener(new IBoolControlListener() {
+			@Override
 			public void valueChanged(boolean newValue) {
 				if (getExecutionMode() == ExecutionMode.RUN_MODE) {
 					model.setValue(newValue);
@@ -48,6 +49,7 @@ public class BooleanSwitchEditPart extends AbstractWidgetEditPart {
 	protected void registerPropertyChangeHandlers() {
 		// value
 		IWidgetPropertyChangeHandler valueHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -60,6 +62,7 @@ public class BooleanSwitchEditPart extends AbstractWidgetEditPart {
 		
 		// 3d effect
 		IWidgetPropertyChangeHandler effectHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -88,6 +91,7 @@ public class BooleanSwitchEditPart extends AbstractWidgetEditPart {
 		
 		// on label
 		IWidgetPropertyChangeHandler onLabelHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -100,6 +104,7 @@ public class BooleanSwitchEditPart extends AbstractWidgetEditPart {
 		
 		// on label
 		IWidgetPropertyChangeHandler offLabelHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -112,6 +117,7 @@ public class BooleanSwitchEditPart extends AbstractWidgetEditPart {
 		
 		// value
 		IWidgetPropertyChangeHandler showLabelHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {

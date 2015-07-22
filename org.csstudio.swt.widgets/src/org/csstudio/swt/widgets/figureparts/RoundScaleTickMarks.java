@@ -60,7 +60,8 @@ public class RoundScaleTickMarks extends Figure {
         this.scale.setMinorTickMarkStepHint(6);
     }
 
-   protected void paintClientArea(Graphics graphics) {
+   @Override
+protected void paintClientArea(Graphics graphics) {
 	   graphics.translate(bounds.x, bounds.y);
 	   graphics.setAntialias(SWT.ON);
 	   ArrayList<Double> tickLabelPositions = scale

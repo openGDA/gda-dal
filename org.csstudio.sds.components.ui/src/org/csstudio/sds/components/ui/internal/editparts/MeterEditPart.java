@@ -41,6 +41,7 @@ public final class MeterEditPart extends AbstractWidgetEditPart {
 	 * 
 	 * @return the casted {@link MeterModel}
 	 */
+	@Override
 	protected MeterModel getCastedModel() {
 		return (MeterModel) getModel();
 	}
@@ -152,6 +153,7 @@ public final class MeterEditPart extends AbstractWidgetEditPart {
 		
 		// precision
 		IWidgetPropertyChangeHandler precisionHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -164,6 +166,7 @@ public final class MeterEditPart extends AbstractWidgetEditPart {
 		
 		// precision
 		IWidgetPropertyChangeHandler channelHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -181,6 +184,7 @@ public final class MeterEditPart extends AbstractWidgetEditPart {
 	protected void registerBoundaryPropertyHandlers() {
 		//M
 		IWidgetPropertyChangeHandler handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue,
 					final IFigure figure) {
 				RefreshableMeterFigure meterFigure = (RefreshableMeterFigure) figure;
@@ -192,6 +196,7 @@ public final class MeterEditPart extends AbstractWidgetEditPart {
 		
 		//LOLO
 		handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue,
 					final IFigure figure) {
 				RefreshableMeterFigure meterFigure = (RefreshableMeterFigure) figure;
@@ -203,6 +208,7 @@ public final class MeterEditPart extends AbstractWidgetEditPart {
 		
 		//LO
 		handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue,
 					final IFigure figure) {
 				RefreshableMeterFigure meterFigure = (RefreshableMeterFigure) figure;
@@ -214,6 +220,7 @@ public final class MeterEditPart extends AbstractWidgetEditPart {
 		
 		//HI
 		handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue,
 					final IFigure figure) {
 				RefreshableMeterFigure meterFigure = (RefreshableMeterFigure) figure;
@@ -225,6 +232,7 @@ public final class MeterEditPart extends AbstractWidgetEditPart {
 		
 		//HIHI
 		handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue,
 					final IFigure figure) {
 				RefreshableMeterFigure meterFigure = (RefreshableMeterFigure) figure;
@@ -242,6 +250,7 @@ public final class MeterEditPart extends AbstractWidgetEditPart {
 	protected void registerPropertyChangeHandlers() {
 		// register handlers to deal with resizes
 		IWidgetPropertyChangeHandler handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
 				RefreshableMeterFigure meterFigure = (RefreshableMeterFigure) figure;
 				meterFigure.invalidateBackground();
@@ -253,6 +262,7 @@ public final class MeterEditPart extends AbstractWidgetEditPart {
 		setPropertyChangeHandler(MeterModel.PROP_WIDTH, handle);
 		// register a handler that deals with updates of the "angle" property
 		handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
 				RefreshableMeterFigure meterFigure = (RefreshableMeterFigure) figure;
 				meterFigure.setAngle((Integer) newValue);
@@ -262,6 +272,7 @@ public final class MeterEditPart extends AbstractWidgetEditPart {
 		setPropertyChangeHandler(MeterModel.PROP_ANGLE, handle);
 		// register a handler that deals with updates of the "inner angle" property
 		handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
 				RefreshableMeterFigure meterFigure = (RefreshableMeterFigure) figure;
 				meterFigure.setInnerAngle((Integer) newValue);
@@ -271,6 +282,7 @@ public final class MeterEditPart extends AbstractWidgetEditPart {
 		setPropertyChangeHandler(MeterModel.PROP_INNANGLE, handle);
 		// register a handler that deals with updates of the "visible radius" property
 		handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
 				RefreshableMeterFigure meterFigure = (RefreshableMeterFigure) figure;
 				meterFigure.setVisibleRadius((Double) newValue);
@@ -280,6 +292,7 @@ public final class MeterEditPart extends AbstractWidgetEditPart {
 		setPropertyChangeHandler(MeterModel.PROP_RADIUS, handle);
 		// register a handler that deals with updates of the "scale radius" property
 		handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
 				RefreshableMeterFigure meterFigure = (RefreshableMeterFigure) figure;
 				meterFigure.setScaleRadius((Double) newValue);
@@ -289,6 +302,7 @@ public final class MeterEditPart extends AbstractWidgetEditPart {
 		setPropertyChangeHandler(MeterModel.PROP_SCALERADIUS, handle);
 		// register a handler that deals with updates of the "minor step" property
 		handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
 				RefreshableMeterFigure meterFigure = (RefreshableMeterFigure) figure;
 				meterFigure.setMinorStep((Double) newValue);
@@ -298,6 +312,7 @@ public final class MeterEditPart extends AbstractWidgetEditPart {
 		setPropertyChangeHandler(MeterModel.PROP_MINSTEP, handle);
 		// register a handler that deals with updates of the "major step" property
 		handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
 				RefreshableMeterFigure meterFigure = (RefreshableMeterFigure) figure;
 				meterFigure.setMajorStep((Double) newValue);
@@ -307,6 +322,7 @@ public final class MeterEditPart extends AbstractWidgetEditPart {
 		setPropertyChangeHandler(MeterModel.PROP_MAJSTEP, handle);
 		// register a handler that deals with updates of the "minimum value" property
 		handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
 				RefreshableMeterFigure meterFigure = (RefreshableMeterFigure) figure;
 				meterFigure.setMinValue((Double) newValue);
@@ -316,6 +332,7 @@ public final class MeterEditPart extends AbstractWidgetEditPart {
 		setPropertyChangeHandler(MeterModel.PROP_MINVAL, handle);
 		// register a handler that deals with updates of the "maximum value" property
 		handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
 				RefreshableMeterFigure meterFigure = (RefreshableMeterFigure) figure;
 				meterFigure.setMaxValue((Double) newValue);
@@ -325,6 +342,7 @@ public final class MeterEditPart extends AbstractWidgetEditPart {
 		setPropertyChangeHandler(MeterModel.PROP_MAXVAL, handle);
 		// register a handler that deals with updates of the "value" property
 		handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
 				RefreshableMeterFigure meterFigure = (RefreshableMeterFigure) figure;
 				meterFigure.setValue((Double) newValue);
@@ -334,6 +352,7 @@ public final class MeterEditPart extends AbstractWidgetEditPart {
 		setPropertyChangeHandler(MeterModel.PROP_VALUE, handle);
 		//scale line width change handler
 		handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
 				RefreshableMeterFigure meterFigure = (RefreshableMeterFigure) figure;
 				meterFigure.setScaleWidth((Integer) newValue);
@@ -343,6 +362,7 @@ public final class MeterEditPart extends AbstractWidgetEditPart {
 		setPropertyChangeHandler(MeterModel.PROP_SCALEWIDTH, handle);
 		//scale text area radius change handler
 		handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
 				RefreshableMeterFigure meterFigure = (RefreshableMeterFigure) figure;
 				meterFigure.setTextRadius((Double) newValue);
@@ -352,6 +372,7 @@ public final class MeterEditPart extends AbstractWidgetEditPart {
 		setPropertyChangeHandler(MeterModel.PROP_TEXTRADIUS, handle);
 		//transparency change handler
 		handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
 				RefreshableMeterFigure meterFigure = (RefreshableMeterFigure) figure;
 				meterFigure.setTransparent((Boolean) newValue);
@@ -378,6 +399,7 @@ public final class MeterEditPart extends AbstractWidgetEditPart {
 		});
 		
 		IWidgetPropertyChangeHandler borderHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure figure) {
 				RefreshableMeterFigure meterFigure = (RefreshableMeterFigure) figure;
 				meterFigure.refresh();

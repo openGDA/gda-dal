@@ -96,6 +96,7 @@ public class ProgressBarFigure extends AbstractLinearMarkedFigure {
 		add(label, ProgressBarLayout.LABEL);
 	
 		addFigureListener(new FigureListener() {			
+			@Override
 			public void figureMoved(IFigure source) {
 				revalidate();				
 			}
@@ -528,6 +529,7 @@ public class ProgressBarFigure extends AbstractLinearMarkedFigure {
 			}
 		}
 	
+		@Override
 		public void layout(IFigure container) {
 			if(horizontal)
 				horizontalLayout(container);

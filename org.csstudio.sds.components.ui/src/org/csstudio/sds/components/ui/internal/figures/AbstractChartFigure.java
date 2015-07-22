@@ -300,6 +300,7 @@ public abstract class AbstractChartFigure extends Figure implements IAdaptable {
 	 */
 	private void addRefreshLayoutListener() {
 		addFigureListener(new FigureListener() {
+			@Override
 			public void figureMoved(final IFigure source) {
 				AbstractChartFigure.this.refreshConstraints();
 			}
@@ -446,6 +447,7 @@ public abstract class AbstractChartFigure extends Figure implements IAdaptable {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public final Object getAdapter(final Class adapter) {
 		if (adapter == IBorderEquippedWidget.class) {
@@ -495,6 +497,7 @@ public abstract class AbstractChartFigure extends Figure implements IAdaptable {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public final boolean isOpaque() {
 		return !_transparent;
 	}
@@ -540,6 +543,7 @@ public abstract class AbstractChartFigure extends Figure implements IAdaptable {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public final void setBackgroundColor(final Color backgroundColor) {
 		super.setBackgroundColor(backgroundColor);
 		_plotFigure.setBackgroundColor(backgroundColor);
@@ -1259,6 +1263,7 @@ public abstract class AbstractChartFigure extends Figure implements IAdaptable {
 			final Rectangle bounds = getBounds();
 			final PointList result = new PointList();
 			IDataPointProcessor proc = new IDataPointProcessor() {
+				@Override
 				public void processDataPoint(final double x, final double y) {
 					if (_xAxis.isLegalValue(x) && _yAxis.isLegalValue(y)) {
 						int displayY = valueToYPos(y);
@@ -1341,6 +1346,7 @@ public abstract class AbstractChartFigure extends Figure implements IAdaptable {
 			this.refreshConstraints();
 			// listen to figure movement events
 			addFigureListener(new FigureListener() {
+				@Override
 				public void figureMoved(final IFigure source) {
 					refreshConstraints();
 				}
@@ -1555,6 +1561,7 @@ public abstract class AbstractChartFigure extends Figure implements IAdaptable {
 //				}
 				this.refreshConstraints();
 				addFigureListener(new FigureListener() {
+					@Override
 					public void figureMoved(final IFigure source) {
 						refreshConstraints();
 					}

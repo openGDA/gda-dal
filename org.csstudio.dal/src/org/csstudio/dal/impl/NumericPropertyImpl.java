@@ -50,6 +50,7 @@ public class NumericPropertyImpl<T,Ts> extends DynamicValuePropertyImpl<T>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.NumericSimpleProperty#getFormat()
 	 */
+	@Override
 	public String getFormat() throws DataExchangeException
 	{
 		return (String)directoryProxy.getCharacteristic(C_FORMAT);
@@ -58,6 +59,7 @@ public class NumericPropertyImpl<T,Ts> extends DynamicValuePropertyImpl<T>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.NumericSimpleProperty#getMaximum()
 	 */
+	@Override
 	public Ts getMaximum() throws DataExchangeException
 	{
 		// Override this method is <Ts> in not same as <T>
@@ -67,6 +69,7 @@ public class NumericPropertyImpl<T,Ts> extends DynamicValuePropertyImpl<T>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.NumericSimpleProperty#getMinimum()
 	 */
+	@Override
 	public Ts getMinimum() throws DataExchangeException
 	{
 		// Override this method is <Ts> in not same as <T>
@@ -76,6 +79,7 @@ public class NumericPropertyImpl<T,Ts> extends DynamicValuePropertyImpl<T>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.NumericSimpleProperty#getUnits()
 	 */
+	@Override
 	public String getUnits() throws DataExchangeException
 	{
 		return (String)directoryProxy.getCharacteristic(C_UNITS);

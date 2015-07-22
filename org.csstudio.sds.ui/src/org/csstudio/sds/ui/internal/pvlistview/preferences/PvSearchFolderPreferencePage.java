@@ -110,6 +110,7 @@ public class PvSearchFolderPreferencePage extends PreferencePage implements
 		tableViewer.getTable().setLayoutData(new GridData(GridData.FILL_BOTH));
 
 		tableViewer.addCheckStateListener(new ICheckStateListener() {
+			@Override
 			public void checkStateChanged(CheckStateChangedEvent event) {
 				PvSearchFolderPreferenceItem item = (PvSearchFolderPreferenceItem) event
 						.getElement();
@@ -119,6 +120,7 @@ public class PvSearchFolderPreferencePage extends PreferencePage implements
 
 		tableViewer
 				.addSelectionChangedListener(new ISelectionChangedListener() {
+					@Override
 					public void selectionChanged(SelectionChangedEvent event) {
 						updateButtons();
 					}
@@ -145,6 +147,7 @@ public class PvSearchFolderPreferencePage extends PreferencePage implements
 		Button addFolderButton = createPushButton(buttonContainer,
 				"Add folder", true);
 		addFolderButton.addListener(SWT.Selection, new Listener() {
+			@Override
 			public void handleEvent(Event e) {
 				String addedFolder = addFolderPressed();
 				if (addedFolder != null) {
@@ -168,6 +171,7 @@ public class PvSearchFolderPreferencePage extends PreferencePage implements
 		removeFolderButton = createPushButton(buttonContainer, "Remove folder",
 				false);
 		removeFolderButton.addListener(SWT.Selection, new Listener() {
+			@Override
 			public void handleEvent(Event e) {
 				if (!tableViewer.getSelection().isEmpty()) {
 					tableViewer.getTable().remove(

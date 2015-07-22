@@ -333,6 +333,7 @@ public class RefreshableThermoFigure extends AbstractLinearMarkedFigure {
 			return d;
 		}
 
+		@Override
 		public void layout(final IFigure container) {
 			Rectangle area = container.getClientArea();
 			if((bulb != null) && bulb.isVisible()) {

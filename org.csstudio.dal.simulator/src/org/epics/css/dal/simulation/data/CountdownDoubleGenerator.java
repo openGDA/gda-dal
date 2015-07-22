@@ -79,6 +79,7 @@ public class CountdownDoubleGenerator implements ValueProvider<Double> {
 	 * (non-Javadoc)
 	 * @see org.epics.css.dal.simulation.ValueProvider#get()
 	 */
+	@Override
 	public Double get() throws DataExchangeException {
 		double result = -1;
 		
@@ -105,6 +106,7 @@ public class CountdownDoubleGenerator implements ValueProvider<Double> {
 	 * (non-Javadoc)
 	 * @see org.epics.css.dal.simulation.ValueProvider#set(java.lang.Object)
 	 */
+	@Override
 	public void set(Double value) throws DataExchangeException {
 		//ignore; data generator		
 	}

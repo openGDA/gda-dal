@@ -100,6 +100,7 @@ public class GraphConfigPage {
 		titleColorSelector.getButton().setLayoutData(gd);
 		titleColorSelector.setColorValue(xyGraph.getTitleColor().getRGB());
 		titleColorSelector.addListener(new IPropertyChangeListener(){
+			@Override
 			public void propertyChange(PropertyChangeEvent event) {
 				fontLabel.setForeground(XYGraphMediaFactory.getInstance().getColor(
 						titleColorSelector.getColorValue()));

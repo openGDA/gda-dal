@@ -13,18 +13,22 @@ public final class DoubleAnyDataImpl extends AbstractAnyDataImpl<Double> {
 		super(property, beamID);
 	}
 
+	@Override
 	public Object[] anySeqValue() {
 		return new Object[]{response.getNumber()};
 	}
 
+	@Override
 	public Object anyValue() {
 		return response.getNumber();
 	}
 
+	@Override
 	public double[] doubleSeqValue() {
 		return new double[]{response.getValue()};
 	}
 
+	@Override
 	public double doubleValue() {
 		/*
 		 * beware: 		java.lang.Long cannot be cast to java.lang.Double
@@ -33,26 +37,32 @@ public final class DoubleAnyDataImpl extends AbstractAnyDataImpl<Double> {
 		return DataUtil.castTo(response.getValue(), Double.class);
 	}
 
+	@Override
 	public long[] longSeqValue() {
 		return new long[]{response.getNumber().longValue()};
 	}
 
+	@Override
 	public long longValue() {
 		return response.getNumber().longValue();
 	}
 
+	@Override
 	public Number[] numberSeqValue() {
 		return new Number[]{response.getNumber()};
 	}
 
+	@Override
 	public Number numberValue() {
 		return response.getNumber();
 	}
 
+	@Override
 	public String[] stringSeqValue() {
 		return new String[]{response.getNumber().toString()};
 	}
 
+	@Override
 	public String stringValue() {
 		return response.getNumber().toString();
 	}

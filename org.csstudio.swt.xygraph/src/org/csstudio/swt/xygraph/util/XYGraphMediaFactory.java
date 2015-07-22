@@ -128,6 +128,7 @@ public final class XYGraphMediaFactory {
 
 		// dispose all images from the image cache, when the display is disposed
 		Display.getDefault().addListener(SWT.Dispose, new Listener() {
+			@Override
 			public void handleEvent(final Event event) {
 				for (Image img : _imageCache.values()) {
 					img.dispose();

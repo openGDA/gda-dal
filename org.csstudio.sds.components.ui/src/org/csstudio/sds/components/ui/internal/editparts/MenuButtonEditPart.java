@@ -75,10 +75,12 @@ public final class MenuButtonEditPart extends AbstractWidgetEditPart {
         label.setTransparent(false);
         label.setEnabled(model.isAccesible() && getExecutionMode().equals(ExecutionMode.RUN_MODE));
         label.addMouseListener(new MouseListener() {
-            public void mouseDoubleClicked(final MouseEvent me) {
+            @Override
+			public void mouseDoubleClicked(final MouseEvent me) {
             }
 
-            public void mousePressed(final MouseEvent me) {
+            @Override
+			public void mousePressed(final MouseEvent me) {
                 if (me.button == 1 && getExecutionMode().equals(ExecutionMode.RUN_MODE)) {
                     final org.eclipse.swt.graphics.Point cursorLocation = Display.getCurrent()
                             .getCursorLocation();
@@ -86,7 +88,8 @@ public final class MenuButtonEditPart extends AbstractWidgetEditPart {
                 }
             }
 
-            public void mouseReleased(final MouseEvent me) {
+            @Override
+			public void mouseReleased(final MouseEvent me) {
             }
 
         });
@@ -111,7 +114,8 @@ public final class MenuButtonEditPart extends AbstractWidgetEditPart {
                     .getCastedModel()).getActionData().getWidgetActions();
             if (widgetActions.size() == 1) {
                 Display.getCurrent().asyncExec(new Runnable() {
-                    public void run() {
+                    @Override
+					public void run() {
                         WidgetActionHandlerService.getInstance().performAction(getCastedModel(),
                                 widgetActions.get(0));
                     }
@@ -163,7 +167,8 @@ public final class MenuButtonEditPart extends AbstractWidgetEditPart {
     protected void registerPropertyChangeHandlers() {
         // label
         IWidgetPropertyChangeHandler labelHandler = new IWidgetPropertyChangeHandler() {
-            public boolean handleChange(final Object oldValue, final Object newValue,
+            @Override
+			public boolean handleChange(final Object oldValue, final Object newValue,
                     final IFigure refreshableFigure) {
                 RefreshableLabelFigure figure = getCastedFigure();
                 figure.setTextValue(newValue.toString());
@@ -184,7 +189,8 @@ public final class MenuButtonEditPart extends AbstractWidgetEditPart {
 
         // text alignment
         IWidgetPropertyChangeHandler alignmentHandler = new IWidgetPropertyChangeHandler() {
-            public boolean handleChange(final Object oldValue, final Object newValue,
+            @Override
+			public boolean handleChange(final Object oldValue, final Object newValue,
                     final IFigure refreshableFigure) {
                 RefreshableLabelFigure figure = getCastedFigure();
                 figure.setTextAlignment((Integer) newValue);
@@ -230,7 +236,8 @@ public final class MenuButtonEditPart extends AbstractWidgetEditPart {
         @Override
         public void run() {
             Display.getCurrent().asyncExec(new Runnable() {
-                public void run() {
+                @Override
+				public void run() {
                     WidgetActionHandlerService.getInstance().performAction(getCastedModel(),
                             _widgetAction);
                 }

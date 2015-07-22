@@ -185,14 +185,17 @@ public class PointListSection extends AbstractBaseSection<PointlistProperty> {
 			_index = index;
 		}
 
+		@Override
 		public boolean canModify(int column) {
 			return true;
 		}
 
+		@Override
 		public RGB getBackgroundColor(int column) {
 			return null;
 		}
 
+		@Override
 		public CellEditor getCellEditor(int column, Composite parent) {
 			switch (column) {
 			case 0:
@@ -204,6 +207,7 @@ public class PointListSection extends AbstractBaseSection<PointlistProperty> {
 			}
 		}
 
+		@Override
 		public String getDisplayValue(int column) {
 			switch (column) {
 			case 0:
@@ -215,6 +219,7 @@ public class PointListSection extends AbstractBaseSection<PointlistProperty> {
 			}
 		}
 
+		@Override
 		public String getEditingValue(int column) {
 			switch (column) {
 			case 0:
@@ -226,22 +231,27 @@ public class PointListSection extends AbstractBaseSection<PointlistProperty> {
 			}
 		}
 
+		@Override
 		public Font getFont(int column) {
 			return null;
 		}
 
+		@Override
 		public RGB getForegroundColor(int column) {
 			return null;
 		}
 
+		@Override
 		public Image getImage(int column) {
 			return null;
 		}
 
+		@Override
 		public String getTooltip() {
 			return null;
 		}
 
+		@Override
 		public void setValue(int column, Object value) {
 			
 			switch (column) {
@@ -286,6 +296,7 @@ public class PointListSection extends AbstractBaseSection<PointlistProperty> {
 			}
 		}
 
+		@Override
 		public int compareTo(ITableRow o) {
 			return 0;
 		}

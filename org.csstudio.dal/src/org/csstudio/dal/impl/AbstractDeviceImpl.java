@@ -82,6 +82,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 		/* (non-Javadoc)
 		 * @see org.csstudio.dal.proxy.ProxyListener#connectionStateChange(org.csstudio.dal.proxy.Proxy, org.csstudio.dal.context.ConnectionState)
 		 */
+		@Override
 		public void connectionStateChange(ProxyEvent<Proxy<?>> e)
 		{
 			if (e.getProxy() != deviceProxy) {
@@ -96,11 +97,13 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 		/* (non-Javadoc)
 		 * @see org.csstudio.dal.proxy.ProxyListener#dynamicValueConditionChange(org.csstudio.dal.proxy.PropertyProxy, java.util.EnumSet)
 		 */
+		@Override
 		public void dynamicValueConditionChange(ProxyEvent<PropertyProxy<Object,?>> e)
 		{
 			// not needed for device
 		}
 
+		@Override
 		public void characteristicsChange(PropertyChangeEvent e) {
 			firePropertyChangeEvent(e);
 		}
@@ -109,6 +112,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 
 	private class PropertyInterceptor implements PropertyChangeListener
 	{
+		@Override
 		public void propertyChange(PropertyChangeEvent evt)
 		{
 			firePropertyChangeEvent(evt);
@@ -116,11 +120,13 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	}
 
 	protected ResponseListener defaultResponseLitener = new ResponseListener() {
+			@Override
 			public void responseReceived(ResponseEvent event)
 			{
 				fireResponseReceived(event);
 			}
 
+			@Override
 			public void responseError(ResponseEvent event)
 			{
 				fireResponseReceived(event);
@@ -239,6 +245,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.device.AbstractDevice#getUniqueName()
 	 */
+	@Override
 	public String getUniqueName()
 	{
 		return name;
@@ -247,6 +254,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.commands.CommandContext#getCommand(java.lang.String)
 	 */
+	@Override
 	public Command getCommand(String name) throws RemoteException
 	{
 		if (commands == null) {
@@ -273,6 +281,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	}
 	
 	
+	@Override
 	public AsynchronousCommand getCommandAsync(String name) throws RemoteException {
 		Command c= getCommand(name);
 		if (c instanceof AsynchronousCommand) {
@@ -285,6 +294,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.commands.CommandContext#getCommandNames()
 	 */
+	@Override
 	public String[] getCommandNames() throws RemoteException
 	{
 		if (commandNames == null) {
@@ -300,6 +310,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.commands.CommandContext#getCommands()
 	 */
+	@Override
 	public Command[] getCommands() throws RemoteException
 	{
 		String[] commNames = getCommandNames();
@@ -315,6 +326,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.PropertyContext#containsProperty(java.lang.Object)
 	 */
+	@Override
 	public boolean containsProperty(Object property)
 	{
 		return getProperties().containsValue(property);
@@ -323,6 +335,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.PropertyContext#containsProperty(java.lang.String)
 	 */
+	@Override
 	public boolean containsProperty(String name)
 	{
 		return getProperties().containsKey(name);
@@ -331,6 +344,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.PropertyContext#getProperty(java.lang.String)
 	 */
+	@Override
 	public synchronized DynamicValueProperty getProperty(String name)
 	{
 		if (!containsProperty(name)) {
@@ -355,6 +369,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.PropertyContext#getPropertyNames()
 	 */
+	@Override
 	public String[] getPropertyNames()
 	{
 		if (propertyNames == null) {
@@ -383,6 +398,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.PropertyContext#toPropertyArray()
 	 */
+	@Override
 	public DynamicValueProperty<?>[] toPropertyArray()
 	{
 		String[] n = getPropertyNames();
@@ -398,6 +414,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.Identifiable#getIdentifier()
 	 */
+	@Override
 	public Identifier getIdentifier()
 	{
 		if (identifier == null) {
@@ -410,6 +427,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.Identifiable#isDebug()
 	 */
+	@Override
 	public boolean isDebug()
 	{
 		return isdebug;
@@ -418,6 +436,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.AsynchronousContext#addResponseListener(org.csstudio.dal.ResponseListener)
 	 */
+	@Override
 	public void addResponseListener(ResponseListener<?> l)
 	{
 		responseListeners.add(l);
@@ -426,6 +445,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.AsynchronousContext#getLatestRequest()
 	 */
+	@Override
 	public Request<?> getLatestRequest()
 	{
 		return lastRequest;
@@ -434,6 +454,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.AsynchronousContext#getLatestResponse()
 	 */
+	@Override
 	public Response<?> getLatestResponse()
 	{
 		return lastResponse;
@@ -442,6 +463,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.AsynchronousContext#getLatestSuccess()
 	 */
+	@Override
 	public boolean getLatestSuccess()
 	{
 		return lastResponse == null ? true : lastResponse.success();
@@ -450,6 +472,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.AsynchronousContext#getResponseListeners()
 	 */
+	@Override
 	public ResponseListener<?>[] getResponseListeners()
 	{
 		return (ResponseListener<?>[])responseListeners.toArray(new ResponseListener[responseListeners
@@ -459,6 +482,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.AsynchronousContext#removeResponseListener(org.csstudio.dal.ResponseListener)
 	 */
+	@Override
 	public void removeResponseListener(ResponseListener<?> l)
 	{
 		responseListeners.remove(l);
@@ -467,6 +491,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.Linkable#addLinkListener(org.csstudio.dal.context.LinkListener)
 	 */
+	@Override
 	public void addLinkListener(LinkListener<? extends Linkable> l)
 	{
 		linkListeners.add(l);
@@ -475,6 +500,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.Linkable#isConnected()
 	 */
+	@Override
 	public boolean isConnected()
 	{
 		return connectionStateMachine.isConnected();
@@ -484,6 +510,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 		return connectionStateMachine.isConnecting(); 
 	}
 
+	@Override
 	public boolean isOperational() {
 		return connectionStateMachine.isOperational();
 	}
@@ -491,6 +518,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.Linkable#isDestroyed()
 	 */
+	@Override
 	public boolean isDestroyed()
 	{
 		return connectionStateMachine.isDestroyed();
@@ -499,6 +527,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.Linkable#isConnectionAlive()
 	 */
+	@Override
 	public boolean isConnectionAlive()
 	{
 		return connectionStateMachine.isConnectionAlive();
@@ -507,6 +536,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.Linkable#isConnectionFailed()
 	 */
+	@Override
 	public boolean isConnectionFailed()
 	{
 		return connectionStateMachine.isConnectionFailed();
@@ -515,6 +545,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.Linkable#isSuspended()
 	 */
+	@Override
 	public boolean isSuspended()
 	{
 		return suspended > 0;
@@ -523,6 +554,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.Linkable#refresh()
 	 */
+	@Override
 	public void refresh() throws RemoteException
 	{
 		deviceProxy.refresh();
@@ -532,6 +564,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.Linkable#removeLinkListener(org.csstudio.dal.context.LinkListener)
 	 */
+	@Override
 	public void removeLinkListener(LinkListener<? extends Linkable> l)
 	{
 		linkListeners.remove(l);
@@ -540,6 +573,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.Linkable#resume()
 	 */
+	@Override
 	public void resume() throws RemoteException
 	{
 		if (suspended > 0) {
@@ -550,6 +584,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.Linkable#suspend()
 	 */
+	@Override
 	public void suspend() throws RemoteException
 	{
 		suspended++;
@@ -558,6 +593,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.GroupDataAccessProvider#getGroupDataAccess(java.lang.Class, java.lang.Class, org.csstudio.dal.group.PropertyGroupConstrain)
 	 */
+	@Override
 	public <T, P extends DynamicValueProperty<T>> GroupDataAccess<T, P> getGroupDataAccess(
 	    Class<T> dataType, Class<P> propertyType,
 	    PropertyGroupConstrain constrain)
@@ -570,6 +606,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.GroupDataAccessProvider#getGroupDataAccess(java.lang.Class, java.lang.Class)
 	 */
+	@Override
 	public <T, P extends DynamicValueProperty<?>> GroupDataAccess<T, P> getGroupDataAccess(
 	    Class<T> dataType, Class<P> propertyType)
 	{
@@ -581,6 +618,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.CharacteristicContext#addPropertyChangeListener(java.beans.PropertyChangeListener)
 	 */
+	@Override
 	public void addPropertyChangeListener(PropertyChangeListener l)
 	{
 		propertyListeners.add(l);
@@ -596,6 +634,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.CharacteristicContext#getCharacteristic(java.lang.String)
 	 */
+	@Override
 	public Object getCharacteristic(String name) throws DataExchangeException
 	{
 		// NOT TO BE DONE
@@ -606,6 +645,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.CharacteristicContext#getCharacteristicNames()
 	 */
+	@Override
 	public String[] getCharacteristicNames() throws DataExchangeException
 	{
 		// NOT TO BE DONE
@@ -616,6 +656,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.CharacteristicContext#getCharacteristics(java.lang.String[])
 	 */
+	@Override
 	public Map<String, Object> getCharacteristics(String[] names) throws DataExchangeException
 	{
 		// NOT TO BE DONE
@@ -626,6 +667,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.CharacteristicContext#getPropertyChangeListeners()
 	 */
+	@Override
 	public PropertyChangeListener[] getPropertyChangeListeners()
 	{
 		return (PropertyChangeListener[])propertyListeners.toArray(new PropertyChangeListener[propertyListeners
@@ -635,6 +677,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.CharacteristicContext#removePropertyChangeListener(java.beans.PropertyChangeListener)
 	 */
+	@Override
 	public void removePropertyChangeListener(PropertyChangeListener l)
 	{
 		propertyListeners.remove(l);
@@ -779,6 +822,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 		return directoryProxy;
 	}
 
+	@Override
 	public ConnectionState getConnectionState() {
 		return connectionStateMachine.getConnectionState();
 	}
@@ -790,11 +834,13 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	 *
 	 * @return plug destingushing type name
 	 */
+	@Override
 	public String getPlugType() {
 		// TODO: missing implementation
 		return null;
 	}
 	
+	@Override
 	public DeviceFamily<?> getParentContext() {
 		return deviceFamily;
 	}

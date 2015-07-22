@@ -127,6 +127,7 @@ public class ScaledSliderFigure extends AbstractLinearMarkedFigure {
 		add(label, "label");
 	
 		addFigureListener(new FigureListener() {			
+			@Override
 			public void figureMoved(IFigure source) {
 				revalidate();				
 			}
@@ -136,6 +137,7 @@ public class ScaledSliderFigure extends AbstractLinearMarkedFigure {
 		setFocusTraversable(true);		
 		addKeyListener(new KeyListener() {
 				
+				@Override
 				public void keyPressed(KeyEvent ke) {
 					if((ke.keycode == SWT.ARROW_DOWN && !horizontal) ||
 							(ke.keycode == SWT.ARROW_LEFT && horizontal) )
@@ -149,16 +151,19 @@ public class ScaledSliderFigure extends AbstractLinearMarkedFigure {
 						pageDown();
 				}
 				
+				@Override
 				public void keyReleased(KeyEvent ke) {				
 				}
 			});
 			
 		addFocusListener(new FocusListener() {
 				
+				@Override
 				public void focusGained(FocusEvent fe) {
 					repaint();
 				}
 				
+				@Override
 				public void focusLost(FocusEvent fe) {
 					repaint();
 				}
@@ -437,10 +442,12 @@ public class ScaledSliderFigure extends AbstractLinearMarkedFigure {
 				
 				protected boolean armed;						
 			
+				@Override
 				public void mouseDoubleClicked(MouseEvent me) {
 					
 				}
 				
+				@Override
 				public void mouseDragged(MouseEvent me) {
 					if (!armed) 
 						return;
@@ -468,18 +475,21 @@ public class ScaledSliderFigure extends AbstractLinearMarkedFigure {
 	
 				
 				
+				@Override
 				public void mouseEntered(MouseEvent me) {					
 					temp = thumbColor;
 					thumbColor = GREEN_COLOR;
 					repaint();
 				}										
 				
+				@Override
 				public void mouseExited(MouseEvent me) {				
 					thumbColor = temp;
 					label.setVisible(false);
 					repaint();
 				}
 								
+				@Override
 				public void mousePressed(MouseEvent me) {
 					if(me.button != 1)
 						return;
@@ -497,6 +507,7 @@ public class ScaledSliderFigure extends AbstractLinearMarkedFigure {
 					
 				}
 				
+				@Override
 				public void mouseReleased(MouseEvent me) {
 					if(me.button != 1)
 						return;
@@ -572,6 +583,7 @@ public class ScaledSliderFigure extends AbstractLinearMarkedFigure {
 				
 				behavior.setRunTask(new Runnable() {
 					
+					@Override
 					public void run() {
 						if(pageUp){
 							if(getValue() >=pressedValue)
@@ -791,6 +803,7 @@ public class ScaledSliderFigure extends AbstractLinearMarkedFigure {
 				setLabel();
 		}
 	
+		@Override
 		public void layout(IFigure container) {
 			if(horizontal)
 				horizontalLayout(container);

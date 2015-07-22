@@ -177,6 +177,7 @@ public final class TextInputEditPart extends AbstractTextTypeWidgetEditPart {
 		});
 		text.addVerifyListener(new VerifyListener() {
 
+			@Override
 			public void verifyText(final VerifyEvent e) {
 				e.doit = true;
 				int option = getWidgetModel().getArrayOptionProperty(TextInputModel.PROP_TEXT_TYPE);
@@ -368,6 +369,7 @@ public final class TextInputEditPart extends AbstractTextTypeWidgetEditPart {
 	    super.registerPropertyChangeHandlers();
 		// input text
 		IWidgetPropertyChangeHandler textHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure refreshableFigure) {
 				RefreshableLabelFigure label = (RefreshableLabelFigure) refreshableFigure;
 				label.setTextValue(determineLabel(TextInputModel.PROP_INPUT_TEXT));
@@ -386,6 +388,7 @@ public final class TextInputEditPart extends AbstractTextTypeWidgetEditPart {
 
 		// text alignment
 		IWidgetPropertyChangeHandler alignmentHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure refreshableFigure) {
 				RefreshableLabelFigure label = (RefreshableLabelFigure) refreshableFigure;
 				label.setTextAlignment((Integer) newValue);
@@ -396,6 +399,7 @@ public final class TextInputEditPart extends AbstractTextTypeWidgetEditPart {
 
 		// transparent background
 		IWidgetPropertyChangeHandler transparentHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue, final IFigure refreshableFigure) {
 				RefreshableLabelFigure label = (RefreshableLabelFigure) refreshableFigure;
 				label.setTransparent((Boolean) newValue);

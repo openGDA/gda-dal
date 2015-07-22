@@ -21,12 +21,15 @@ public final class EnumImpl implements org.csstudio.dal.Enum {
 		this.description=description;
 	}
 	
+	@Override
 	public String description() {
 		return description;
 	}
+	@Override
 	public int index() {
 		return index;
 	}
+	@Override
 	public Object value() {
 		return value;
 	}

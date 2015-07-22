@@ -35,6 +35,7 @@ public class TreeCheckSelectionListener extends SelectionAdapter {
 	/* (non-Javadoc)
 	 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 	 */
+	@Override
 	public void widgetSelected(SelectionEvent event) {
 		if (event.detail == SWT.CHECK) {
 			this.handleCheckedItem((TreeItem) event.item);

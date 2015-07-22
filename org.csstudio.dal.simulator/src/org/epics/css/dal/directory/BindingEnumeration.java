@@ -59,6 +59,7 @@ public class BindingEnumeration implements NamingEnumeration<Binding>
 	/*
 	 * @see javax.naming.NamingEnumeration#close()
 	 */
+	@Override
 	public void close() throws NamingException
 	{
 		data.clear();
@@ -67,6 +68,7 @@ public class BindingEnumeration implements NamingEnumeration<Binding>
 	/*
 	 * @see javax.naming.NamingEnumeration#hasMore()
 	 */
+	@Override
 	public boolean hasMore() throws NamingException
 	{
 		return hasMoreElements();
@@ -75,6 +77,7 @@ public class BindingEnumeration implements NamingEnumeration<Binding>
 	/*
 	 * @see javax.naming.NamingEnumeration#next()
 	 */
+	@Override
 	public Binding next() throws NamingException
 	{
 		return nextElement();
@@ -83,6 +86,7 @@ public class BindingEnumeration implements NamingEnumeration<Binding>
 	/*
 	 * @see java.util.Enumeration#hasMoreElements()
 	 */
+	@Override
 	public boolean hasMoreElements()
 	{
 		return iterator.hasNext();
@@ -91,6 +95,7 @@ public class BindingEnumeration implements NamingEnumeration<Binding>
 	/*
 	 * @see java.util.Enumeration#nextElement()
 	 */
+	@Override
 	public Binding nextElement()
 	{
 		String key = iterator.next();

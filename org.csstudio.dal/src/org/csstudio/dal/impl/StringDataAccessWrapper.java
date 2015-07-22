@@ -46,6 +46,7 @@ public class StringDataAccessWrapper extends AbstractDataAccessWrapper<String>
 		super(String.class, sourceDA);
 	}
 
+	@Override
 	protected int getConversion()
 	{
 		if (valClass.equals(String.class)) {

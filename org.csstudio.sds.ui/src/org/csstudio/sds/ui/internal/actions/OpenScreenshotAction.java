@@ -44,7 +44,8 @@ public class OpenScreenshotAction extends Action {
         this.setEnabled(true);
     }
     
-    public void run()   {
+    @Override
+	public void run()   {
         try {
             PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView("screenshotView");
         }

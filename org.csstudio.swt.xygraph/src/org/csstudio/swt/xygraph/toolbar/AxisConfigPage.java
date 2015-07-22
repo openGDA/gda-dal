@@ -148,6 +148,7 @@ public class AxisConfigPage {
 		gd = new GridData(SWT.BEGINNING, SWT.CENTER, false, false, 1, 1);
 		axisColorSelector.getButton().setLayoutData(gd);
 		axisColorSelector.addListener(new IPropertyChangeListener(){
+			@Override
 			public void propertyChange(PropertyChangeEvent event) {
 				scaleFontLabel.setForeground(XYGraphMediaFactory.getInstance().getColor(
 						axisColorSelector.getColorValue()));

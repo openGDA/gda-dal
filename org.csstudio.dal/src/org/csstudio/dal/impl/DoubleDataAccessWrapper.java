@@ -33,6 +33,7 @@ public class DoubleDataAccessWrapper extends AbstractDataAccessWrapper<Double> i
 		super(Double.class, sourceDA);
 	}
 
+	@Override
 	protected int getConversion()
 	{
 		if (valClass.equals(Double.class)) {

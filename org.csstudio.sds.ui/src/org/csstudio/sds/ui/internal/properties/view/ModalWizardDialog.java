@@ -86,6 +86,7 @@ public final class ModalWizardDialog extends WizardDialog {
 			// no old bounds
 			if (currentBounds != null) {
 				Display.getCurrent().asyncExec(new Runnable() {
+					@Override
 					public void run() {
 						_instance.getShell().setBounds(currentBounds);
 					}

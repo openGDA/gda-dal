@@ -189,6 +189,7 @@ public abstract class AbstractPropertyProxyImpl<T,P extends AbstractPlug,M exten
 	 * (non-Javadoc)
 	 * @see org.csstudio.dal.proxy.PropertyProxy#getCondition()
 	 */
+	@Override
 	public DynamicValueCondition getCondition() {
 		return this.condition;
 	}
@@ -211,6 +212,7 @@ public abstract class AbstractPropertyProxyImpl<T,P extends AbstractPlug,M exten
 		setCondition(c);
 	}
 
+	@Override
 	public Response<T> getLatestValueResponse() {
 		return lastValueResponse;
 	}

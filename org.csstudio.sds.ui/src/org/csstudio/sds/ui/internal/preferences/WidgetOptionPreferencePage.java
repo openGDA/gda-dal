@@ -101,6 +101,7 @@ public final class WidgetOptionPreferencePage extends PreferencePage implements
 	 *
 	 * (@inheritDoc)
 	 */
+	@Override
 	public void init(final IWorkbench workbench) {
 		// nothing to do
 	}
@@ -158,7 +159,8 @@ public final class WidgetOptionPreferencePage extends PreferencePage implements
         _cfeColor.setPreferenceStore(getPreferenceStore());
         _cfeColor.load();
         _cfeColor.getColorSelector().addListener(new IPropertyChangeListener(){
-            public void propertyChange(final PropertyChangeEvent event) {
+            @Override
+			public void propertyChange(final PropertyChangeEvent event) {
                 _cfeColor.getColorSelector().setColorValue((RGB) event.getNewValue());
             }
         });
@@ -246,6 +248,7 @@ public final class WidgetOptionPreferencePage extends PreferencePage implements
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public Object[] getChildren(final Object parentElement) {
 			if (parentElement instanceof PluginTreeElement) {
 				return ((PluginTreeElement) parentElement).getElements();
@@ -256,6 +259,7 @@ public final class WidgetOptionPreferencePage extends PreferencePage implements
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public Object getParent(final Object element) {
 			return null;
 		}
@@ -263,6 +267,7 @@ public final class WidgetOptionPreferencePage extends PreferencePage implements
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public boolean hasChildren(final Object element) {
 			if (element instanceof PluginTreeElement) {
 				return ((PluginTreeElement) element).hasWidgets();
@@ -273,6 +278,7 @@ public final class WidgetOptionPreferencePage extends PreferencePage implements
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public Object[] getElements(final Object inputElement) {
 			return _elements;
 		}
@@ -280,12 +286,14 @@ public final class WidgetOptionPreferencePage extends PreferencePage implements
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void dispose() {
 		}
 
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void inputChanged(final Viewer viewer, final Object oldInput, final Object newInput) {
 			if (newInput instanceof WidgetModelFactoryService) {
 				WidgetModelFactoryService service = (WidgetModelFactoryService)newInput;

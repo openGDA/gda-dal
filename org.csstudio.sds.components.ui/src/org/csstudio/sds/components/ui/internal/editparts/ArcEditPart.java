@@ -41,6 +41,7 @@ public final class ArcEditPart extends AbstractWidgetEditPart {
 	 * 
 	 * @return the casted {@link ArcModel}
 	 */
+	@Override
 	protected ArcModel getCastedModel() {
 		return (ArcModel) getModel();
 	}
@@ -72,6 +73,7 @@ public final class ArcEditPart extends AbstractWidgetEditPart {
 	protected void registerPropertyChangeHandlers() {
 		// changes to the transparency property
 		IWidgetPropertyChangeHandler handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue,
 					final IFigure figure) {
 				RefreshableArcFigure arcFigure = (RefreshableArcFigure) figure;
@@ -83,6 +85,7 @@ public final class ArcEditPart extends AbstractWidgetEditPart {
 		
 		// changes to the border width property
 		handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue,
 					final IFigure figure) {
 				RefreshableArcFigure arcFigure = (RefreshableArcFigure) figure;
@@ -94,6 +97,7 @@ public final class ArcEditPart extends AbstractWidgetEditPart {
 		
 		// changes to the start angle property
 		handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue,
 					final IFigure figure) {
 				RefreshableArcFigure arcFigure = (RefreshableArcFigure) figure;
@@ -105,6 +109,7 @@ public final class ArcEditPart extends AbstractWidgetEditPart {
 		
 		// changes to the angle property
 		handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue,
 					final IFigure figure) {
 				RefreshableArcFigure arcFigure = (RefreshableArcFigure) figure;
@@ -116,6 +121,7 @@ public final class ArcEditPart extends AbstractWidgetEditPart {
 		
 		// changes to the line width property
 		handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue,
 					final IFigure figure) {
 				RefreshableArcFigure arcFigure = (RefreshableArcFigure) figure;
@@ -127,6 +133,7 @@ public final class ArcEditPart extends AbstractWidgetEditPart {
 		
 		// changes to the filled property
 		handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue,
 					final IFigure figure) {
 				RefreshableArcFigure arcFigure = (RefreshableArcFigure) figure;

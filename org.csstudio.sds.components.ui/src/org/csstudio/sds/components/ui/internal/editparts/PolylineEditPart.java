@@ -62,6 +62,7 @@ public final class PolylineEditPart extends AbstractWidgetEditPart {
 	protected void registerPropertyChangeHandlers() {
 		// line width
 		IWidgetPropertyChangeHandler lineWidthHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -75,6 +76,7 @@ public final class PolylineEditPart extends AbstractWidgetEditPart {
 		
 		// line style
 		IWidgetPropertyChangeHandler lineStyleHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -88,6 +90,7 @@ public final class PolylineEditPart extends AbstractWidgetEditPart {
 
 		// fill
 		IWidgetPropertyChangeHandler fillHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -100,6 +103,7 @@ public final class PolylineEditPart extends AbstractWidgetEditPart {
 
 		// points
 		IWidgetPropertyChangeHandler pointsHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {

@@ -81,7 +81,8 @@ public final class RunModeContextMenuProvider extends ContextMenuProvider {
         _actionRegistry = actionRegistry;
     }
     
-    public void dispose() {
+    @Override
+	public void dispose() {
         super.dispose();
         super.removeAll();
         super.setViewer(null);

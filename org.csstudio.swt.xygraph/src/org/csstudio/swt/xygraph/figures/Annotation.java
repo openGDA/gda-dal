@@ -574,16 +574,19 @@ public class Annotation extends Figure implements IAxisListener, IDataProviderLi
 	
 	
 
+	@Override
 	public void axisRevalidated(Axis axis) {
 		currentPosition = new Point(xAxis.getValuePosition(xValue, false),
 				yAxis.getValuePosition(yValue, false));
 		updateInfoLableText();
 	}
 	
+	@Override
 	public void axisRangeChanged(Axis axis, Range old_range, Range new_range) {
 		//do nothing
 	}
 
+	@Override
 	public void dataChanged(IDataProvider dataProvider) {
 		if(trace == null)
 			return;
@@ -705,8 +708,10 @@ class InfoLabelDragger extends MouseMotionListener.Stub implements MouseListener
 		me.consume();
 	}
 
+	@Override
 	public void mouseDoubleClicked(MouseEvent me) {}
 	
+	@Override
 	public void mousePressed(MouseEvent me) {
 		command = new MovingAnnotationLabelCommand(Annotation.this);
 		command.setBeforeMovingDxDy(dx, dy);
@@ -715,6 +720,7 @@ class InfoLabelDragger extends MouseMotionListener.Stub implements MouseListener
 		me.consume(); //it must be consumed to make dragging smoothly.
 	}
 	
+	@Override
 	public void mouseReleased(MouseEvent me) {
 		command.setAfterMovingDxDy(dx, dy);
 		xyGraph.getOperationsManager().addCommand(command);
@@ -764,8 +770,10 @@ class Pointer extends Figure{
 			me.consume();
 		}
 		
+		@Override
 		public void mouseDoubleClicked(MouseEvent me) {}
 		
+		@Override
 		public void mousePressed(MouseEvent me) {
 			command = new MovingAnnotationCommand(Annotation.this);
 			if(isFree())
@@ -776,6 +784,7 @@ class Pointer extends Figure{
 			me.consume(); //it must be consumed to make dragging smoothly.
 		}
 		
+		@Override
 		public void mouseReleased(MouseEvent me) {
 			if(command != null){
 				if(isFree())

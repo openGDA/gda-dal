@@ -30,11 +30,13 @@ public class ChannelFactoryImpl implements ChannelFactory
 
 			ch.addListener(new ChannelListener() {
 				
+				@Override
 				public void channelStateUpdate(AnyDataChannel channel) {
 					// TODO Auto-generated method stub
 					
 				}
 				
+				@Override
 				public void channelDataUpdate(AnyDataChannel channel) {
 					// TODO Auto-generated method stub
 					
@@ -69,7 +71,8 @@ public class ChannelFactoryImpl implements ChannelFactory
     }
 
     /** {@inheritDoc} */
-    final public String[] getSupportedConnectionTypes() throws Exception
+    @Override
+	final public String[] getSupportedConnectionTypes() throws Exception
     {	
     	String[] s= propertyFactoryManager.getSupportedPlugTypes();
     	String[] ss= new String[s.length];
@@ -80,13 +83,15 @@ public class ChannelFactoryImpl implements ChannelFactory
     }
 
     /** {@inheritDoc} */
-    final public AnyDataChannel createChannel(final String name) throws Exception
+    @Override
+	final public AnyDataChannel createChannel(final String name) throws Exception
     {
     	return propertyFactoryManager.getProperty(name);
     }
     
     /** {@inheritDoc} */
-    final public AnyDataChannel createChannel(final RemoteInfo remoteInfo) throws Exception {
+    @Override
+	final public AnyDataChannel createChannel(final RemoteInfo remoteInfo) throws Exception {
     	return propertyFactoryManager.getProperty(remoteInfo);
     }
     

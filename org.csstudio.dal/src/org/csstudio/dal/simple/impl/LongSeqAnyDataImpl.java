@@ -15,42 +15,52 @@ public final class LongSeqAnyDataImpl extends AbstractAnyDataImpl<long[]> {
 		super(property, Long.MIN_VALUE);
 	}
 
+	@Override
 	public Object[] anySeqValue() {
 		return DataUtil.toNumberSeq(response.getValue());
 	}
 
+	@Override
 	public Object anyValue() {
 		return response.getValue();
 	}
 
+	@Override
 	public double[] doubleSeqValue() {
 		return DataUtil.toDoubleSeq(response.getValue());
 	}
 
+	@Override
 	public double doubleValue() {
 		return response.getValue()[0];
 	}
 
+	@Override
 	public long[] longSeqValue() {
 		return response.getValue();
 	}
 
+	@Override
 	public long longValue() {
 		return response.getValue()[0];
 	}
 
+	@Override
 	public Number[] numberSeqValue() {
 		return DataUtil.toNumberSeq(response.getValue());
 	}
 
+	@Override
 	public Number numberValue() {
 		return response.getNumber();
 	}
 
+	@Override
 	public String[] stringSeqValue() {
 		return DataUtil.toStringSeq(response.getValue());
 	}
 
+	@Override
 	public String stringValue() {
 		return Arrays.toString(response.getValue());
 	}

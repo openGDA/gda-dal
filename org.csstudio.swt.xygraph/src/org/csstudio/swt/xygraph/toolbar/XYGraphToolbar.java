@@ -77,6 +77,7 @@ public class XYGraphToolbar extends Figure {
 		configButton.setToolTip(new Label("Configure Settings..."));
 		addButton(configButton);
 		configButton.addActionListener(new ActionListener(){
+			@Override
 			public void actionPerformed(ActionEvent event) {
 				openConfigurationDialog();
 			}
@@ -86,6 +87,7 @@ public class XYGraphToolbar extends Figure {
 		showLegend.setToolTip(new Label("Show Legend"));
 		addButton(showLegend);
 		showLegend.addActionListener(new ActionListener(){
+			@Override
 			public void actionPerformed(ActionEvent event) {
 				xyGraph.setShowLegend(!xyGraph.isShowLegend());
 			}
@@ -98,6 +100,7 @@ public class XYGraphToolbar extends Figure {
 		addAnnotationButton.setToolTip(new Label("Add Annotation..."));		
 		addButton(addAnnotationButton);
 		addAnnotationButton.addActionListener(new ActionListener(){
+			@Override
 			public void actionPerformed(ActionEvent event) {
 				AddAnnotationDialog dialog = new AddAnnotationDialog(
 						Display.getCurrent().getActiveShell(), xyGraph);
@@ -113,6 +116,7 @@ public class XYGraphToolbar extends Figure {
 		delAnnotationButton.setToolTip(new Label("Remove Annotation..."));
 		addButton(delAnnotationButton);
 		delAnnotationButton.addActionListener(new ActionListener(){
+			@Override
 			public void actionPerformed(ActionEvent event) {
 				RemoveAnnotationDialog dialog = new RemoveAnnotationDialog(
 						Display.getCurrent().getActiveShell(), xyGraph);
@@ -133,7 +137,8 @@ public class XYGraphToolbar extends Figure {
     		staggerButton.setToolTip(new Label("Stagger axes so they don't overlap"));
     		addButton(staggerButton);
     		staggerButton.addActionListener(new ActionListener(){
-    			public void actionPerformed(ActionEvent event) {
+    			@Override
+				public void actionPerformed(ActionEvent event) {
     				xyGraph.performStagger();
     			}
     		});
@@ -144,7 +149,8 @@ public class XYGraphToolbar extends Figure {
             autoScaleButton.setToolTip(new Label("Perform Auto Scale"));
             addButton(autoScaleButton);
             autoScaleButton.addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent event) {
+                @Override
+				public void actionPerformed(ActionEvent event) {
                     xyGraph.performAutoScale();
                 }
             });
@@ -171,6 +177,7 @@ public class XYGraphToolbar extends Figure {
 		snapShotButton.setToolTip(new Label("Print scaled image to printer"));
 		addButton(snapShotButton);
 		snapShotButton.addActionListener(new ActionListener(){
+			@Override
 			public void actionPerformed(ActionEvent event) {
 
                 // Show the Choose Printer dialog
@@ -234,11 +241,13 @@ public class XYGraphToolbar extends Figure {
 		undoButton.setEnabled(false);
 		addButton(undoButton);		
 		undoButton.addActionListener(new ActionListener(){
+			@Override
 			public void actionPerformed(ActionEvent event) {
 				xyGraph.getOperationsManager().undo();
 			}
 		});
 		xyGraph.getOperationsManager().addListener(new IOperationsManagerListener(){
+			@Override
 			public void operationsHistoryChanged(OperationsManager manager) {
 				if(manager.getUndoCommandsSize() > 0){
 					undoButton.setEnabled(true);
@@ -258,11 +267,13 @@ public class XYGraphToolbar extends Figure {
 		redoButton.setEnabled(false);
 		addButton(redoButton);		
 		redoButton.addActionListener(new ActionListener(){
+			@Override
 			public void actionPerformed(ActionEvent event) {
 				xyGraph.getOperationsManager().redo();
 			}
 		});
 		xyGraph.getOperationsManager().addListener(new IOperationsManagerListener(){
+			@Override
 			public void operationsHistoryChanged(OperationsManager manager) {
 				if(manager.getRedoCommandsSize() > 0){
 					redoButton.setEnabled(true);
@@ -293,6 +304,7 @@ public class XYGraphToolbar extends Figure {
 			button.setOpaque(true);
 			final ToggleModel model = new ToggleModel();
 			model.addChangeListener(new ChangeListener(){
+				@Override
 				public void handleStateChanged(ChangeEvent event) {
 					if(event.getPropertyName().equals("selected") && 
 							button.isSelected()){
@@ -380,7 +392,8 @@ public class XYGraphToolbar extends Figure {
         		                   : ((Label)cont).getIcon();
         		                   
         		final Action action = new Action(text, flag) {
-        			public void run() {
+        			@Override
+					public void run() {
         				if (button.getModel() instanceof ToggleModel) {
         					((ToggleModel)button.getModel()).fireActionPerformed();
         				} else {

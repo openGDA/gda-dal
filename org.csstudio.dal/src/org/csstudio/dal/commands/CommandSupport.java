@@ -56,6 +56,7 @@ public class CommandSupport implements Command
 	 *  (non-Javadoc)
 	 * @see org.csstudio.dal.commands.Command#getName()
 	 */
+	@Override
 	public String getName()
 	{
 		return method.getName();
@@ -65,6 +66,7 @@ public class CommandSupport implements Command
 	 *  (non-Javadoc)
 	 * @see org.csstudio.dal.commands.Command#execute(java.lang.Object[])
 	 */
+	@Override
 	public Object execute(Object... parameters) throws RemoteException
 	{
 		try {
@@ -78,6 +80,7 @@ public class CommandSupport implements Command
 	 *  (non-Javadoc)
 	 * @see org.csstudio.dal.commands.Command#getParameterTypes()
 	 */
+	@Override
 	public Class[] getParameterTypes()
 	{
 		return method.getParameterTypes();
@@ -87,6 +90,7 @@ public class CommandSupport implements Command
 	 *  (non-Javadoc)
 	 * @see org.csstudio.dal.commands.Command#getOwner()
 	 */
+	@Override
 	public CommandContext getOwner()
 	{
 		return owner;
@@ -96,11 +100,13 @@ public class CommandSupport implements Command
 	 *  (non-Javadoc)
 	 * @see org.csstudio.dal.commands.Command#getReturnedType()
 	 */
+	@Override
 	public Class getReturnedType()
 	{
 		return method.getReturnType();
 	}
 
+	@Override
 	public boolean isAsynchronous()
 	{
 		return false;

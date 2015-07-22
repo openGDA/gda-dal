@@ -39,6 +39,7 @@ public class BooleanSection extends AbstractBaseSection<BooleanProperty> {
 		
 		// .. listen to changes
 		_selectionListener = new SelectionAdapter() {
+			@Override
 			public void widgetSelected(SelectionEvent e) {
 				applyPropertyChange(checkbox.getSelection());
 			}

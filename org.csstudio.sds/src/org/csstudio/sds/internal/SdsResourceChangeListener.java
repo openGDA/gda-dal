@@ -50,6 +50,7 @@ public class SdsResourceChangeListener implements IResourceChangeListener {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void resourceChanged(IResourceChangeEvent event) {
 		try {
 			event.getDelta().accept(_visitor);
@@ -60,6 +61,7 @@ public class SdsResourceChangeListener implements IResourceChangeListener {
 
 	private class DeltaVisitor implements IResourceDeltaVisitor {
 
+		@Override
 		public boolean visit(IResourceDelta delta) throws CoreException {
 			boolean result = true;
 			IResource resource = delta.getResource();

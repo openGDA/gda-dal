@@ -67,27 +67,32 @@ public class DirContextSupport implements DirContext
 			iterator = items.keySet().iterator();
 		}
 
+		@Override
 		public void close() throws NamingException
 		{
 			iterator = null;
 			items = null;
 		}
 
+		@Override
 		public boolean hasMore() throws NamingException
 		{
 			return hasMoreElements();
 		}
 
+		@Override
 		public SearchResult next() throws NamingException
 		{
 			return nextElement();
 		}
 
+		@Override
 		public boolean hasMoreElements()
 		{
 			return iterator.hasNext();
 		}
 
+		@Override
 		public SearchResult nextElement()
 		{
 			String key = iterator.next();
@@ -141,6 +146,7 @@ public class DirContextSupport implements DirContext
 	 *
 	 * @see javax.naming.directory.DirContext#getAttributes(javax.naming.Name)
 	 */
+	@Override
 	public Attributes getAttributes(Name name) throws NamingException
 	{
 		return getAttributes(resolveName(name));
@@ -150,6 +156,7 @@ public class DirContextSupport implements DirContext
 	 *
 	 * @see javax.naming.directory.DirContext#getAttributes(java.lang.String)
 	 */
+	@Override
 	public Attributes getAttributes(String name) throws NamingException
 	{
 		Attributes a = attributes.get(name);
@@ -162,6 +169,7 @@ public class DirContextSupport implements DirContext
 	 * @see javax.naming.directory.DirContext#getAttributes(javax.naming.Name,
 	 *      java.lang.String[])
 	 */
+	@Override
 	public Attributes getAttributes(Name name, String[] attrIds)
 		throws NamingException
 	{
@@ -173,6 +181,7 @@ public class DirContextSupport implements DirContext
 	 * @see javax.naming.directory.DirContext#getAttributes(java.lang.String,
 	 *      java.lang.String[])
 	 */
+	@Override
 	public Attributes getAttributes(String name, String[] attrIds)
 		throws NamingException
 	{
@@ -200,6 +209,7 @@ public class DirContextSupport implements DirContext
 	 * @see javax.naming.directory.DirContext#modifyAttributes(javax.naming.Name,
 	 *      int, javax.naming.directory.Attributes)
 	 */
+	@Override
 	public void modifyAttributes(Name name, int mod_op, Attributes attrs)
 		throws NamingException
 	{
@@ -211,6 +221,7 @@ public class DirContextSupport implements DirContext
 	 * @see javax.naming.directory.DirContext#modifyAttributes(java.lang.String,
 	 *      int, javax.naming.directory.Attributes)
 	 */
+	@Override
 	public void modifyAttributes(String name, int mod_op, Attributes attrs)
 		throws NamingException
 	{
@@ -222,6 +233,7 @@ public class DirContextSupport implements DirContext
 	 * @see javax.naming.directory.DirContext#modifyAttributes(javax.naming.Name,
 	 *      javax.naming.directory.ModificationItem[])
 	 */
+	@Override
 	public void modifyAttributes(Name name, ModificationItem[] mods)
 		throws NamingException
 	{
@@ -233,12 +245,14 @@ public class DirContextSupport implements DirContext
 	 * @see javax.naming.directory.DirContext#modifyAttributes(java.lang.String,
 	 *      javax.naming.directory.ModificationItem[])
 	 */
+	@Override
 	public void modifyAttributes(String name, ModificationItem[] mods)
 		throws NamingException
 	{
 		// TODO Auto-generated method stub
 	}
 
+	@Override
 	public void bind(String name, Object obj, Attributes attrs)
 		throws NamingException
 	{
@@ -266,6 +280,7 @@ public class DirContextSupport implements DirContext
 	 * @see javax.naming.directory.DirContext#bind(javax.naming.Name,
 	 *      java.lang.Object, javax.naming.directory.Attributes)
 	 */
+	@Override
 	public void bind(Name name, Object obj, Attributes attrs)
 		throws NamingException
 	{
@@ -277,6 +292,7 @@ public class DirContextSupport implements DirContext
 	 * @see javax.naming.directory.DirContext#rebind(javax.naming.Name,
 	 *      java.lang.Object, javax.naming.directory.Attributes)
 	 */
+	@Override
 	public void rebind(Name name, Object obj, Attributes attrs)
 		throws NamingException
 	{
@@ -288,6 +304,7 @@ public class DirContextSupport implements DirContext
 	 * @see javax.naming.directory.DirContext#rebind(java.lang.String,
 	 *      java.lang.Object, javax.naming.directory.Attributes)
 	 */
+	@Override
 	public void rebind(String name, Object obj, Attributes attrs)
 		throws NamingException
 	{
@@ -307,6 +324,7 @@ public class DirContextSupport implements DirContext
 	 * @see javax.naming.directory.DirContext#createSubcontext(javax.naming.Name,
 	 *      javax.naming.directory.Attributes)
 	 */
+	@Override
 	public DirContext createSubcontext(Name name, Attributes attrs)
 		throws NamingException
 	{
@@ -318,6 +336,7 @@ public class DirContextSupport implements DirContext
 	 * @see javax.naming.directory.DirContext#createSubcontext(java.lang.String,
 	 *      javax.naming.directory.Attributes)
 	 */
+	@Override
 	public DirContext createSubcontext(String name, Attributes attrs)
 		throws NamingException
 	{
@@ -328,6 +347,7 @@ public class DirContextSupport implements DirContext
 	 *
 	 * @see javax.naming.directory.DirContext#getSchema(javax.naming.Name)
 	 */
+	@Override
 	public DirContext getSchema(Name name) throws NamingException
 	{
 		throw new OperationNotSupportedException();
@@ -337,6 +357,7 @@ public class DirContextSupport implements DirContext
 	 *
 	 * @see javax.naming.directory.DirContext#getSchema(java.lang.String)
 	 */
+	@Override
 	public DirContext getSchema(String name) throws NamingException
 	{
 		throw new OperationNotSupportedException();
@@ -346,6 +367,7 @@ public class DirContextSupport implements DirContext
 	 *
 	 * @see javax.naming.directory.DirContext#getSchemaClassDefinition(javax.naming.Name)
 	 */
+	@Override
 	public DirContext getSchemaClassDefinition(Name name)
 		throws NamingException
 	{
@@ -356,6 +378,7 @@ public class DirContextSupport implements DirContext
 	 *
 	 * @see javax.naming.directory.DirContext#getSchemaClassDefinition(java.lang.String)
 	 */
+	@Override
 	public DirContext getSchemaClassDefinition(String name)
 		throws NamingException
 	{
@@ -366,6 +389,7 @@ public class DirContextSupport implements DirContext
 	 *  (non-Javadoc)
 	 * @see javax.naming.directory.DirContext#search(javax.naming.Name, javax.naming.directory.Attributes, java.lang.String[])
 	 */
+	@Override
 	public NamingEnumeration<SearchResult> search(Name name,
 	    Attributes matchingAttributes, String[] attributesToReturn)
 		throws NamingException
@@ -378,6 +402,7 @@ public class DirContextSupport implements DirContext
 	 * @see javax.naming.directory.DirContext#search(java.lang.String,
 	 *      javax.naming.directory.Attributes, java.lang.String[])
 	 */
+	@Override
 	public NamingEnumeration<SearchResult> search(String name,
 	    Attributes matchingAttributes, String[] attributesToReturn)
 		throws NamingException
@@ -434,6 +459,7 @@ public class DirContextSupport implements DirContext
 	 * @see javax.naming.directory.DirContext#search(javax.naming.Name,
 	 *      javax.naming.directory.Attributes)
 	 */
+	@Override
 	public NamingEnumeration<SearchResult> search(Name name,
 	    Attributes matchingAttributes) throws NamingException
 	{
@@ -445,6 +471,7 @@ public class DirContextSupport implements DirContext
 	 * @see javax.naming.directory.DirContext#search(java.lang.String,
 	 *      javax.naming.directory.Attributes)
 	 */
+	@Override
 	public NamingEnumeration<SearchResult> search(String name,
 	    Attributes matchingAttributes) throws NamingException
 	{
@@ -456,6 +483,7 @@ public class DirContextSupport implements DirContext
 	 * @see javax.naming.directory.DirContext#search(javax.naming.Name,
 	 *      java.lang.String, javax.naming.directory.SearchControls)
 	 */
+	@Override
 	public NamingEnumeration<SearchResult> search(Name name, String filter,
 	    SearchControls cons) throws NamingException
 	{
@@ -468,6 +496,7 @@ public class DirContextSupport implements DirContext
 	 * @see javax.naming.directory.DirContext#search(java.lang.String,
 	 *      java.lang.String, javax.naming.directory.SearchControls)
 	 */
+	@Override
 	public NamingEnumeration<SearchResult> search(String name, String filter,
 	    SearchControls cons) throws NamingException
 	{
@@ -481,6 +510,7 @@ public class DirContextSupport implements DirContext
 	 *      java.lang.String, java.lang.Object[],
 	 *      javax.naming.directory.SearchControls)
 	 */
+	@Override
 	public NamingEnumeration<SearchResult> search(Name name, String filterExpr,
 	    Object[] filterArgs, SearchControls cons) throws NamingException
 	{
@@ -494,6 +524,7 @@ public class DirContextSupport implements DirContext
 	 *      java.lang.String, java.lang.Object[],
 	 *      javax.naming.directory.SearchControls)
 	 */
+	@Override
 	public NamingEnumeration<SearchResult> search(String name,
 	    String filterExpr, Object[] filterArgs, SearchControls cons)
 		throws NamingException
@@ -506,6 +537,7 @@ public class DirContextSupport implements DirContext
 	 *
 	 * @see javax.naming.Context#lookup(javax.naming.Name)
 	 */
+	@Override
 	public Object lookup(Name name) throws NamingException
 	{
 		if (name == null) {
@@ -523,6 +555,7 @@ public class DirContextSupport implements DirContext
 	 *
 	 * @see javax.naming.Context#lookup(java.lang.String)
 	 */
+	@Override
 	public Object lookup(String name) throws NamingException
 	{
 		if (name == null) {
@@ -540,6 +573,7 @@ public class DirContextSupport implements DirContext
 	 *
 	 * @see javax.naming.Context#bind(javax.naming.Name, java.lang.Object)
 	 */
+	@Override
 	public void bind(Name name, Object obj) throws NamingException
 	{
 		bind(resolveName(name), obj, null);
@@ -549,6 +583,7 @@ public class DirContextSupport implements DirContext
 	 *
 	 * @see javax.naming.Context#bind(java.lang.String, java.lang.Object)
 	 */
+	@Override
 	public void bind(String name, Object obj) throws NamingException
 	{
 		bind(name, obj, null);
@@ -558,6 +593,7 @@ public class DirContextSupport implements DirContext
 	 *
 	 * @see javax.naming.Context#rebind(javax.naming.Name, java.lang.Object)
 	 */
+	@Override
 	public void rebind(Name name, Object obj) throws NamingException
 	{
 		rebind(resolveName(name), obj);
@@ -567,6 +603,7 @@ public class DirContextSupport implements DirContext
 	 *
 	 * @see javax.naming.Context#rebind(java.lang.String, java.lang.Object)
 	 */
+	@Override
 	public void rebind(String name, Object obj) throws NamingException
 	{
 		values.put(name, obj);
@@ -576,6 +613,7 @@ public class DirContextSupport implements DirContext
 	 *
 	 * @see javax.naming.Context#unbind(javax.naming.Name)
 	 */
+	@Override
 	public void unbind(Name name) throws NamingException
 	{
 		unbind(resolveName(name));
@@ -585,6 +623,7 @@ public class DirContextSupport implements DirContext
 	 *
 	 * @see javax.naming.Context#unbind(java.lang.String)
 	 */
+	@Override
 	public void unbind(String name) throws NamingException
 	{
 		values.remove(name);
@@ -595,6 +634,7 @@ public class DirContextSupport implements DirContext
 	 *
 	 * @see javax.naming.Context#rename(javax.naming.Name, javax.naming.Name)
 	 */
+	@Override
 	public void rename(Name oldName, Name newName) throws NamingException
 	{
 		rename(resolveName(oldName), resolveName(newName));
@@ -604,6 +644,7 @@ public class DirContextSupport implements DirContext
 	 *
 	 * @see javax.naming.Context#rename(java.lang.String, java.lang.String)
 	 */
+	@Override
 	public void rename(String oldName, String newName)
 		throws NamingException
 	{
@@ -629,6 +670,7 @@ public class DirContextSupport implements DirContext
 		}
 	}
 
+	@Override
 	public NamingEnumeration<NameClassPair> list(Name name)
 		throws NamingException
 	{
@@ -643,6 +685,7 @@ public class DirContextSupport implements DirContext
 	 *
 	 * @see javax.naming.Context#list(java.lang.String)
 	 */
+	@Override
 	public NamingEnumeration<NameClassPair> list(String name)
 		throws NamingException
 	{
@@ -654,6 +697,7 @@ public class DirContextSupport implements DirContext
 	 *
 	 * @see javax.naming.Context#listBindings(javax.naming.Name)
 	 */
+	@Override
 	public NamingEnumeration<Binding> listBindings(Name name)
 		throws NamingException
 	{
@@ -665,6 +709,7 @@ public class DirContextSupport implements DirContext
 	 *
 	 * @see javax.naming.Context#listBindings(java.lang.String)
 	 */
+	@Override
 	public NamingEnumeration<Binding> listBindings(String name)
 		throws NamingException
 	{
@@ -676,6 +721,7 @@ public class DirContextSupport implements DirContext
 	 *
 	 * @see javax.naming.Context#destroySubcontext(javax.naming.Name)
 	 */
+	@Override
 	public void destroySubcontext(Name name) throws NamingException
 	{
 		throw new OperationNotSupportedException();
@@ -685,6 +731,7 @@ public class DirContextSupport implements DirContext
 	 *
 	 * @see javax.naming.Context#destroySubcontext(java.lang.String)
 	 */
+	@Override
 	public void destroySubcontext(String name) throws NamingException
 	{
 		throw new OperationNotSupportedException();
@@ -694,6 +741,7 @@ public class DirContextSupport implements DirContext
 	 *
 	 * @see javax.naming.Context#createSubcontext(javax.naming.Name)
 	 */
+	@Override
 	public Context createSubcontext(Name name) throws NamingException
 	{
 		throw new OperationNotSupportedException();
@@ -703,6 +751,7 @@ public class DirContextSupport implements DirContext
 	 *
 	 * @see javax.naming.Context#createSubcontext(java.lang.String)
 	 */
+	@Override
 	public Context createSubcontext(String name) throws NamingException
 	{
 		throw new OperationNotSupportedException();
@@ -712,6 +761,7 @@ public class DirContextSupport implements DirContext
 	 *
 	 * @see javax.naming.Context#lookupLink(javax.naming.Name)
 	 */
+	@Override
 	public Object lookupLink(Name name) throws NamingException
 	{
 		return lookup(name);
@@ -721,6 +771,7 @@ public class DirContextSupport implements DirContext
 	 *
 	 * @see javax.naming.Context#lookupLink(java.lang.String)
 	 */
+	@Override
 	public Object lookupLink(String name) throws NamingException
 	{
 		return lookup(name);
@@ -730,6 +781,7 @@ public class DirContextSupport implements DirContext
 	 *
 	 * @see javax.naming.Context#getNameParser(javax.naming.Name)
 	 */
+	@Override
 	public NameParser getNameParser(Name name) throws NamingException
 	{
 		return parser;
@@ -739,6 +791,7 @@ public class DirContextSupport implements DirContext
 	 *
 	 * @see javax.naming.Context#getNameParser(java.lang.String)
 	 */
+	@Override
 	public NameParser getNameParser(String name) throws NamingException
 	{
 		return parser;
@@ -749,6 +802,7 @@ public class DirContextSupport implements DirContext
 	 * @see javax.naming.Context#composeName(javax.naming.Name,
 	 *      javax.naming.Name)
 	 */
+	@Override
 	public Name composeName(Name name, Name prefix) throws NamingException
 	{
 		// TODO Auto-generated method stub
@@ -760,6 +814,7 @@ public class DirContextSupport implements DirContext
 	 * @see javax.naming.Context#composeName(java.lang.String,
 	 *      java.lang.String)
 	 */
+	@Override
 	public String composeName(String name, String prefix)
 		throws NamingException
 	{
@@ -772,6 +827,7 @@ public class DirContextSupport implements DirContext
 	 * @see javax.naming.Context#addToEnvironment(java.lang.String,
 	 *      java.lang.Object)
 	 */
+	@Override
 	public Object addToEnvironment(String propName, Object propVal)
 		throws NamingException
 	{
@@ -786,6 +842,7 @@ public class DirContextSupport implements DirContext
 	 *
 	 * @see javax.naming.Context#removeFromEnvironment(java.lang.String)
 	 */
+	@Override
 	public Object removeFromEnvironment(String propName)
 		throws NamingException
 	{
@@ -796,6 +853,7 @@ public class DirContextSupport implements DirContext
 	 *
 	 * @see javax.naming.Context#getEnvironment()
 	 */
+	@Override
 	public Hashtable<String, Object> getEnvironment() throws NamingException
 	{
 		return new Hashtable<String, Object>(env);
@@ -805,6 +863,7 @@ public class DirContextSupport implements DirContext
 	 *
 	 * @see javax.naming.Context#close()
 	 */
+	@Override
 	public void close() throws NamingException
 	{
 		// TODO Auto-generated method stub
@@ -814,6 +873,7 @@ public class DirContextSupport implements DirContext
 	 *
 	 * @see javax.naming.Context#getNameInNamespace()
 	 */
+	@Override
 	public String getNameInNamespace() throws NamingException
 	{
 		return name;

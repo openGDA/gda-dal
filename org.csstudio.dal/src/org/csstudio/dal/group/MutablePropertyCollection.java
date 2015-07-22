@@ -36,6 +36,7 @@ public interface MutablePropertyCollection<T extends DynamicValueProperty<T>>
 	extends PropertyCollection<T>, Collection<T>
 {
 	// Modification Operations
+	@Override
 	/**
 	 * Adds the specified property to this collection. If a collection
 	 * refuses to add a particular element for any reason other than that it
@@ -131,6 +132,7 @@ public interface MutablePropertyCollection<T extends DynamicValueProperty<T>>
 	 */
 	boolean removeAll(PropertyCollection<DynamicValueProperty<T>> c);
 
+	@Override
 	/**
 	 * Removes all of the elements from this set. This set will be
 	 * empty after this call returns (unless it throws an exception).

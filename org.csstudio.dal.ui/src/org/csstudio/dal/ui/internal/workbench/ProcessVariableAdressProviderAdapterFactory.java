@@ -29,6 +29,7 @@ import org.eclipse.ui.IActionFilter;
 public class ProcessVariableAdressProviderAdapterFactory implements
 		IAdapterFactory {
 
+	@Override
 	public Object getAdapter(Object adaptableObject, Class adapterType) {
 		assert adaptableObject != null;
 		assert adapterType != null;
@@ -37,6 +38,7 @@ public class ProcessVariableAdressProviderAdapterFactory implements
 		if (adapterType == IActionFilter.class) {
 			IActionFilter adapter = new IActionFilter() {
 
+				@Override
 				public boolean testAttribute(Object target, String name,
 						String value) {
 					IProcessVariableAdressProvider provider = (IProcessVariableAdressProvider) target;
@@ -61,6 +63,7 @@ public class ProcessVariableAdressProviderAdapterFactory implements
 		return null;
 	}
 
+	@Override
 	public Class[] getAdapterList() {
 		return new Class[] { IActionFilter.class };
 	}

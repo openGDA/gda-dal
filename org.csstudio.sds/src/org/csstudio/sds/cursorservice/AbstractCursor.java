@@ -48,6 +48,7 @@ public abstract class AbstractCursor implements IOption {
 	 * 
 	 * @return the identifier of this cursor.
 	 */
+	@Override
 	public final String getIdentifier() {
 		return _id;
 	}

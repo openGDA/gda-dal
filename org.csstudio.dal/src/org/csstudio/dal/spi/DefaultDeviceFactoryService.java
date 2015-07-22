@@ -60,6 +60,7 @@ public class DefaultDeviceFactoryService implements DeviceFactoryService
 	{
 		super();
 		Runtime.getRuntime().addShutdownHook(new Thread() {
+				@Override
 				public void run()
 				{
 					shutdown();
@@ -71,6 +72,7 @@ public class DefaultDeviceFactoryService implements DeviceFactoryService
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.spi.PropertyFactoryService#getPropertyFactory(org.csstudio.dal.context.AbstractApplicationContext, org.csstudio.dal.context.PropertyFamily, org.csstudio.dal.spi.PropertyFactory.LinkPolicy)
 	 */
+	@Override
 	public DeviceFactory getDeviceFactory(AbstractApplicationContext ctx,
 	    LinkPolicy linkPolicy)
 	{
@@ -80,6 +82,7 @@ public class DefaultDeviceFactoryService implements DeviceFactoryService
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.spi.DeviceFactoryService#getDeviceFactory(org.csstudio.dal.context.AbstractApplicationContext, org.csstudio.dal.spi.LinkPolicy, java.lang.String)
 	 */
+	@Override
 	public DeviceFactory getDeviceFactory(AbstractApplicationContext ctx,
 	    LinkPolicy linkPolicy, String plugName)
 	{
@@ -141,6 +144,7 @@ public class DefaultDeviceFactoryService implements DeviceFactoryService
 	 * (non-Javadoc)
 	 * @see org.csstudio.dal.spi.DeviceFactoryService#getDefaultDeviceFactory()
 	 */
+	@Override
 	public DeviceFactory getDefaultDeviceFactory()
 	{
 		String defaultCtx = System.getProperty(DEFAULT_APPLICATION_CONTEXT);

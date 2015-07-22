@@ -14,14 +14,17 @@ public final class StringAnyDataImpl extends AbstractAnyDataImpl<String> {
 		super(property, Long.MIN_VALUE);
 	}
 
+	@Override
 	public Object[] anySeqValue() {
 		return new Object[]{response.getValue()};
 	}
 
+	@Override
 	public Object anyValue() {
 		return response.getValue();
 	}
 
+	@Override
 	public double[] doubleSeqValue() {
 		Double d = Double.NaN;
 		try {
@@ -30,6 +33,7 @@ public final class StringAnyDataImpl extends AbstractAnyDataImpl<String> {
 		return new double[]{d};
 	}
 
+	@Override
 	public double doubleValue() {
 		Double d = Double.NaN;
 		try {
@@ -38,6 +42,7 @@ public final class StringAnyDataImpl extends AbstractAnyDataImpl<String> {
 		return d;
 	}
 
+	@Override
 	public long[] longSeqValue() {
 		try {
 			Long d = DataUtil.castTo(response.getValue(), Long.class);
@@ -47,6 +52,7 @@ public final class StringAnyDataImpl extends AbstractAnyDataImpl<String> {
 		}
 	}
 
+	@Override
 	public long longValue() {
 		try {
 			return DataUtil.castTo(response.getValue(), Long.class);
@@ -55,18 +61,22 @@ public final class StringAnyDataImpl extends AbstractAnyDataImpl<String> {
 		}
 	}
 
+	@Override
 	public Number[] numberSeqValue() {
 		return new Number[]{response.getNumber()};
 	}
 
+	@Override
 	public Number numberValue() {
 		return response.getNumber();
 	}
 
+	@Override
 	public String[] stringSeqValue() {
 		return new String[]{response.getValue()};
 	}
 
+	@Override
 	public String stringValue() {
 		// return response.toString(); returns the response object 'as String'
 		// return response.getValue(); does not work if value is Long!

@@ -15,18 +15,22 @@ public final class StringSeqAnyDataImpl extends AbstractAnyDataImpl<String[]> {
 		super(property, Long.MIN_VALUE);
 	}
 
+	@Override
 	public Object[] anySeqValue() {
 		return response.getValue();
 	}
 
+	@Override
 	public Object anyValue() {
 		return response.getValue();
 	}
 
+	@Override
 	public double[] doubleSeqValue() {
 		return DataUtil.toDoubleSeq(response.getValue());
 	}
 
+	@Override
 	public double doubleValue() {
 		try {
 			return new Double(response.getValue()[0]);
@@ -35,10 +39,12 @@ public final class StringSeqAnyDataImpl extends AbstractAnyDataImpl<String[]> {
 		}
 	}
 
+	@Override
 	public long[] longSeqValue() {
 		return DataUtil.toLongSeq(response.getValue());
 	}
 
+	@Override
 	public long longValue() {
 		try {
 			return DataUtil.castTo(response.getValue()[0], Long.class);
@@ -47,18 +53,22 @@ public final class StringSeqAnyDataImpl extends AbstractAnyDataImpl<String[]> {
 		}
 	}
 
+	@Override
 	public Number[] numberSeqValue() {
 		return DataUtil.toNumberSeq(response.getValue());
 	}
 
+	@Override
 	public Number numberValue() {
 		return DataUtil.castTo(response.getValue()[0], Double.class);
 	}
 
+	@Override
 	public String[] stringSeqValue() {
 		return response.getValue();
 	}
 
+	@Override
 	public String stringValue() {
 		return Arrays.toString(response.getValue());
 	}

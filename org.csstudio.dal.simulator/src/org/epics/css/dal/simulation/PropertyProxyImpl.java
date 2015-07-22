@@ -98,6 +98,7 @@ public class PropertyProxyImpl<T> extends AbstractPropertyProxyImpl<T,SimulatorP
 	/* (non-Javadoc)
 	 * @see org.epics.css.dal.proxy.PropertyProxy#getValueAsync(org.epics.css.dal.ResponseListener)
 	 */
+	@Override
 	public Request<T> getValueAsync(ResponseListener<T> callback) throws DataExchangeException{
 		if (getConnectionState() != ConnectionState.CONNECTED)
 			throw new DataExchangeException(this, "Proxy not connected");
@@ -109,6 +110,7 @@ public class PropertyProxyImpl<T> extends AbstractPropertyProxyImpl<T,SimulatorP
 	/* (non-Javadoc)
 	 * @see org.epics.css.dal.proxy.PropertyProxy#setValueAsync(T, org.epics.css.dal.ResponseListener)
 	 */
+	@Override
 	public Request<T> setValueAsync(T value, ResponseListener<T> callback) throws DataExchangeException{
 		if (getConnectionState() != ConnectionState.CONNECTED)
 			throw new DataExchangeException(this, "Proxy not connected");
@@ -121,6 +123,7 @@ public class PropertyProxyImpl<T> extends AbstractPropertyProxyImpl<T,SimulatorP
 	/* (non-Javadoc)
 	 * @see org.epics.css.dal.proxy.PropertyProxy#isSettable()
 	 */
+	@Override
 	public boolean isSettable(){
 		return isSettable;
 	}
@@ -132,12 +135,14 @@ public class PropertyProxyImpl<T> extends AbstractPropertyProxyImpl<T,SimulatorP
 	/* (non-Javadoc)
 	 * @see org.epics.css.dal.proxy.PropertyProxy#createMonitor(org.epics.css.dal.ResponseListener)
 	 */
+	@Override
 	public MonitorProxy createMonitor(ResponseListener<T> callback, Map<String,Object> param) throws RemoteException{
 		MonitorProxyImpl<T> m = new MonitorProxyImpl<T>(this, callback);
 		m.setTimerTrigger(refreshRate);
 		return m;
 	}
 
+	@Override
 	public void destroy(){
 		super.destroy();
 		if (connectionStateMachine.isConnected())
@@ -150,6 +155,7 @@ public class PropertyProxyImpl<T> extends AbstractPropertyProxyImpl<T,SimulatorP
 	/**
 	 * @see DirectoryProxy#getCharacteristicNames()
 	 */
+	@Override
 	public String[] getCharacteristicNames() throws DataExchangeException{
 		return SimulatorUtilities.getCharacteristicNames(this);
 	}
@@ -164,12 +170,14 @@ public class PropertyProxyImpl<T> extends AbstractPropertyProxyImpl<T,SimulatorP
 		return value;
 	}
 	
+	@Override
 	public T getValueSync() throws DataExchangeException{
 		if (getConnectionState() != ConnectionState.CONNECTED)
 			throw new DataExchangeException(this, "Proxy not connected");
 		return valueProvider.get();
 	}
 
+	@Override
 	public void setValueSync(T value) throws DataExchangeException{
 		if (getConnectionState() != ConnectionState.CONNECTED)
 			throw new DataExchangeException(this, "Proxy not connected");
@@ -197,6 +205,7 @@ public class PropertyProxyImpl<T> extends AbstractPropertyProxyImpl<T,SimulatorP
 		this.valueProvider = valueProvder;
 	}
 
+	@Override
 	public void refresh(){
 		// Override in order to clean up cached values.
 	}

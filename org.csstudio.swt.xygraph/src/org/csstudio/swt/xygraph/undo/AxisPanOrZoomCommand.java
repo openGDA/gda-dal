@@ -29,11 +29,13 @@ public class AxisPanOrZoomCommand extends SaveStateCommand
         beforeRange = axis.getRange();
 	}
 
+	@Override
 	public void redo()
 	{
 		axis.setRange(afterRange);
 	}
 
+	@Override
 	public void undo()
 	{
 		axis.setRange(beforeRange);

@@ -67,6 +67,7 @@ public class DynamicValueCommand<T> implements Command
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.commands.Command#name()
 	 */
+	@Override
 	public String getName()
 	{
 		return name;
@@ -75,6 +76,7 @@ public class DynamicValueCommand<T> implements Command
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.commands.Command#execute(java.lang.Object...)
 	 */
+	@Override
 	public Object execute(Object... parameters) throws RemoteException
 	{
 		property.setValue(value);
@@ -85,6 +87,7 @@ public class DynamicValueCommand<T> implements Command
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.commands.Command#getParameterTypes()
 	 */
+	@Override
 	public Class[] getParameterTypes()
 	{
 		return null;
@@ -113,6 +116,7 @@ public class DynamicValueCommand<T> implements Command
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.commands.Command#getOwner()
 	 */
+	@Override
 	public CommandContext getOwner()
 	{
 		return owner;
@@ -121,11 +125,13 @@ public class DynamicValueCommand<T> implements Command
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.commands.Command#getREturnedType()
 	 */
+	@Override
 	public Class getReturnedType()
 	{
 		return null;
 	}
 
+	@Override
 	public boolean isAsynchronous()
 	{
 		return false;

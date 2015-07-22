@@ -34,6 +34,7 @@ public class LongDataAccessWrapper extends AbstractDataAccessWrapper<Long>implem
 		super(Long.class, sourceDA);
 	}
 
+	@Override
 	protected int getConversion(){
 		if (valClass.equals(Long.class)) {
 			if (sourceDA.getDataType().equals(Double.class))

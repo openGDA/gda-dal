@@ -39,14 +39,16 @@ public class SimpleSliderIncrementAction extends Action implements IObjectAction
      *
      * (@inheritDoc)
      */
-    public void setActivePart(final IAction action, final IWorkbenchPart targetPart) {
+    @Override
+	public void setActivePart(final IAction action, final IWorkbenchPart targetPart) {
     }
 
     /**
      *
      * (@inheritDoc)
      */
-    public final void run(final IAction action) {
+    @Override
+	public final void run(final IAction action) {
         this.run();
     }
     
@@ -62,7 +64,8 @@ public class SimpleSliderIncrementAction extends Action implements IObjectAction
                                                        initialValue,
                                                        new IInputValidator() {
                                                            //
-                                                           public String isValid(final String newText) {
+                                                           @Override
+														public String isValid(final String newText) {
                                                                try {
                                                                    double d = Double
                                                                            .parseDouble(newText);
@@ -92,6 +95,7 @@ public class SimpleSliderIncrementAction extends Action implements IObjectAction
      *
      * (@inheritDoc)
      */
+	@Override
 	public final void selectionChanged(final IAction action, final ISelection selection) {
     	if (selection instanceof IStructuredSelection) {
             Object element = ((IStructuredSelection) selection).getFirstElement();
@@ -181,7 +185,8 @@ public class SimpleSliderIncrementAction extends Action implements IObjectAction
             _value = value;
         }
 
-        public void widgetSelected(final SelectionEvent e) {
+        @Override
+		public void widgetSelected(final SelectionEvent e) {
             setInc();
         }
 
@@ -189,7 +194,8 @@ public class SimpleSliderIncrementAction extends Action implements IObjectAction
             _text.setText(_value);
         }
 
-        public void widgetDefaultSelected(final SelectionEvent e) {
+        @Override
+		public void widgetDefaultSelected(final SelectionEvent e) {
             setInc();
         }
 

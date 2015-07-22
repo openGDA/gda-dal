@@ -52,6 +52,7 @@ public class SetValueInterceptor<T> implements ResponseListener<T>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.ResponseListener#responseReceived(org.csstudio.dal.ResponseEvent)
 	 */
+	@Override
 	public synchronized void responseReceived(ResponseEvent<T> event)
 	{
 		done = true;
@@ -61,6 +62,7 @@ public class SetValueInterceptor<T> implements ResponseListener<T>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.ResponseListener#responseError(org.csstudio.dal.ResponseEvent)
 	 */
+	@Override
 	public synchronized void responseError(ResponseEvent<T> event)
 	{
 		error = new DataExchangeException(event.getSource(),

@@ -69,6 +69,7 @@ public class MonitorProxyImpl<T> extends RequestImpl<T> implements MonitorProxy,
 	/* (non-Javadoc)
 	 * @see org.epics.css.dal.proxy.MonitorProxy#getRequest()
 	 */
+	@Override
 	public Request<T> getRequest(){
 		return this;
 	}
@@ -76,6 +77,7 @@ public class MonitorProxyImpl<T> extends RequestImpl<T> implements MonitorProxy,
 	/* (non-Javadoc)
 	 * @see org.epics.css.dal.SimpleMonitor#getTimerTrigger()
 	 */
+	@Override
 	public long getTimerTrigger() throws DataExchangeException{
 		return timerTrigger;
 	}
@@ -83,6 +85,7 @@ public class MonitorProxyImpl<T> extends RequestImpl<T> implements MonitorProxy,
 	/* (non-Javadoc)
 	 * @see org.epics.css.dal.SimpleMonitor#setTimerTrigger(long)
 	 */
+	@Override
 	public void setTimerTrigger(long trigger) throws DataExchangeException, UnsupportedOperationException{
 		timerTrigger = trigger;
 		resetTimer();
@@ -91,6 +94,7 @@ public class MonitorProxyImpl<T> extends RequestImpl<T> implements MonitorProxy,
 	/* (non-Javadoc)
 	 * @see org.epics.css.dal.SimpleMonitor#setHeartbeat(boolean)
 	 */
+	@Override
 	public void setHeartbeat(boolean heartbeat) throws DataExchangeException, UnsupportedOperationException{
 		this.heartbeat = heartbeat;
 		resetTimer();
@@ -99,6 +103,7 @@ public class MonitorProxyImpl<T> extends RequestImpl<T> implements MonitorProxy,
 	/* (non-Javadoc)
 	 * @see org.epics.css.dal.SimpleMonitor#isHeartbeat()
 	 */
+	@Override
 	public boolean isHeartbeat(){
 		return heartbeat;
 	}
@@ -106,6 +111,7 @@ public class MonitorProxyImpl<T> extends RequestImpl<T> implements MonitorProxy,
 	/* (non-Javadoc)
 	 * @see org.epics.css.dal.SimpleMonitor#getDefaultTimerTrigger()
 	 */
+	@Override
 	public long getDefaultTimerTrigger() throws DataExchangeException{
 		return 1000;
 	}
@@ -113,6 +119,7 @@ public class MonitorProxyImpl<T> extends RequestImpl<T> implements MonitorProxy,
 	/* (non-Javadoc)
 	 * @see org.epics.css.dal.SimpleMonitor#isDefault()
 	 */
+	@Override
 	public boolean isDefault(){
 		return true;
 	}
@@ -137,6 +144,7 @@ public class MonitorProxyImpl<T> extends RequestImpl<T> implements MonitorProxy,
 	/**
 	 * Run method executed at schedulet time intervals.
 	 */
+	@Override
 	public void run(){
 		fireValueEvent();
 	}
@@ -151,6 +159,7 @@ public class MonitorProxyImpl<T> extends RequestImpl<T> implements MonitorProxy,
 	/* (non-Javadoc)
 	 * @see org.epics.css.dal.SimpleMonitor#destroy()
 	 */
+	@Override
 	public void destroy(){
 		if (task != null)
 			task.cancel();
@@ -160,10 +169,12 @@ public class MonitorProxyImpl<T> extends RequestImpl<T> implements MonitorProxy,
 	/* (non-Javadoc)
 	 * @see org.epics.css.dal.SimpleMonitor#isDestroyed()
 	 */
+	@Override
 	public boolean isDestroyed(){
 		return destroyed;
 	}
 
+	@Override
 	public void refresh(){
 		// Override in order to clean up cached values.
 	}

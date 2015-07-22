@@ -118,7 +118,8 @@ public abstract class AbstractBaseSection<E extends WidgetProperty> extends Abst
     /**
      *{@inheritDoc}
      */
-    public final void createControls(final Composite parent,
+    @Override
+	public final void createControls(final Composite parent,
                                      TabbedPropertySheetPage aTabbedPropertySheetPage) {
         super.createControls(parent, aTabbedPropertySheetPage);
         
@@ -232,7 +233,8 @@ public abstract class AbstractBaseSection<E extends WidgetProperty> extends Abst
     /**
      *{@inheritDoc}
      */
-    public void setInput(IWorkbenchPart part, ISelection selection) {
+    @Override
+	public void setInput(IWorkbenchPart part, ISelection selection) {
         super.setInput(part, selection);
         
         // .. get the command stack of the active editor
@@ -309,7 +311,8 @@ public abstract class AbstractBaseSection<E extends WidgetProperty> extends Abst
     /**
      *{@inheritDoc}
      */
-    public final void refresh() {
+    @Override
+	public final void refresh() {
         if (mainWidgetProperty != null) {
             // .. update label and buttons icons depending on the dynamics
             // configuration
@@ -357,20 +360,23 @@ public abstract class AbstractBaseSection<E extends WidgetProperty> extends Abst
     /**
      *{@inheritDoc}
      */
-    public void dynamicsDescriptorChanged(DynamicsDescriptor dynamicsDescriptor) {
+    @Override
+	public void dynamicsDescriptorChanged(DynamicsDescriptor dynamicsDescriptor) {
         refresh();
     }
     
     /**
      *{@inheritDoc}
      */
-    public void propertyManualValueChanged(String propertyId, Object manualValue) {
+    @Override
+	public void propertyManualValueChanged(String propertyId, Object manualValue) {
     }
     
     /**
      *{@inheritDoc}
      */
-    public void propertyValueChanged(Object oldValue, Object newValue) {
+    @Override
+	public void propertyValueChanged(Object oldValue, Object newValue) {
         refresh();
     }
     

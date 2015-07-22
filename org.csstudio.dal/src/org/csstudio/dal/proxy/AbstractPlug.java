@@ -239,6 +239,7 @@ public abstract class AbstractPlug implements PlugContext
 	 *
 	 * @return plug distinguishing type name
 	 */
+	@Override
 	public abstract String getPlugType();
 
 	
@@ -1214,6 +1215,7 @@ public abstract class AbstractPlug implements PlugContext
 	 * Return active configuration of this plug.
 	 * @return Returns the configuration.
 	 */
+	@Override
 	public Properties getConfiguration()
 	{
 		return configuration;
@@ -1222,6 +1224,7 @@ public abstract class AbstractPlug implements PlugContext
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.EventSystemContext#addEventSystemListener(org.csstudio.dal.EventSystemListener)
 	 */
+	@Override
 	public void addEventSystemListener(EventSystemListener<PlugEvent<?>> l)
 			throws RemoteException {
 		if (plugListeners == null) {
@@ -1235,6 +1238,7 @@ public abstract class AbstractPlug implements PlugContext
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.EventSystemContext#addEventSystemListener(java.util.Map, org.csstudio.dal.EventSystemListener)
 	 */
+	@Override
 	public void addEventSystemListener(EventSystemListener<PlugEvent<?>> l,
 	    Map<String, Object> parameters) throws RemoteException
 	{
@@ -1250,6 +1254,7 @@ public abstract class AbstractPlug implements PlugContext
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.EventSystemContext#getEventSystemListeners()
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public EventSystemListener<PlugEvent<?>>[] getEventSystemListeners()
 	{
@@ -1259,6 +1264,7 @@ public abstract class AbstractPlug implements PlugContext
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.Identifiable#getIdentifier()
 	 */
+	@Override
 	public Identifier getIdentifier()
 	{
 		if (identifier == null) {
@@ -1271,6 +1277,7 @@ public abstract class AbstractPlug implements PlugContext
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.EventSystemContext#getSupportedParameters()
 	 */
+	@Override
 	public Map<String, Object> getSupportedEventSystemParameters()
 	{
 		return null;
@@ -1279,6 +1286,7 @@ public abstract class AbstractPlug implements PlugContext
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.Identifiable#isDebug()
 	 */
+	@Override
 	public boolean isDebug()
 	{
 		return debug;
@@ -1287,6 +1295,7 @@ public abstract class AbstractPlug implements PlugContext
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.EventSystemContext#removeEventSystemListener(org.csstudio.dal.EventSystemListener)
 	 */
+	@Override
 	public void removeEventSystemListener(EventSystemListener<PlugEvent<?>> l)
 	{
 		if (plugListeners != null) {
@@ -1297,6 +1306,7 @@ public abstract class AbstractPlug implements PlugContext
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.EventSystemContext#removeEventSystemListener(java.util.Map, org.csstudio.dal.EventSystemListener)
 	 */
+	@Override
 	public void removeEventSystemListener(EventSystemListener<PlugEvent<?>> l,
 	    Map<String, Object> parameters)
 	{
@@ -1367,12 +1377,15 @@ public abstract class AbstractPlug implements PlugContext
 	public synchronized Iterator<PropertyProxy<?,?>> cachedPropertyProxiesIterator() {
 		final Iterator<PropertyProxyHolder> holder = propertyCache.values().iterator();
 		return new Iterator<PropertyProxy<?,?>>(){
+			@Override
 			public boolean hasNext() {
 				return holder.hasNext();
 			}
+			@Override
 			public PropertyProxy<?,?> next() {
 				return holder.next().proxy;
 			}
+			@Override
 			public void remove() {
 				throw new UnsupportedOperationException("Removing PropertyProxy from cache is not allowed.");
 			}
@@ -1387,12 +1400,15 @@ public abstract class AbstractPlug implements PlugContext
 	public synchronized Iterator<DeviceProxy<?>> cachedDeviceProxiesIterator() {
 		final Iterator<DeviceProxyHolder> holder = deviceCache.values().iterator();
 		return new Iterator<DeviceProxy<?>>(){
+			@Override
 			public boolean hasNext() {
 				return holder.hasNext();
 			}
+			@Override
 			public DeviceProxy<?> next() {
 				return holder.next().proxy;
 			}
+			@Override
 			public void remove() {
 				throw new UnsupportedOperationException("Removing DeviceProxy from cache is not allowed.");
 			}
@@ -1407,12 +1423,15 @@ public abstract class AbstractPlug implements PlugContext
 	public synchronized Iterator<DirectoryProxy<?>> cachedDirectoryProxiesIterator() {
 		final Iterator<DirectoryProxyHolder> holder = directoryCache.values().iterator();
 		return new Iterator<DirectoryProxy<?>>(){
+			@Override
 			public boolean hasNext() {
 				return holder.hasNext();
 			}
+			@Override
 			public DirectoryProxy<?> next() {
 				return holder.next().proxy;
 			}
+			@Override
 			public void remove() {
 				throw new UnsupportedOperationException("Removing DirectoryProxy from cache is not allowed.");
 			}

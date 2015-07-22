@@ -56,6 +56,7 @@ class StringMultiColumnsEditor extends EditingSupport {
 		switch (cellEditorType) {
 		case CHECKBOX:
 			return new CheckboxCellEditor(parent){
+				@Override
 				protected Object doGetValue() {
 					return (Boolean) super.doGetValue()?((String[])cellEditorData)[1]:((String[])cellEditorData)[0];
 				};

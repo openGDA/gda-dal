@@ -183,6 +183,7 @@ public class BoolSwitchFigure extends AbstractBoolControlFigure {
 		 * @param y the y coordinate
 		 * @return <code>true</code>if the given point is contained
 		 */
+		@Override
 		public boolean containsPoint(int x, int y) {
 			if (!super.containsPoint(x, y))
 				return false;
@@ -561,6 +562,7 @@ class BoolSwitchLayout extends AbstractLayout {
 			return d;
 		}
 	
+		@Override
 		public void layout(IFigure container) {
 			if(horizontal)
 				horizontalLayout(container);

@@ -244,14 +244,17 @@ public class ActionDataSection extends AbstractBaseSection<ActionDataProperty> {
 			_actionModel = action;
 		}
 
+		@Override
 		public boolean canModify(int column) {
 			return true;
 		}
 
+		@Override
 		public RGB getBackgroundColor(int column) {
 			return null;
 		}
 
+		@Override
 		public CellEditor getCellEditor(int column, Composite parent) {
 			switch (column) {
 			case 0:
@@ -261,6 +264,7 @@ public class ActionDataSection extends AbstractBaseSection<ActionDataProperty> {
 			}
 		}
 
+		@Override
 		public String getDisplayValue(int column) {
 			switch (column) {
 			case 0:
@@ -270,19 +274,23 @@ public class ActionDataSection extends AbstractBaseSection<ActionDataProperty> {
 			}
 		}
 
+		@Override
 		public String getEditingValue(int column) {
 			return _actionModel.getActionLabel();
 		}
 
+		@Override
 		public Font getFont(int column) {
 			return CustomMediaFactory.getInstance().getFont("Arial", 10,
 					SWT.NORMAL);
 		}
 
+		@Override
 		public RGB getForegroundColor(int column) {
 			return null;
 		}
 
+		@Override
 		public Image getImage(int column) {
 			if (column == 0) {
 				ImageDescriptor imageDescriptor = CustomMediaFactory
@@ -294,10 +302,12 @@ public class ActionDataSection extends AbstractBaseSection<ActionDataProperty> {
 			return null;
 		}
 
+		@Override
 		public String getTooltip() {
 			return null;
 		}
 
+		@Override
 		public void setValue(int column, Object value) {
 			switch (column) {
 			case 0:
@@ -318,6 +328,7 @@ public class ActionDataSection extends AbstractBaseSection<ActionDataProperty> {
 			}
 		}
 
+		@Override
 		public int compareTo(ITableRow o) {
 			return 0;
 		}
@@ -410,6 +421,7 @@ public class ActionDataSection extends AbstractBaseSection<ActionDataProperty> {
 
 			typeCombo
 					.addSelectionChangedListener(new ISelectionChangedListener() {
+						@Override
 						public void selectionChanged(SelectionChangedEvent event) {
 							IStructuredSelection selection = (IStructuredSelection) event
 									.getSelection();
@@ -676,6 +688,7 @@ public class ActionDataSection extends AbstractBaseSection<ActionDataProperty> {
 			/**
 			 * {@inheritDoc}
 			 */
+			@Override
 			public Image getColumnImage(final Object element,
 					final int columnIndex) {
 				if (columnIndex == 2 && element instanceof IPropertyDescriptor) {
@@ -698,6 +711,7 @@ public class ActionDataSection extends AbstractBaseSection<ActionDataProperty> {
 			/**
 			 * {@inheritDoc}
 			 */
+			@Override
 			public String getColumnText(final Object element,
 					final int columnIndex) {
 				if (element instanceof IPropertyDescriptor) {

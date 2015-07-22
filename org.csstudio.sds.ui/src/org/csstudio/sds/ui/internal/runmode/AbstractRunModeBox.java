@@ -149,6 +149,7 @@ public abstract class AbstractRunModeBox {
 					public void onDisplayModelLoaded() {
 					}
 
+					@Override
 					public void onDisplayPropertiesLoaded() {
 						// expose runtime information to the model
 						RuntimeContext runtimeContext = new RuntimeContext(
@@ -169,6 +170,7 @@ public abstract class AbstractRunModeBox {
 
 						PlatformUI.getWorkbench().getDisplay().syncExec(
 								new Runnable() {
+									@Override
 									public void run() {
 										Map<String, String> aliases = _input
 												.getAliases();

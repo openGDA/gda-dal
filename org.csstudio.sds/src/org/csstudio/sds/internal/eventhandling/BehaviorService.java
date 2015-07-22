@@ -87,6 +87,7 @@ public class BehaviorService implements IBehaviorService {
 		}
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
 	public AbstractBehavior<AbstractWidgetModel> getBehavior(String behaviorId, String widgetId) {
 		assert behaviorId != null : "behaviorId != null";
@@ -111,6 +112,7 @@ public class BehaviorService implements IBehaviorService {
 		return behavior;
 	}
 
+	@Override
 	public List<BehaviorDescriptor> getBehaviors(String widgetId) {
 		assert widgetId != null : "widgetId != null";
 		assert widgetId.trim().length() > 0 : "widgetId.trim().length() > 0";
@@ -126,6 +128,7 @@ public class BehaviorService implements IBehaviorService {
 		return result;
 	}
 
+	@Override
 	public String[] getInvisiblePropertyIds(String behaviorId, String widgetId) {
 		assert behaviorId != null : "behaviorId != null";
 		assert widgetId != null : "widgetId != null";

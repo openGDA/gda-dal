@@ -61,6 +61,7 @@ public class DeviceCollectionMap<T extends AbstractDevice>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.DeviceCollection#size()
 	 */
+	@Override
 	public int size()
 	{
 		return devices.size();
@@ -69,6 +70,7 @@ public class DeviceCollectionMap<T extends AbstractDevice>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.DeviceCollection#isEmpty()
 	 */
+	@Override
 	public boolean isEmpty()
 	{
 		return devices.isEmpty();
@@ -77,6 +79,7 @@ public class DeviceCollectionMap<T extends AbstractDevice>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.DeviceCollection#contains(java.lang.Object)
 	 */
+	@Override
 	public boolean contains(Object property)
 	{
 		return devices.containsValue(property);
@@ -85,6 +88,7 @@ public class DeviceCollectionMap<T extends AbstractDevice>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.DeviceCollection#iterator()
 	 */
+	@Override
 	public Iterator<T> iterator()
 	{
 		return devices.values().iterator();
@@ -93,6 +97,7 @@ public class DeviceCollectionMap<T extends AbstractDevice>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.DeviceCollection#toArray()
 	 */
+	@Override
 	public Object[] toArray()
 	{
 		return devices.values().toArray();
@@ -101,6 +106,7 @@ public class DeviceCollectionMap<T extends AbstractDevice>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.DeviceCollection#toDeviceArray()
 	 */
+	@Override
 	public T[] toDeviceArray()
 	{
 		T[] devs = (T[])Array.newInstance(type, devices.size());
@@ -114,6 +120,7 @@ public class DeviceCollectionMap<T extends AbstractDevice>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.DeviceCollection#toArray(E[])
 	 */
+	@Override
 	public <E extends T> E[] toArray(E[] array)
 	{
 		return devices.values().toArray(array);
@@ -122,6 +129,7 @@ public class DeviceCollectionMap<T extends AbstractDevice>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.DeviceCollection#containsAll(java.util.Collection)
 	 */
+	@Override
 	public boolean containsAll(Collection<?> colection)
 	{
 		return devices.values().contains(colection);
@@ -130,6 +138,7 @@ public class DeviceCollectionMap<T extends AbstractDevice>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.DeviceCollection#contains(java.lang.String)
 	 */
+	@Override
 	public boolean contains(String name)
 	{
 		return devices.containsKey(name);
@@ -138,6 +147,7 @@ public class DeviceCollectionMap<T extends AbstractDevice>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.DeviceCollection#get(java.lang.String)
 	 */
+	@Override
 	public T get(String name)
 	{
 		return devices.get(name);
@@ -146,6 +156,7 @@ public class DeviceCollectionMap<T extends AbstractDevice>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.DeviceCollection#getDeviceNames()
 	 */
+	@Override
 	public String[] getDeviceNames()
 	{
 		return (String[])devices.keySet().toArray();
@@ -154,6 +165,7 @@ public class DeviceCollectionMap<T extends AbstractDevice>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.DeviceCollection#addGroupListner(org.csstudio.dal.group.GroupListener)
 	 */
+	@Override
 	public void addDeviceGroupListner(DeviceGroupListener<T> l)
 	{
 		if (groupListeners == null) {
@@ -166,6 +178,7 @@ public class DeviceCollectionMap<T extends AbstractDevice>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.DeviceCollection#removeGroupListner(org.csstudio.dal.group.GroupListener)
 	 */
+	@Override
 	public void removeDeviceGroupListner(DeviceGroupListener<T> l)
 	{
 		if (groupListeners != null) {
@@ -176,6 +189,7 @@ public class DeviceCollectionMap<T extends AbstractDevice>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.DeviceCollection#getGroupListners()
 	 */
+	@Override
 	public DeviceGroupListener<T>[] getDeviceGroupListners()
 	{
 		if (groupListeners != null) {

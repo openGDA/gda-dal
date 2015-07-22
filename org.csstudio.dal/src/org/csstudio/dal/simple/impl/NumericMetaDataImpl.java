@@ -26,87 +26,106 @@ public final class NumericMetaDataImpl implements MetaData {
 		this.units = units;
 	}
 
+	@Override
 	public double getAlarmHigh() {
 		return alarmHigh;
 	}
 
+	@Override
 	public double getAlarmLow() {
 		return alarmLow;
 	}
 
+	@Override
 	public double getDisplayHigh() {
 		return displayHigh;
 	}
 
+	@Override
 	public double getDisplayLow() {
 		return displayLow;
 	}
 
+	@Override
 	public int getPrecision() {
 		return precision;
 	}
 
+	@Override
 	public String getState(int state) {
 		// default value
 		return null;
 	}
 
+	@Override
 	public String[] getStates() {
 		return new String[0];
 	}
 	
+	@Override
 	public Object getStateValue(int state) {
 		//default value
 		return null;
 	}
 	
+	@Override
 	public Object[] getStateValues() {
 		return new Object[0];
 	}
 	
 
+	@Override
 	public String getUnits() {
 		return units;
 	}
 
+	@Override
 	public double getWarnHigh() {
 		return warnHigh;
 	}
 
+	@Override
 	public double getWarnLow() {
 		return warnLow;
 	}
 
+	@Override
 	public AccessType getAccessType() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
 	public String getDataType() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
 	public String getDescription() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
 	public String getFormat() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
 	public String getHostname() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
 	public int getSequenceLength() {
 		// TODO Auto-generated method stub
 		return 0;

@@ -24,7 +24,8 @@ public class RenameLayerAction extends AbstractLayerAction {
                                                  "Please enter the new name for the selected layer:",
                                                  selectedLayer.getDescription(),
                                                  new IInputValidator() {
-                                                     public String isValid(final String newText) {
+                                                     @Override
+													public String isValid(final String newText) {
                                                          if (newText.length() <= 0) {
                                                              return "Please provide at least one char for the layer name!";
                                                          }

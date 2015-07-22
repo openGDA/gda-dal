@@ -42,7 +42,8 @@ public class LinearScaleTickMarks extends Figure {
         setForegroundColor(scale.getForegroundColor());
     }
 
-   protected void paintClientArea(Graphics graphics) {
+   @Override
+protected void paintClientArea(Graphics graphics) {
 	   graphics.translate(bounds.x, bounds.y);
 	   ITicksProvider ticks = scale.getTicksProvider();
 

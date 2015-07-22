@@ -237,7 +237,8 @@ public class RefreshableTankFigure extends AbstractLinearMarkedFigure {
             return d;
         }
 
-        public void layout(final IFigure container) {
+        @Override
+		public void layout(final IFigure container) {
             Rectangle area = container.getClientArea();
 
             Dimension scaleSize = new Dimension(0, 0);

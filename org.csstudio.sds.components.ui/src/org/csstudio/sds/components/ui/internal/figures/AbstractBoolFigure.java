@@ -207,7 +207,8 @@ public class AbstractBoolFigure extends Figure implements IAdaptable {
         boolLabel.setFont(f);
     }
 
-    public Object getAdapter(final Class adapter) {
+    @Override
+	public Object getAdapter(final Class adapter) {
         if (adapter == ICrossedFigure.class) {
             if(_crossedOutAdapter==null) {
                 _crossedOutAdapter = new CrossedOutAdapter(this);

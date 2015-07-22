@@ -59,6 +59,7 @@ public final class RectangleEditPart extends AbstractWidgetEditPart {
 	protected void registerPropertyChangeHandlers() {
 		// fill
 		IWidgetPropertyChangeHandler fillHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -70,6 +71,7 @@ public final class RectangleEditPart extends AbstractWidgetEditPart {
 		setPropertyChangeHandler(RectangleModel.PROP_FILL, fillHandler);		
 		//orientation
 		IWidgetPropertyChangeHandler orientationHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -81,6 +83,7 @@ public final class RectangleEditPart extends AbstractWidgetEditPart {
 		setPropertyChangeHandler(RectangleModel.PROP_ORIENTATION, orientationHandler);
 		//transparent
 		IWidgetPropertyChangeHandler transparentHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {

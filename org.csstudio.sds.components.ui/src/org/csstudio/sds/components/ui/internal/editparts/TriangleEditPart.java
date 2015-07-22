@@ -57,6 +57,7 @@ public final class TriangleEditPart extends AbstractWidgetEditPart {
 	protected void registerPropertyChangeHandlers() {
 		// fill
 		IWidgetPropertyChangeHandler fillHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -68,6 +69,7 @@ public final class TriangleEditPart extends AbstractWidgetEditPart {
 		setPropertyChangeHandler(TriangleModel.PROP_FILL, fillHandler);
 		//transparent
 		IWidgetPropertyChangeHandler transparentHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -80,6 +82,7 @@ public final class TriangleEditPart extends AbstractWidgetEditPart {
 		
 		// rotation
 		IWidgetPropertyChangeHandler rotationHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {

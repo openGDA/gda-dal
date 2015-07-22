@@ -33,6 +33,7 @@ public final class KnobEditPart extends AbstractMarkedWidgetEditPart {
 		knob.setGradient(model.isRampGradient());
 		knob.setIncrement(model.getIncrement());
 		knob.addKnobListener(new KnobFigure.IKnobListener() {
+			@Override
 			public void knobValueChanged(final double newValue) {
 				if (getExecutionMode() == ExecutionMode.RUN_MODE) {
 					model.setPropertyManualValue(KnobModel.PROP_VALUE, newValue);			
@@ -70,6 +71,7 @@ public final class KnobEditPart extends AbstractMarkedWidgetEditPart {
 		
 		//effect 3D
 		IWidgetPropertyChangeHandler effect3DHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -83,6 +85,7 @@ public final class KnobEditPart extends AbstractMarkedWidgetEditPart {
 		
 		//show value label
 		IWidgetPropertyChangeHandler valueLabelHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -95,6 +98,7 @@ public final class KnobEditPart extends AbstractMarkedWidgetEditPart {
 		
 		//Ramp gradient
 		IWidgetPropertyChangeHandler gradientHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -108,6 +112,7 @@ public final class KnobEditPart extends AbstractMarkedWidgetEditPart {
 		//enabled. WidgetBaseEditPart will force the widget as disabled in edit model,
 		//which is not the case for the knob		
 		IWidgetPropertyChangeHandler enableHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -122,6 +127,7 @@ public final class KnobEditPart extends AbstractMarkedWidgetEditPart {
 		
 		//increment
 		IWidgetPropertyChangeHandler incrementHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {

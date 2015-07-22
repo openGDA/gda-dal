@@ -70,6 +70,7 @@ public final class DropPvRequest extends org.eclipse.gef.Request implements Drop
 	 * 
 	 * @return Point The location of the drop.
 	 */
+	@Override
 	public Point getLocation() {
 		return _location;
 	}

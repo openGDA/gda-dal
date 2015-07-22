@@ -59,6 +59,7 @@ public class CommandProxyImpl extends CommandSupport implements CommandProxy
 	/* (non-Javadoc)
 	 * @see org.epics.css.dal.proxy.CommandProxy#isAsyncrhonous()
 	 */
+	@Override
 	public boolean isAsynchronous()
 	{
 		return true;
@@ -67,6 +68,7 @@ public class CommandProxyImpl extends CommandSupport implements CommandProxy
 	/* (non-Javadoc)
 	 * @see org.epics.css.dal.proxy.CommandProxy#execute(org.epics.css.dal.ResponseListener, java.lang.Object...)
 	 */
+	@Override
 	public <T> Request<T> execute(ResponseListener<T> callback, Object... parameters)
 		throws RemoteException
 	{

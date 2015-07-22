@@ -62,6 +62,7 @@ public class MultipleProxySimulatorPlug extends SimulatorPlug {
 		/* (non-Javadoc)
 		 * @see org.epics.css.dal.proxy.MonitorProxy#getRequest()
 		 */
+		@Override
 		public Request<T> getRequest(){
 			return this;
 		}
@@ -69,6 +70,7 @@ public class MultipleProxySimulatorPlug extends SimulatorPlug {
 		/* (non-Javadoc)
 		 * @see org.epics.css.dal.SimpleMonitor#getTimerTrigger()
 		 */
+		@Override
 		public long getTimerTrigger() throws DataExchangeException{
 			return timerTrigger;
 		}
@@ -76,6 +78,7 @@ public class MultipleProxySimulatorPlug extends SimulatorPlug {
 		/* (non-Javadoc)
 		 * @see org.epics.css.dal.SimpleMonitor#setTimerTrigger(long)
 		 */
+		@Override
 		public void setTimerTrigger(long trigger)throws DataExchangeException, UnsupportedOperationException{
 			timerTrigger = trigger;
 			resetTimer();
@@ -84,6 +87,7 @@ public class MultipleProxySimulatorPlug extends SimulatorPlug {
 		/* (non-Javadoc)
 		 * @see org.epics.css.dal.SimpleMonitor#setHeartbeat(boolean)
 		 */
+		@Override
 		public void setHeartbeat(boolean heartbeat)throws DataExchangeException, UnsupportedOperationException{
 			this.heartbeat = heartbeat;
 			resetTimer();
@@ -92,6 +96,7 @@ public class MultipleProxySimulatorPlug extends SimulatorPlug {
 		/* (non-Javadoc)
 		 * @see org.epics.css.dal.SimpleMonitor#isHeartbeat()
 		 */
+		@Override
 		public boolean isHeartbeat(){
 			return heartbeat;
 		}
@@ -99,6 +104,7 @@ public class MultipleProxySimulatorPlug extends SimulatorPlug {
 		/* (non-Javadoc)
 		 * @see org.epics.css.dal.SimpleMonitor#getDefaultTimerTrigger()
 		 */
+		@Override
 		public long getDefaultTimerTrigger() throws DataExchangeException{
 			return 1000;
 		}
@@ -106,6 +112,7 @@ public class MultipleProxySimulatorPlug extends SimulatorPlug {
 		/* (non-Javadoc)
 		 * @see org.epics.css.dal.SimpleMonitor#isDefault()
 		 */
+		@Override
 		public boolean isDefault(){
 			return true;
 		}
@@ -130,6 +137,7 @@ public class MultipleProxySimulatorPlug extends SimulatorPlug {
 		/**
 		 * Run method executed at schedulet time intervals.
 		 */
+		@Override
 		public void run(){
 			fireValueEvent();
 		}
@@ -144,6 +152,7 @@ public class MultipleProxySimulatorPlug extends SimulatorPlug {
 		/* (non-Javadoc)
 		 * @see org.epics.css.dal.SimpleMonitor#destroy()
 		 */
+		@Override
 		public void destroy(){
 			if (task != null)
 				task.cancel();
@@ -154,10 +163,12 @@ public class MultipleProxySimulatorPlug extends SimulatorPlug {
 		/* (non-Javadoc)
 		 * @see org.epics.css.dal.SimpleMonitor#isDestroyed()
 		 */
+		@Override
 		public boolean isDestroyed(){
 			return destroyed;
 		}
 
+		@Override
 		public void refresh(){
 			// Override in order to clean up cached values.
 		}
@@ -188,6 +199,7 @@ public class MultipleProxySimulatorPlug extends SimulatorPlug {
 		public void refresh() {
 			// TODO Auto-generated method stub
 		}
+		@Override
 		public Request<? extends Object> getCharacteristics(
 				String[] characteristics,
 				ResponseListener<? extends Object> callback)
@@ -228,11 +240,13 @@ public class MultipleProxySimulatorPlug extends SimulatorPlug {
 			}
 		}
 
+		@Override
 		public MonitorProxy createMonitor(ResponseListener<E> callback, Map<String,Object> p) throws RemoteException {
 			MonitorProxyI<E> m = new MonitorProxyI<E>(this, callback);
 			return m;
 		}
 
+		@Override
 		public Request<E> getValueAsync(ResponseListener<E> callback) throws DataExchangeException {
 			if (getConnectionState() != ConnectionState.CONNECTED) {
 				throw new DataExchangeException(this, "Proxy not connected");
@@ -242,10 +256,12 @@ public class MultipleProxySimulatorPlug extends SimulatorPlug {
 			return r;
 		}
 
+		@Override
 		public boolean isSettable() {
 			return isSettable;
 		}
 
+		@Override
 		public Request<E> setValueAsync(E value, ResponseListener<E> callback) throws DataExchangeException {
 			if (getConnectionState() != ConnectionState.CONNECTED)
 				throw new DataExchangeException(this, "Proxy not connected");
@@ -255,12 +271,14 @@ public class MultipleProxySimulatorPlug extends SimulatorPlug {
 			return r;
 		}
 
+		@Override
 		public E getValueSync() throws DataExchangeException {
 			if (getConnectionState() != ConnectionState.CONNECTED)
 				throw new DataExchangeException(this, "Proxy not connected");
 			return (E)valueProvider.get();
 		}
 
+		@Override
 		public void setValueSync(E value) throws DataExchangeException {
 			if (getConnectionState() != ConnectionState.CONNECTED)
 				throw new DataExchangeException(this, "Proxy not connected");
@@ -301,10 +319,12 @@ public class MultipleProxySimulatorPlug extends SimulatorPlug {
 				setConnectionState(ConnectionState.CONNECTED);
 		}
 
+		@Override
 		public CommandProxy getCommand(String name) throws RemoteException {
 			return commands.get(name);
 		}
 
+		@Override
 		@SuppressWarnings("unchecked")
 		public DirectoryProxy<MultipleProxySimulatorPlug> getDirectoryProxy(String name) throws RemoteException {
 			if (directoryProxies == null)
@@ -317,6 +337,7 @@ public class MultipleProxySimulatorPlug extends SimulatorPlug {
 			return p;
 		}
 
+		@Override
 		@SuppressWarnings("unchecked")
 		public PropertyProxy<?,MultipleProxySimulatorPlug> getPropertyProxy(String name) throws RemoteException {
 			if (propertyProxies == null)
@@ -329,6 +350,7 @@ public class MultipleProxySimulatorPlug extends SimulatorPlug {
 			return p;
 		}
 
+		@Override
 		public void refresh() {
 			// TODO Auto-generated method stub
 		}		

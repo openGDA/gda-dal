@@ -58,6 +58,7 @@ public final class PolygonEditPart extends AbstractWidgetEditPart {
 	protected void registerPropertyChangeHandlers() {
 		// fill
 		IWidgetPropertyChangeHandler fillHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -70,6 +71,7 @@ public final class PolygonEditPart extends AbstractWidgetEditPart {
 
 		// points
 		IWidgetPropertyChangeHandler pointsHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {

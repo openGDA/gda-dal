@@ -276,7 +276,7 @@ public abstract class ContainerModel extends AbstractWidgetModel implements
 		// check parent relationship
 		if (_parentChecks) {
 			if (widget.getParent() != this) {
-				throw new RuntimeException("The widget´s parent is corrupted.");
+				throw new RuntimeException("The widgetï¿½s parent is corrupted.");
 			} else {
 				widget.setParent(null);
 			}
@@ -324,6 +324,7 @@ public abstract class ContainerModel extends AbstractWidgetModel implements
 	 *            true, if the model is connected to the control system, false
 	 *            otherwise
 	 */
+	@Override
 	public final void setLive(final boolean isLive) {
 		super.setLive(isLive);
 

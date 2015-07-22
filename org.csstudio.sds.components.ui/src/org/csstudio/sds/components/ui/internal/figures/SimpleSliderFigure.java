@@ -195,7 +195,8 @@ public final class SimpleSliderFigure extends Panel implements IAdaptable {
 
         // add listener
         bar.addPropertyChangeListener(RangeModel.PROPERTY_VALUE, new PropertyChangeListener() {
-            public void propertyChange(final PropertyChangeEvent event) {
+            @Override
+			public void propertyChange(final PropertyChangeEvent event) {
                 fireManualValueChange((Integer) event.getNewValue());
             }
         });
@@ -554,7 +555,8 @@ public final class SimpleSliderFigure extends Panel implements IAdaptable {
     /**
      * {@inheritDoc}
      */
-    @SuppressWarnings("unchecked")
+    @Override
+	@SuppressWarnings("unchecked")
     public Object getAdapter(final Class adapter) {
         if (adapter == IBorderEquippedWidget.class) {
             if (_borderAdapter == null) {

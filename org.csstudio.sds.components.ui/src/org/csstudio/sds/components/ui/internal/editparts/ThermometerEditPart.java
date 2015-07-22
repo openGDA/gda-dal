@@ -59,6 +59,7 @@ public final class ThermometerEditPart extends AbstractMarkedWidgetEditPart {
 		
 		//show bulb
 		IWidgetPropertyChangeHandler showBulbHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -71,6 +72,7 @@ public final class ThermometerEditPart extends AbstractMarkedWidgetEditPart {
 		
 		//fahrenheit
 		IWidgetPropertyChangeHandler fahrenheitHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -83,6 +85,7 @@ public final class ThermometerEditPart extends AbstractMarkedWidgetEditPart {
 		
 		//effect 3D
 		IWidgetPropertyChangeHandler effect3DHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {

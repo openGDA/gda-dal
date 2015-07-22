@@ -98,7 +98,8 @@ public final class LabelEditPart extends AbstractTextTypeWidgetEditPart {
     private void registerYOffPropertyChangeHandlers() {
         // changes to the y offset property
         IWidgetPropertyChangeHandler handle = new IWidgetPropertyChangeHandler() {
-            public boolean handleChange(final Object oldValue,
+            @Override
+			public boolean handleChange(final Object oldValue,
                                         final Object newValue,
                                         final IFigure refreshableFigure) {
                 RefreshableLabelFigure labelFigure = (RefreshableLabelFigure) refreshableFigure;
@@ -112,7 +113,8 @@ public final class LabelEditPart extends AbstractTextTypeWidgetEditPart {
     private void registerXOffPropertyChangeHandlers() {
         // changes to the x offset property
         IWidgetPropertyChangeHandler handle = new IWidgetPropertyChangeHandler() {
-            public boolean handleChange(final Object oldValue,
+            @Override
+			public boolean handleChange(final Object oldValue,
                                         final Object newValue,
                                         final IFigure refreshableFigure) {
                 RefreshableLabelFigure labelFigure = (RefreshableLabelFigure) refreshableFigure;
@@ -129,7 +131,8 @@ public final class LabelEditPart extends AbstractTextTypeWidgetEditPart {
     private void registerTextRotationPropertyChangeHandlers() {
         // changes to the text rotation property
         IWidgetPropertyChangeHandler handle = new IWidgetPropertyChangeHandler() {
-            public boolean handleChange(final Object oldValue,
+            @Override
+			public boolean handleChange(final Object oldValue,
                                         final Object newValue,
                                         final IFigure refreshableFigure) {
                 RefreshableLabelFigure labelFigure = (RefreshableLabelFigure) refreshableFigure;
@@ -143,7 +146,8 @@ public final class LabelEditPart extends AbstractTextTypeWidgetEditPart {
     private void registerTextTransparentPropertyChangeHandlers() {
         // changes to the transparency property
         IWidgetPropertyChangeHandler handle = new IWidgetPropertyChangeHandler() {
-            public boolean handleChange(final Object oldValue,
+            @Override
+			public boolean handleChange(final Object oldValue,
                                         final Object newValue,
                                         final IFigure refreshableFigure) {
                 RefreshableLabelFigure labelFigure = (RefreshableLabelFigure) refreshableFigure;
@@ -157,7 +161,8 @@ public final class LabelEditPart extends AbstractTextTypeWidgetEditPart {
     private void registerTextAlignPropertyChangeHandlers() {
         // changes to the text alignment property
         IWidgetPropertyChangeHandler handle = new IWidgetPropertyChangeHandler() {
-            public boolean handleChange(final Object oldValue,
+            @Override
+			public boolean handleChange(final Object oldValue,
                                         final Object newValue,
                                         final IFigure refreshableFigure) {
                 RefreshableLabelFigure labelFigure = (RefreshableLabelFigure) refreshableFigure;
@@ -185,7 +190,8 @@ public final class LabelEditPart extends AbstractTextTypeWidgetEditPart {
     private void registerTextvaluePropertyChangeHandlers() {
         // Text
         IWidgetPropertyChangeHandler labelHandler = new IWidgetPropertyChangeHandler() {
-            public boolean handleChange(final Object oldValue,
+            @Override
+			public boolean handleChange(final Object oldValue,
                     final Object newValue, final IFigure refreshableFigure) {
                 ITextFigure textFigure = (ITextFigure) refreshableFigure;
                 textFigure.setTextValue(determineLabel(null));

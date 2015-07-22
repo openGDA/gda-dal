@@ -35,6 +35,7 @@ public final class GroupingContainerEditPart extends AbstractContainerEditPart {
 	protected void registerPropertyChangeHandlers() {
 		// Transparent background
 		IWidgetPropertyChangeHandler transparentHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue, final IFigure refreshableFigure) {
 				GroupingContainerFigure container = (GroupingContainerFigure) refreshableFigure;
@@ -47,6 +48,7 @@ public final class GroupingContainerEditPart extends AbstractContainerEditPart {
 
 		// Rotation
 		IWidgetPropertyChangeHandler rotationHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue, final IFigure refreshableFigure) {
 				rotateChildren((Double) newValue);
@@ -95,6 +97,7 @@ public final class GroupingContainerEditPart extends AbstractContainerEditPart {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public IFigure getContentPane() {
 		return ((GroupingContainerFigure) getFigure()).getContentsPane();
 	}

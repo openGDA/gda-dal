@@ -85,6 +85,7 @@ public final class LinkingContainerFigure extends Panel implements IAdaptable {
 		setOpaque(true);
 
 		addFigureListener(new FigureListener() {
+			@Override
 			public void figureMoved(final IFigure source) {
 				updateChildConstraints();
 				updateZoom();
@@ -166,6 +167,7 @@ public final class LinkingContainerFigure extends Panel implements IAdaptable {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Object getAdapter(final Class adapter) {
 		if (adapter == IBorderEquippedWidget.class) {
 			return new BorderAdapter(this);

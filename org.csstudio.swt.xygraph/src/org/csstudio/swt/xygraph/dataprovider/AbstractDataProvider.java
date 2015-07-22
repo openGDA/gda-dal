@@ -43,11 +43,13 @@ public abstract class AbstractDataProvider implements IDataProvider{
 	/* (non-Javadoc)
 	 * @see org.csstudio.sns.widgets.figureparts.IDataProvider#getSize()
 	 */
+	@Override
 	public abstract int getSize();
 	
 	/* (non-Javadoc)
 	 * @see org.csstudio.sns.widgets.figureparts.IDataProvider#getSample(int)
 	 */
+	@Override
 	public abstract ISample getSample(int index);
 	
 	/**
@@ -63,6 +65,7 @@ public abstract class AbstractDataProvider implements IDataProvider{
 	/* (non-Javadoc)
 	 * @see org.csstudio.sns.widgets.figureparts.IDataProvider#getXDataMinMax()
 	 */
+	@Override
 	synchronized public Range getXDataMinMax(){		
 		if(getSize() <=0)
 			return null;
@@ -73,6 +76,7 @@ public abstract class AbstractDataProvider implements IDataProvider{
 	/* (non-Javadoc)
 	 * @see org.csstudio.sns.widgets.figureparts.IDataProvider#getYDataMinMax()
 	 */
+	@Override
 	synchronized public Range getYDataMinMax(){
 		if(getSize() <=0)
 			return null;
@@ -90,6 +94,7 @@ public abstract class AbstractDataProvider implements IDataProvider{
 	/* (non-Javadoc)
 	 * @see org.csstudio.sns.widgets.figureparts.IDataProvider#isChronological()
 	 */
+	@Override
 	public boolean isChronological() {
 		return chronological;
 	}
@@ -97,6 +102,7 @@ public abstract class AbstractDataProvider implements IDataProvider{
 	/* (non-Javadoc)
 	 * @see org.csstudio.sns.widgets.figureparts.IDataProvider#addDataProviderListener(org.csstudio.sns.widgets.figureparts.IDataProviderListener)
 	 */
+	@Override
 	public void addDataProviderListener(final IDataProviderListener listener){
 		if(listeners.contains(listener))
 			return;
@@ -106,6 +112,7 @@ public abstract class AbstractDataProvider implements IDataProvider{
 	/* (non-Javadoc)
 	 * @see org.csstudio.sns.widgets.figureparts.IDataProvider#removeDataProviderListener(org.csstudio.sns.widgets.figureparts.IDataProviderListener)
 	 */
+	@Override
 	public boolean removeDataProviderListener(final IDataProviderListener listener){
 		return listeners.remove(listener);
 	}

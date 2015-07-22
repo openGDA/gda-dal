@@ -84,6 +84,7 @@ public class DeviceBean extends AbstractDeviceImpl implements Connectable
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.Connectable#addConnectionListener(org.csstudio.dal.context.ConnectionListener)
 	 */
+	@Override
 	public void addConnectionListener(ConnectionListener l)
 	{
 		// TODO Auto-generated method stub
@@ -93,6 +94,7 @@ public class DeviceBean extends AbstractDeviceImpl implements Connectable
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.Connectable#asyncConnect()
 	 */
+	@Override
 	public synchronized void asyncConnect()
 		throws ConnectionException, IllegalStateException
 	{
@@ -113,6 +115,7 @@ public class DeviceBean extends AbstractDeviceImpl implements Connectable
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.Connectable#connect()
 	 */
+	@Override
 	public void connect() throws ConnectionException, IllegalStateException
 	{
 		asyncConnect();
@@ -123,6 +126,7 @@ public class DeviceBean extends AbstractDeviceImpl implements Connectable
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.Connectable#destroy()
 	 */
+	@Override
 	public void destroy()
 	{
 		if (getConnectionState() == ConnectionState.DESTROYED) return; // TODO throw an exception?
@@ -134,6 +138,7 @@ public class DeviceBean extends AbstractDeviceImpl implements Connectable
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.Connectable#disconnect()
 	 */
+	@Override
 	public void disconnect()
 	{
 		if (!connectionStateMachine.isTransitionAllowed(ConnectionState.DISCONNECTING)) {
@@ -161,6 +166,7 @@ public class DeviceBean extends AbstractDeviceImpl implements Connectable
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.Connectable#getRemoteInfo()
 	 */
+	@Override
 	public org.csstudio.dal.simple.RemoteInfo getRemoteInfo()
 	{
 		return rinfo;
@@ -169,6 +175,7 @@ public class DeviceBean extends AbstractDeviceImpl implements Connectable
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.Connectable#removeConnectionListener(org.csstudio.dal.context.ConnectionListener)
 	 */
+	@Override
 	public void removeConnectionListener(ConnectionListener l)
 	{
 		// TODO Auto-generated method stub
@@ -177,6 +184,7 @@ public class DeviceBean extends AbstractDeviceImpl implements Connectable
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.Connectable#setRemoteInfo(org.csstudio.dal.context.RemoteInfo)
 	 */
+	@Override
 	public void setRemoteInfo(org.csstudio.dal.simple.RemoteInfo rinfo) throws IllegalArgumentException
 	{
 		if (getConnectionState() != ConnectionState.DISCONNECTED
@@ -208,6 +216,7 @@ public class DeviceBean extends AbstractDeviceImpl implements Connectable
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.ContextBean#getApplicationContext()
 	 */
+	@Override
 	public AbstractApplicationContext getApplicationContext()
 	{
 		return ctx;
@@ -216,6 +225,7 @@ public class DeviceBean extends AbstractDeviceImpl implements Connectable
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.ContextBean#initialize(org.csstudio.dal.context.AbstractApplicationContext)
 	 */
+	@Override
 	public void initialize(AbstractApplicationContext ctx)
 		throws CommonException
 	{
@@ -327,6 +337,7 @@ public class DeviceBean extends AbstractDeviceImpl implements Connectable
 	 *
 	 * @param s new state
 	 */
+	@Override
 	protected void setConnectionState(ConnectionState s)
 	{
 		super.setConnectionState(s);
@@ -337,6 +348,7 @@ public class DeviceBean extends AbstractDeviceImpl implements Connectable
 	/**
 	 * @see {@link #setAutoConnect(boolean)} 
 	 */
+	@Override
 	public boolean isAutoConnect() {
 		return autoConnect;
 	}
@@ -345,6 +357,7 @@ public class DeviceBean extends AbstractDeviceImpl implements Connectable
 	 * If autoConnect is true, Device is automatically connected when all requirements
 	 * are provided (RemoteInfo, DeviceFactory). Default value is <code>true</code>.
 	 */
+	@Override
 	public void setAutoConnect(boolean autoConnect) {
 		this.autoConnect = autoConnect;
 		tryConnect();

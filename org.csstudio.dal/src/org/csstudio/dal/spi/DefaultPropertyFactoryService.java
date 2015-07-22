@@ -57,6 +57,7 @@ public class DefaultPropertyFactoryService implements PropertyFactoryService
 	{
 		super();
 		Runtime.getRuntime().addShutdownHook(new Thread() {
+				@Override
 				public void run()
 				{
 					shutdown();
@@ -68,6 +69,7 @@ public class DefaultPropertyFactoryService implements PropertyFactoryService
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.spi.PropertyFactoryService#getPropertyFactory(org.csstudio.dal.context.AbstractApplicationContext, org.csstudio.dal.context.PropertyFamily, org.csstudio.dal.spi.PropertyFactory.LinkPolicy)
 	 */
+	@Override
 	public PropertyFactory getPropertyFactory(AbstractApplicationContext ctx,
 	    LinkPolicy linkPolicy)
 	{
@@ -77,6 +79,7 @@ public class DefaultPropertyFactoryService implements PropertyFactoryService
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.spi.PropertyFactoryService#getPropertyFactory(org.csstudio.dal.context.AbstractApplicationContext, org.csstudio.dal.spi.LinkPolicy, java.lang.String)
 	 */
+	@Override
 	public PropertyFactory getPropertyFactory(AbstractApplicationContext ctx, LinkPolicy linkPolicy, String plugName){
 		if (linkPolicy == null)
 			linkPolicy = LinkPolicy.SYNC_LINK_POLICY;

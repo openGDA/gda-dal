@@ -80,6 +80,7 @@ public class KnobFigure extends AbstractRoundRampedFigure {
 		}
 
 
+		@Override
 		public void layout(IFigure container) {
 			Rectangle area = container.getClientArea();			
 			area.width = Math.min(area.width, area.height);
@@ -150,10 +151,12 @@ public class KnobFigure extends AbstractRoundRampedFigure {
 			protected double oldValuePosition;
 			protected boolean armed;				
 				Point pole;
+				@Override
 				public void mouseDoubleClicked(MouseEvent me) {
 					
 				}
 				
+				@Override
 				public void mouseDragged(MouseEvent me) {
 					if (!armed) 
 						return;
@@ -190,6 +193,7 @@ public class KnobFigure extends AbstractRoundRampedFigure {
 					me.consume();					
 				}
 				
+				@Override
 				public void mousePressed(MouseEvent me) {
 					if(me.button != 1)
 						return;
@@ -205,6 +209,7 @@ public class KnobFigure extends AbstractRoundRampedFigure {
 					me.consume();
 				}	
 				
+				@Override
 				public void mouseReleased(MouseEvent me) {
 					if(me.button != 1)
 						return;
@@ -304,6 +309,7 @@ public class KnobFigure extends AbstractRoundRampedFigure {
 		
 		add(thumb, KnobLayout.THUMB);		
 		addFigureListener(new FigureListener() {			
+			@Override
 			public void figureMoved(IFigure source) {
 				ramp.setDirty(true);
 				revalidate();	

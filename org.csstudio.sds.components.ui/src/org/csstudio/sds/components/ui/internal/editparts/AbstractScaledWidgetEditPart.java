@@ -62,6 +62,7 @@ public abstract class AbstractScaledWidgetEditPart extends AbstractWidgetEditPar
      */
     private void setTransparentHandler() {
         IWidgetPropertyChangeHandler transparentHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -78,6 +79,7 @@ public abstract class AbstractScaledWidgetEditPart extends AbstractWidgetEditPar
      */
     private void setShowMinorTicksHandler() {
         IWidgetPropertyChangeHandler showMinorTicksHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -94,6 +96,7 @@ public abstract class AbstractScaledWidgetEditPart extends AbstractWidgetEditPar
      */
     private void setShowScaleHandler() {
         IWidgetPropertyChangeHandler showScaleHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -110,6 +113,7 @@ public abstract class AbstractScaledWidgetEditPart extends AbstractWidgetEditPar
      */
     private void setLogScaleHandler() {
         IWidgetPropertyChangeHandler logScaleHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -126,6 +130,7 @@ public abstract class AbstractScaledWidgetEditPart extends AbstractWidgetEditPar
      */
     private void setMajorTickMarkStepHintHandler() {
         IWidgetPropertyChangeHandler majorTickHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -142,6 +147,7 @@ public abstract class AbstractScaledWidgetEditPart extends AbstractWidgetEditPar
      */
     private void setMaxRangeHandler() {
         IWidgetPropertyChangeHandler maximumHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -158,6 +164,7 @@ public abstract class AbstractScaledWidgetEditPart extends AbstractWidgetEditPar
      */
     private void setMinRangeHandler() {
         IWidgetPropertyChangeHandler minimumHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -174,6 +181,7 @@ public abstract class AbstractScaledWidgetEditPart extends AbstractWidgetEditPar
      */
     private void setValueHandler() {
         IWidgetPropertyChangeHandler valueHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {

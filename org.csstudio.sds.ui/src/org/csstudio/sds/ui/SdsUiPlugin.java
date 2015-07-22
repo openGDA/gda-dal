@@ -118,6 +118,7 @@ public final class SdsUiPlugin extends AbstractUIPlugin {
 			String qualifier = SdsPlugin.getDefault().getBundle().getSymbolicName();
 			_preferenceStore = new ScopedPreferenceStore(new InstanceScope(), qualifier);
 			_preferenceStore.addPropertyChangeListener(new IPropertyChangeListener() {
+				@Override
 				public void propertyChange(final PropertyChangeEvent event) {
 					LOG.info("Property [" + event.getProperty() //$NON-NLS-1$
 							+ "] changed from [" //$NON-NLS-1$

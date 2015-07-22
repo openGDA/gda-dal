@@ -33,6 +33,7 @@ import org.eclipse.swt.widgets.Control;
  *
  * @deprecated because the default dialog font should be used (23.11.2007) 
  */
+@Deprecated
 public final class DialogFontUtil {
 
 	/**
@@ -67,6 +68,7 @@ public final class DialogFontUtil {
 	 */
 	private static void initializeListener() {
 		_listener = new IPropertyChangeListener() {
+			@Override
 			public void propertyChange(final PropertyChangeEvent event) {
 //				if (event.getProperty().equals(PreferenceConstants.PROP_USE_DIALOG_FONT)) {
 //					_useDialogFont = (Boolean) event.getNewValue();

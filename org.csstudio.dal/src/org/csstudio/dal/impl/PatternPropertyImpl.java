@@ -54,6 +54,7 @@ public class PatternPropertyImpl extends DynamicValuePropertyImpl<BitSet>
 	 *  (non-Javadoc)
 	 * @see org.csstudio.dal.PatternSimpleProperty#getBitDescriptions()
 	 */
+	@Override
 	public String[] getBitDescriptions() throws DataExchangeException
 	{
 		return (String[])directoryProxy.getCharacteristic(PatternPropertyCharacteristics.C_BIT_DESCRIPTIONS);
@@ -63,6 +64,7 @@ public class PatternPropertyImpl extends DynamicValuePropertyImpl<BitSet>
 	 *  (non-Javadoc)
 	 * @see org.csstudio.dal.PatternSimpleProperty#getConditionWhenCleared()
 	 */
+	@Override
 	public BitCondition[] getConditionWhenCleared()
 		throws DataExchangeException
 	{
@@ -73,6 +75,7 @@ public class PatternPropertyImpl extends DynamicValuePropertyImpl<BitSet>
 	 *  (non-Javadoc)
 	 * @see org.csstudio.dal.PatternSimpleProperty#getConditionWhenSet()
 	 */
+	@Override
 	public BitCondition[] getConditionWhenSet() throws DataExchangeException
 	{
 		return (BitCondition[])directoryProxy.getCharacteristic(PatternPropertyCharacteristics.C_CONDITION_WHEN_SET);
@@ -82,6 +85,7 @@ public class PatternPropertyImpl extends DynamicValuePropertyImpl<BitSet>
 	 *  (non-Javadoc)
 	 * @see org.csstudio.dal.PatternSimpleProperty#getBitMask()
 	 */
+	@Override
 	public BitSet getBitMask() throws DataExchangeException
 	{
 		return (BitSet)directoryProxy.getCharacteristic(PatternPropertyCharacteristics.C_BIT_MASK);

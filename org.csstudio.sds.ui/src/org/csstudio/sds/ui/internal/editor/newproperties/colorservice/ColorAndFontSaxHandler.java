@@ -56,6 +56,7 @@ public final class ColorAndFontSaxHandler extends AbstractColorAndFontHandler {
 		reset();
 	}
 	
+	@Override
 	public void reset() {
 		_styles.clear();
 	}
@@ -134,10 +135,12 @@ public final class ColorAndFontSaxHandler extends AbstractColorAndFontHandler {
 		}
 	}
 	
+	@Override
 	public NamedStyle getStyle(String styleName) {
 		return _styles.get(styleName);
 	}
 
+	@Override
 	public List<NamedStyle> getStyles() {
 		return new ArrayList<NamedStyle>(_styles.values());
 	}

@@ -60,6 +60,7 @@ public class MetaDataImpl implements MetaData {
 	 * (non-Javadoc)
 	 * @see org.csstudio.dal.simple.MetaData#getAccessType()
 	 */
+	@Override
 	public AccessType getAccessType() {
 		return accessType;
 	}
@@ -68,6 +69,7 @@ public class MetaDataImpl implements MetaData {
 	 * (non-Javadoc)
 	 * @see org.csstudio.dal.simple.MetaData#getAlarmHigh()
 	 */
+	@Override
 	public double getAlarmHigh() {
 		return alarmHigh;
 	}
@@ -76,6 +78,7 @@ public class MetaDataImpl implements MetaData {
 	 * (non-Javadoc)
 	 * @see org.csstudio.dal.simple.MetaData#getAlarmLow()
 	 */
+	@Override
 	public double getAlarmLow() {
 		return alarmLow;
 	}
@@ -84,6 +87,7 @@ public class MetaDataImpl implements MetaData {
 	 * (non-Javadoc)
 	 * @see org.csstudio.dal.simple.MetaData#getDataType()
 	 */
+	@Override
 	public String getDataType() {
 		return dataType;
 	}
@@ -92,6 +96,7 @@ public class MetaDataImpl implements MetaData {
 	 * (non-Javadoc)
 	 * @see org.csstudio.dal.simple.MetaData#getDescription()
 	 */
+	@Override
 	public String getDescription() {
 		return description;
 	}
@@ -100,6 +105,7 @@ public class MetaDataImpl implements MetaData {
 	 * (non-Javadoc)
 	 * @see org.csstudio.dal.simple.MetaData#getDisplayHigh()
 	 */
+	@Override
 	public double getDisplayHigh() {
 		return displayHigh;
 	}
@@ -108,6 +114,7 @@ public class MetaDataImpl implements MetaData {
 	 * (non-Javadoc)
 	 * @see org.csstudio.dal.simple.MetaData#getDisplayLow()
 	 */
+	@Override
 	public double getDisplayLow() {
 		return displayLow;
 	}
@@ -116,6 +123,7 @@ public class MetaDataImpl implements MetaData {
 	 * (non-Javadoc)
 	 * @see org.csstudio.dal.simple.MetaData#getState(int)
 	 */
+	@Override
 	public String getState(int index) {
 		if (enumDescriptions == null) return null;
 		return enumDescriptions[index];
@@ -125,6 +133,7 @@ public class MetaDataImpl implements MetaData {
 	 * (non-Javadoc)
 	 * @see org.csstudio.dal.simple.MetaData#getStates()
 	 */
+	@Override
 	public String[] getStates() {
 		if (enumDescriptions == null) return null;
 		String[] s = new String[enumDescriptions.length];
@@ -136,6 +145,7 @@ public class MetaDataImpl implements MetaData {
 	 * (non-Javadoc)
 	 * @see org.csstudio.dal.simple.MetaData#getStateValue(int)
 	 */
+	@Override
 	public Object getStateValue(int index) {
 		if (enumValues == null) return null;
 		return enumValues[index];
@@ -145,6 +155,7 @@ public class MetaDataImpl implements MetaData {
 	 * (non-Javadoc)
 	 * @see org.csstudio.dal.simple.MetaData#getStateValues()
 	 */
+	@Override
 	public Object[] getStateValues() {
 		if (enumValues == null) return null;
 		String[] s = new String[enumValues.length];
@@ -156,6 +167,7 @@ public class MetaDataImpl implements MetaData {
 	 * (non-Javadoc)
 	 * @see org.csstudio.dal.simple.MetaData#getFormat()
 	 */
+	@Override
 	public String getFormat() {
 		return format;
 	}
@@ -164,6 +176,7 @@ public class MetaDataImpl implements MetaData {
 	 * (non-Javadoc)
 	 * @see org.csstudio.dal.simple.MetaData#getHostname()
 	 */
+	@Override
 	public String getHostname() {
 		return hostname;
 	}
@@ -172,6 +185,7 @@ public class MetaDataImpl implements MetaData {
 	 * (non-Javadoc)
 	 * @see org.csstudio.dal.simple.MetaData#getName()
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -180,6 +194,7 @@ public class MetaDataImpl implements MetaData {
 	 * (non-Javadoc)
 	 * @see org.csstudio.dal.simple.MetaData#getPrecision()
 	 */
+	@Override
 	public int getPrecision() {
 		return precision;
 	}
@@ -188,6 +203,7 @@ public class MetaDataImpl implements MetaData {
 	 * (non-Javadoc)
 	 * @see org.csstudio.dal.simple.MetaData#getUnits()
 	 */
+	@Override
 	public String getUnits() {
 		return units;
 	}
@@ -196,6 +212,7 @@ public class MetaDataImpl implements MetaData {
 	 * (non-Javadoc)
 	 * @see org.csstudio.dal.simple.MetaData#getWarnHigh()
 	 */
+	@Override
 	public double getWarnHigh() {
 		return warningHigh;
 	}
@@ -204,6 +221,7 @@ public class MetaDataImpl implements MetaData {
 	 * (non-Javadoc)
 	 * @see org.csstudio.dal.simple.MetaData#getWarnLow()
 	 */
+	@Override
 	public double getWarnLow() {
 		return warningLow;
 	}
@@ -212,6 +230,7 @@ public class MetaDataImpl implements MetaData {
 	 * (non-Javadoc)
 	 * @see org.csstudio.dal.simple.MetaData#getSequenceLength()
 	 */
+	@Override
 	public int getSequenceLength() {
 		return sequenceLength;
 	}

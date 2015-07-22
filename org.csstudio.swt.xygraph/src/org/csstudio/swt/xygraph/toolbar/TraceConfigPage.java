@@ -231,6 +231,7 @@ public class TraceConfigPage {
 		export.setText("Export data...");	
 		export.setLayoutData(new GridData(SWT.BEGINNING, SWT.BEGINNING, false, false, 2, 1));		
 		export.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(SelectionEvent e) {
 
                 final IFile exportTo = SingleSourceHelper.getProjectSaveFileLocation(trace.getName());				

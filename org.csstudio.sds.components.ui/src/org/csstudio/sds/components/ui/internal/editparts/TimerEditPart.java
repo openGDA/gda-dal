@@ -129,9 +129,11 @@ public final class TimerEditPart extends AbstractWidgetEditPart {
 					// runnable for the script execution
 					Runnable r = new Runnable() {
 
+						@Override
 						public void run() {
 							if (_scriptEngine != null) {
 								Thread t = new Thread(new Runnable() {
+									@Override
 									public void run() {
 										_scriptEngine.processScript();
 									}
@@ -145,6 +147,7 @@ public final class TimerEditPart extends AbstractWidgetEditPart {
 
 					// runnable for updating the figure to see the progress
 					Runnable r2 = new Runnable() {
+						@Override
 						public void run() {
 							new CheckedUiRunnable() {
 								@Override
@@ -185,6 +188,7 @@ public final class TimerEditPart extends AbstractWidgetEditPart {
 	@Override
 	protected void registerPropertyChangeHandlers() {
 		IWidgetPropertyChangeHandler handler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue, final IFigure refreshableFigure) {
 

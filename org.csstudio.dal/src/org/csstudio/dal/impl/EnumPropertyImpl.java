@@ -57,6 +57,7 @@ public class EnumPropertyImpl extends NumericPropertyImpl<Long,Long> implements 
 	 *  (non-Javadoc)
 	 * @see org.csstudio.dal.EnumSimpleProperty#getEnumValues()
 	 */
+	@Override
 	public Object[] getEnumValues() throws DataExchangeException{
 		if (!chInitialized)
 			readCharacteristics();
@@ -67,6 +68,7 @@ public class EnumPropertyImpl extends NumericPropertyImpl<Long,Long> implements 
 	 *  (non-Javadoc)
 	 * @see org.csstudio.dal.EnumSimpleProperty#getEnumDescriptions()
 	 */
+	@Override
 	public String[] getEnumDescriptions() throws DataExchangeException{
 		if (!chInitialized)
 			readCharacteristics();
@@ -77,6 +79,7 @@ public class EnumPropertyImpl extends NumericPropertyImpl<Long,Long> implements 
 	 *  (non-Javadoc)
 	 * @see org.csstudio.dal.EnumSimpleProperty#indexOf(java.lang.Object)
 	 */
+	@Override
 	public long indexOf(Object enumerated){
 		for (int i = 0; i < enumValues.length; i++) {
 			if (enumValues[i].equals(enumerated))
@@ -89,6 +92,7 @@ public class EnumPropertyImpl extends NumericPropertyImpl<Long,Long> implements 
 	 *  (non-Javadoc)
 	 * @see org.csstudio.dal.EnumSimpleProperty#valueOf(long)
 	 */
+	@Override
 	public Object valueOf(long index){
 		if (index >= 0 && index < enumValues.length)
 			return enumValues[(int)index];

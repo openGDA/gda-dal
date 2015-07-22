@@ -33,6 +33,7 @@ public class CircularBuffer<T> extends AbstractCollection<T> {
 	/** Add an element.
 	 * @param element
 	 */
+	@Override
 	public synchronized boolean add(T element){		
 		if(tail == head && count == bufferSize) { //buffer is full
 			buffer[tail] = element;	
@@ -84,6 +85,7 @@ public class CircularBuffer<T> extends AbstractCollection<T> {
 	/**
 	 * clear the buffer;
 	 */
+	@Override
 	public synchronized void clear(){
 		head = 0;
 		tail = 0;
@@ -125,18 +127,22 @@ public class CircularBuffer<T> extends AbstractCollection<T> {
 	}	
 
 
+	@Override
 	public Iterator<T> iterator() {
 		return new Iterator<T>(){
 			private int index=0;
 
+			@Override
 			public boolean hasNext() {
 				return index < count;
 			}
+			@Override
 			public T next() {
 				if(!hasNext())
 					throw new NoSuchElementException();
 				return buffer[(head+index++)%bufferSize];
 			}
+			@Override
 			public void remove() {}			
 		};
 	}

@@ -62,18 +62,22 @@ public final class TextSection extends AbstractTextSection<StringProperty, Strin
 			_description = description;
 		}
 
+		@Override
 		public String getContent() {
 			return _content;
 		}
 
+		@Override
 		public int getCursorPosition() {
 			return 0;
 		}
 
+		@Override
 		public String getDescription() {
 			return _description;
 		}
 
+		@Override
 		public String getLabel() {
 			return _content;
 		}

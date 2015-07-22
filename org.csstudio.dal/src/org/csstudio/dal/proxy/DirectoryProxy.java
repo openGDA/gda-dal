@@ -41,6 +41,7 @@ public interface DirectoryProxy<P extends AbstractPlug> extends Proxy<P>{
 	 *
 	 * @return String unique remote name for this property
 	 */
+	@Override
 	public String getUniqueName();
 
 	/**
@@ -49,6 +50,7 @@ public interface DirectoryProxy<P extends AbstractPlug> extends Proxy<P>{
 	 * Only plug which created this proxy can call this method since lifecycle is controled by the plug.
 	 * </p>
 	 */
+	@Override
 	public void destroy();
 
 	/**

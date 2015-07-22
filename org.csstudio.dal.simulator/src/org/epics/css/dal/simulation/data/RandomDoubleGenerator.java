@@ -70,6 +70,7 @@ public class RandomDoubleGenerator implements ValueProvider<Double> {
 	 * (non-Javadoc)
 	 * @see org.epics.css.dal.simulation.ValueProvider#get()
 	 */
+	@Override
 	public Double get() throws DataExchangeException {
 		return min + ((max - min) * random.nextDouble());
 	}
@@ -78,6 +79,7 @@ public class RandomDoubleGenerator implements ValueProvider<Double> {
 	 * (non-Javadoc)
 	 * @see org.epics.css.dal.simulation.ValueProvider#set(java.lang.Object)
 	 */
+	@Override
 	public void set(Double value) throws DataExchangeException {
 		//ignore; this is random number generator
 	}

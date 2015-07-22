@@ -60,6 +60,7 @@ public class ProcessVariableExchangeUtil {
 			final int style, IProcessVariableAdressReceiver receiver) {
 		addProcessVariableAddressDropSupport(control, style, receiver,
 				new IShowControlSystemDialogStrategy() {
+					@Override
 					public boolean showControlSystem(String rawName) {
 						return true;
 					}

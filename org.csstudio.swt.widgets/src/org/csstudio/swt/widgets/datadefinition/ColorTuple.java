@@ -20,6 +20,7 @@ public class ColorTuple implements Comparable<ColorTuple>{
 		this.value = value;
 		this.rgb = rgb;
 	}
+	@Override
 	public int compareTo(ColorTuple o) {
 		if(value < o.value)
 			return -1;

@@ -43,6 +43,7 @@ public class CommandContextSupport implements CommandContext
 	 *  (non-Javadoc)
 	 * @see org.csstudio.dal.commands.CommandContext#getCommands()
 	 */
+	@Override
 	public Command[] getCommands()
 	{
 		return commands.toArray(new Command[commands.size()]);
@@ -51,6 +52,7 @@ public class CommandContextSupport implements CommandContext
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.commands.CommandContext#getCommand(java.lang.String)
 	 */
+	@Override
 	public Command getCommand(String name)
 	{
 		Iterator<Command> ite = commands.iterator();
@@ -82,6 +84,7 @@ public class CommandContextSupport implements CommandContext
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.commands.CommandContext#getCommandNames()
 	 */
+	@Override
 	public String[] getCommandNames()
 	{
 		return names.toArray(new String[names.size()]);

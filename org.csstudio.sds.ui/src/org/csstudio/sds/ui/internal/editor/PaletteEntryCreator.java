@@ -98,6 +98,7 @@ public class PaletteEntryCreator {
 			result.add(toolEntry);
 		}
 		Collections.sort(result, new Comparator<ToolEntry>() {
+			@Override
 			public int compare(final ToolEntry entry1, final ToolEntry entry2) {
 				return entry1.getLabel().compareTo(entry2.getLabel());
 			}

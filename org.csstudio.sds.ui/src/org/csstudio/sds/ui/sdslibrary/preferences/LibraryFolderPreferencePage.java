@@ -112,6 +112,7 @@ public class LibraryFolderPreferencePage extends PreferencePage implements
 		tableViewer.getTable().setLayoutData(new GridData(GridData.FILL_BOTH));
 
 		tableViewer.addCheckStateListener(new ICheckStateListener() {
+			@Override
 			public void checkStateChanged(CheckStateChangedEvent event) {
 				LibraryFolderPreferenceItem item = (LibraryFolderPreferenceItem) event
 						.getElement();
@@ -121,6 +122,7 @@ public class LibraryFolderPreferencePage extends PreferencePage implements
 
 		tableViewer
 				.addSelectionChangedListener(new ISelectionChangedListener() {
+					@Override
 					public void selectionChanged(SelectionChangedEvent event) {
 						updateButtons();
 					}
@@ -160,6 +162,7 @@ public class LibraryFolderPreferencePage extends PreferencePage implements
 		// Add folder button
 		Button addFolderButton = createPushButton(buttonContainer, "Add folder", true);
 		addFolderButton.addListener(SWT.Selection, new Listener() {
+			@Override
 			public void handleEvent(Event e) {
 				String addedFolder = addFolderPressed();
 				if (addedFolder != null) {
@@ -181,6 +184,7 @@ public class LibraryFolderPreferencePage extends PreferencePage implements
 		});
 		removeFolderButton = createPushButton(buttonContainer, "Remove folder", false);
 		removeFolderButton.addListener(SWT.Selection, new Listener() {
+			@Override
 			public void handleEvent(Event e) {
 				if(!tableViewer.getSelection().isEmpty()) {
 					tableViewer.getTable().remove(tableViewer.getTable().getSelectionIndex());
@@ -191,6 +195,7 @@ public class LibraryFolderPreferencePage extends PreferencePage implements
 		
 		moveFolderUpButton = createPushButton(buttonContainer, "Move folder up", false);
 		moveFolderUpButton.addListener(SWT.Selection, new Listener() {
+			@Override
 			public void handleEvent(Event e) {
 				int selectionIndex = tableViewer.getTable().getSelectionIndex();
 				moveObjectAtIndex(selectionIndex, false);
@@ -200,6 +205,7 @@ public class LibraryFolderPreferencePage extends PreferencePage implements
 		moveFolderDownButton = createPushButton(buttonContainer,
 				"Move folder down", false);
 		moveFolderDownButton.addListener(SWT.Selection, new Listener() {
+			@Override
 			public void handleEvent(Event e) {
 				int selectionIndex = tableViewer.getTable().getSelectionIndex();
 				if (selectionIndex < tableViewer.getTable().getItemCount() - 1) {

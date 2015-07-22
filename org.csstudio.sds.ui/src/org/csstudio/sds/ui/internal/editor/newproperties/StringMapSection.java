@@ -227,18 +227,22 @@ public class StringMapSection extends AbstractBaseSection<StringMapProperty> {
 			this.label = label;
 		}
 
+		@Override
 		public String getContent() {
 			return "$" + content + "$";
 		}
 
+		@Override
 		public int getCursorPosition() {
 			return 0;
 		}
 
+		@Override
 		public String getDescription() {
 			return label;
 		}
 
+		@Override
 		public String getLabel() {
 			return "$" + content + "$";
 		}
@@ -262,6 +266,7 @@ public class StringMapSection extends AbstractBaseSection<StringMapProperty> {
 			this.valueProposals = valueProposals;
 		}
 
+		@Override
 		public boolean canModify(int column) {
 			switch (column) {
 			case 0:
@@ -273,10 +278,12 @@ public class StringMapSection extends AbstractBaseSection<StringMapProperty> {
 			return true;
 		}
 
+		@Override
 		public RGB getBackgroundColor(int column) {
 			return null;
 		}
 
+		@Override
 		public CellEditor getCellEditor(final int column, Composite parent) {
 			switch (column) {
 			case 0:
@@ -284,6 +291,7 @@ public class StringMapSection extends AbstractBaseSection<StringMapProperty> {
 				TextCellEditor editor = new TextCellEditor(parent);
 				editor.getControl().setBackground(COLOR_CONTROL_ACTIVE);
 				IContentProposalProvider proposalProvider = new IContentProposalProvider() {
+					@Override
 					public IContentProposal[] getProposals(String contents, int position) {
 						if (column == 1) {
 							return valueProposals;
@@ -328,6 +336,7 @@ public class StringMapSection extends AbstractBaseSection<StringMapProperty> {
 			return keyStroke;
 		}
 
+		@Override
 		public String getDisplayValue(int column) {
 			switch (column) {
 			case 0:
@@ -339,6 +348,7 @@ public class StringMapSection extends AbstractBaseSection<StringMapProperty> {
 			}
 		}
 
+		@Override
 		public String getEditingValue(int column) {
 			switch (column) {
 			case 0:
@@ -350,6 +360,7 @@ public class StringMapSection extends AbstractBaseSection<StringMapProperty> {
 			}
 		}
 
+		@Override
 		public Font getFont(int column) {
 			switch (column) {
 			case 0:
@@ -361,6 +372,7 @@ public class StringMapSection extends AbstractBaseSection<StringMapProperty> {
 			}
 		}
 
+		@Override
 		public RGB getForegroundColor(int column) {
 			switch (column) {
 			case 0:
@@ -372,14 +384,17 @@ public class StringMapSection extends AbstractBaseSection<StringMapProperty> {
 			}
 		}
 
+		@Override
 		public Image getImage(int column) {
 			return null;
 		}
 
+		@Override
 		public String getTooltip() {
 			return null;
 		}
 
+		@Override
 		public void setValue(int column, Object value) {
 			switch (column) {
 			case 0:
@@ -401,6 +416,7 @@ public class StringMapSection extends AbstractBaseSection<StringMapProperty> {
 			}
 		}
 
+		@Override
 		public int compareTo(ITableRow o) {
 			return 0;
 		}

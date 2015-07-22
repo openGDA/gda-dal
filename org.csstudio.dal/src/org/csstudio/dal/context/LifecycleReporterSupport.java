@@ -91,6 +91,7 @@ public class LifecycleReporterSupport implements LifecycleReporter
 	 *
 	 * @see LifecycleReporter#addLifecycleListener(LifecycleListener)
 	 */
+	@Override
 	public void addLifecycleListener(LifecycleListener l)
 	{
 		listeners.add(l);
@@ -100,6 +101,7 @@ public class LifecycleReporterSupport implements LifecycleReporter
 	 *
 	 * @see LifecycleReporter#removeLifecycleListener(LifecycleListener)
 	 */
+	@Override
 	public void removeLifecycleListener(LifecycleListener l)
 	{
 		listeners.remove(l);
@@ -109,6 +111,7 @@ public class LifecycleReporterSupport implements LifecycleReporter
 	 *
 	 * @see LifecycleReporter#getLifecycleState()
 	 */
+	@Override
 	public LifecycleState getLifecycleState()
 	{
 		return state;
@@ -226,6 +229,7 @@ public class LifecycleReporterSupport implements LifecycleReporter
 	 *
 	 * @return all registered lifecycle listeners
 	 */
+	@Override
 	public LifecycleListener[] getLifecycleListeners()
 	{
 		return (LifecycleListener[])listeners.toArray();

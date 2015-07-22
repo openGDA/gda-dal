@@ -104,6 +104,7 @@ public class LinearScale extends AbstractScale implements IScaleProvider {
 	/**
 	 * @return the length of the whole scale (include margin)
 	 */
+	@Override
 	public int getLength() {
 		return length;
 	}
@@ -115,7 +116,8 @@ public class LinearScale extends AbstractScale implements IScaleProvider {
      * before you can get the correct margin.
      * @return the margin
      */
-    public int getMargin() {
+    @Override
+	public int getMargin() {
 		if(isDirty())
 			margin = getTicksProvider().getHeadMargin();
 		return margin;
@@ -262,6 +264,7 @@ public class LinearScale extends AbstractScale implements IScaleProvider {
 		return (max - min) / (length - 2 * margin);
 	}
 
+	@Override
 	public boolean isHorizontal() {
 		return orientation == Orientation.HORIZONTAL;
 	}

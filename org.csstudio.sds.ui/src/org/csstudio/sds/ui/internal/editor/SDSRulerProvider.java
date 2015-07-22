@@ -46,6 +46,7 @@ public final class SDSRulerProvider extends RulerProvider {
 	 * A PropertyChangeListener for rulers.
 	 */
 	private PropertyChangeListener _rulerListener = new PropertyChangeListener() {
+		@Override
 		public void propertyChange(final PropertyChangeEvent evt) {
 			if (evt.getPropertyName().equals(RulerModel.PROPERTY_CHILDREN_CHANGED)) {
 				GuideModel guide = (GuideModel)evt.getNewValue();
@@ -66,6 +67,7 @@ public final class SDSRulerProvider extends RulerProvider {
 	 * A PropertyChangeListener for guides.
 	 */
 	private PropertyChangeListener _guideListener = new PropertyChangeListener() {
+		@Override
 		public void propertyChange(final PropertyChangeEvent evt) {
 			if (evt.getPropertyName().equals(GuideModel.PROPERTY_CHILDREN_CHANGED)) {
 				for (int i = 0; i < listeners.size(); i++) {
@@ -119,6 +121,7 @@ public final class SDSRulerProvider extends RulerProvider {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public List<AbstractWidgetModel> getAttachedModelObjects(final Object guide) {
 		return new ArrayList<AbstractWidgetModel>(((GuideModel)guide).getAttachedModels());
 	}
@@ -126,6 +129,7 @@ public final class SDSRulerProvider extends RulerProvider {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Command getMoveGuideCommand(final Object guide, final int pDelta) {
 		return new MoveGuideCommand((GuideModel)guide, pDelta);
 	}
@@ -149,6 +153,7 @@ public final class SDSRulerProvider extends RulerProvider {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public int[] getGuidePositions() {
 		List guides = getGuides();
 		int[] result = new int[guides.size()];
@@ -161,6 +166,7 @@ public final class SDSRulerProvider extends RulerProvider {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public int getGuidePosition(final Object guide) {
 		return ((GuideModel)guide).getPosition();
 	}
@@ -168,6 +174,7 @@ public final class SDSRulerProvider extends RulerProvider {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public List getGuides() {
 		return _ruler.getGuides();
 	}

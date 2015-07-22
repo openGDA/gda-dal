@@ -158,6 +158,7 @@ public class ExceptionDetailsErrorDialog extends IconAndMessageDialog {
 	 * of the error details area. Note that the Details button will only be
 	 * visible if the error being displayed specifies child details.
 	 */
+	@Override
 	protected void buttonPressed(int id) {
 		if (id == IDialogConstants.DETAILS_ID) {
 			// was the details button pressed?
@@ -170,6 +171,7 @@ public class ExceptionDetailsErrorDialog extends IconAndMessageDialog {
 	/*
 	 * (non-Javadoc) Method declared in Window.
 	 */
+	@Override
 	protected void configureShell(Shell shell) {
 		super.configureShell(shell);
 		shell.setText(title);
@@ -178,6 +180,7 @@ public class ExceptionDetailsErrorDialog extends IconAndMessageDialog {
 	/*
 	 * (non-Javadoc) Method declared on Dialog.
 	 */
+	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
 		// create OK and Details buttons
 		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL,
@@ -205,6 +208,7 @@ public class ExceptionDetailsErrorDialog extends IconAndMessageDialog {
 	 * <code>createCustomArea</code> to populate it. Subclasses should override
 	 * <code>createCustomArea</code> to add contents below the message.
 	 */
+	@Override
 	protected Control createDialogArea(Composite parent) {
 		createMessageArea(parent);
 		// create a composite with standard margins and spacing
@@ -226,6 +230,7 @@ public class ExceptionDetailsErrorDialog extends IconAndMessageDialog {
 	/*
 	 * @see IconAndMessageDialog#createDialogAndButtonArea(Composite)
 	 */
+	@Override
 	protected void createDialogAndButtonArea(Composite parent) {
 		super.createDialogAndButtonArea(parent);
 		if (this.dialogArea instanceof Composite) {
@@ -242,6 +247,7 @@ public class ExceptionDetailsErrorDialog extends IconAndMessageDialog {
 	 *
 	 * @see org.eclipse.jface.dialogs.IconAndMessageDialog#getImage()
 	 */
+	@Override
 	protected Image getImage() {
 		if (status != null) {
 			if (status.getSeverity() == IStatus.WARNING) {
@@ -282,6 +288,7 @@ public class ExceptionDetailsErrorDialog extends IconAndMessageDialog {
 			/*
 			 * @see SelectionListener.widgetSelected (SelectionEvent)
 			 */
+			@Override
 			public void widgetSelected(SelectionEvent e) {
 				copyToClipboard();
 			}
@@ -289,6 +296,7 @@ public class ExceptionDetailsErrorDialog extends IconAndMessageDialog {
 			/*
 			 * @see SelectionListener.widgetDefaultSelected(SelectionEvent)
 			 */
+			@Override
 			public void widgetDefaultSelected(SelectionEvent e) {
 				copyToClipboard();
 			}
@@ -309,6 +317,7 @@ public class ExceptionDetailsErrorDialog extends IconAndMessageDialog {
 	 * children, the error dialog will only be displayed if there is at least
 	 * one child status matching the mask.
 	 */
+	@Override
 	public int open() {
 		if (!AUTOMATED_MODE && shouldDisplay(status, displayMask)) {
 			return super.open();
@@ -571,6 +580,7 @@ public class ExceptionDetailsErrorDialog extends IconAndMessageDialog {
 	 *
 	 * @see org.eclipse.jface.window.Window#close()
 	 */
+	@Override
 	public boolean close() {
 		if (clipboard != null) {
 			clipboard.dispose();

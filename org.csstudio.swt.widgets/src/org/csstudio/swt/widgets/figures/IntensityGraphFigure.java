@@ -204,6 +204,7 @@ public class IntensityGraphFigure extends Figure implements Introspectable {
 			
 			addFigureListener(new FigureListener() {
 				
+				@Override
 				public void figureMoved(IFigure source) {
 					if(crossDataIndex != null){
 						Point p = graphArea.getGeoLocation(crossDataIndex.x, crossDataIndex.y);
@@ -214,6 +215,7 @@ public class IntensityGraphFigure extends Figure implements Introspectable {
 			
 			addCroppedDataSizeListener(new ICroppedDataSizeListener() {
 				
+				@Override
 				public void croppedDataSizeChanged(int croppedDataWidth,
 						int croppedDataHeight) {
 					crossDataIndex = graphArea.getDataLocation(crossX, crossY);	
@@ -526,6 +528,7 @@ public class IntensityGraphFigure extends Figure implements Introspectable {
 	}
 	class GraphAreaZoomer extends MouseMotionListener.Stub implements MouseListener{	
 				
+		@Override
 		public void mouseDoubleClicked(MouseEvent me) {
 			if(me.button !=1)
 				return;
@@ -560,6 +563,7 @@ public class IntensityGraphFigure extends Figure implements Introspectable {
 		}
 
 		
+		@Override
 		public void mousePressed(MouseEvent me) {	
 			requestFocus();
 		    // Only react to 'main' mouse button
@@ -572,6 +576,7 @@ public class IntensityGraphFigure extends Figure implements Introspectable {
 			me.consume();			
 		}
 		
+		@Override
 		public void mouseReleased(MouseEvent me) {
 			if(!armed || end == null || start == null)
 				return;
@@ -1476,6 +1481,7 @@ public class IntensityGraphFigure extends Figure implements Introspectable {
 			yAxis.setRange(t1, t2);	
 	}
 	
+	@Override
 	public BeanInfo getBeanInfo() throws IntrospectionException {
 		return new DefaultWidgetIntrospector().getBeanInfo(this.getClass());
 	}

@@ -25,10 +25,12 @@ public class AddAnnotationCommand implements IUndoableCommand {
 		this.annotation = annotation;
 	}
 
+	@Override
 	public void redo() {
 		xyGraph.addAnnotation(annotation);
 	}
 
+	@Override
 	public void undo() {
 		xyGraph.removeAnnotation(annotation);
 	}

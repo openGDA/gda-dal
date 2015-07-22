@@ -133,6 +133,7 @@ public final class PropertySheetSorter {
 	@SuppressWarnings("unchecked")
 	public void sort(final IPropertySheetEntry[] entries) {
 		Arrays.sort(entries, new Comparator() {
+			@Override
 			public int compare(final Object a, final Object b) {
 				return PropertySheetSorter.this.compare(
 						(IPropertySheetEntry) a, (IPropertySheetEntry) b);
@@ -150,6 +151,7 @@ public final class PropertySheetSorter {
 	@SuppressWarnings("unchecked")
 	void sort(final PropertySheetCategory[] categories) {
 		Arrays.sort(categories, new Comparator() {
+			@Override
 			public int compare(final Object a, final Object b) {
 				return PropertySheetSorter.this.compareCategories(
 						((PropertySheetCategory) a).getCategoryName(),

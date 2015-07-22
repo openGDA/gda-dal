@@ -78,36 +78,43 @@ public class Sample implements ISample {
 	}
 
 	/** @return X value */
+	@Override
 	public double getXValue() {
     	return xValue;
     }
 
     /** @return Y value */
-    public double getYValue() {
+    @Override
+	public double getYValue() {
     	return yValue;
     }
 
     /** @return Negative X error. */
-    public double getXMinusError() {
+    @Override
+	public double getXMinusError() {
 		return xMinusError;
 	}
     
     /** @return Positive X error. */
+	@Override
 	public double getXPlusError() {
 		return xPlusError;
 	}
 	
     /** @return Negative Y error. */
+	@Override
 	public double getYMinusError() {
 		return yMinusError;
 	}
 
     /** @return Positive Y error. */
+	@Override
 	public double getYPlusError() {
 		return yPlusError;
 	}
 
     /** @return Sample info text. */
+	@Override
 	public String getInfo() {
 		return info;
 	}

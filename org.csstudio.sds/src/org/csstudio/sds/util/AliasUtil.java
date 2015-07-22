@@ -30,6 +30,7 @@ import java.util.Map;
  * @deprecated use {@link ChannelReferenceValidationUtil#createCanonicalName(String, Map)} instead
  *
  */
+@Deprecated
 public class AliasUtil {
 	
 	/**
@@ -40,6 +41,7 @@ public class AliasUtil {
 	 * 
 	 * @deprecated use {@link ChannelReferenceValidationUtil#createCanonicalName(String, Map)} instead
 	 */
+	@Deprecated
 	public static String getAliasName(final String pvKey, final Map<String, String> aliases) {
 		if (pvKey!=null && aliases!=null) {
 		    String text=pvKey;

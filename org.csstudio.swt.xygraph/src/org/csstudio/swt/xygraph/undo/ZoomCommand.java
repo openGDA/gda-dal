@@ -49,6 +49,7 @@ public class ZoomCommand extends SaveStateCommand
             beforeYRangeList.add(axis.getRange());
     }
     
+	@Override
 	public void redo() {
 		int i=0;
 		if (xAxisList != null) {
@@ -64,6 +65,7 @@ public class ZoomCommand extends SaveStateCommand
 		}
 	}
 
+	@Override
 	public void undo() {
 		int i=0;
         if (xAxisList != null) {

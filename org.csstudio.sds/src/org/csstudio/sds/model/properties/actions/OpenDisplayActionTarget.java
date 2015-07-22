@@ -20,6 +20,7 @@ public enum OpenDisplayActionTarget implements IOption {
 		_id = id;
 	}
 
+	@Override
 	public String getIdentifier() {
 		return _id;
 	}

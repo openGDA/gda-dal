@@ -24,6 +24,7 @@ public class BehaviorDescriptor implements IBehaviorDescription {
 		_configurationElement = configurationElement;
 	}
 
+	@Override
 	public String getBehaviorId() {
 		return _behaviorId;
 	}
@@ -32,6 +33,7 @@ public class BehaviorDescriptor implements IBehaviorDescription {
 		return _widgetTypeId;
 	}
 
+	@Override
 	public String getDescription() {
 		return _description;
 	}

@@ -60,6 +60,7 @@ public class LifecycleEvent extends EventObject{
 	 *
 	 * @return internal state of this
 	 */
+	@Override
 	public String toString(){
 		return "LifecycleEvent = { source='" + source + "' state='" + state + "' }";
 	}

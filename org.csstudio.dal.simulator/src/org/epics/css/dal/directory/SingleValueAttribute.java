@@ -59,6 +59,7 @@ public class SingleValueAttribute implements Attribute
 	/* (non-Javadoc)
 	 * @see javax.naming.directory.Attribute#size()
 	 */
+	@Override
 	public int size()
 	{
 		return 1;
@@ -67,6 +68,7 @@ public class SingleValueAttribute implements Attribute
 	/* (non-Javadoc)
 	 * @see javax.naming.directory.Attribute#clear()
 	 */
+	@Override
 	public void clear()
 	{
 		value = null;
@@ -75,6 +77,7 @@ public class SingleValueAttribute implements Attribute
 	/* (non-Javadoc)
 	 * @see javax.naming.directory.Attribute#isOrdered()
 	 */
+	@Override
 	public boolean isOrdered()
 	{
 		return true;
@@ -83,6 +86,7 @@ public class SingleValueAttribute implements Attribute
 	/* (non-Javadoc)
 	 * @see javax.naming.directory.Attribute#get()
 	 */
+	@Override
 	public Object get() throws NamingException
 	{
 		return value;
@@ -91,6 +95,7 @@ public class SingleValueAttribute implements Attribute
 	/* (non-Javadoc)
 	 * @see javax.naming.directory.Attribute#get(int)
 	 */
+	@Override
 	public Object get(int ix) throws NamingException
 	{
 		if (ix > 0) {
@@ -103,6 +108,7 @@ public class SingleValueAttribute implements Attribute
 	/* (non-Javadoc)
 	 * @see javax.naming.directory.Attribute#remove(int)
 	 */
+	@Override
 	public Object remove(int ix)
 	{
 		if (ix > 0) {
@@ -118,6 +124,7 @@ public class SingleValueAttribute implements Attribute
 	/* (non-Javadoc)
 	 * @see javax.naming.directory.Attribute#add(int, java.lang.Object)
 	 */
+	@Override
 	public void add(int ix, Object attrVal)
 	{
 		if (ix > 0) {
@@ -130,6 +137,7 @@ public class SingleValueAttribute implements Attribute
 	/* (non-Javadoc)
 	 * @see javax.naming.directory.Attribute#add(java.lang.Object)
 	 */
+	@Override
 	public boolean add(Object attrVal)
 	{
 		if (value == null) {
@@ -144,6 +152,7 @@ public class SingleValueAttribute implements Attribute
 	/* (non-Javadoc)
 	 * @see javax.naming.directory.Attribute#contains(java.lang.Object)
 	 */
+	@Override
 	public boolean contains(Object attrVal)
 	{
 		return attrVal == value;
@@ -152,6 +161,7 @@ public class SingleValueAttribute implements Attribute
 	/* (non-Javadoc)
 	 * @see javax.naming.directory.Attribute#remove(java.lang.Object)
 	 */
+	@Override
 	public boolean remove(Object attrval)
 	{
 		if (attrval == value) {
@@ -166,6 +176,7 @@ public class SingleValueAttribute implements Attribute
 	/* (non-Javadoc)
 	 * @see javax.naming.directory.Attribute#getID()
 	 */
+	@Override
 	public String getID()
 	{
 		return id;
@@ -174,11 +185,13 @@ public class SingleValueAttribute implements Attribute
 	/* (non-Javadoc)
 	 * @see javax.naming.directory.Attribute#getAll()
 	 */
+	@Override
 	public NamingEnumeration<?> getAll() throws NamingException
 	{
 		return new NamingEnumeration() {
 				Object val = value;
 
+				@Override
 				public Object nextElement()
 				{
 					Object o = val;
@@ -187,21 +200,25 @@ public class SingleValueAttribute implements Attribute
 					return o;
 				}
 
+				@Override
 				public boolean hasMoreElements()
 				{
 					return val != null;
 				}
 
+				@Override
 				public void close() throws NamingException
 				{
 					val = null;
 				}
 
+				@Override
 				public boolean hasMore() throws NamingException
 				{
 					return val != null;
 				}
 
+				@Override
 				public Object next() throws NamingException
 				{
 					Object o = val;
@@ -215,6 +232,7 @@ public class SingleValueAttribute implements Attribute
 	/* (non-Javadoc)
 	 * @see javax.naming.directory.Attribute#getAttributeDefinition()
 	 */
+	@Override
 	public DirContext getAttributeDefinition() throws NamingException
 	{
 		throw new OperationNotSupportedException();
@@ -223,6 +241,7 @@ public class SingleValueAttribute implements Attribute
 	/* (non-Javadoc)
 	 * @see javax.naming.directory.Attribute#getAttributeSyntaxDefinition()
 	 */
+	@Override
 	public DirContext getAttributeSyntaxDefinition() throws NamingException
 	{
 		throw new OperationNotSupportedException();
@@ -231,6 +250,7 @@ public class SingleValueAttribute implements Attribute
 	/* (non-Javadoc)
 	 * @see javax.naming.directory.Attribute#set(int, java.lang.Object)
 	 */
+	@Override
 	public Object set(int ix, Object attrVal)
 	{
 		if (ix > 0) {
@@ -246,6 +266,7 @@ public class SingleValueAttribute implements Attribute
 	/* (non-Javadoc)
 	 * @see java.lang.Object#clone()
 	 */
+	@Override
 	public Object clone()
 	{
 		SingleValueAttribute attr;

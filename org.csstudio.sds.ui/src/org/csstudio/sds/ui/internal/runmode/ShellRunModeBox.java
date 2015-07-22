@@ -112,7 +112,8 @@ public final class ShellRunModeBox extends AbstractRunModeBox {
     /**
      * {@inheritDoc}
      */
-    protected GraphicalViewer doOpen(final int x,
+    @Override
+	protected GraphicalViewer doOpen(final int x,
                                      final int y,
                                      final boolean openRelative,
                                      final int width,
@@ -213,7 +214,8 @@ public final class ShellRunModeBox extends AbstractRunModeBox {
             /**
              * {@inheritDoc}
              */
-            public void widgetDisposed(final DisposeEvent e) {
+            @Override
+			public void widgetDisposed(final DisposeEvent e) {
                 dispose();
             }
         });
@@ -268,7 +270,8 @@ public final class ShellRunModeBox extends AbstractRunModeBox {
             @Override
             public void run() {
                 Display.getCurrent().asyncExec(new Runnable() {
-                    public void run() {
+                    @Override
+					public void run() {
                         _shell.close();
                     }
                 });
@@ -282,7 +285,8 @@ public final class ShellRunModeBox extends AbstractRunModeBox {
     /**
      * Disposes the shell.
      */
-    protected void doDispose() {
+    @Override
+	protected void doDispose() {
         // close the shell
         if (!_shell.isDisposed()) {
             _shell.close();
@@ -364,7 +368,8 @@ public final class ShellRunModeBox extends AbstractRunModeBox {
     /**
      * Sets the focus on this Shell.
      */
-    public void bringToTop() {
+    @Override
+	public void bringToTop() {
         if (_shell != null && !_shell.isDisposed()) {
             _shell.setMinimized(false);
             _shell.setActive();
@@ -377,7 +382,8 @@ public final class ShellRunModeBox extends AbstractRunModeBox {
     /**
      * {@inheritDoc}
      */
-    protected void handleWindowPositionChange(final int x,
+    @Override
+	protected void handleWindowPositionChange(final int x,
                                               final int y,
                                               final int width,
                                               final int height) {
@@ -434,15 +440,18 @@ public final class ShellRunModeBox extends AbstractRunModeBox {
                                                                    _input.getAliases());
         }
         
-        public void mouseEnter(MouseEvent e) {
+        @Override
+		public void mouseEnter(MouseEvent e) {
             _label.setForeground(CustomMediaFactory.getInstance().getColor(0, 255, 255));
         }
         
-        public void mouseExit(MouseEvent e) {
+        @Override
+		public void mouseExit(MouseEvent e) {
             _label.setForeground(CustomMediaFactory.getInstance().getColor(0, 0, 255));
         }
         
-        public void mouseHover(MouseEvent e) {
+        @Override
+		public void mouseHover(MouseEvent e) {
         }
     }
     

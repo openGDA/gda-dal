@@ -160,6 +160,7 @@ public final class RefreshableImageFigure extends Figure implements IAdaptable {
 	 * We want to have local coordinates here.
 	 * @return True if here should used local coordinates
 	 */
+	@Override
 	protected boolean useLocalCoordinates() {
 		return true;
 	}
@@ -553,6 +554,7 @@ public final class RefreshableImageFigure extends Figure implements IAdaptable {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public Object getAdapter(final Class adapter) {
 		if (adapter == IBorderEquippedWidget.class) {
@@ -587,6 +589,7 @@ public final class RefreshableImageFigure extends Figure implements IAdaptable {
 			interval_ms =0;
 			refreshing = true;
 			Runnable animationTask = new Runnable() {
+				@Override
 				public void run() {
 					new CheckedUiRunnable(){
 						@Override

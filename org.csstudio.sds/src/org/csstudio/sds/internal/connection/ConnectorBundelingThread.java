@@ -35,6 +35,7 @@ import org.slf4j.LoggerFactory;
  * @author Sven Wende
  * 
  */
+@Deprecated
 public final class ConnectorBundelingThread extends Thread {
 	/**
 	 * The singleton instance.

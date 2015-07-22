@@ -59,6 +59,7 @@ public final class AddLayerAction extends AbstractLayerAction {
 					.getActiveShell(), "Create a new layer",
 					"Please enter a name for the new layer:", "",
 					new IInputValidator() {
+						@Override
 						public String isValid(final String newText) {
 							if (newText.length() <= 0) {
 								return "Please provide at least one char for the layer name!";

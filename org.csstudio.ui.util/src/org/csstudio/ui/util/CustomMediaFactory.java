@@ -89,6 +89,7 @@ public final class CustomMediaFactory {
 
 		// dispose all images from the image cache, when the display is disposed
 		display.addListener(SWT.Dispose, new Listener() {
+			@Override
 			public void handleEvent(final Event event) {
 				for (Image img : _imageCache.values()) {
 					img.dispose();
@@ -224,7 +225,7 @@ public final class CustomMediaFactory {
 	 * @return The system's default font.
 	 */
 	public Font getDefaultFont(final int style) {
-		// FIXME Die default Schriftart bzw. Schriftgrš§e hŠngt vom
+		// FIXME Die default Schriftart bzw. Schriftgrï¿½ï¿½e hï¿½ngt vom
 		// Betriebssystem ab
 		return getFont("Arial", 10, style); //$NON-NLS-1$
 	}

@@ -104,18 +104,22 @@ public class TooltipSection extends AbstractTextSection<TooltipProperty, String>
 			this.property = property;
 		}
 
+		@Override
 		public String getContent() {
 			return "${" + property.getId() + "}";
 		}
 
+		@Override
 		public int getCursorPosition() {
 			return 0;
 		}
 
+		@Override
 		public String getDescription() {
 			return property.getDescription();
 		}
 
+		@Override
 		public String getLabel() {
 			return property.getDescription();
 		}

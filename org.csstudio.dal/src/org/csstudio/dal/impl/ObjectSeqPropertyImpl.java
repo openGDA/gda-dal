@@ -65,6 +65,7 @@ public class ObjectSeqPropertyImpl extends DynamicValuePropertyImpl<Object[]>
 	 *  (non-Javadoc)
 	 * @see org.csstudio.dal.SequenceAccess#getSequenceLength()
 	 */
+	@Override
 	public int getSequenceLength() throws DataExchangeException
 	{
 		if (!chInitialized)

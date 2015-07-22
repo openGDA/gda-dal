@@ -68,6 +68,7 @@ public class ChooseControlSystemPrefixDialog extends MessageDialog {
 
 		tv.addSelectionChangedListener(new ISelectionChangedListener() {
 
+			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
 				IStructuredSelection sel = (IStructuredSelection) event
 						.getSelection();
@@ -82,15 +83,17 @@ public class ChooseControlSystemPrefixDialog extends MessageDialog {
 		tv.setSelection(new StructuredSelection(ProcessVariableAdressFactory.getInstance().getDefaultControlSystem()));
 
 		final Button dontAskAgainButton = new Button(parent, SWT.CHECK);
-		dontAskAgainButton.setText("Don´t ask again!");
+		dontAskAgainButton.setText("Donï¿½t ask again!");
 		dontAskAgainButton.setSelection(!ProcessVariableAdressFactory.getInstance().askForControlSystem());
 		
 		dontAskAgainButton.addSelectionListener(new SelectionListener(){
 
+			@Override
 			public void widgetDefaultSelected(SelectionEvent e) {
 				
 			}
 
+			@Override
 			public void widgetSelected(SelectionEvent e) {
 				_dontAskAgain = dontAskAgainButton.getSelection();
 			}

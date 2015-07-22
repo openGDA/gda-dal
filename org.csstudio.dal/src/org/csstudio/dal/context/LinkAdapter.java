@@ -43,6 +43,7 @@ public class LinkAdapter<C extends Linkable> implements LinkListener<C>
 	/**
 	 * @see LinkListener#resumed(ConnectionEvent)
 	 */
+	@Override
 	public void resumed(ConnectionEvent<C> e)
 	{
 		// override if needed
@@ -51,6 +52,7 @@ public class LinkAdapter<C extends Linkable> implements LinkListener<C>
 	/**
 	 * @see LinkListener#suspended(ConnectionEvent)
 	 */
+	@Override
 	public void suspended(ConnectionEvent<C> e)
 	{
 		// override if needed
@@ -59,6 +61,7 @@ public class LinkAdapter<C extends Linkable> implements LinkListener<C>
 	/**
 	 * @see LinkListener#connected(ConnectionEvent)
 	 */
+	@Override
 	public void connected(ConnectionEvent<C> e)
 	{
 		// override if needed
@@ -67,6 +70,7 @@ public class LinkAdapter<C extends Linkable> implements LinkListener<C>
 	/**
 	 * @see LinkListener#operational(ConnectionEvent)
 	 */
+	@Override
 	public void operational(ConnectionEvent<C> e)
 	{
 		// override if needed
@@ -75,6 +79,7 @@ public class LinkAdapter<C extends Linkable> implements LinkListener<C>
 	/**
 	 * @see LinkListener#disconnected(ConnectionEvent)
 	 */
+	@Override
 	public void disconnected(ConnectionEvent<C> e)
 	{
 		// override if needed
@@ -83,6 +88,7 @@ public class LinkAdapter<C extends Linkable> implements LinkListener<C>
 	/**
 	 * @see LinkListener#connectionLost(ConnectionEvent)
 	 */
+	@Override
 	public void connectionLost(ConnectionEvent<C> e)
 	{
 		// override if needed
@@ -91,6 +97,7 @@ public class LinkAdapter<C extends Linkable> implements LinkListener<C>
 	/**
 	 * @see LinkListener#destroyed(ConnectionEvent)
 	 */
+	@Override
 	public void destroyed(ConnectionEvent<C> e)
 	{
 		// override if needed
@@ -99,6 +106,7 @@ public class LinkAdapter<C extends Linkable> implements LinkListener<C>
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.LinkListener#connectionFailed(org.csstudio.dal.context.ConnectionEvent)
 	 */
+	@Override
 	public void connectionFailed(ConnectionEvent<C> e)
 	{
 		// override if needed

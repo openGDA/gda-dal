@@ -65,6 +65,7 @@ public class ArrangeAction extends AbstractEditPartSelectionAction implements Up
 	@Override
 	protected Command doCreateCommand(final List<AbstractBaseEditPart> selectedEditParts) {
 		return new Command() {
+			@Override
 			public void execute() {
 				List<AbstractBaseEditPart> normalizedSelection = normalizeGroupingSelections(selectedEditParts);
 				_commandStack.execute(new ArrangeCommand(normalizedSelection, _direction));

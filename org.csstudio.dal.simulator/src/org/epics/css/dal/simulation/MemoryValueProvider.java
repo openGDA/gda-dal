@@ -43,6 +43,7 @@ public class MemoryValueProvider<T> implements ValueProvider<T>{
 	/* (non-Javadoc)
 	 * @see org.epics.css.dal.simulation.ValueProvider#get()
 	 */
+	@Override
 	public T get() throws DataExchangeException{
 		return value;
 	}
@@ -50,6 +51,7 @@ public class MemoryValueProvider<T> implements ValueProvider<T>{
 	/* (non-Javadoc)
 	 * @see org.epics.css.dal.simulation.ValueProvider#set(T)
 	 */
+	@Override
 	public void set(T value) throws DataExchangeException{
 		this.value = value;
 	}

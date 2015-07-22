@@ -11,6 +11,7 @@ import org.eclipse.swt.graphics.Image;
 
 public class PropertyContributorLabelProvider implements ILabelProvider {
 
+	@Override
 	public Image getImage(final Object element) {
 		AbstractWidgetModel widget = getWidget(element);
 
@@ -26,6 +27,7 @@ public class PropertyContributorLabelProvider implements ILabelProvider {
 		return null;
 	}
 
+	@Override
 	public String getText(final Object o) {
 		AbstractWidgetModel widget = getWidget(o);
 		String[] split = widget.getTypeID().split("\\.");
@@ -33,18 +35,22 @@ public class PropertyContributorLabelProvider implements ILabelProvider {
         return widget!=null?widget.getName()+" ("+typeID+")":"";
 	}
 
+	@Override
 	public void addListener(final ILabelProviderListener listener) {
 
 	}
 
+	@Override
 	public void dispose() {
 
 	}
 
+	@Override
 	public boolean isLabelProperty(final Object element, final String property) {
 		return false;
 	}
 
+	@Override
 	public void removeListener(final ILabelProviderListener listener) {
 
 	}

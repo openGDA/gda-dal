@@ -50,7 +50,8 @@ public class ThumbnailViewOutlinePage extends ContentOutlinePage implements ICon
     
     private DisposeListener createDisposeListenerToViewerControl(final Thumbnail _thumbnail) {
         return new DisposeListener() {
-            public void widgetDisposed(DisposeEvent e) {
+            @Override
+			public void widgetDisposed(DisposeEvent e) {
                 if (_thumbnail != null) {
                     _thumbnail.deactivate();
                 }

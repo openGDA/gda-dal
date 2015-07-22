@@ -59,6 +59,7 @@ public class LocalConnector extends AbstractConnector implements ILocalChannelLi
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void valueChanged(Object value) {
 		doForwardValue(value, new Timestamp());
 	}
@@ -69,6 +70,7 @@ public class LocalConnector extends AbstractConnector implements ILocalChannelLi
 	@Override
 	protected void doGetValueAsynchronously(final IProcessVariableValueListener listener) {
 		Runnable r = new Runnable() {
+			@Override
 			public void run() {
 				Object value = LocalChannelPool.getInstance().getChannel(getProcessVariableAddress(), getValueType()).getValue();
 				try {
@@ -115,6 +117,7 @@ public class LocalConnector extends AbstractConnector implements ILocalChannelLi
 	@Override
 	protected void doSetValueAsynchronously(final Object value, final IProcessVariableWriteListener listener) {
 		Runnable r = new Runnable() {
+			@Override
 			public void run() {
 				LocalChannelPool.getInstance().getChannel(getProcessVariableAddress(), getValueType()).setValue(value);
 

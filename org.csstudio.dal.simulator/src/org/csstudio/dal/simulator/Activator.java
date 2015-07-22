@@ -20,6 +20,7 @@ public class Activator implements BundleActivator, PropertyFactoryService {
 	 * (non-Javadoc)
 	 * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext)
 	 */
+	@Override
 	public void start(BundleContext bundleContext) throws Exception {
 		Activator.context = bundleContext;
 	}
@@ -28,10 +29,12 @@ public class Activator implements BundleActivator, PropertyFactoryService {
 	 * (non-Javadoc)
 	 * @see org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
 	 */
+	@Override
 	public void stop(BundleContext bundleContext) throws Exception {
 		Activator.context = null;
 	}
 	
+	@Override
 	public PropertyFactory getPropertyFactory(AbstractApplicationContext ctx,
 			LinkPolicy linkPolicy) {
 		
@@ -40,6 +43,7 @@ public class Activator implements BundleActivator, PropertyFactoryService {
 		return pf;
 	}
 	
+	@Override
 	public PropertyFactory getPropertyFactory(AbstractApplicationContext ctx,
 			LinkPolicy linkPolicy, String plugName) {
 		// not required

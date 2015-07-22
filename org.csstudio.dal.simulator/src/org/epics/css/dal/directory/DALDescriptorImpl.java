@@ -42,6 +42,7 @@ public class DALDescriptorImpl extends Attributes implements DALDescriptor
 	/* (non-Javadoc)
 	 * @see org.epics.css.dal.directory.DALDescriptor#getName()
 	 */
+	@Override
 	public String getName()
 	{
 		return (String)getAttributeValue(NAME);
@@ -50,6 +51,7 @@ public class DALDescriptorImpl extends Attributes implements DALDescriptor
 	/* (non-Javadoc)
 	 * @see org.epics.css.dal.directory.DALDescriptor#getClassType()
 	 */
+	@Override
 	public Class getClassType()
 	{
 		return (Class)getAttributeValue(CLASS_TYPE);
@@ -58,6 +60,7 @@ public class DALDescriptorImpl extends Attributes implements DALDescriptor
 	/* (non-Javadoc)
 	 * @see org.epics.css.dal.directory.DALDescriptor#getDescriptorType()
 	 */
+	@Override
 	public DescriptorType getDescriptorType()
 	{
 		return (DescriptorType)getAttributeValue(DESCRIPTOR_TYPE);
@@ -66,6 +69,7 @@ public class DALDescriptorImpl extends Attributes implements DALDescriptor
 	/* (non-Javadoc)
 	 * @see org.epics.css.dal.directory.DALDescriptor#setName(java.lang.String)
 	 */
+	@Override
 	public void setName(String name)
 	{
 		put(NAME, name);
@@ -74,6 +78,7 @@ public class DALDescriptorImpl extends Attributes implements DALDescriptor
 	/* (non-Javadoc)
 	 * @see org.epics.css.dal.directory.DALDescriptor#setClassType(java.lang.Class)
 	 */
+	@Override
 	public void setClassType(Class type)
 	{
 		put(CLASS_TYPE, type);

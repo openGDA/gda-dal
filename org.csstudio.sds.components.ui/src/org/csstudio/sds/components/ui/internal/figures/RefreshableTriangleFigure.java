@@ -92,6 +92,7 @@ public final class RefreshableTriangleFigure extends RectangleFigure implements 
 		_polylineDecoration.setRotation(Math.toRadians(_rotationAngle));
 		this.add(_polylineDecoration, BorderLayout.CENTER);
 		addFigureListener(new FigureListener() {
+			@Override
 			public void figureMoved(final IFigure source) {
 				refreshConstraints();
 			}
@@ -193,6 +194,7 @@ public final class RefreshableTriangleFigure extends RectangleFigure implements 
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public Object getAdapter(final Class adapter) {
 		if (adapter == IBorderEquippedWidget.class) {

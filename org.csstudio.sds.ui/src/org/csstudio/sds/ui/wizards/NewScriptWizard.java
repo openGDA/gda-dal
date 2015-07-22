@@ -41,6 +41,7 @@ public class NewScriptWizard extends Wizard implements INewWizard {
 		return result;
 	}
 
+	@Override
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		_selection = selection;
 	}

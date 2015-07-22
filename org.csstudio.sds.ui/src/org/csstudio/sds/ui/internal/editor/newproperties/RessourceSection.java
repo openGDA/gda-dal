@@ -66,6 +66,7 @@ public class RessourceSection extends AbstractTextSection<ResourceProperty, IPat
 
 		link.addHyperlinkListener(new HyperlinkAdapter() {
 
+			@Override
 			public void linkActivated(HyperlinkEvent e) {
 				ResourceProperty property = getMainWidgetProperty();
 				String[] fileExtensions = new String[] { "*.*" };

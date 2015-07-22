@@ -27,6 +27,7 @@ public abstract class CheckedUiRunnable implements Runnable {
 		BundelingThread.getInstance().addRunnable(this);
 	}
 
+	@Override
 	public void run() {
 		doRunInUi();
 	}

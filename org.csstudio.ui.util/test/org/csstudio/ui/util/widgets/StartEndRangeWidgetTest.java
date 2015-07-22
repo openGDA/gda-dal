@@ -97,6 +97,7 @@ public class StartEndRangeWidgetTest extends ApplicationWindow {
 
 		text = new Text(container, SWT.BORDER);
 		text.addListener(SWT.DefaultSelection, new Listener() {
+			@Override
 			public void handleEvent(Event e) {
 				hStartEndRangeWidget.setMin(Double.valueOf(text.getText()));
 				vStartEndRangeWidget.setMin(Double.valueOf(text.getText()));
@@ -105,6 +106,7 @@ public class StartEndRangeWidgetTest extends ApplicationWindow {
 
 		text_1 = new Text(container, SWT.BORDER);
 		text_1.addListener(SWT.DefaultSelection, new Listener() {
+			@Override
 			public void handleEvent(Event e) {
 				hStartEndRangeWidget.setMax(Double.valueOf(text_1.getText()));
 				vStartEndRangeWidget.setMax(Double.valueOf(text_1.getText()));

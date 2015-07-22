@@ -241,7 +241,8 @@ public final class RefreshableMeterFigure extends Shape implements IAdaptable {
         setConstraint(_needle, new Rectangle(0, 0, 100, 100));
 
         addFigureListener(new FigureListener() {
-            public void figureMoved(final IFigure figure) {
+            @Override
+			public void figureMoved(final IFigure figure) {
                 refreshConstraints();
                 _background.invalidate();
                 _needle.invalidate();
@@ -938,7 +939,8 @@ public final class RefreshableMeterFigure extends Shape implements IAdaptable {
     /**
      * {@inheritDoc}
      */
-    @SuppressWarnings("unchecked")
+    @Override
+	@SuppressWarnings("unchecked")
     public Object getAdapter(final Class adapter) {
         if (adapter == IBorderEquippedWidget.class) {
             if (_borderAdapter == null) {
@@ -1019,14 +1021,16 @@ public final class RefreshableMeterFigure extends Shape implements IAdaptable {
         /**
          * {@inheritDoc}
          */
-        public Insets getInsets(final IFigure figure) {
+        @Override
+		public Insets getInsets(final IFigure figure) {
             return new Insets(0);
         }
 
         /**
          * {@inheritDoc}
          */
-        public void paint(final IFigure figure, final Graphics graphics, final Insets insets) {
+        @Override
+		public void paint(final IFigure figure, final Graphics graphics, final Insets insets) {
             graphics.setForegroundColor(_borderColor);
             graphics.setLineWidth(_borderWidth);
             Rectangle borderBounds = figure.getBounds();

@@ -46,6 +46,7 @@ public class SixteenBinaryBarEditPart extends AbstractWidgetEditPart {
 	protected void registerPropertyChangeHandlers() {
 		// orientation
 		IWidgetPropertyChangeHandler handler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue, final IFigure refreshableFigure) {
 				RefreshableSixteenBinaryBarFigure rectangle = (RefreshableSixteenBinaryBarFigure) refreshableFigure;
@@ -57,6 +58,7 @@ public class SixteenBinaryBarEditPart extends AbstractWidgetEditPart {
 
 		// labels
 		handler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue, final IFigure refreshableFigure) {
 				RefreshableSixteenBinaryBarFigure rectangle = (RefreshableSixteenBinaryBarFigure) refreshableFigure;
@@ -69,6 +71,7 @@ public class SixteenBinaryBarEditPart extends AbstractWidgetEditPart {
 
 		// value
 		handler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue, final IFigure refreshableFigure) {
 				RefreshableSixteenBinaryBarFigure rectangle = (RefreshableSixteenBinaryBarFigure) refreshableFigure;
@@ -104,6 +107,7 @@ public class SixteenBinaryBarEditPart extends AbstractWidgetEditPart {
 
 		// i frame thickness
 		handler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue, final IFigure refreshableFigure) {
 				RefreshableSixteenBinaryBarFigure rectangle = (RefreshableSixteenBinaryBarFigure) refreshableFigure;
@@ -134,6 +138,7 @@ public class SixteenBinaryBarEditPart extends AbstractWidgetEditPart {
 		
 		// bit range from
 		handler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(Object oldValue, Object newValue,
 					IFigure refreshableFigure) {
 				RefreshableSixteenBinaryBarFigure figure = (RefreshableSixteenBinaryBarFigure) refreshableFigure;
@@ -145,6 +150,7 @@ public class SixteenBinaryBarEditPart extends AbstractWidgetEditPart {
 
 		// bit range to
 		handler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(Object oldValue, Object newValue,
 					IFigure refreshableFigure) {
 				RefreshableSixteenBinaryBarFigure figure = (RefreshableSixteenBinaryBarFigure) refreshableFigure;

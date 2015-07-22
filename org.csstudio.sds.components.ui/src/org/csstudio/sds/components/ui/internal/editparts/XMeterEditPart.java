@@ -51,6 +51,7 @@ public final class XMeterEditPart extends AbstractMarkedWidgetEditPart {
 		
 		//Ramp gradient
 		IWidgetPropertyChangeHandler gradientHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {

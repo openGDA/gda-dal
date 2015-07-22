@@ -35,15 +35,18 @@ public class ROIFigure extends Figure {
 			protected Point start;
 			protected Rectangle startROIBounds;
 			protected boolean armed;
+			@Override
 			public void mousePressed(MouseEvent me) {
 				start = me.getLocation();
 				startROIBounds = roiGeoBounds.getCopy();				
 				me.consume();
 			}
 			
+			@Override
 			public void mouseDoubleClicked(MouseEvent me) {				
 			}
 			
+			@Override
 			public void mouseReleased(MouseEvent me) {
 				if(armed){
 					armed = false;
@@ -74,6 +77,7 @@ public class ROIFigure extends Figure {
 			/**
 			 * @param me
 			 */
+			@Override
 			protected void updateROIBounds(MouseEvent me) {
 				int dx = me.x - start.x;
 				int dy = me.y - start.y;
@@ -312,6 +316,7 @@ public class ROIFigure extends Figure {
 			setBackgroundColor(ColorConstants.white);
 			setForegroundColor(ColorConstants.black);
 			roiRectFigure = new RectangleFigure(){
+				@Override
 				public boolean containsPoint(int x, int y) {
 					if (!super.containsPoint(x, y))
 						return false;
@@ -336,11 +341,13 @@ public class ROIFigure extends Figure {
 			}
 			
 			addFocusListener(new FocusListener(){
+				@Override
 				public void focusGained(FocusEvent fe) {
 					for(Figure handler : resizeHandlers){
 						handler.setVisible(true);
 					}
 				}
+				@Override
 				public void focusLost(FocusEvent fe) {
 					for(Figure handler : resizeHandlers){
 						handler.setVisible(false);
@@ -349,6 +356,7 @@ public class ROIFigure extends Figure {
 			});
 			intensityGraphFigure.addCroppedDataSizeListener(new ICroppedDataSizeListener() {
 				
+				@Override
 				public void croppedDataSizeChanged(int croppedDataWidth,
 						int croppedDataHeight) {
 					updateROIGeoBounds();

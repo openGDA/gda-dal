@@ -33,12 +33,13 @@ import org.eclipse.core.runtime.IPath;
  * Opens a display in a view.
  * 
  * @deprecated 8-7-2008: swende: {@link OpenShellActionHandler} und
- *             {@link OpenViewActionHandler} zusammenführen, wenn nur noch eine
+ *             {@link OpenViewActionHandler} zusammenfï¿½hren, wenn nur noch eine
  *             parametrisierbare Action-Type (Open Display) existiert
  * @author Kai Meyer
  * 
  * @deprecated we use {@link OpenDisplayActionHandler} instead
  */
+@Deprecated
 public final class OpenViewActionHandler implements IWidgetActionHandler {
 
 	/**
@@ -46,6 +47,7 @@ public final class OpenViewActionHandler implements IWidgetActionHandler {
 	 * 
 	 * @required action instanceof OpenDisplayWidgetAction
 	 */
+	@Override
 	public void executeAction(final AbstractWidgetModel widget,
 			final AbstractWidgetActionModel action) {
 		assert action instanceof OpenDisplayActionModel : "Precondition violated: action instanceof OpenDisplayWidgetAction";

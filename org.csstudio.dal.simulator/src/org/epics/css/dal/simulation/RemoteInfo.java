@@ -365,6 +365,7 @@ public class RemoteInfo extends URIName
 	 *
 	 * @throws InvalidNameException always thrown
 	 */
+	@Override
 	public Name add(int posn, String comp) throws InvalidNameException
 	{
 		throw new InvalidNameException(
@@ -380,6 +381,7 @@ public class RemoteInfo extends URIName
 	 *
 	 * @throws InvalidNameException always thrown
 	 */
+	@Override
 	public Name add(String comp) throws InvalidNameException
 	{
 		throw new InvalidNameException(
@@ -396,6 +398,7 @@ public class RemoteInfo extends URIName
 	 *
 	 * @throws InvalidNameException always thrown
 	 */
+	@Override
 	public Name addAll(int posn, Name n) throws InvalidNameException
 	{
 		throw new InvalidNameException(
@@ -411,6 +414,7 @@ public class RemoteInfo extends URIName
 	 *
 	 * @throws InvalidNameException always thrown
 	 */
+	@Override
 	public Name addAll(Name suffix) throws InvalidNameException
 	{
 		throw new InvalidNameException(
@@ -426,6 +430,7 @@ public class RemoteInfo extends URIName
 	 *
 	 * @throws InvalidNameException always thrown
 	 */
+	@Override
 	public Object remove(int posn) throws InvalidNameException
 	{
 		throw new InvalidNameException(

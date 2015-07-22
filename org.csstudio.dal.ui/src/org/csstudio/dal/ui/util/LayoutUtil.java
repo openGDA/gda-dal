@@ -37,6 +37,7 @@ import org.eclipse.swt.widgets.Group;
  * 
  * @author Sven Wende
  */
+@Deprecated
 public final class LayoutUtil {
 	/**
 	 * Private constructor to prevent instantiation.

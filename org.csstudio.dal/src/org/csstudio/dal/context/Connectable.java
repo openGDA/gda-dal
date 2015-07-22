@@ -92,6 +92,7 @@ public interface Connectable extends Linkable, ContextBean{
 	 */
 	void destroy();
 
+	@Override
 	/**
 	 * Returns the current life cycle state of this
 	 * <code>Connectable</code>. Possible values are constants defined in

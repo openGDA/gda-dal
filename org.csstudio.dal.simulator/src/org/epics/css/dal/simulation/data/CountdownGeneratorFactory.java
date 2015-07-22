@@ -32,6 +32,7 @@ import org.epics.css.dal.simulation.ValueProvider;
  */
 public class CountdownGeneratorFactory implements ValueProviderFactory {
 
+	@Override
 	@SuppressWarnings("unchecked")
 	public <T> ValueProvider<T> createGenerator(Class<T> type, String... options) {
 		if (Double.class.isAssignableFrom(type)) {

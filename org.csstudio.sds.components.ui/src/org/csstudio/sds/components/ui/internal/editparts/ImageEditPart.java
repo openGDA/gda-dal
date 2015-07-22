@@ -45,6 +45,7 @@ public final class ImageEditPart extends AbstractWidgetEditPart {
 	 * 
 	 * @return the casted {@link ImageModel}
 	 */
+	@Override
 	protected ImageModel getCastedModel() {
 		return (ImageModel) getModel();
 	}
@@ -81,6 +82,7 @@ public final class ImageEditPart extends AbstractWidgetEditPart {
 	protected void registerCropPropertyHandlers() {
 		// top
 		IWidgetPropertyChangeHandler handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue,
 					final IFigure figure) {
 				RefreshableImageFigure imageFigure = (RefreshableImageFigure) figure;
@@ -93,6 +95,7 @@ public final class ImageEditPart extends AbstractWidgetEditPart {
 		
 		// bottom
 		handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue,
 					final IFigure figure) {
 				RefreshableImageFigure imageFigure = (RefreshableImageFigure) figure;
@@ -105,6 +108,7 @@ public final class ImageEditPart extends AbstractWidgetEditPart {
 		
 		// left
 		handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue,
 					final IFigure figure) {
 				RefreshableImageFigure imageFigure = (RefreshableImageFigure) figure;
@@ -117,6 +121,7 @@ public final class ImageEditPart extends AbstractWidgetEditPart {
 		
 		// right
 		handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue,
 					final IFigure figure) {
 				RefreshableImageFigure imageFigure = (RefreshableImageFigure) figure;
@@ -135,6 +140,7 @@ public final class ImageEditPart extends AbstractWidgetEditPart {
 	protected void registerPropertyChangeHandlers() {
 		// changes to the filename property
 		IWidgetPropertyChangeHandler handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue,
 					final IFigure figure) {
 				RefreshableImageFigure imageFigure = (RefreshableImageFigure) figure;
@@ -149,6 +155,7 @@ public final class ImageEditPart extends AbstractWidgetEditPart {
 		
 		// changes to the stretch property
 		handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue,
 					final IFigure figure) {
 				RefreshableImageFigure imageFigure = (RefreshableImageFigure) figure;
@@ -161,6 +168,7 @@ public final class ImageEditPart extends AbstractWidgetEditPart {
 	
 		// changes to the autosize property
 		handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue,
 					final IFigure figure) {
 				RefreshableImageFigure imageFigure = (RefreshableImageFigure) figure;
@@ -177,6 +185,7 @@ public final class ImageEditPart extends AbstractWidgetEditPart {
 		
 		// changes to the stop animation property
 		handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue,
 					final IFigure figure) {
 				RefreshableImageFigure imageFigure = (RefreshableImageFigure) figure;
@@ -188,6 +197,7 @@ public final class ImageEditPart extends AbstractWidgetEditPart {
 		
 		// changes to the border width property
 		handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue,
 					final IFigure figure) {
 				RefreshableImageFigure imageFigure = (RefreshableImageFigure) figure;
@@ -201,6 +211,7 @@ public final class ImageEditPart extends AbstractWidgetEditPart {
 		
 		//size change handlers - so we can stretch accordingly
 		handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue,
 					final IFigure figure) {
 				RefreshableImageFigure imageFigure = (RefreshableImageFigure) figure;

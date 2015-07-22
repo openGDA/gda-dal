@@ -50,6 +50,7 @@ public class PatchedGraphicalViewer extends ScrollingGraphicalViewer {
 		// ... and rewritten here
 		if (contextMenu != null) {
 			final IMenuListener menuListener = new IMenuListener() {
+				@Override
 				public void menuAboutToShow(IMenuManager manager) {
 					flush();
 				}
@@ -61,6 +62,7 @@ public class PatchedGraphicalViewer extends ScrollingGraphicalViewer {
 
 			if (control != null) {
 				control.addDisposeListener(new DisposeListener() {
+					@Override
 					public void widgetDisposed(DisposeEvent e) {
 						contextMenu.removeMenuListener(menuListener);
 						control.removeDisposeListener(this);

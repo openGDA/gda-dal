@@ -69,6 +69,7 @@ public class ThumbWheelEditPart extends AbstractWidgetEditPart {
 
 		_figure.addWheelListener(new WheelListener() {
 
+			@Override
 			public void decrementDecimalPart(int index) {
 				if (getExecutionMode() == ExecutionMode.RUN_MODE) {
 					_logic.decrementDecimalDigitAt(index);
@@ -77,6 +78,7 @@ public class ThumbWheelEditPart extends AbstractWidgetEditPart {
 				}
 			}
 
+			@Override
 			public void incrementDecimalPart(int index) {
 				if (getExecutionMode() == ExecutionMode.RUN_MODE) {
 					_logic.incrementDecimalDigitAt(index);
@@ -85,6 +87,7 @@ public class ThumbWheelEditPart extends AbstractWidgetEditPart {
 				}
 			}
 
+			@Override
 			public void decrementIntegerPart(int index) {
 				if (getExecutionMode() == ExecutionMode.RUN_MODE) {
 					_logic.decrementIntigerDigitAt(index);
@@ -93,6 +96,7 @@ public class ThumbWheelEditPart extends AbstractWidgetEditPart {
 				}
 			}
 
+			@Override
 			public void incrementIntegerPart(int index) {
 				if (getExecutionMode() == ExecutionMode.RUN_MODE) {
 					_logic.incrementIntigerWheel(index);
@@ -179,6 +183,7 @@ public class ThumbWheelEditPart extends AbstractWidgetEditPart {
      */
     private IWidgetPropertyChangeHandler getPropBorderWidth() {
         IWidgetPropertyChangeHandler handler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue, final IFigure refreshableFigure) {
 				RefreshableThumbWheelFigure figure = (RefreshableThumbWheelFigure) refreshableFigure;
@@ -194,6 +199,7 @@ public class ThumbWheelEditPart extends AbstractWidgetEditPart {
      */
     private IWidgetPropertyChangeHandler getPropValue() {
         IWidgetPropertyChangeHandler handler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue, final IFigure refreshableFigure) {
 				_logic.setValue((Double) newValue);
@@ -209,6 +215,7 @@ public class ThumbWheelEditPart extends AbstractWidgetEditPart {
      */
     private IWidgetPropertyChangeHandler getPropMin() {
         IWidgetPropertyChangeHandler handler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue, final IFigure refreshableFigure) {
 				_logic.setMax((Double) newValue);
@@ -225,6 +232,7 @@ public class ThumbWheelEditPart extends AbstractWidgetEditPart {
      */
     private IWidgetPropertyChangeHandler getPropMax() {
         IWidgetPropertyChangeHandler handler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue, final IFigure refreshableFigure) {
 				_logic.setMin((Double) newValue);
@@ -240,6 +248,7 @@ public class ThumbWheelEditPart extends AbstractWidgetEditPart {
      */
     private IWidgetPropertyChangeHandler getPropWholeDigitsPart() {
         IWidgetPropertyChangeHandler handler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue, final IFigure refreshableFigure) {
 				RefreshableThumbWheelFigure figure = (RefreshableThumbWheelFigure) refreshableFigure;
@@ -259,6 +268,7 @@ public class ThumbWheelEditPart extends AbstractWidgetEditPart {
      */
     private IWidgetPropertyChangeHandler getPropDecimalDigitdPart() {
         IWidgetPropertyChangeHandler handler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue, final IFigure refreshableFigure) {
 				RefreshableThumbWheelFigure figure = (RefreshableThumbWheelFigure) refreshableFigure;

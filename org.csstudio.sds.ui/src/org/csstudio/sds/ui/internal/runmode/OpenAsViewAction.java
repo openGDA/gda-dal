@@ -45,6 +45,7 @@ public final class OpenAsViewAction extends Action implements IObjectActionDeleg
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void run(final IAction action) {
 		if (_selection != null) {
 			Object element = _selection.getFirstElement();
@@ -59,6 +60,7 @@ public final class OpenAsViewAction extends Action implements IObjectActionDeleg
 	 * {@inheritDoc}
 	 */
 
+	@Override
 	public void selectionChanged(final IAction action,
 			final ISelection selection) {
 		if (selection instanceof IStructuredSelection) {
@@ -69,6 +71,7 @@ public final class OpenAsViewAction extends Action implements IObjectActionDeleg
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void setActivePart(final IAction action,
 			final IWorkbenchPart targetPart) {
 

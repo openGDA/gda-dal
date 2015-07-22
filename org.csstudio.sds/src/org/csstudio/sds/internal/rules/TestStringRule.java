@@ -29,6 +29,7 @@ public class TestStringRule implements IRule {
 	 */
 	public static final String TYPE_ID = "TestStringRule";
 
+	@Override
 	public Object evaluate(final Object[] arguments) {
 		String result = "Default";
 		if ((arguments != null) && (arguments.length > 1)) {

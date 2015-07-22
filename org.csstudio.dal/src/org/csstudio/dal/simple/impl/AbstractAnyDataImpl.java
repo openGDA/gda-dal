@@ -34,18 +34,22 @@ public abstract class AbstractAnyDataImpl<T> implements AnyData {
 	
 	protected abstract T confirmValue(T value);
 	
+	@Override
 	public long getBeamID() {
 		return beamID;
 	}
 	
+	@Override
 	public AnyDataChannel getParentChannel() {
 		return property;
 	}
 
+	@Override
 	public DynamicValueProperty<?> getParentProperty() {
 		return property;
 	}
 	
+	@Override
 	public MetaData getMetaData() {
 		// TODO if MetaData changes this is how it could be reset
 //		if (metaData == null) {
@@ -54,22 +58,27 @@ public abstract class AbstractAnyDataImpl<T> implements AnyData {
 		return metaData;
 	}
 	
+	@Override
 	public Quality getQuality() {
 		return Quality.Original;
 	}
 
+	@Override
 	public Severity getSeverity() {
 		return response.getCondition();
 	}
 
+	@Override
 	public String getStatus() {
 		return DynamicValueConditionConverterUtil.extractStatusInfo(response.getCondition());
 	}
 
+	@Override
 	public Timestamp getTimestamp() {
 		return DynamicValueConditionConverterUtil.extractTimestampInfo(response.getCondition());
 	}
 	
+	@Override
 	public boolean isValid() {
 		// TODO other option: response.getCondition().hasValue()
 		return response.getError() == null;

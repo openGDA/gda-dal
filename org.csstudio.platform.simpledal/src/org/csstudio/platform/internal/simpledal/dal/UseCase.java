@@ -43,10 +43,12 @@ public class UseCase {
 		// write value asynchronously
 		IProcessVariableWriteListener writeListener = new IProcessVariableWriteListener() {
 
+			@Override
 			public void error(Exception error) {
 				System.out.println(error.toString());
 			}
 
+			@Override
 			public void success() {
 				System.out.println("ok");
 			}

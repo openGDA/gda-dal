@@ -204,6 +204,7 @@ public final class AdvancedSliderFigure extends Panel implements IAdaptable {
 
 		// listen to figure movement events
 		addFigureListener(new FigureListener() {
+			@Override
 			public void figureMoved(final IFigure source) {
 				doRefreshPositions();
 			}
@@ -397,6 +398,7 @@ public final class AdvancedSliderFigure extends Panel implements IAdaptable {
 		// add listener
 		bar.addPropertyChangeListener(RangeModel.PROPERTY_VALUE,
 				new PropertyChangeListener() {
+					@Override
 					public void propertyChange(final PropertyChangeEvent event) {
 						scrollbarValueChanged((Integer) event.getNewValue());
 					}
@@ -605,6 +607,7 @@ public final class AdvancedSliderFigure extends Panel implements IAdaptable {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Object getAdapter(@SuppressWarnings("unchecked") final Class adapter) {
 		if (adapter == IBorderEquippedWidget.class) {
 			if (_borderAdapter == null) {
@@ -872,6 +875,7 @@ public final class AdvancedSliderFigure extends Panel implements IAdaptable {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void mousePressed(final MouseEvent event) {
 			_armed = true;
 			_dragStartPosition = event.getLocation();
@@ -883,6 +887,7 @@ public final class AdvancedSliderFigure extends Panel implements IAdaptable {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void mouseDragged(final MouseEvent event) {
 			if (!_armed) {
 				return;
@@ -907,6 +912,7 @@ public final class AdvancedSliderFigure extends Panel implements IAdaptable {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void mouseReleased(final MouseEvent me) {
 			if (!_armed) {
 				return;
@@ -918,6 +924,7 @@ public final class AdvancedSliderFigure extends Panel implements IAdaptable {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void mouseDoubleClicked(final MouseEvent me) {
 		}
 	}

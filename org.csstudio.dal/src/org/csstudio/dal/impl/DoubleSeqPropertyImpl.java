@@ -62,6 +62,7 @@ public class DoubleSeqPropertyImpl extends NumericPropertyImpl<double[],Double> 
 	 *  (non-Javadoc)
 	 * @see org.csstudio.dal.SequenceAccess#getSequenceLength()
 	 */
+	@Override
 	public int getSequenceLength() throws DataExchangeException{
 		if (!chInitialized)
 			readCharacteristics();

@@ -15,6 +15,7 @@ public class KeyListenerAdapter implements KeyListener {
 	}
 
 
+	@Override
 	public void keyPressed(KeyEvent e) {
 		Integer keyCode = new Integer(e.keyCode);
 		if (!_pressedKeys.contains(keyCode)) {
@@ -22,6 +23,7 @@ public class KeyListenerAdapter implements KeyListener {
 		}
 	}
 
+	@Override
 	public void keyReleased(KeyEvent e) {
 		Integer keyCode = new Integer(e.keyCode);
 		_pressedKeys.remove(keyCode);

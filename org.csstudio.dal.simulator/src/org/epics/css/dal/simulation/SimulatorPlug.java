@@ -286,6 +286,7 @@ public class SimulatorPlug extends AbstractPlug{
 	/* (non-Javadoc)
 	 * @see org.epics.css.dal.context.PlugContext#getDefaultDirectory()
 	 */
+	@Override
 	public DirContext getDefaultDirectory(){
 		if (simulatorContext != null)
 			return simulatorContext;
@@ -428,6 +429,7 @@ public class SimulatorPlug extends AbstractPlug{
 		}
 	}
 
+	@Override
 	public org.csstudio.dal.simple.RemoteInfo createRemoteInfo(String uniqueName) throws NamingException{
 		return new org.csstudio.dal.simple.RemoteInfo(PLUG_TYPE, uniqueName, null, null);
 	}

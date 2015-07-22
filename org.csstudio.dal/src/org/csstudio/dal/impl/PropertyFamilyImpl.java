@@ -70,6 +70,7 @@ public class PropertyFamilyImpl
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.PropertyFamily#destroyAll()
 	 */
+	@Override
 	public void destroyAll()
 	{
 		DynamicValueProperty<?>[] props = new DynamicValueProperty[size()];
@@ -97,6 +98,7 @@ public class PropertyFamilyImpl
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.PropertyFamily#destroy(org.csstudio.dal.DynamicValueProperty)
 	 */
+	@Override
 	public void destroy(DynamicValueProperty<?> prop)
 	{
 		if (prop==null || !contains(prop)) return;
@@ -114,6 +116,7 @@ public class PropertyFamilyImpl
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.context.PropertyFamily#getApplicationContext()
 	 */
+	@Override
 	public AbstractApplicationContext getApplicationContext()
 	{
 		return pf.getApplicationContext();
@@ -122,6 +125,7 @@ public class PropertyFamilyImpl
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.GroupDataAccessProvider#getGroupDataAccess(java.lang.Class, java.lang.Class)
 	 */
+	@Override
 	public <T, P extends DynamicValueProperty<?>> GroupDataAccess<T, P> getGroupDataAccess(
 	    Class<T> dataType, Class<P> propertyType)
 	{
@@ -132,6 +136,7 @@ public class PropertyFamilyImpl
 	/* (non-Javadoc)
 	 * @see org.csstudio.dal.group.GroupDataAccessProvider#getGroupDataAccess(java.lang.Class, java.lang.Class, org.csstudio.dal.group.PropertyGroupConstrain)
 	 */
+	@Override
 	public <T, P extends DynamicValueProperty<T>> GroupDataAccess<T, P> getGroupDataAccess(
 	    Class<T> dataType, Class<P> propertyType,
 	    PropertyGroupConstrain constrain)
@@ -156,6 +161,7 @@ public class PropertyFamilyImpl
 	 * 
 	 * @see org.csstudio.dal.context.PropertyContext#containsProperty(java.lang.Object)
 	 */
+	@Override
 	public boolean containsProperty(Object property) {
 		return contains(property);
 	}
@@ -170,6 +176,7 @@ public class PropertyFamilyImpl
 	 * 
 	 * @see org.csstudio.dal.context.PropertyContext#containsProperty(java.lang.String)
 	 */
+	@Override
 	public boolean containsProperty(String name) {
 		return contains(name);
 	}
@@ -191,6 +198,7 @@ public class PropertyFamilyImpl
 	 * @see org.csstudio.dal.context.PropertyContext#getProperty(java.lang.String)
 	 * @see PropertyCollectionMap#getFirst(String);
 	 */
+	@Override
 	public DynamicValueProperty<?> getProperty(String name) {
 		return getFirst(name);
 	}
@@ -202,6 +210,7 @@ public class PropertyFamilyImpl
 	 *
 	 * @return plug destingushing type name
 	 */
+	@Override
 	public String getPlugType() {
 		return pf.getPlugType();
 	}

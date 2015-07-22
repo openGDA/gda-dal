@@ -135,6 +135,7 @@ public final class CursorService implements ICursorService {
 	 * 
 	 * @return a list of the available cursors.
 	 */
+	@Override
 	public List<AbstractCursor> availableCursors() {
 		List<AbstractCursor> result = new ArrayList<AbstractCursor>();
 		result.addAll(_cursors);
@@ -148,6 +149,7 @@ public final class CursorService implements ICursorService {
 	 * @return an unmodifiable list of rule descriptors for the available cursor
 	 *         selection rules.
 	 */
+	@Override
 	public List<RuleDescriptor> availableRules() {
 		return Collections.unmodifiableList(_ruleDescriptors);
 	}
@@ -159,6 +161,7 @@ public final class CursorService implements ICursorService {
 	 * @param widget
 	 *            the widget.
 	 */
+	@Override
 	public void applyCursor(final AbstractWidgetModel widget) {
 		RuleDescriptor ruleDesc = getPreferredRule();
 		CursorSelectionRule rule = executableRule(ruleDesc);
@@ -222,6 +225,7 @@ public final class CursorService implements ICursorService {
 	 * 
 	 * @return a descriptor of the preferred rule.
 	 */
+	@Override
 	public RuleDescriptor getPreferredRule() {
 		RuleDescriptor result = null;
 		String id = Platform.getPreferencesService().getString(
@@ -241,6 +245,7 @@ public final class CursorService implements ICursorService {
 	 * @param rule
 	 *            the preferred rule.
 	 */
+	@Override
 	public void setPreferredRule(final RuleDescriptor rule) {
 		IEclipsePreferences node = new InstanceScope().getNode(SdsPlugin.PLUGIN_ID);
 		node.put(PreferenceConstants.CURSOR_SELECTION_RULE, rule.getId());
@@ -285,6 +290,7 @@ public final class CursorService implements ICursorService {
 	 *            the id.
 	 * @return a cursor, or <code>null</code> if none was found for that id.
 	 */
+	@Override
 	public AbstractCursor findCursor(final String id) {
 		assert id != null;
 
@@ -308,6 +314,7 @@ public final class CursorService implements ICursorService {
 	 * 
 	 * @return the current cursor settings from the preferences.
 	 */
+	@Override
 	public CursorSettings getPreferences() {
 		return new CursorSettings(_preferences);
 	}
@@ -318,6 +325,7 @@ public final class CursorService implements ICursorService {
 	 * @param settings
 	 *            the settings.
 	 */
+	@Override
 	public void setPreferences(final CursorSettings settings) {
 		if (settings == null) {
 			throw new NullPointerException();
@@ -505,6 +513,7 @@ public final class CursorService implements ICursorService {
 			try {
 				project.accept(new IResourceVisitor() {
 
+					@Override
 					public boolean visit(final IResource resource)
 							throws CoreException {
 						if (resource instanceof IFile

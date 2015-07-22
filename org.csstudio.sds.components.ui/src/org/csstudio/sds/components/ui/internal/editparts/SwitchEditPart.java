@@ -40,6 +40,7 @@ public final class SwitchEditPart extends AbstractWidgetEditPart {
 	 * 
 	 * @return the casted {@link SwitchModel}
 	 */
+	@Override
 	protected SwitchModel getCastedModel() {
 		return (SwitchModel) getModel();
 	}
@@ -69,6 +70,7 @@ public final class SwitchEditPart extends AbstractWidgetEditPart {
 	protected void registerPropertyChangeHandlers() {
 		// background transparency
 		IWidgetPropertyChangeHandler handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue,
 					final IFigure figure) {
 				RefreshableSwitchFigure switchFigure = (RefreshableSwitchFigure) figure;
@@ -80,6 +82,7 @@ public final class SwitchEditPart extends AbstractWidgetEditPart {
 		
 		// switch type
 		handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue,
 					final IFigure figure) {
 				RefreshableSwitchFigure switchFigure = (RefreshableSwitchFigure) figure;
@@ -93,6 +96,7 @@ public final class SwitchEditPart extends AbstractWidgetEditPart {
 		
 		// switch state
 		handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue,
 					final IFigure figure) {
 				RefreshableSwitchFigure switchFigure = (RefreshableSwitchFigure) figure;
@@ -104,6 +108,7 @@ public final class SwitchEditPart extends AbstractWidgetEditPart {
 		
 		// rotation
 		handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue,
 					final IFigure figure) {
 				RefreshableSwitchFigure switchFigure = (RefreshableSwitchFigure) figure;
@@ -115,6 +120,7 @@ public final class SwitchEditPart extends AbstractWidgetEditPart {
 		
 		// line width
 		handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue,
 					final IFigure figure) {
 				RefreshableSwitchFigure switchFigure = (RefreshableSwitchFigure) figure;
@@ -126,6 +132,7 @@ public final class SwitchEditPart extends AbstractWidgetEditPart {
 		
 		// widget width and height
 		handle = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue, final Object newValue,
 					final IFigure figure) {
 				RefreshableSwitchFigure switchFigure = (RefreshableSwitchFigure) figure;

@@ -421,6 +421,7 @@ public class ThermometerFigure extends AbstractLinearMarkedFigure {
 			return d;
 		}
 		
+		@Override
 		public void layout(IFigure container) {
 			Rectangle area = container.getClientArea();		
 			if(bulb != null && bulb.isVisible()) {

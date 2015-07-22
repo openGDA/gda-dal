@@ -327,7 +327,7 @@ public final class SimpleChannelPage extends WizardPage {
 
 		/**
 		 * FIXME: Momentan ist update() nur wegen eines Workarrounds
-		 * überschrieben. Umstellen des Labelproviders auf
+		 * ï¿½berschrieben. Umstellen des Labelproviders auf
 		 * TableColumnViewerLabelProvider.class, sobald diese public ist.
 		 * {@inheritDoc}
 		 */
@@ -1237,6 +1237,7 @@ public final class SimpleChannelPage extends WizardPage {
 		ProcessVariableExchangeUtil.addProcessVariableAddressDropSupport(viewer
 				.getControl(), DND.DROP_MOVE | DND.DROP_COPY,
 				new IProcessVariableAdressReceiver() {
+					@Override
 					public void receive(final IProcessVariableAddress[] pvs,
 							final DropTargetEvent event) {
 						for (final IProcessVariableAddress pv : pvs) {
@@ -1245,6 +1246,7 @@ public final class SimpleChannelPage extends WizardPage {
 					}
 				}, new IShowControlSystemDialogStrategy() {
 
+					@Override
 					public boolean showControlSystem(final String rawName) {
 						// only popup the dialog if there are no aliases used
 						// within the raw string

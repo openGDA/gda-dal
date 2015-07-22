@@ -51,6 +51,7 @@ public final class GaugeEditPart extends AbstractMarkedWidgetEditPart {
 		
 		//effect 3D
 		IWidgetPropertyChangeHandler effect3DHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {
@@ -63,6 +64,7 @@ public final class GaugeEditPart extends AbstractMarkedWidgetEditPart {
 		
 		//Ramp gradient
 		IWidgetPropertyChangeHandler gradientHandler = new IWidgetPropertyChangeHandler() {
+			@Override
 			public boolean handleChange(final Object oldValue,
 					final Object newValue,
 					final IFigure refreshableFigure) {

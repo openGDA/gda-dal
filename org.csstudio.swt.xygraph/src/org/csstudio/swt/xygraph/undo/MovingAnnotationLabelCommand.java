@@ -24,10 +24,12 @@ public class MovingAnnotationLabelCommand implements IUndoableCommand {
 		this.annotation = annotation;
 	}
 
+	@Override
 	public void redo() {
 		annotation.setdxdy(afterDx, afterDy);
 	}
 
+	@Override
 	public void undo() {
 		annotation.setdxdy(beforeDx, beforeDy);
 	}

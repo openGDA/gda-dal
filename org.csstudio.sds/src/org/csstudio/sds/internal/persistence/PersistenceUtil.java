@@ -63,6 +63,7 @@ public class PersistenceUtil {
 			final IDisplayModelLoadListener loadListener) {
 		
 		Runnable r = new Runnable() {
+			@Override
 			public void run() {
 				displayModel.setLoading(true);
 

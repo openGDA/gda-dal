@@ -46,6 +46,7 @@ public final class URINameParser implements NameParser
 	/* (non-Javadoc)
 	 * @see javax.naming.NameParser#parse(java.lang.String)
 	 */
+	@Override
 	public Name parse(String name) throws NamingException
 	{
 		try {

@@ -35,6 +35,7 @@ public class DoubleSeqDataAccessWrapper extends AbstractDataAccessWrapper<double
 		super(double[].class, sourceDA);
 	}
 
+	@Override
 	protected int getConversion(){
 		if (valClass.equals(double[].class))
 			if (sourceDA.getDataType().equals(long[].class))
@@ -66,6 +67,7 @@ public class DoubleSeqDataAccessWrapper extends AbstractDataAccessWrapper<double
 		return null;
 	}
 	
+	@Override
 	public int getSequenceLength() throws DataExchangeException {
 		return ((SequenceAccess<?>)sourceDA).getSequenceLength();
 	}

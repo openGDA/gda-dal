@@ -54,6 +54,7 @@ public class StringSeqPropertyImpl extends DynamicValuePropertyImpl<String[]> im
 	 *  (non-Javadoc)
 	 * @see org.csstudio.dal.SequenceAccess#getSequenceLength()
 	 */
+	@Override
 	public int getSequenceLength() throws DataExchangeException{
 		if (!chInitialized)
 			readCharacteristics();

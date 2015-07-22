@@ -200,7 +200,8 @@ public class RoundScale extends AbstractScale {
     } 
 
    
-    public void setFont(Font font) {
+    @Override
+	public void setFont(Font font) {
         if (font != null && font.isDisposed()) {
             SWT.error(SWT.ERROR_INVALID_ARGUMENT);
         }
@@ -209,7 +210,8 @@ public class RoundScale extends AbstractScale {
         
     }
 
-    public void setForegroundColor(Color color) {
+    @Override
+	public void setForegroundColor(Color color) {
         tickMarks.setForegroundColor(color);
         tickLabels.setForegroundColor(color);
     }
@@ -220,7 +222,8 @@ public class RoundScale extends AbstractScale {
 	/**
      * Updates the tick, recalculate all parameters, such as margin, length...
      */
-    public void updateTick() {
+    @Override
+	public void updateTick() {
     	if(isDirty()){      		
     		//set radius
         	if(getTickLabelSide() == LabelSide.Primary) {

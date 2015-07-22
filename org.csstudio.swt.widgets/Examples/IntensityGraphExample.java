@@ -81,6 +81,7 @@ public class IntensityGraphExample {
 
 						Display.getDefault().asyncExec(new Runnable() {
 
+							@Override
 							public void run() {
 								count++;
 								intensityGraph.setDataArray(simuData);

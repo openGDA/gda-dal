@@ -144,7 +144,7 @@ public final class DisplayViewPart extends ViewPart {
 	}
 
 	/**
-	 * Sets the information that will be stored with this view´s memento object.
+	 * Sets the information that will be stored with this viewï¿½s memento object.
 	 * 
 	 * @param mementoInfos
 	 */
@@ -226,6 +226,7 @@ public final class DisplayViewPart extends ViewPart {
 				viewer, actionRegistry);
 
 		cmProvider.addMenuListener(new IMenuListener() {
+			@Override
 			public void menuAboutToShow(final IMenuManager manager) {
 				manager.setRemoveAllWhenShown(true);
 			}
@@ -239,6 +240,7 @@ public final class DisplayViewPart extends ViewPart {
 			@Override
 			public void run() {
 				Display.getCurrent().asyncExec(new Runnable() {
+					@Override
 					public void run() {
 						getSite().getWorkbenchWindow().getActivePage().hideView(DisplayViewPart.this);
 					}

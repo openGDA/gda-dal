@@ -173,7 +173,8 @@ public class ImageStackWidget extends Composite {
 
 	table.addPaintListener(new PaintListener() {
 
-	    public void paintControl(PaintEvent e) {
+	    @Override
+		public void paintControl(PaintEvent e) {
 		Rectangle rect = table.getClientArea();
 		int itemHeight = table.getItemHeight();
 		int headerHeight = table.getHeaderHeight();

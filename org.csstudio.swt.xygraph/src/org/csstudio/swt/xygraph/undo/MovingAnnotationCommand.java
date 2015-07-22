@@ -29,6 +29,7 @@ public class MovingAnnotationCommand implements IUndoableCommand {
 		this.annotation = annotation;
 	}
 	
+	@Override
 	public void redo() {
 		if(annotation.isFree())
 			annotation.setCurrentPosition(afterMovePosition, false);
@@ -37,6 +38,7 @@ public class MovingAnnotationCommand implements IUndoableCommand {
 		annotation.setdxdy(afterDx, afterDy);
 	}
 
+	@Override
 	public void undo() {
 		if(annotation.isFree())
 			annotation.setCurrentPosition(beforeMovePosition, false);

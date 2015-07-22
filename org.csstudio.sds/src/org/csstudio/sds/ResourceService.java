@@ -180,6 +180,7 @@ public final class ResourceService {
 	 * @version $Revision$
 	 */
 	private class CssResourceChangeListener implements IResourceChangeListener {
+		@Override
 		public void resourceChanged(IResourceChangeEvent event) {
 			for (IResourceChangeListener listener : _targetResourceChangeListeners) {
 				listener.resourceChanged(event);

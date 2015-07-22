@@ -210,6 +210,7 @@ public interface DeviceCollection<T extends AbstractDevice>
 	 * @see Set#equals(Object)
 	 * @see List#equals(Object)
 	 */
+	@Override
 	public boolean equals(Object o);
 
 	/**
@@ -227,6 +228,7 @@ public interface DeviceCollection<T extends AbstractDevice>
 	 * @see Object#hashCode()
 	 * @see Object#equals(Object)
 	 */
+	@Override
 	public int hashCode();
 
 	// Named access
