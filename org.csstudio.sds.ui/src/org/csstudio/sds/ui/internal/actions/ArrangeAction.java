@@ -69,7 +69,7 @@ public class ArrangeAction extends AbstractEditPartSelectionAction implements Up
 			public void execute() {
 				List<AbstractBaseEditPart> normalizedSelection = normalizeGroupingSelections(selectedEditParts);
 				_commandStack.execute(new ArrangeCommand(normalizedSelection, _direction));
-			};
+			}
 		};
 	}
 
@@ -81,7 +81,7 @@ public class ArrangeAction extends AbstractEditPartSelectionAction implements Up
 				normalizedSelection.removeAll(children);
 			}
 		}
-	
+
 		return normalizedSelection;
 	}
 }

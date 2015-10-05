@@ -10,9 +10,9 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 /**
  * A selection implementation that references selected objects only weak, using
  * {@link WeakReference} instances.
- * 
+ *
  * @author swende
- * 
+ *
  */
 public class WeakStructuredSelection implements IStructuredSelection {
 	private List<WeakReference> weakList;
@@ -40,7 +40,7 @@ public class WeakStructuredSelection implements IStructuredSelection {
 	}
 
 	@Override
-	public Iterator iterator() {
+	public Iterator<Object> iterator() {
 		return getAlive().iterator();
 	}
 
@@ -55,7 +55,7 @@ public class WeakStructuredSelection implements IStructuredSelection {
 	}
 
 	@Override
-	public List toList() {
+	public List<Object> toList() {
 		return getAlive();
 	}
 

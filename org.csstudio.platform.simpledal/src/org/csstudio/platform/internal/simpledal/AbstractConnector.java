@@ -523,7 +523,7 @@ public abstract class AbstractConnector implements IConnector, IProcessVariableA
 	 * @throws Exception
 	 *             an arbitrary exception
 	 */
-	protected abstract void doGetValueAsynchronously(final IProcessVariableValueListener listener) throws Exception;;
+	protected abstract void doGetValueAsynchronously(final IProcessVariableValueListener listener) throws Exception;
 
 	/**
 	 * Template method. Subclasses should implement synchronous logic for
