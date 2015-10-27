@@ -210,8 +210,7 @@ public final class DynamicAspectsWizard extends Wizard {
 		 * @return ICellEditorListener A new ICellEditorListener, which sets the
 		 *         error message on the page
 		 */
-		@SuppressWarnings("unchecked")
-		private ICellEditorListener createEditorListener(final StateComposite composite) {
+		private ICellEditorListener createEditorListener(final StateComposite<?> composite) {
 			ICellEditorListener editorListener = new ICellEditorListener() {
 				@Override
 				public void cancelEditor() {
@@ -702,7 +701,6 @@ public final class DynamicAspectsWizard extends Wizard {
 				 * {@inheritDoc}
 				 */
 				@Override
-				@SuppressWarnings("unchecked")
 				public void modify(final Object element, final String property, final Object value) {
 					if (element instanceof TableItem) {
 						ETYPE state = (ETYPE) ((TableItem) element).getData();

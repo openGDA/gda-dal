@@ -18,7 +18,6 @@ import org.slf4j.LoggerFactory;
 
 @SuppressWarnings("unchecked")
 public class WidgetPropertyPostProcessingService implements IWidgetPropertyPostProcessingService {
-	private static IWidgetPropertyPostProcessingService instance;
 	private List<AbstractWidgetPropertyPostProcessor> processors;
     private static final Logger LOG = LoggerFactory.getLogger(WidgetPropertyPostProcessingService.class);
 

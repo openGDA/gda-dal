@@ -140,7 +140,6 @@ public abstract class AbstractScaledWidgetFigure extends Figure implements
 	 * {@inheritDoc}
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public Object getAdapter(final Class adapter) {
 		if (adapter == IBorderEquippedWidget.class) {
 			if(_borderAdapter==null) {

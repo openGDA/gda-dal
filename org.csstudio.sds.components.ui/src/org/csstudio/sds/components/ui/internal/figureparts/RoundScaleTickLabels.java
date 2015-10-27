@@ -350,7 +350,6 @@ public class RoundScaleTickLabels extends Figure {
     	int maxRight =0;
     	int minUp = 0;
     	int maxDown =0;
-    	int i=0;
     	for(Rectangle rect : tickLabelAreas) {
     		if (rect.x < minLeft)
     			minLeft = rect.x;
@@ -360,7 +359,6 @@ public class RoundScaleTickLabels extends Figure {
     			minUp = rect.y;
     		if(rect.y + rect.height > maxDown)
     			maxDown = rect.y + rect.height;    		
-    		i++;
     	}
     	
     	tickLabelMaxOutLength = Math.max(
@@ -493,7 +491,7 @@ public class RoundScaleTickLabels extends Figure {
     	graphics.translate(bounds.x, bounds.y);
     	drawTickLabels(graphics);
     	super.paintClientArea(graphics);
-    };
+	}
 
     /**
      * Draw the tick labels.

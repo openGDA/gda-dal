@@ -181,7 +181,6 @@ public abstract class WidgetProperty {
 	 * @return an array which contains all Java types, the property value is
 	 *         compatible too
 	 */
-	@SuppressWarnings("unchecked")
 	public abstract Class[] getCompatibleJavaTypes();
 
 	/**

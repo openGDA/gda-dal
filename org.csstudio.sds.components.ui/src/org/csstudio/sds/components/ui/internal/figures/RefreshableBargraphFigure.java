@@ -1190,7 +1190,7 @@ public final class RefreshableBargraphFigure extends RectangleFigure implements
 		@Override
 		public void paintFigure(final Graphics graphics) {
 			// nothing to do;
-		};
+		}
 
 		/**
 		 * {@inheritDoc}

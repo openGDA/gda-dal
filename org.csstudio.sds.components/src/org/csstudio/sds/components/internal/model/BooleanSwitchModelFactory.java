@@ -17,7 +17,6 @@ public class BooleanSwitchModelFactory implements IWidgetModelFactory {
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public Class getWidgetModelType() {
 		return BooleanSwitchModel.class;
 	}

@@ -129,7 +129,6 @@ public interface IProcessVariableConnectionService {
 	 * @param valueType
 	 *            the expected value type
 	 */
-	@SuppressWarnings("unchecked")
 	void register(IProcessVariableValueListener listener,
 			IProcessVariableAddress pv, ValueType valueType);
 
@@ -139,7 +138,6 @@ public interface IProcessVariableConnectionService {
 	 * @param listener
 	 *            the listener
 	 */
-	@SuppressWarnings("unchecked")
 	void unregister(IProcessVariableValueListener listener);
 
 	/**

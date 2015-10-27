@@ -1504,7 +1504,6 @@ public abstract class AbstractWidgetModel implements IAdaptable {
 	 * {@inheritDoc}
 	 */
 	@Override
-    @SuppressWarnings("unchecked")
 	public final Object getAdapter(final Class adapter) {
 		return Platform.getAdapterManager().getAdapter(this, adapter);
 	}

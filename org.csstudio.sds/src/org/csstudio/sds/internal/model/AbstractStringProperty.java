@@ -77,7 +77,6 @@ public abstract class AbstractStringProperty extends WidgetProperty {
 	 * {@inheritDoc}
 	 */
 	@Override
-    @SuppressWarnings("unchecked")
 	public Class[] getCompatibleJavaTypes() {
 		return new Class[]{Object.class, String.class};
 	}

@@ -94,7 +94,6 @@ public final class SimulatorUtilities{
 		return DoublePropertyProxyImpl.class;
 	}
 
-	@SuppressWarnings("unchecked")
 	public static Class<?extends DeviceProxy<?>> getDeviceProxyImplementationClass(Class<?extends AbstractDevice> deviceType){
 		if (PowerSupply.class.isAssignableFrom(deviceType)) 
 			return (Class<? extends DeviceProxy<?>>) PSDeviceProxy.class;

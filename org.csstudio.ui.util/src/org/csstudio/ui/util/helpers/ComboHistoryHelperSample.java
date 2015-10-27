@@ -1,10 +1,10 @@
 package org.csstudio.ui.util.helpers;
 
 import org.eclipse.jface.viewers.ComboViewer;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Combo;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
 
 public class ComboHistoryHelperSample {
@@ -16,6 +16,7 @@ public class ComboHistoryHelperSample {
 	 * Launch the application.
 	 * @param args
 	 */
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		Display display = Display.getDefault();
 		Shell shell = new Shell();

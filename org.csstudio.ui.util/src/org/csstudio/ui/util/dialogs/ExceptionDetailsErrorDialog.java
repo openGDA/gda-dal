@@ -230,6 +230,7 @@ public class ExceptionDetailsErrorDialog extends IconAndMessageDialog {
 	/*
 	 * @see IconAndMessageDialog#createDialogAndButtonArea(Composite)
 	 */
+	@SuppressWarnings("unused")
 	@Override
 	protected void createDialogAndButtonArea(Composite parent) {
 		super.createDialogAndButtonArea(parent);
@@ -536,7 +537,7 @@ public class ExceptionDetailsErrorDialog extends IconAndMessageDialog {
 	 * @param buffer
 	 * @param nesting
 	 */
-	private void populateCopyBuffer(IStatus buildingStatus,
+/*	private void populateCopyBuffer(IStatus buildingStatus,
 			StringBuffer buffer, int nesting) {
 		if (!buildingStatus.matches(displayMask)) {
 			return;
@@ -559,7 +560,7 @@ public class ExceptionDetailsErrorDialog extends IconAndMessageDialog {
 			populateCopyBuffer(children[i], buffer, nesting + 1);
 		}
 	}
-
+*/
 	/**
 	 * Copy the contents of the statuses to the clipboard.
 	 */

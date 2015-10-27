@@ -24,7 +24,6 @@ public final class ScaledSliderModelFactory implements IWidgetModelFactory {
 	 * {@inheritDoc}
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public Class getWidgetModelType() {
 		return ScaledSliderModel.class;
 	}

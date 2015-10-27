@@ -1319,7 +1319,6 @@ final class PropertySheetViewer extends Viewer {
      *            the widget for the given entry, either a <code>TableTree</code> if the node is the
      *            root node or a <code>TreeItem</code> otherwise.
      */
-    @SuppressWarnings("unchecked")
     protected void updateChildrenOf(final Object node, final Widget widget) {
         // cast the entry or category
         IPropertySheetEntry entry = null;
@@ -1371,7 +1370,7 @@ final class PropertySheetViewer extends Viewer {
         final List children = getChildren(node);
 
         // remove items
-        final Set set = new HashSet(childItems.length * 2 + 1);
+		final Set<Object> set = new HashSet<Object>(childItems.length * 2 + 1);
 
         for (final TreeItem childItem : childItems) {
             final Object data = childItem.getData();

@@ -286,7 +286,8 @@ public abstract class AbstractScale extends Figure{
     public void setDefaultFormatPattern(String formatPattern) {
     	setFormat(formatPattern);
     }
-    
+
+	@SuppressWarnings("unused")
 	private void setFormat(String formatPattern) {
 		try {
  			new DecimalFormat(formatPattern);

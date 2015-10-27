@@ -33,11 +33,11 @@ public class ProcessVariableAddressDragSourceListener extends AbstractTransferDr
 		List<ProcessVariable> pvs = new ArrayList<ProcessVariable>();
 		List<AbstractEditPart> controllers = getViewer().getSelectedEditParts();
 
-		for (AbstractEditPart c : controllers) {
+//		for (AbstractEditPart c : controllers) {
 //			if (c instanceof ProcessVariable) {
 //				pvs.add((ProcessVariable) c);
 //			}
-		}
+//		}
 
 		if (!pvs.isEmpty()) {
 			event.doit = true;

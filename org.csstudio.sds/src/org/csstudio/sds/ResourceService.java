@@ -113,15 +113,14 @@ public final class ResourceService {
 	 * @param sourceFolderName
 	 *            source folder in the source bundle.
 	 */
-	@SuppressWarnings("unchecked")
 	public void copyResources(final IProject targetProject,
 			final Bundle sourceBundle, final String sourceFolderName) {
 
-		Enumeration fileEntries = sourceBundle.findEntries(sourceFolderName,
+		Enumeration<URL> fileEntries = sourceBundle.findEntries(sourceFolderName,
 				"*.*", false); //$NON-NLS-1$
 
 		while (fileEntries.hasMoreElements()) {
-			URL url = (URL) fileEntries.nextElement();
+			URL url = fileEntries.nextElement();
 			String filePath = url.getFile();
 			String fileName = filePath
 					.substring(filePath.indexOf(sourceFolderName + "/") + sourceFolderName.length() + 1); //$NON-NLS-1$

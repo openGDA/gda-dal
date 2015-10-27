@@ -100,7 +100,6 @@ public class InstallDefaultSettingsAction extends Action implements ICheatSheetA
 
 			Job job = new Job("Import SDS Default settings") {
 
-				@SuppressWarnings("unchecked")
 				@Override
 				protected IStatus run(IProgressMonitor monitor) {
 					try {

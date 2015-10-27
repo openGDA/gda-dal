@@ -34,8 +34,6 @@ public class StartEndRangeWidget extends Canvas {
     private boolean followMin = true;
     private boolean followMax = true;
 
-    private boolean isEditable = true;
-
     private double distancePerPx;
 
     public enum ORIENTATION {

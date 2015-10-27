@@ -195,7 +195,6 @@ public final class RefreshableTriangleFigure extends RectangleFigure implements 
 	 * {@inheritDoc}
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public Object getAdapter(final Class adapter) {
 		if (adapter == IBorderEquippedWidget.class) {
 			if(_borderAdapter==null) {
@@ -217,18 +216,12 @@ public final class RefreshableTriangleFigure extends RectangleFigure implements 
 		return null;
 	}
 
-	private final class InternalTriangle extends RectangleFigure {
-		/**
-		 * {@inheritDoc}
-		 */
+/*	private final class InternalTriangle extends RectangleFigure {
 		@Override
 		public void paintFigure(final Graphics graphics) {
 			fillShape(graphics);
 		}
 
-		/**
-		 * {@inheritDoc}
-		 */
 		@Override
 		protected synchronized void fillShape(final Graphics graphics) {
 			Rectangle figureBounds = getBounds().getCopy();
@@ -253,5 +246,5 @@ public final class RefreshableTriangleFigure extends RectangleFigure implements 
 			graphics.fillPolygon(points);
 		}
 	}
-
+*/
 }

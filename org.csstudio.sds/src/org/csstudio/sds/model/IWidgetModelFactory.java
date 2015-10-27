@@ -41,6 +41,5 @@ public interface IWidgetModelFactory {
 	 * 
 	 * @return The type of the models that are created by this factory.
 	 */
-	@SuppressWarnings("unchecked")
 	Class getWidgetModelType();
 }

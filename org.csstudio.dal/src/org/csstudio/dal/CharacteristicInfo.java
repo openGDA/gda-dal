@@ -334,8 +334,8 @@ public class CharacteristicInfo {
 		final List<CharacteristicInfo> l= new ArrayList<CharacteristicInfo>(inf.length);
 
 		for (final CharacteristicInfo element : inf) {
-			final Class[] c= element.getProperties();
-			for (final Class element2 : c) {
+			final Class<? extends SimpleProperty<?>>[] c = element.getProperties();
+			for (final Class<? extends SimpleProperty<?>> element2 : c) {
 				if (element2.isAssignableFrom(property)) {
 					l.add(element);
 					break;
@@ -447,7 +447,8 @@ public class CharacteristicInfo {
 	 * @return the properties
 	 */
 	public Class<? extends SimpleProperty<?>>[] getProperties() {
-		final Class<? extends SimpleProperty<?>>[] r= new Class[properties.length];
+		@SuppressWarnings("unchecked")
+		final Class<? extends SimpleProperty<?>>[] r = new Class[properties.length];
 		System.arraycopy(properties, 0, r, 0, r.length);
 		return r;
 	}

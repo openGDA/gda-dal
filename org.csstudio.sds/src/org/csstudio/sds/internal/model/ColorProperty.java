@@ -75,7 +75,6 @@ public final class ColorProperty extends WidgetProperty {
 	 * {@inheritDoc}
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public Class[] getCompatibleJavaTypes() {
 		return new Class[]{String.class};
 	}

@@ -130,7 +130,6 @@ public enum PropertyTypesEnum {
 	/**
 	 * The Java type, which is expected for property values.
 	 */
-	@SuppressWarnings("unchecked")
 	private Class _javaType;
 
 	/**
@@ -149,7 +148,6 @@ public enum PropertyTypesEnum {
 	 * @param valueType
 	 *            a hint for the necessary DAL property type
 	 */
-	@SuppressWarnings("unchecked")
 	private PropertyTypesEnum(final String id, final Class javaType,
 			final ValueType valueType) {
 		assert id != null;
@@ -165,7 +163,6 @@ public enum PropertyTypesEnum {
 	 * 
 	 * @return the Java type, which is expected for property values
 	 */
-	@SuppressWarnings("unchecked")
 	public Class getJavaType() {
 		return _javaType;
 	}
@@ -242,7 +239,6 @@ public enum PropertyTypesEnum {
 	 *             Thrown if the class does not belong to an instance of this
 	 *             class.
 	 */
-	@SuppressWarnings("unchecked")
 	public static PropertyTypesEnum createFromJavaType(final Class type) throws RuntimeException {
 		for (PropertyTypesEnum pte : PropertyTypesEnum.values()) {
 			if (pte.getJavaType().equals(type)) {

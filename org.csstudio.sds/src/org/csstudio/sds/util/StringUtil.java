@@ -23,13 +23,12 @@
 
 import java.util.List;
 
-@SuppressWarnings("unchecked")
 public class StringUtil {
-	public static String convertListToSingleString(List list) {
+	public static String convertListToSingleString(List<?> list) {
 		return convertListToSingleString(list, "\n");
 	}
 
-	public static String convertListToSingleString(List list, String lineEnd) {
+	public static String convertListToSingleString(List<?> list, String lineEnd) {
 		StringBuffer sb = new StringBuffer();
 
 		for (Object o : list) {

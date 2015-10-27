@@ -59,7 +59,7 @@ class StringMultiColumnsEditor extends EditingSupport {
 				@Override
 				protected Object doGetValue() {
 					return (Boolean) super.doGetValue()?((String[])cellEditorData)[1]:((String[])cellEditorData)[0];
-				};
+				}
 				@Override
 				protected void doSetValue(Object value) {
 					if(value.toString().toLowerCase().equals(((String[])cellEditorData)[1].toLowerCase()))

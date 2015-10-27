@@ -57,11 +57,6 @@ public class ProcessVariableConnectionService implements IProcessVariableConnect
 	private Thread _cleanupThread;
 
 	/**
-	 * The singleton instance.
-	 */
-	private static IProcessVariableConnectionService _instance;
-
-	/**
 	 * Constructor.
 	 */
 	public ProcessVariableConnectionService(IConnectorFactory connectorFactory) {
@@ -123,7 +118,6 @@ public class ProcessVariableConnectionService implements IProcessVariableConnect
 	 * {@inheritDoc}
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public void readValueAsynchronously(IProcessVariableAddress processVariableAddress, ValueType valueType,
 			IProcessVariableValueListener listener) {
 
@@ -163,7 +157,6 @@ public class ProcessVariableConnectionService implements IProcessVariableConnect
 	 * {@inheritDoc}
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public void register(IProcessVariableValueListener listener, IProcessVariableAddress pv, ValueType valueType) {
 		AbstractConnector connector = getConnector(pv, valueType);
 		connector.addProcessVariableValueListener(pv.getCharacteristic(), listener);
@@ -173,7 +166,6 @@ public class ProcessVariableConnectionService implements IProcessVariableConnect
 	 * {@inheritDoc}
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public void unregister(IProcessVariableValueListener listener) {
 		// we remove the listener from all connectors
 		synchronized (_connectors) {

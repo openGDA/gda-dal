@@ -327,7 +327,8 @@ public class DeviceBean extends AbstractDeviceImpl implements Connectable
 	
 		return property;
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	protected Class<? extends SimpleProperty<?>> getPropertyType(String name){
 		return (Class<? extends SimpleProperty<?>>)DynamicValueProperty.class;
 	}

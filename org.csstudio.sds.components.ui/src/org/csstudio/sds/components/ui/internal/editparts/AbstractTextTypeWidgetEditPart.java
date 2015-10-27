@@ -290,15 +290,7 @@ public abstract class AbstractTextTypeWidgetEditPart extends AbstractWidgetEditP
                 || updatedPropertyId.equals(AbstractTextTypeWidgetModel.PROP_PRECISION)) {
             try {
                 final double d = Double.parseDouble(text);
-                final int indexOf = text.indexOf('.');
                 final int min = model.getPrecision();
-                // (hrickens) [04.05.2011]: show precision number of zeros
-//                if(indexOf>=0) {
-//                    int i = text.length()-indexOf-1;
-//                    if(i<min) {
-//                        min = i;
-//                    }
-//                }
                 numberFormat.setMinimumFractionDigits(min);
                 numberFormat.setMaximumFractionDigits(model.getPrecision());
                 return numberFormat.format(d);

@@ -121,7 +121,6 @@ public final class WidgetModelFactoryService {
 		return model;
 	}
 
-	@SuppressWarnings("unchecked")
 	public Object getWidgetModelType(String widgetType) {
 		Class type = null;
 

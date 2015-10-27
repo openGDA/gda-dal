@@ -224,7 +224,6 @@ public final class LayeredWidgetPane extends FreeformLayeredPane {
 	 * @param widgetFigure
 	 *            The IFigure that should be removed
 	 */
-	@SuppressWarnings("unchecked")
 	public void removeWidget(final IFigure widgetFigure) {
 		for (Object obj : getChildren()) {
 			if (obj instanceof Layer) {

@@ -202,9 +202,6 @@ public final class ImageUtil {
 			}
 		}
 
-		if (fullPathString == null) {
-			return null;
-		}
 		return ImageDescriptor.createFromURL(fullPathString);
 	}
 

@@ -123,7 +123,7 @@ public final class LocalChannel {
 			if (_listeners.size() == 0) {
 				// we cancel all scheduled jobs
 				if (_scheduledFuture != null) {
-					boolean stopped = _scheduledFuture.cancel(false);
+					_scheduledFuture.cancel(false);
 					_scheduledFuture = null;
 				}
 			} else {

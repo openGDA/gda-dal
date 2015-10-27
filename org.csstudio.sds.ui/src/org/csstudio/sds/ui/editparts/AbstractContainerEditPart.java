@@ -238,7 +238,6 @@ public abstract class AbstractContainerEditPart extends AbstractBaseEditPart imp
 				return null;
 			}
 
-			@SuppressWarnings("unchecked")
 			@Override
 			public Command getOrphanChildrenCommand(final GroupRequest request) {
 				List parts = request.getEditParts();
@@ -268,7 +267,6 @@ public abstract class AbstractContainerEditPart extends AbstractBaseEditPart imp
 	/**
 	 * {@inheritDoc}
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	protected final synchronized List getModelChildren() {
 		List<AbstractWidgetModel> modelChildren = getContainerModel().getWidgets();

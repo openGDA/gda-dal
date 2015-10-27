@@ -69,7 +69,6 @@ public class PaletteEntryCreator {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	private List<ToolEntry> createToolEntries(final PaletteRoot root, Set<String> usedWidgetTypes) {
 		List<ToolEntry> result = new ArrayList<ToolEntry>();
 

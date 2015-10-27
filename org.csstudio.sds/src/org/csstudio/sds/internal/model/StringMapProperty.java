@@ -62,7 +62,6 @@ public class StringMapProperty extends WidgetProperty {
 	 * {@inheritDoc}
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public Object checkValue(final Object value) {
 		assert value != null : "value!=null"; //$NON-NLS-1$
 
@@ -79,7 +78,6 @@ public class StringMapProperty extends WidgetProperty {
 	 * {@inheritDoc}
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public Class[] getCompatibleJavaTypes() {
 		return new Class[] { Map.class };
 	}

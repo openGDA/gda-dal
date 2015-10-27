@@ -146,7 +146,6 @@ public class RefreshableThumbWheelFigure extends RectangleFigure implements
 	 * {@inheritDoc}
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public Object getAdapter(final Class adapter) {
         if (adapter == IBorderEquippedWidget.class) {
             if (_borderAdapter == null) {
@@ -248,14 +247,11 @@ public class RefreshableThumbWheelFigure extends RectangleFigure implements
 			if (color == null) {
 				setBorder(null);
 			} else {
-				if (color != null) {
-					setBorder(new LineBorder(color, thickness));
-				} else {
-					setBorder(new LineBorder(thickness));
-				}
+				setBorder(new LineBorder(color, thickness));
 			}
 		}
 
+		@SuppressWarnings("unused")
 		public void setLabelFontColor(final Color font) {
 			label.setForegroundColor(color);
 		}
@@ -351,11 +347,7 @@ public class RefreshableThumbWheelFigure extends RectangleFigure implements
 			if (color == null) {
 				setBorder(null);
 			} else {
-				if (color != null) {
-					setBorder(new LineBorder(color, thickness));
-				} else {
-					setBorder(new LineBorder(thickness));
-				}
+				setBorder(new LineBorder(color, thickness));
 			}
 		}
 
@@ -363,9 +355,9 @@ public class RefreshableThumbWheelFigure extends RectangleFigure implements
 			label.setText("" + value);
 		}
 
+		@SuppressWarnings("unused")
 		public void setLabelFontColor(final Color color) {
 			label.setForegroundColor(color);
-
 		}
 
 	}

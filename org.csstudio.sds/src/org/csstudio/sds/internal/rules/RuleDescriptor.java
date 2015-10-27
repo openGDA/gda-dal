@@ -177,7 +177,6 @@ public final class RuleDescriptor implements IAdaptable {
 	 * {@inheritDoc}
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public Object getAdapter(final Class adapter) {
 		return Platform.getAdapterManager().getAdapter(this, adapter);
 	}

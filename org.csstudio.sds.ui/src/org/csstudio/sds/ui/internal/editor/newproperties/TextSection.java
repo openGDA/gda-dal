@@ -1,7 +1,5 @@
 package org.csstudio.sds.ui.internal.editor.newproperties;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -50,6 +48,7 @@ public final class TextSection extends AbstractTextSection<StringProperty, Strin
 	
 	}
 	
+/*
 	private class PermissionIdContentProposal implements IContentProposal {
 		
 		private final String _content;
@@ -83,5 +82,5 @@ public final class TextSection extends AbstractTextSection<StringProperty, Strin
 		}
 		
 	}
-
+*/
 }

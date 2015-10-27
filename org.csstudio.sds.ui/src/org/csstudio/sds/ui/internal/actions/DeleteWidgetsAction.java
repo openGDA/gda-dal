@@ -51,7 +51,7 @@ public final class DeleteWidgetsAction extends DeleteAction {
 		super(part);
 	}
 
-	@SuppressWarnings({ "unchecked", "restriction" })
+	@SuppressWarnings({ "restriction" })
 	@Override
 	public Command createDeleteCommand(List objects) {
 		if (objects.isEmpty() || !(objects.get(0) instanceof EditPart)) {

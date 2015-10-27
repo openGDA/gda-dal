@@ -259,6 +259,7 @@ public abstract class AbstractScaledWidgetFigure extends Figure implements Intro
 	/**
 	 * @param valueLabelFormat the numeric format pattern for value label.
 	 */
+	@SuppressWarnings("unused")
 	public void setValueLabelFormat(String valueLabelFormat) {
 		 try {
 	 			new DecimalFormat(valueLabelFormat);

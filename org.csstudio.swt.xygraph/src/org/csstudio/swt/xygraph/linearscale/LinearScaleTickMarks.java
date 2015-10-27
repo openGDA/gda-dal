@@ -62,7 +62,7 @@ protected void paintClientArea(Graphics graphics) {
         } finally {
         	graphics.popState();
         }
-  };
+	}
 
     /**
      * Draw the X tick marks.
@@ -93,7 +93,7 @@ protected void paintClientArea(Graphics graphics) {
                 	tickLength = MAJOR_TICK_LENGTH;
                 else
                 	tickLength = MINOR_TICK_LENGTH;
-                y = tickLabelSide == LabelSide.Primary ? 0 : height - 1 - LINE_WIDTH - tickLength;;
+				y = tickLabelSide == LabelSide.Primary ? 0 : height - 1 - LINE_WIDTH - tickLength;
 
                 //draw minor ticks for log scale
                 if(ticks.isVisible(i) || scale.isMinorTicksVisible())

@@ -24,7 +24,6 @@ public final class TankModelFactory implements IWidgetModelFactory {
 	 * {@inheritDoc}
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public Class getWidgetModelType() {
 		return TankModel.class;
 	}

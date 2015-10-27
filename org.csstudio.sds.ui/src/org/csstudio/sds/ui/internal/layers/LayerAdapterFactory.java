@@ -37,7 +37,6 @@ public final class LayerAdapterFactory implements IAdapterFactory {
 	 * {@inheritDoc}
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public Object getAdapter(final Object adaptableObject, final Class adapterType) {
 		assert adaptableObject instanceof Layer : "adaptableObject instanceof Layer";
 
@@ -51,7 +50,6 @@ public final class LayerAdapterFactory implements IAdapterFactory {
 	 * {@inheritDoc}
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public Class[] getAdapterList() {
 		return new Class[] { IWorkbenchAdapter.class };
 	}

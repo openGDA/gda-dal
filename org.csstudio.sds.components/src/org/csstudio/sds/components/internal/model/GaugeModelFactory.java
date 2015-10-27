@@ -24,7 +24,6 @@ public final class GaugeModelFactory implements IWidgetModelFactory {
 	 * {@inheritDoc}
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public Class getWidgetModelType() {
 		return GaugeModel.class;
 	}

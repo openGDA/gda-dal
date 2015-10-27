@@ -43,7 +43,7 @@ public final class SetBoundsCommand extends Command {
 	/**
 	 * Stores the old size and location.
 	 */
-	private Rectangle _oldBounds;
+	// private Rectangle _oldBounds;
 
 	/**
 	 * The element, whose constraints are to be changed.
@@ -104,11 +104,12 @@ public final class SetBoundsCommand extends Command {
 	 * Applies the specified bounds to the widget model.
 	 * @param bounds the bounds
 	 */
-	private void doApplyBounds(final Rectangle bounds) {
+/*	private void doApplyBounds(final Rectangle bounds) {
 		// change element size
 		_widgetModel.setSize(bounds.width, bounds.height);
 
 		// change location
 		_widgetModel.setLocation(bounds.x, bounds.y);
 	}
+*/
 }

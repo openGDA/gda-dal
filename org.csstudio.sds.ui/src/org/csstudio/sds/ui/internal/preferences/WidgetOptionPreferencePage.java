@@ -344,7 +344,6 @@ public final class WidgetOptionPreferencePage extends PreferencePage implements
 		/**
 		 * {@inheritDoc}
 		 */
-		@SuppressWarnings("unchecked")
 		@Override
 		public String getText(final Object element) {
 			if (element instanceof WidgetTreeElement) {
@@ -353,7 +352,7 @@ public final class WidgetOptionPreferencePage extends PreferencePage implements
 			if (element instanceof PluginTreeElement) {
 				String typeId = ((PluginTreeElement)element).getId();
 				try {
-					Dictionary headers = Platform.getBundle(typeId).getHeaders();
+					Dictionary<String, String> headers = Platform.getBundle(typeId).getHeaders();
 					StringBuffer resultBuffer = new StringBuffer(headers.get("Bundle-Name").toString());
 					resultBuffer.append(" (");
 					resultBuffer.append(typeId);

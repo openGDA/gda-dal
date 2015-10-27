@@ -38,6 +38,7 @@ public class StartEndRangeWidgetTest extends ApplicationWindow {
 	 * 
 	 * @param parent
 	 */
+	@SuppressWarnings("unused")
 	@Override
 	protected Control createContents(Composite parent) {
 		Composite container = new Composite(parent, SWT.NONE);
@@ -149,15 +150,8 @@ public class StartEndRangeWidgetTest extends ApplicationWindow {
 	}
 
 	/**
-	 * Create the actions.
-	 */
-	private void createActions() {
-		// Create the actions
-	}
-
-	/**
 	 * Create the menu manager.
-	 * 
+	 *
 	 * @return the menu manager
 	 */
 	@Override

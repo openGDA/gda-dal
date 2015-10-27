@@ -94,7 +94,6 @@ public final class DoubleArrayProperty extends WidgetProperty {
 	 * {@inheritDoc}
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public Class[] getCompatibleJavaTypes() {
 		return new Class[]{Number.class};
 	}

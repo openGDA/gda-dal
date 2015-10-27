@@ -24,7 +24,6 @@ public class ProcessVariablesDragSourceListener extends AbstractDragSourceListen
 		ProcessVariable[] result = null;
 
 		if (!allAddresses.isEmpty()) {
-			int i = 0;
 			//Drag only main pv
 			result = new ProcessVariable[1];
 			result[0] = new ProcessVariable(mainAddress.getProperty());

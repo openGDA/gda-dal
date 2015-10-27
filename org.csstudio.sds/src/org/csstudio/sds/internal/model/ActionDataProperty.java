@@ -71,7 +71,6 @@ public final class ActionDataProperty extends WidgetProperty {
 	 * {@inheritDoc}
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public Class[] getCompatibleJavaTypes() {
 		return new Class[]{ActionData.class};
 	}

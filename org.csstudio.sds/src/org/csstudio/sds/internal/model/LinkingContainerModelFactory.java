@@ -45,7 +45,6 @@ public final class LinkingContainerModelFactory implements IWidgetModelFactory {
 	 * {@inheritDoc}
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public Class getWidgetModelType() {
 		return LinkingContainerModel.class;
 	}

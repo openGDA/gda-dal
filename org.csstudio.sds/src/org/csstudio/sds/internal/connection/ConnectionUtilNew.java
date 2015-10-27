@@ -23,6 +23,10 @@ package org.csstudio.sds.internal.connection;
 
 import java.util.Map;
 
+import org.csstudio.dal.simple.ConnectionParameters;
+import org.csstudio.dal.simple.RemoteInfo;
+import org.csstudio.dal.simple.SimpleDALBroker;
+import org.csstudio.domain.common.strings.Strings;
 import org.csstudio.platform.model.pvs.IProcessVariableAddress;
 import org.csstudio.platform.model.pvs.ValueType;
 import org.csstudio.sds.SdsPlugin;
@@ -34,10 +38,6 @@ import org.csstudio.sds.internal.rules.RuleService;
 import org.csstudio.sds.model.AbstractWidgetModel;
 import org.csstudio.sds.model.DynamicsDescriptor;
 import org.csstudio.sds.model.WidgetProperty;
-import org.csstudio.dal.simple.ConnectionParameters;
-import org.csstudio.dal.simple.RemoteInfo;
-import org.csstudio.dal.simple.SimpleDALBroker;
-import org.csstudio.domain.common.strings.Strings;
 
 /**
  * Utility class that provides facilities to connect SDS widgets to a control
@@ -50,8 +50,8 @@ public final class ConnectionUtilNew {
 
 	public static void connectToWidgetManagementApi(
 			final AbstractWidgetModel widgetModel) {
-		final String permissionId = widgetModel.getPermissionID();
-		
+		widgetModel.getPermissionID();
+
 	}
 
 	/**

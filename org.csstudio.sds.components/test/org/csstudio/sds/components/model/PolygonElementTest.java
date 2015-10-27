@@ -58,7 +58,6 @@ public final class PolygonElementTest {
 	/**
 	 * Tests, if all properties where properly installed.
 	 */
-	@SuppressWarnings("static-access")
 	@Test
 	public void testProperties () {
 		assertTrue(_polygonElement.hasProperty(PolygonModel.PROP_POINTS));

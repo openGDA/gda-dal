@@ -133,7 +133,7 @@ public final class RefreshableImageFigure extends Figure implements IAdaptable {
 	 */
 	private boolean refreshing = false;
 
-	private boolean stopedAnimation = false;
+	private boolean stoppedAnimation = false;
 
 	private boolean loadingError = false;
 
@@ -169,6 +169,7 @@ public final class RefreshableImageFigure extends Figure implements IAdaptable {
 	 * The main drawing routine.
 	 * @param graphics The {@link Graphics} to use
 	 */
+	@SuppressWarnings("unused")
 	@Override
     public void paintFigure(final Graphics graphics) {
 		Rectangle bound=getBounds().getCopy();
@@ -306,7 +307,7 @@ public final class RefreshableImageFigure extends Figure implements IAdaptable {
 					cropedWidth,cropedHeight);
 			refresh_image.dispose();
 		} else { // draw static image
-			if(animated && stopedAnimation && (offScreenImage != null) && (showIndex!=0)){
+			if(animated && stoppedAnimation && (offScreenImage != null) && (showIndex!=0)){
 				graphics.drawImage(offScreenImage, _leftCrop,_topCrop,
 					cropedWidth,cropedHeight,
 					bound.x,bound.y,
@@ -555,7 +556,6 @@ public final class RefreshableImageFigure extends Figure implements IAdaptable {
 	 * {@inheritDoc}
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public Object getAdapter(final Class adapter) {
 		if (adapter == IBorderEquippedWidget.class) {
 			if(_borderAdapter==null) {
@@ -582,7 +582,7 @@ public final class RefreshableImageFigure extends Figure implements IAdaptable {
 	 * start the animation if the image is an animated GIF image.
 	 */
 	public void startAnimation(){
-		if(animated && !refreshing && !stopedAnimation) {
+		if(animated && !refreshing && !stoppedAnimation) {
 			repeatCount = loader.repeatCount;
 			//animationIndex = 0;
 			lastUpdateTime=0;
@@ -643,7 +643,7 @@ public final class RefreshableImageFigure extends Figure implements IAdaptable {
 	}
 
 	public void setStopAnimation(final boolean stop){
-		stopedAnimation = stop;
+		stoppedAnimation = stop;
 		if(stop){
 			stopAnimation();
 		}else if(animated){

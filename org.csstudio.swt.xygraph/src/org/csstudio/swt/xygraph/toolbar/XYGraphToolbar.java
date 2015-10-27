@@ -415,12 +415,12 @@ public class XYGraphToolbar extends Figure {
 							if (event.getPropertyName().equals(ButtonModel.ENABLED_PROPERTY)) {
                                 action.setEnabled(gb.isEnabled());
 							}
-						};
+						}
 					});
 
-				};
-        				
-				action.setImageDescriptor(new ImageDescriptor() {			
+				}
+
+				action.setImageDescriptor(new ImageDescriptor() {
 					@Override
 					public ImageData getImageData() {
 						return image.getImageData();

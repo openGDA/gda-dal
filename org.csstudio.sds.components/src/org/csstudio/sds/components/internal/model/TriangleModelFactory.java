@@ -45,7 +45,6 @@ public final class TriangleModelFactory implements IWidgetModelFactory {
 	 * {@inheritDoc}
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public Class getWidgetModelType() {
 		return TriangleModel.class;
 	}

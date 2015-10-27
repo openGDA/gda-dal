@@ -1,6 +1,5 @@
 package org.csstudio.platform.internal.simpledal.dal;
 
-import org.csstudio.platform.internal.simpledal.ProcessVariableConnectionService;
 import org.csstudio.platform.model.pvs.IProcessVariableAddress;
 import org.csstudio.platform.model.pvs.ProcessVariableAdressFactory;
 import org.csstudio.platform.model.pvs.ValueType;
@@ -28,7 +27,7 @@ public class UseCase {
 		
 		// read value synchronously
 		try {
-			Double value = service.readValueSynchronously(pv, ValueType.DOUBLE);
+			service.readValueSynchronously(pv, ValueType.DOUBLE);
 		} catch (ConnectionException e) {
 			e.printStackTrace();
 		}

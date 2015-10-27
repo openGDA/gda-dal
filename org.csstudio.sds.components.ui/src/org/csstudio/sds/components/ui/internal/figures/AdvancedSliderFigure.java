@@ -63,6 +63,7 @@ import org.eclipse.swt.SWT;
  *
  * @author Sven Wende, Joerg Rathlev
  */
+@SuppressWarnings("unused")
 public final class AdvancedSliderFigure extends Panel implements IAdaptable {
 	/**
 	 * Insets for the whole figure.
@@ -608,7 +609,7 @@ public final class AdvancedSliderFigure extends Panel implements IAdaptable {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Object getAdapter(@SuppressWarnings("unchecked") final Class adapter) {
+	public Object getAdapter(final Class adapter) {
 		if (adapter == IBorderEquippedWidget.class) {
 			if (_borderAdapter == null) {
 				_borderAdapter = new BorderAdapter(this);

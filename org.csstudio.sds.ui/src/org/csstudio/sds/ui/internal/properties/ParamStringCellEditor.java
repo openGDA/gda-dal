@@ -356,9 +356,7 @@ public final class ParamStringCellEditor extends AbstractDialogCellEditor {
 	    	 * The name of the property.
 	    	 */
 	    	private String _tooltipVariable;
-	    	
-	    	private String _description;
-	    	
+
 	    	/**
 	    	 * Constructor.
 	    	 * @param tooltipVariable The name of the property

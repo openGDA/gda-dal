@@ -42,11 +42,8 @@ import org.eclipse.ui.IWorkbenchPart;
  */
 public abstract class AbstractWidgetSelectionAction extends SelectionAction {
 
-	private final GraphicalViewer _viewer;
-
 	public AbstractWidgetSelectionAction(IWorkbenchPart part, GraphicalViewer viewer) {
 		super(part);
-		this._viewer = viewer;
 	}
 
 	protected abstract Command doCreateCommand(List<AbstractWidgetModel> selectedWidgets);

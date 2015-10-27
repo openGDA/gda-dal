@@ -185,7 +185,6 @@ public final class RefreshablePolylineFigure extends Polyline implements
 	 * {@inheritDoc}
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public Object getAdapter(final Class adapter) {
 		if (adapter == IBorderEquippedWidget.class) {
 			if (_borderAdapter == null) {

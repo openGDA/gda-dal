@@ -29,14 +29,16 @@ import org.csstudio.data.values.IValue;
 
 /**
  * @author hrickens
- * @author $Author$
- * @version $Revision$
  * @since 06.06.2007
  */
 public class ProcessVariableWithSamples extends ProcessVariable {
     /**
-     * The list of Samples.
-     */
+	 *
+	 */
+	private static final long serialVersionUID = -9024329501676571768L;
+	/**
+	 * The list of Samples.
+	 */
     private IValue[] _samplesList = null;
     /**
      * @param name PV Name

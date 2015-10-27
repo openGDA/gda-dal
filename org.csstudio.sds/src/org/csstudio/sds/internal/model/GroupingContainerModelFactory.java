@@ -44,7 +44,6 @@ public final class GroupingContainerModelFactory implements IWidgetModelFactory 
 	 * {@inheritDoc}
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public Class getWidgetModelType() {
 		return GroupingContainerModel.class;
 	}

@@ -92,9 +92,10 @@ public class RemoteInfo extends URIName
 		return ret;
 	}
 
+	@SuppressWarnings("unused")
 	private RemoteInfo()
 	{
-		//
+		// Hide constructor
 	}
 
 	/**

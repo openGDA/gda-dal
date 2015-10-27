@@ -55,9 +55,7 @@ public final class TimerEditPart extends AbstractWidgetEditPart {
 
 	private long _lastExecution;
 
-	@SuppressWarnings("unchecked")
 	private ScheduledFuture _scheduledFuture1;
-	@SuppressWarnings("unchecked")
 	private ScheduledFuture _scheduledFuture2;
 
 	/**

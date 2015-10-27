@@ -284,7 +284,6 @@ public final class RefreshableSwitchFigure extends Shape implements IAdaptable {
 	 * {@inheritDoc}
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public Object getAdapter(final Class adapter) {
 		if (adapter == IBorderEquippedWidget.class) {
 			if (_borderAdapter == null) {

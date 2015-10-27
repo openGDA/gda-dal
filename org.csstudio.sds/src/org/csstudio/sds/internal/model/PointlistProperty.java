@@ -71,7 +71,6 @@ public final class PointlistProperty extends WidgetProperty {
 	 * {@inheritDoc}
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public Class[] getCompatibleJavaTypes() {
 		return new Class[]{PointList.class};
 	}

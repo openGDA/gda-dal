@@ -90,14 +90,12 @@ public enum DalPropertyTypes {
 	/**
 	 * A hint for the necessary DAL property type.
 	 */
-	@SuppressWarnings("unchecked")
 	private Class<? extends DynamicValueProperty> _dalType;
 
 	/**
 	 * Constructor. @param id The ID. Will be used as portable representation of the created instance. @param javaType the Java type, which is expected for
 	 * property values @param dalType a hint for the necessary DAL property type
 	 */
-	@SuppressWarnings("unchecked")
 	private DalPropertyTypes(final String id, String description,
 			final Class<? extends DynamicValueProperty> dalType) {
 		assert id != null;

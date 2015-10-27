@@ -71,6 +71,7 @@ public final class ControlSystemItemPath implements Serializable {
 	/**
 	 * Privat default constructur. Used only for serialization.
 	 */
+	@SuppressWarnings("unused")
 	private ControlSystemItemPath() {
 		_itemData = ""; //$NON-NLS-1$
 		_typeId = ""; //$NON-NLS-1$

@@ -47,7 +47,7 @@ import org.eclipse.gef.requests.CreateRequest;
 final class RunModeXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
 	/**
-	 * Overriden, to provide a generic EditPolicy for children, which is aware
+	 * Overridden, to provide a generic EditPolicy for children, which is aware
 	 * of different feedback and selection handles. {@inheritDoc}
 	 */
 	@Override
@@ -110,11 +110,10 @@ final class RunModeXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		/**
 		 * {@inheritDoc}
 		 */
-		@SuppressWarnings("unchecked")
 		@Override
 		protected List createSelectionHandles() {
 			// get default handles
-			List handleList = super.createSelectionHandles();
+			super.createSelectionHandles();
 
 			// add contributed handles
 			assert _child.getModel() instanceof AbstractWidgetModel : "widget models must be derived from AbstractWidgetModel"; //$NON-NLS-1$"

@@ -12,7 +12,6 @@ public class XYGraphModelFactory implements IWidgetModelFactory {
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public Class getWidgetModelType() {
 		return XYGraphModel.class;
 	}

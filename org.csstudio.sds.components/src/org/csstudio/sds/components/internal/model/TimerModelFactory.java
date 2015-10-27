@@ -44,7 +44,6 @@ public final class TimerModelFactory implements IWidgetModelFactory {
 	 * {@inheritDoc}
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public Class getWidgetModelType() {
 		return TimerModel.class;
 	}

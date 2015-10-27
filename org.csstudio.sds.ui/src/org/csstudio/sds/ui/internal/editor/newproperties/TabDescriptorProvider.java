@@ -134,12 +134,11 @@ public class TabDescriptorProvider implements ITabDescriptorProvider {
 	 *
 	 * @return a list of widget models
 	 */
-	@SuppressWarnings("unchecked")
 	private List<AbstractWidgetModel> getSelectedWidgets(final ISelection selection) {
 		List<AbstractWidgetModel> result = new ArrayList<AbstractWidgetModel>();
 		if (selection instanceof IStructuredSelection) {
 
-			Iterator it = ((IStructuredSelection) selection).iterator();
+			Iterator<?> it = ((IStructuredSelection) selection).iterator();
 
 			while (it.hasNext()) {
 				Object o = it.next();

@@ -64,7 +64,7 @@ public class LinearScaleTickLabels extends Figure {
         }
 
     	super.paintClientArea(graphics);
-    };
+	}
 
     /**
      * Draw the X tick.

@@ -767,6 +767,7 @@ public class Trace extends Figure implements IDataProviderListener,
                                                                         case STEP_VERTICALLY:
                                                                                 plPolyline.addPoint(predpPos.x, dpPos.y);
                                                                                 break;
+                                                                        default: break;
                                                                         }
                                                                         
                                                                         plPolyline.addPoint(dpPos);
@@ -780,6 +781,7 @@ public class Trace extends Figure implements IDataProviderListener,
                                                                                         case STEP_VERTICALLY:
                                                                                                 plPolyline.addPoint(predpPos.x, dpPos.y);
                                                                                                 break;
+                                                                                        default: break;
                                                                                         }
                                                                                         
                                                                                         plPolyline.addPoint(dpPos);
@@ -800,6 +802,7 @@ public class Trace extends Figure implements IDataProviderListener,
                                                                                         case STEP_VERTICALLY:
                                                                                                 plPolyline.addPoint(lastInRegion.x, dpPos.y);
                                                                                                 break;
+                                                                                        default: break;
                                                                                         }
 
                                                                                         // The first point of the next region is drawn anyway.
@@ -859,6 +862,7 @@ public class Trace extends Figure implements IDataProviderListener,
                                                                 case STEP_VERTICALLY:
                                                                         plPolyline.addPoint(predpPos.x, dpPos.y);
                                                                         break;
+                                                                default: break;
                                                                 }
                                                                 
                                                                 plPolyline.addPoint(dpPos);

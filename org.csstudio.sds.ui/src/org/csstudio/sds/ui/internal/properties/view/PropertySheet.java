@@ -281,7 +281,6 @@ public final class PropertySheet extends PageBookView implements
 	/**
 	 * {@inheritDoc}
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	protected Object getViewAdapter(final Class key) {
 		if (ISaveablePart.class.equals(key)) {

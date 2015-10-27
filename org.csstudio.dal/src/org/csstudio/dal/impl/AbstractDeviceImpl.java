@@ -507,7 +507,7 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	}
 
 	public boolean isConnecting(){
-		return connectionStateMachine.isConnecting(); 
+		return connectionStateMachine.isConnecting();
 	}
 
 	@Override
@@ -788,25 +788,25 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	{
 		return deviceProxy;
 	}
-	
+
 	public Proxy[] releaseProxy(boolean destroy) {
-		
+
 		setConnectionState(ConnectionState.DISCONNECTING);
-		
+
 		if (properties!=null) {
 			Collection<DynamicValueProperty<?>> props = properties.values();
 			for (Iterator<DynamicValueProperty<?>> iterator = props.iterator(); iterator.hasNext();) {
 				DynamicValueProperty<?> dynamicValueProperty = (DynamicValueProperty<?>) iterator
 						.next();
-				Proxy[] p=((DataAccessImpl<?>) dynamicValueProperty).releaseProxy(destroy);
+				((DataAccessImpl<?>) dynamicValueProperty).releaseProxy(destroy);
 			}
 		}
-		
+
 		Proxy[] temp = new Proxy[]{deviceProxy,directoryProxy};
-		
+
 		deviceProxy = null;
 		directoryProxy = null;
-		
+
 		setConnectionState(ConnectionState.DISCONNECTED);
 
 		if (destroy) {
@@ -826,20 +826,20 @@ public class AbstractDeviceImpl extends LifecycleReporterSupport
 	public ConnectionState getConnectionState() {
 		return connectionStateMachine.getConnectionState();
 	}
-	
+
 	/**
 	 * Returns plug type string, which is distinguishing for plug which
 	 * creates  proxies for particular communication layer.<p>For
 	 * example plug that connects to EPICS device my return string "EPICS".</p>
 	 *
-	 * @return plug destingushing type name
+	 * @return plug distinguishing type name
 	 */
 	@Override
 	public String getPlugType() {
 		// TODO: missing implementation
 		return null;
 	}
-	
+
 	@Override
 	public DeviceFamily<?> getParentContext() {
 		return deviceFamily;

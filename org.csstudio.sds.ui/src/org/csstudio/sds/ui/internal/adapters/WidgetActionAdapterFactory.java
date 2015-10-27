@@ -42,9 +42,7 @@ public final class WidgetActionAdapterFactory implements IAdapterFactory {
 	 * {@inheritDoc}
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
-	public Object getAdapter(final Object adaptableObject,
-			final Class adapterType) {
+	public Object getAdapter(final Object adaptableObject, final Class adapterType) {
 		assert adaptableObject != null;
 		assert adapterType != null;
 		assert adaptableObject instanceof AbstractWidgetActionModel : "adaptableObject instanceof WidgetAction"; //$NON-NLS-1$
@@ -80,7 +78,6 @@ public final class WidgetActionAdapterFactory implements IAdapterFactory {
 	 * {@inheritDoc}
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public Class[] getAdapterList() {
 		return new Class[] { IWorkbenchAdapter.class };
 	}
