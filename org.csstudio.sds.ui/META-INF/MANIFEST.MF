@@ -84,4 +84,4 @@ Export-Package: org.csstudio.sds.ui;
    org.eclipse.swt.layout,
    org.eclipse.jface.dialogs"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Import-Package: org.slf4j;version="[1.7.6,1.7.7)"
+Import-Package: org.slf4j;version="[1.7.2,2.0.0)"
